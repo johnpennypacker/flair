@@ -1,0 +1,34 @@
+.sidler {
+	color: inherit;	
+	margin-bottom: 6rem;
+	position: relative;
+ 	width: 100vw;	
+}
+
+.sidler .line {
+	font-size: 40vh;
+	line-height: 25vh;
+
+	white-space: nowrap;
+	min-width: fit-content;
+	mix-blend-mode: exclusion;
+}
+
+.sidler .line {
+	--start: calc(1px * var(--width));
+	--range: calc(var(--start) + calc(1px * var(--line-width)));
+	--pct: var(--mid-percent);
+	position: relative;
+
+	transform: translateX(calc(var(--start) - calc(var(--range) * var(--pct))));
+	transition: .1s transform ease;
+}
+
+.sidler.rtl .line,
+.sidler:nth-child(even) .line {
+	transform: translateX(calc(var(--start) - calc(var(--range) * calc(1 - var(--pct)))));
+}
+
+.sidler + .sidler {
+	margin-top: -6rem;
+}
