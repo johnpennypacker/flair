@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "flair/card",
+	"title": "Card",
+	"category": "design",
+	"icon": "text",
+	"description": "Cards",
+	"keywords": [ "card", "link", "button" ],
+	"version": "0.1",
+	"textdomain": "jape",
+	"attributes": {
+		"link": {
+			"type": "string",
+			"source": "html",
+			"selector": ".link",
+			"attribute": "href"
+		},
+		"title": {
+			"type": "string",
+			"source": "html",
+			"selector": ".title"
+		},
+		"excerpt": {
+			"type": "string",
+			"source": "html",
+			"selector": ".excerpt"
+		},
+		"call": {
+			"type": "string",
+			"source": "text",
+			"selector": ".call"
+		}
+	},
+	"editorScript": "file:./editor.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./card.css"
+}

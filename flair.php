@@ -22,6 +22,8 @@ function flair_script() {
 add_action( 'wp_enqueue_scripts', 'flair_script' );
 
 
+include_once 'card/index.php';
+
 
 /**
  * Register blocks.

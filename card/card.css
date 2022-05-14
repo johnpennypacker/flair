@@ -1,0 +1,145 @@
+.card {
+	background-color: var(--color__base_900);
+	color: var(--color__base_100);	
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	margin-bottom: 2rem;
+	position: relative;
+	width: 100%;
+}
+.card .link {
+	color: inherit;
+	text-decoration: inherit;
+}
+.card .link h2 {
+	font-family: inherit;
+	font-weight: bold;
+	font-size: calc(var(--type__size) * 1.25);
+	margin: 0 0 calc(var(--type__size) * .5);
+}
+.card .categories {
+	margin: 0 0 calc(var(--type__size) * .5);
+	z-index: 2;
+	pointer-events: none;
+}
+.card .categories a {
+	background-color: var(--color__base_400);
+	color: var(--color__base_900);
+	border-radius: 1rem;
+	display: inline-block;
+	font-size: calc(var(--type__size) * .75);
+	padding: calc(var(--type__size) * .25) calc(var(--type__size) * .5);
+	text-decoration: none;
+	pointer-events: auto;
+}
+.card .categories a:hover {
+	background-color: var(--color__base_100);
+}
+.card .categories a:not(:last-of-type) {
+	margin-right: calc(var(--type__size) * .25);
+}
+
+.card .categories .sep {
+	display: none;
+}
+.card .excerpt {
+	margin: 0 0 calc(var(--type__size) * 1);
+}
+.card .call {
+	background-color: var(--color__base_700);
+	padding: calc(var(--type__size) * 1);
+	position: relative;
+	text-align: center;
+}
+
+.card .media {
+	order: 1;
+}
+.card .link {
+	order: 2;
+}
+.card .categories {
+	order: 3;
+}
+.card .excerpt {
+	order: 4;
+}
+.card .call {
+	order: 5;
+}
+
+.card .media {
+	margin-bottom: 1rem;
+}
+
+.card .media,
+.card .link,
+.card .categories,
+.card .excerpt {
+/* 
+	background-color: orange;
+ */
+}
+.card .link,
+.card .categories,
+.card .excerpt {
+	padding: 0 1rem 0;
+}
+
+.card .excerpt {
+	pointer-events: none;
+	z-index: 2;
+}
+.card .excerpt a {
+	position: relative;
+	z-index: 99;
+	pointer-events: auto;
+}
+
+
+
+.card .link::before {
+	box-shadow: 0 0 5px var(--color__base_700);
+	content: '';
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+	transition: all .2s ease-in-out;
+	z-index: 1;
+} 
+.card .link:hover {
+	background-color: inherit;
+	color: inherit;
+}
+
+.card .link:hover::before {
+	box-shadow: 0 3px 10px var(--color__base_700);
+	transform: translateY(-2px);
+}
+
+.card .link:hover ~ .media {
+	overflow: hidden;
+}
+
+.card .media img {
+	display: block;
+}
+.card .link:hover ~ .media img {
+	transform: scale(1.05);
+	transition: all .2s ease-in-out;
+}
+
+.card .link .title,
+.card .link ~ .categories,
+.card .link ~ .media,
+.card .link ~ .excerpt,
+.card .link ~ .call {
+	transition: all .2s ease-in-out;
+}
+.card .link:hover .title,
+.card .link:hover ~ .categories,
+.card .link:hover ~ .media,
+.card .link:hover ~ .excerpt,
+.card .link:hover ~ .call {
+	transform: translateY(-2px);
+}
