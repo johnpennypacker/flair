@@ -39,7 +39,7 @@
 				} );
 			};
 
-			console.log('edit', props);
+			// console.log('edit', props);
 			
 			return el( 'div', Object.assign( blockProps ), 
 				el( 'a', { className: 'link' }, 
@@ -67,7 +67,7 @@
 								{
 									className: attributes.mediaID
 										? 'image-button'
-										: 'button button-large',
+										: 'button button-large select-media',
 									onClick: obj.open,
 								},
 								! attributes.mediaID
@@ -75,7 +75,7 @@
 									: el( 'img', { src: attributes.mediaURL, alt: attributes.mediaAlt } )
 							);
 						},
-					} )
+					})
 				),
 				// el( 'div', { className: 'meta' }),
 				el( RichText, {
@@ -86,7 +86,17 @@
 						props.setAttributes( { excerpt: val } ); // Store updated content as a block attribute
 					},
 					placeholder: __( 'your description...' ), // Display this text before any content has been added by the user
-				})
+				}),
+				el( blockEditor.RichText, {
+					tagName: 'div',
+					className: 'call',
+					value: attributes.call,
+					allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
+					onChange: function( value ) {
+						props.setAttributes( { call: value } );
+					},
+					placeholder: __( 'button' ), 
+				}),
 			);
 
 		},
@@ -95,6 +105,33 @@
 		save: function( props ) {
 
 			var attributes = props.attributes;
+			
+			function getMedia() {
+				if ( !! attributes.mediaURL ) {
+					return el( 'div', { className: 'media' }, 
+						el( 'img', { src: attributes.mediaURL, alt: attributes.mediaAlt }),
+					);
+				}
+			};
+			function getExcerpt() {
+				if ( !! attributes.excerpt ) {
+					return el( RichText.Content, {
+						tagName: 'div',
+						className: 'excerpt',
+						value: attributes.excerpt
+					});
+				}
+			};
+			function getButton() {
+				if ( !! attributes.call ) {
+					return el( RichText.Content, {
+						tagName: 'div',
+						className: 'call',
+						value: attributes.call
+					})
+				}
+			};
+
 			
 			// console.log('save', attributes);
 		
@@ -108,13 +145,10 @@
 						value: attributes.title
 					})
 				),
-				el( 'img', { className: 'media', src: attributes.mediaURL, alt: attributes.mediaAlt }),
+				getMedia(),
 				// el( 'div', { className: 'categories' }),
-				el( RichText.Content, {
-					tagName: 'div',
-					className: 'excerpt',
-					value: attributes.excerpt
-				})
+				getExcerpt(),
+				getButton()
 			);
 
  		}

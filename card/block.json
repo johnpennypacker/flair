@@ -22,13 +22,13 @@
 		"mediaURL": {
 			"type": "string",
 			"source": "attribute",
-			"selector": ".media",
+			"selector": ".media img",
 			"attribute": "src"
 		},
 		"mediaAlt": {
 			"type": "string",
 			"source": "attribute",
-			"selector": ".media",
+			"selector": ".media img",
 			"attribute": "alt"
 		},
 		"title": {

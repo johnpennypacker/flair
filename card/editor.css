@@ -18,3 +18,10 @@
 .card .media button.image-button img {
 	margin: 0;
 }
+
+.card .media button.select-media {
+	display: block;
+	height: auto;
+	margin: 1rem auto;
+	padding: .25rem 1rem;
+}
