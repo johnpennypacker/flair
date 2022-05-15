@@ -16,6 +16,21 @@
 			"selector": ".link",
 			"attribute": "href"
 		},
+		"mediaID": {
+			"type": "number"
+		},
+		"mediaURL": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".media",
+			"attribute": "src"
+		},
+		"mediaAlt": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".media",
+			"attribute": "alt"
+		},
 		"title": {
 			"type": "string",
 			"source": "html",

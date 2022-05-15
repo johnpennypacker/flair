@@ -14,8 +14,8 @@
 			var blockProps = wp.blockEditor.useBlockProps();
 			var content = props.attributes.content;
 			
-			return el('div', { className: 'sidler flair-io' }, 
-				el( blockEditor.RichText, Object.assign( blockProps, {
+			return el('div', Object.assign( blockProps, { className: 'sidler flair-io' } ), 
+				el( blockEditor.RichText, {
 					tagName: 'div',
 					className: 'line',
 					value: props.attributes.content,
@@ -24,7 +24,7 @@
 						props.setAttributes( { content: content } ); // Store updated content as a block attribute
 					},
 					placeholder: __( 'sidle...' ), // Display this text before any content has been added by the user
-				}))
+				})
 			);
 		},
 		

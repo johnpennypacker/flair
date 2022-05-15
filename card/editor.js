@@ -3,6 +3,7 @@
 	var el = element.createElement;
 	var __ = i18n.__;
 	var RichText = blockEditor.RichText;
+	var MediaUpload = blockEditor.MediaUpload;
 
 	var classes = 'card flair-io';
 	
@@ -25,29 +26,62 @@
 		
 		edit: function( props ) {
 					
+			var attributes = props.attributes;
 
 			var blockProps = wp.blockEditor.useBlockProps({ className: classes });
-			var excerpt = props.attributes.excerpt;
+			var excerpt = attributes.excerpt;
 
-			console.log('edit', blockProps, props);
+			var onSelectImage = function( media ) {
+				return props.setAttributes( {
+					mediaURL: media.url,
+					mediaID: media.id,
+					mediaAlt: media.alt,
+				} );
+			};
+
+			console.log('edit', props);
 			
 			return el( 'div', Object.assign( blockProps ), 
 				el( 'a', { className: 'link' }, 
-					el( 'h2', {
+					el( blockEditor.RichText, {
+						tagName: 'h2',
 						className: 'title',
-						onChange: function( title ) {
-							props.setAttributes( { title: title } );
+						value: attributes.title,
+						allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
+						onChange: function( value ) {
+							props.setAttributes( { title: value } );
 						},
-					}, 
-						props.attributes.title
-					),					
+						placeholder: __( 'title' ), 
+					}),
 				),
-				el( 'img', { className: 'media', src: '' }),
-				// el( 'div', { className: 'categories' }),
+				el(
+					'div',
+					{ className: 'media' },
+					el( MediaUpload, {
+						onSelect: onSelectImage,
+						allowedTypes: 'image',
+						value: attributes.mediaID,
+						render: function( obj ) {
+							return el(
+								components.Button,
+								{
+									className: attributes.mediaID
+										? 'image-button'
+										: 'button button-large',
+									onClick: obj.open,
+								},
+								! attributes.mediaID
+									? __( 'Add media', 'flair' )
+									: el( 'img', { src: attributes.mediaURL, alt: attributes.mediaAlt } )
+							);
+						},
+					} )
+				),
+				// el( 'div', { className: 'meta' }),
 				el( RichText, {
 					tagName: 'div',
 					className: 'excerpt',
-					value: props.attributes.excerpt,
+					value: attributes.excerpt,
 					onChange: function( val ) {
 						props.setAttributes( { excerpt: val } ); // Store updated content as a block attribute
 					},
@@ -59,21 +93,27 @@
 
 
 		save: function( props ) {
+
+			var attributes = props.attributes;
+			
+			// console.log('save', attributes);
 		
 			return el( 'div', { className: classes }, 
 				el(
 					'a',
 					{ className: 'link' }, 
-					el( 'h2', { className: 'title' }, 
-						props.attributes.title
-					),					
+					el( RichText.Content, {
+						tagName: 'h2',
+						className: 'title',
+						value: attributes.title
+					})
 				),
-				// el( 'img', { className: 'media', src: '' }),
+				el( 'img', { className: 'media', src: attributes.mediaURL, alt: attributes.mediaAlt }),
 				// el( 'div', { className: 'categories' }),
 				el( RichText.Content, {
 					tagName: 'div',
 					className: 'excerpt',
-					value: props.attributes.excerpt
+					value: attributes.excerpt
 				})
 			);
 

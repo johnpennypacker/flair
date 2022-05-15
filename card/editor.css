@@ -1,3 +1,20 @@
+.card {
+	margin: 0 0 2rem;
+	padding: 0;
+}
 .card .link::before {
 	display: none;
+}
+
+.card .media {
+	margin: 0 0 1rem;
+}
+
+.card .media button.image-button {
+	display: block;
+	height: auto;
+	padding: 0;
+}
+.card .media button.image-button img {
+	margin: 0;
 }

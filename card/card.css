@@ -69,7 +69,12 @@
 	order: 5;
 }
 
+.card {
+	padding-top: 1rem;
+}
+
 .card .media {
+	margin-top: -1rem;
 	margin-bottom: 1rem;
 }
 
