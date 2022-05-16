@@ -25,7 +25,7 @@
 		),
 		
 		edit: function( props ) {
-			console.log('edit', props);
+// 			console.log('edit', props);
 			var attributes = props.attributes;
 
 			var blockProps = wp.blockEditor.useBlockProps({ className: classes });
@@ -68,22 +68,37 @@
 					});
 				}
 			}
+			function getLink() {
+				if( props.isSelected ) {
+					return el( 'div', { className: 'link' }, 
+						wp.element.createElement( wp.blockEditor.URLInputButton, {
+							link: attributes.link,
+							onChange: function( value, post ) {
+								props.setAttributes( { link: value, text: (post && post.title) || 'Click here' } );
+							}
+						}),
+						el( blockEditor.RichText, {
+							tagName: 'h2',
+							className: 'title',
+							value: attributes.title,
+							allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
+							onChange: function( value ) {
+								props.setAttributes( { title: value } );
+							},
+							placeholder: __( 'title' ), 
+						})
+					);
+				} else {
+					return el( 'a', { className: 'link' }, 
+						el( 'h2', { className: 'title' }, attributes.title )
+					);
+				}
+			}
 
 			// console.log('edit', props);
 			
 			return el( 'div', Object.assign( blockProps ), 
-				el( 'a', { className: 'link' }, 
-					el( blockEditor.RichText, {
-						tagName: 'h2',
-						className: 'title',
-						value: attributes.title,
-						allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
-						onChange: function( value ) {
-							props.setAttributes( { title: value } );
-						},
-						placeholder: __( 'title' ), 
-					}),
-				),
+				getLink(),
 				el(
 					'figure',
 					{ className: 'media' },
