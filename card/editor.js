@@ -25,19 +25,49 @@
 		),
 		
 		edit: function( props ) {
-					
+			console.log('edit', props);
 			var attributes = props.attributes;
 
 			var blockProps = wp.blockEditor.useBlockProps({ className: classes });
 			var excerpt = attributes.excerpt;
 
 			var onSelectImage = function( media ) {
+				console.log(media);
 				return props.setAttributes( {
 					mediaURL: media.url,
 					mediaID: media.id,
 					mediaAlt: media.alt,
 				} );
 			};
+			
+			function getCall() {
+				if( props.isSelected || attributes.call ) {
+					return el( blockEditor.RichText, {
+						tagName: 'div',
+						className: 'call',
+						value: attributes.call,
+						allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
+						onChange: function( value ) {
+							props.setAttributes( { call: value } );
+						},
+						placeholder: __( 'button' ), 
+					});
+				}
+			}
+			function getSub() {
+				if( props.isSelected || attributes.meta ) {
+					return el( blockEditor.RichText, {
+						tagName: 'div',
+						className: 'sub',
+						value: attributes.meta,
+						allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
+						onChange: function( value ) {
+							props.setAttributes( { meta: value } );
+						},
+						placeholder: __( 'meta data' ), 
+					});
+				}
+			}
 
 			// console.log('edit', props);
 			
@@ -55,7 +85,7 @@
 					}),
 				),
 				el(
-					'div',
+					'figure',
 					{ className: 'media' },
 					el( MediaUpload, {
 						onSelect: onSelectImage,
@@ -77,7 +107,7 @@
 						},
 					})
 				),
-				// el( 'div', { className: 'meta' }),
+				getSub(),
 				el( RichText, {
 					tagName: 'div',
 					className: 'excerpt',
@@ -87,16 +117,7 @@
 					},
 					placeholder: __( 'your description...' ), // Display this text before any content has been added by the user
 				}),
-				el( blockEditor.RichText, {
-					tagName: 'div',
-					className: 'call',
-					value: attributes.call,
-					allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
-					onChange: function( value ) {
-						props.setAttributes( { call: value } );
-					},
-					placeholder: __( 'button' ), 
-				}),
+				getCall(),
 			);
 
 		},
@@ -108,9 +129,18 @@
 			
 			function getMedia() {
 				if ( !! attributes.mediaURL ) {
-					return el( 'div', { className: 'media' }, 
+					return el( 'figure', { className: 'media' }, 
 						el( 'img', { src: attributes.mediaURL, alt: attributes.mediaAlt }),
 					);
+				}
+			};
+			function getSub() {
+				if ( !! attributes.meta ) {
+					return el( RichText.Content, {
+						tagName: 'div',
+						className: 'sub',
+						value: attributes.meta
+					})
 				}
 			};
 			function getExcerpt() {
@@ -146,7 +176,7 @@
 					})
 				),
 				getMedia(),
-				// el( 'div', { className: 'categories' }),
+				getSub(),
 				getExcerpt(),
 				getButton()
 			);

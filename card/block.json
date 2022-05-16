@@ -36,6 +36,11 @@
 			"source": "html",
 			"selector": ".title"
 		},
+		"meta": {
+			"type": "string",
+			"source": "html",
+			"selector": ".meta"
+		},
 		"excerpt": {
 			"type": "string",
 			"source": "html",

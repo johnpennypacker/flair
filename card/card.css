@@ -18,12 +18,12 @@
 	font-size: calc(var(--type__size) * 1.25);
 	margin: 0 0 calc(var(--type__size) * .5);
 }
-.card .categories {
+.card .sub {
 	margin: 0 0 calc(var(--type__size) * .5);
 	z-index: 2;
 	pointer-events: none;
 }
-.card .categories a {
+.card .sub a {
 	background-color: var(--color__base_400);
 	color: var(--color__base_900);
 	border-radius: 1rem;
@@ -33,14 +33,14 @@
 	text-decoration: none;
 	pointer-events: auto;
 }
-.card .categories a:hover {
+.card .sub a:hover {
 	background-color: var(--color__base_100);
 }
-.card .categories a:not(:last-of-type) {
+.card .sub a:not(:last-of-type) {
 	margin-right: calc(var(--type__size) * .25);
 }
 
-.card .categories .sep {
+.card .sub .sep {
 	display: none;
 }
 .card .excerpt {
@@ -59,7 +59,7 @@
 .card .link {
 	order: 2;
 }
-.card .categories {
+.card .sub {
 	order: 3;
 }
 .card .excerpt {
@@ -80,14 +80,14 @@
 
 .card .media,
 .card .link,
-.card .categories,
+.card .sub,
 .card .excerpt {
 /* 
 	background-color: orange;
  */
 }
 .card .link,
-.card .categories,
+.card .sub,
 .card .excerpt {
 	padding: 0 1rem 0;
 }
@@ -135,14 +135,14 @@
 }
 
 .card .link .title,
-.card .link ~ .categories,
+.card .link ~ .sub,
 .card .link ~ .media,
 .card .link ~ .excerpt,
 .card .link ~ .call {
 	transition: all .2s ease-in-out;
 }
 .card .link:hover .title,
-.card .link:hover ~ .categories,
+.card .link:hover ~ .sub,
 .card .link:hover ~ .media,
 .card .link:hover ~ .excerpt,
 .card .link:hover ~ .call {
