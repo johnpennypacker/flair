@@ -12,7 +12,7 @@
 	"attributes": {
 		"link": {
 			"type": "string",
-			"source": "html",
+			"source": "attribute",
 			"selector": ".link",
 			"attribute": "href"
 		},

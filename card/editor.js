@@ -72,9 +72,11 @@
 				if( props.isSelected ) {
 					return el( 'div', { className: 'link' }, 
 						wp.element.createElement( wp.blockEditor.URLInputButton, {
-							link: attributes.link,
-							onChange: function( value, post ) {
-								props.setAttributes( { link: value, text: (post && post.title) || 'Click here' } );
+							url: attributes.link,
+							href: attributes.link,
+							placeholder: __( 'URL' ), 
+							onChange: function( value ) {
+								props.setAttributes( { link: value } );
 							}
 						}),
 						el( blockEditor.RichText, {
@@ -89,13 +91,13 @@
 						})
 					);
 				} else {
-					return el( 'a', { className: 'link' }, 
+					return el( 'a', { className: 'link', href: attributes.link }, 
 						el( 'h2', { className: 'title' }, attributes.title )
 					);
 				}
 			}
 
-			// console.log('edit', props);
+			 console.log('edit', props);
 			
 			return el( 'div', Object.assign( blockProps ), 
 				getLink(),
@@ -178,12 +180,12 @@
 			};
 
 			
-			// console.log('save', attributes);
+			 console.log('save', attributes);
 		
 			return el( 'div', { className: classes }, 
 				el(
 					'a',
-					{ className: 'link' }, 
+					{ className: 'link', href: attributes.link }, 
 					el( RichText.Content, {
 						tagName: 'h2',
 						className: 'title',
