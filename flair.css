@@ -28,3 +28,11 @@ a:hover {
 .slant {
 	transform: rotateZ(-5deg);
 }
+
+/** pattern card **/
+.wp-block-group.card h2,
+.wp-block-group.card p {
+	margin-left: 1rem;
+	margin-right: 1rem;
+	font-family: inherit;
+}

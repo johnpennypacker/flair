@@ -93,6 +93,7 @@
 }
 
 .card .excerpt {
+	flex-grow: 1;
 	pointer-events: none;
 	z-index: 2;
 }
@@ -148,3 +149,4 @@
 .card .link:hover ~ .call {
 	transform: translateY(-2px);
 }
+
