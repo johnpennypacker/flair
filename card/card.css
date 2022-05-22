@@ -12,7 +12,7 @@
 	color: inherit;
 	text-decoration: inherit;
 }
-.card .link h2 {
+.card .link .title {
 	font-family: inherit;
 	font-weight: bold;
 	font-size: calc(var(--type__size) * 1.25);
