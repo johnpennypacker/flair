@@ -25,33 +25,13 @@ function flair_enqueus() {
 add_action( 'wp_enqueue_scripts', 'flair_enqueus' );
 
 
-include_once 'card/index.php';
-
-
 /**
  * Register blocks.
  */
 function flair_register_blocks() {
 
+	register_block_type( __DIR__ . '/card' );
+	register_block_type( __DIR__ . '/sidler' );
 
-	$block = register_block_type( __DIR__ . '/sidler' );
-	
-	// for some reason, the block.json property for editorScript isn't working for me.
-	wp_register_script(
-		'flair-sidler-editor',
-		plugins_url( 'sidler/editor.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-element' )
-	);
-	$block->editor_script = 'flair-sidler-editor';
-
-// 	echo '<pre>';
-// 	var_dump( $block );
-// 	echo '</pre>';
-// 	exit;
 }
 add_action( 'init', 'flair_register_blocks' );
-
-function flair_sidler_script() {
-	wp_enqueue_script( 'flair-sidler', plugins_url( 'sidler/sidler.js', __FILE__ ), array() );
-}
-add_action( 'wp_enqueue_scripts', 'flair_sidler_script' );
