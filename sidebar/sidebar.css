@@ -1,0 +1,23 @@
+.wp-block-flair-sidebar,
+.wp-block-flair-sidebar {
+	background-color: var(--color__base_700);
+	color: var(--color__base_100);
+	margin-bottom: calc(var(--type__size) * 2);
+	padding: calc(var(--type__size) * 2);
+}
+
+@media screen and (min-width:24rem) {
+	html .site .wp-block-flair-sidebar.alignleft,
+	html .site .wp-block-flair-sidebar.alignright {
+		max-width: 50%;
+	}
+	html .site .wp-block-flair-sidebar.aligncenter {
+		max-width: 85%;
+	}
+}
+@media screen and (min-width:50rem) {
+	html .site .wp-block-flair-sidebar.alignleft,
+	html .site .wp-block-flair-sidebar.alignright {
+		max-width: 40%;
+	}
+}

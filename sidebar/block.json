@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"title": "Sidebar",
+	"name": "flair/sidebar",
+	"category": "layout",
+	"textdomain": "jape",
+	"example": {},
+	"editorStyle": "file:./editor.css",
+	"editorScript": "file:./editor.js",
+	"style": "file:./sidebar.css"
+}
