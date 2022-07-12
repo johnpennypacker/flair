@@ -1,6 +1,6 @@
 .card {
-	background-color: var(--color__base_900);
-	color: var(--color__base_100);	
+	background-color: rgba(var(--color__base_900),1);
+	color: rgba(var(--color__base_100),1);	
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
@@ -24,8 +24,8 @@
 	pointer-events: none;
 }
 .card .sub a {
-	background-color: var(--color__base_400);
-	color: var(--color__base_900);
+	background-color: rgba(var(--color__base_400),1);
+	color: rgba(var(--color__base_900),1);
 	border-radius: 1rem;
 	display: inline-block;
 	font-size: calc(var(--type__size) * .75);
@@ -34,7 +34,7 @@
 	pointer-events: auto;
 }
 .card .sub a:hover {
-	background-color: var(--color__base_100);
+	background-color: rgba(var(--color__base_100),1);
 }
 .card .sub a:not(:last-of-type) {
 	margin-right: calc(var(--type__size) * .25);
@@ -47,7 +47,7 @@
 	margin: 0 0 calc(var(--type__size) * 1);
 }
 .card .call {
-	background-color: var(--color__base_700);
+	background-color: rgba(var(--color__base_700),1);
 	padding: calc(var(--type__size) * 1);
 	position: relative;
 	text-align: center;
@@ -106,7 +106,7 @@
 
 
 .card .link::before {
-	box-shadow: 0 0 5px var(--color__base_700);
+	box-shadow: 0 0 5px rgba(var(--color__base_700),1);
 	content: '';
 	position: absolute;
 	top: 0; left: 0; bottom: 0; right: 0;
@@ -119,7 +119,7 @@
 }
 
 .card .link:hover::before {
-	box-shadow: 0 3px 10px var(--color__base_700);
+	box-shadow: 0 3px 10px rgba(var(--color__base_700),1);
 	transform: translateY(-2px);
 }
 
