@@ -1,6 +1,6 @@
 .wp-block-flair-sidebar {
-	background-color: var(--color__base_700);
-	color: var(--color__base_100);
+	background-color: var(rgba(--color__base_700, 1));
+	color: var(rgba(--color__base_100, 1));
 	padding: calc(var(--type__size) * 2);
 }
 
