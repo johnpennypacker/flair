@@ -122,6 +122,7 @@
 		dots = document.createElement("DIV");
 		dots.classList.add("dots");
 		el.appendChild(dots);
+		el.classList.add("has-dots");
 				
 		for( i=0; i<el.dataset.slideCount; i++ ) {
 			(function(i){
@@ -163,6 +164,8 @@
 			}
 		});
 		el.appendChild(f);
+
+		el.classList.add("has-buttons");
 
 	}
 	
