@@ -2,12 +2,13 @@
 	--carousel_bg: var(--color__base_200, '255,255,0');
 	--carousel_fg: var(--color__base_900, '255,255,255');
 	--carousel_active: var(--color__accent, '255,255,255');
+	margin-bottom: 2rem;
 	position: relative;
 }
 
 .wp-block-columns.carousel {
 	display: flex;
-	flex-wrap: nowrap;
+	flex-wrap: nowrap !important; /* because WP default styles use importat */
 	overflow: hidden;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
@@ -50,20 +51,21 @@
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	background-size: 12px 12px;
-	height: 1em;
-	width: 1em;
+	height: 2em;
+	width: 2em;
 	position: absolute;
 	text-indent: -999em;
-	top: calc(50% - .5em);
 }
 .carousel-wrap .previous {
 
 	background-image: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="utf-8"%3F><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 12 12" ><polygon points="8,11.8 2.2,6 8,0.2 9.4,1.6 5,6 9.4,10.4 "/></svg>');
-	left: -1.5rem;
+	right: -2em;
+	top: calc(50% - 1.1em);
 }
 .carousel-wrap .next {
 	background-image: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="utf-8"%3F><svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 12 12" ><polygon points="4,11.8 2.6,10.4 7,6 2.6,1.6 4,0.2 9.8,6 "/></svg>');
-	right: -1.5rem;
+	right: -2em;
+	top: calc(50% + 1em);
 }
 
 
@@ -76,10 +78,11 @@
 .carousel-wrap .dot {
 	background-color: rgba(var(--carousel_bg), 1);
 	border-radius: 50%;
-	margin: .5em;
 	height: .75em;
-	width: .75em;	
+	margin: .5em;
+	padding: 0;
 	transition: all .2s ease;
+	width: .75em;	
 }
 .carousel-wrap .dot[data-is-selected="1"] {
 	background-color: rgba(var(--carousel_active), 1);
