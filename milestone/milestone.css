@@ -3,7 +3,12 @@
 	padding: 1rem 1rem .125rem 5rem;
 	position: relative;
 }
+.milestone + .milestone {
+	margin-top: -2rem;
+}
 
+
+/** create the line with a background gradient **/
 .milestone {
 	background: linear-gradient(90deg, rgba(0,0,0,0) 1.45rem, rgba(0,0,0,1) 1.45rem, rgba(0,0,0,1) 1.55rem, rgba(0,0,0,0) 1.55rem);
 }
@@ -13,23 +18,17 @@
 	}
 }
 
-.milestone + .milestone {
-	margin-top: -2rem;
-}
 
-
-.milestone::before {
+/** create markers with pseudo elements that have svg backgrounds **/
+.milestone[class*='marker-']::before {
+	background-position: 50% 1.1125rem;
+	background-repeat: no-repeat;
+	background-size: 21px 21px;
 	content: " ";
 	position: absolute;
 	top: 0; left: 0;
 	width: 3rem;
 	height: 100%;
-}
-
-.milestone[class*='marker-']::before {
-	background-position: 50% 1.1125rem;
-	background-repeat: no-repeat;
-	background-size: 21px 21px;
 }
 
 .marker-dot::before {
