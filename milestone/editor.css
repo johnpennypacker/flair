@@ -1,4 +1,9 @@
 .milestone {
-	border: 1px dashed #888;
-	padding: 1rem;
+	border: 0;
+}
+.wp-block-flair-milestone + .wp-block-flair-milestone {
+	margin-top: -2rem !important;
+}
+.wp-block-flair-milestone {
+	margin-bottom: 2rem !important;
 }

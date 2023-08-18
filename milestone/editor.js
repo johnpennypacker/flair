@@ -22,7 +22,18 @@
 				useBlockProps({
 					className: 'milestone flair-io',
         }),
+				el( blockEditor.RichText, {
+					tagName: 'div',
+					className: 'date',
+					value: props.attributes.date,
+					allowedFormats: [ 'core/bold', 'core/italic' ],
+					onChange: function( v ) {
+						props.setAttributes( { date: v } ); // Store updated content as a block attribute
+					},
+					placeholder: __( 'Apr 30' ), // Display this text before any content has been added by the user
+				}),
 				el( InnerBlocks )
+				
 			);
 		},
 		
@@ -32,6 +43,11 @@
 				useBlockProps.save({
 					className: 'milestone flair-io',
         }),
+        el( blockEditor.RichText.Content, blockEditor.useBlockProps.save( {
+					tagName: 'div',
+					className: 'date',
+					value: props.attributes.date,
+				})),
 				el( InnerBlocks.Content )
 			);
 		}

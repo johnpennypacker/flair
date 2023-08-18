@@ -16,6 +16,11 @@
 		"content": {
 			"type": "string",
 			"source": "html"
+		},
+		"date": {
+			"type": "string",
+			"source": "html",
+			"selector": ".date"
 		}
 	},
 	"supports": {
