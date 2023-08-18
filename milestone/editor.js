@@ -1,10 +1,12 @@
-(function ( blocks, element, blockEditor, i18n ) {
+(function ( blocks, element, blockEditor, components, i18n ) {
 
 	var el = element.createElement,
 		registerBlockType = blocks.registerBlockType,
 		useBlockProps = blockEditor.useBlockProps,
 		__ = i18n.__,
-		InnerBlocks = blockEditor.InnerBlocks;
+		InnerBlocks = blockEditor.InnerBlocks,
+		SelectControl = components.SelectControl,
+		ToggleControl = components.ToggleControl;
 
 	blocks.registerBlockType( 'flair/milestone', {
 	
@@ -17,10 +19,23 @@
 		},
 
 		edit: function( props ) {
+
+			var InspectorControls = blockEditor.InspectorControls;
+			var PanelBody = components.PanelBody;
+			var markers = [
+				{ value: 0, label: __( 'Select a Marker...' ) },
+				{ value: 'dot', label: __( 'Dot' ) },
+				{ value: 'diamond', label: __( 'Diamond' ) }
+			];
+			var classes = [ 'milestone', 'flair-io' ];
+			if ( props.attributes.marker ) {
+				classes.push( 'marker-' + props.attributes.marker );
+			} 
+
 			return el(
 				'div',
 				useBlockProps({
-					className: 'milestone flair-io',
+					className: classes.join(' '),
         }),
 				el( blockEditor.RichText, {
 					tagName: 'div',
@@ -32,16 +47,39 @@
 					},
 					placeholder: __( 'Apr 30' ), // Display this text before any content has been added by the user
 				}),
-				el( InnerBlocks )
-				
+				el( InnerBlocks ),
+				el( InspectorControls, { 
+					key: 'group',
+					},
+					el( PanelBody, {
+						title: __('Milestone options'),
+						initialOpen: true
+					},
+					el( SelectControl, {
+						label: __( 'Marker' ),
+						options: markers,
+						value: props.attributes.marker,
+						help: __( 'Select the marker style.' ),
+						onChange: function( v ) {
+							props.setAttributes( { marker: v } );
+						}
+					})
+
+					) // end PanelBody
+				) // end InspectorControls
+
 			);
 		},
 		
 		save: function( props ) {
+			var classes = [ 'milestone', 'flair-io' ];
+			if ( props.attributes.marker ) {
+				classes.push( 'marker-' + props.attributes.marker );
+			} 
 			return el(
 				'div',
 				useBlockProps.save({
-					className: 'milestone flair-io',
+					className: classes.join(' '),
         }),
         el( blockEditor.RichText.Content, blockEditor.useBlockProps.save( {
 					tagName: 'div',
@@ -59,6 +97,7 @@
 	window.wp.blocks,
 	window.wp.element,
 	window.wp.blockEditor,
+	window.wp.components,
 	window.wp.i18n
 );
 

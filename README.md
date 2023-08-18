@@ -7,6 +7,7 @@ Let's aim for 15 pieces of flair.
 - cards [in progress]
 - sidebar / inset / boxout
 - sidler
+- milestone (timeline)
 
 ## Classes
 - .carousel converts WP Columns Block into a carousel

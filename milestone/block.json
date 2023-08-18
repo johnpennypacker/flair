@@ -21,6 +21,9 @@
 			"type": "string",
 			"source": "html",
 			"selector": ".date"
+		},
+		"marker": {
+			"type": "string"
 		}
 	},
 	"supports": {
