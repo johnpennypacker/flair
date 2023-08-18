@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "flair/milestone",
+	"title": "Milestone",
+	"category": "text",
+	"icon": "text",
+	"description": "Creates an entry on a timeline",
+	"keywords": [ "date", "milestone", "timeline" ],
+	"version": "0.1",
+	"textdomain": "jape",
+	"attributes": {
+		"align": {
+			"type": "string"
+		},
+		"content": {
+			"type": "string",
+			"source": "html"
+		}
+	},
+	"supports": {
+		"color": {
+			"background": "true",
+			"gradients": "true"
+		}
+	},
+	"editorScript": "file:./editor.js",
+	"editorStyle": "file:./editor.css",
+	"script": "file:./milestone.js",
+	"style": "file:./milestone.css"
+}
