@@ -24,8 +24,12 @@
 
 			var markers = [
 				{ value: 0, label: __( 'Select a Marker...' ) },
-				{ value: 'dot', label: __( 'Dot' ) },
-				{ value: 'diamond', label: __( 'Diamond' ) }
+				{ value: 'diamond', label: __( 'Diamond (Solid)' ) },
+				{ value: 'diamond-hollow', label: __( 'Diamond (Hollow)' ) },
+				{ value: 'dot', label: __( 'Dot (Solid)' ) },
+				{ value: 'dot-hollow', label: __( 'Dot (Hollow)' ) },
+				{ value: 'square', label: __( 'Square (Solid)' ) },
+				{ value: 'square-hollow', label: __( 'Square (Hollow)' ) }
 			];
 			
 			var classes = [ 'milestone', 'flair-io' ];

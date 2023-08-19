@@ -22,17 +22,25 @@
 	position: relative;
 }
 
+.date {
+	font-size: .95rem;
+	text-transform: uppercase;
+}
+
+
 
 /** left / right aligned; overrides default float behavior **/
 
+.milestone.alignleft,
 .milestone.alignright,
-.milestone.alignleft {
+.block-editor-block-list__block.milestone.alignleft,
+.block-editor-block-list__block.milestone.alignright {
 	float: none !important;
 	justify-content: flex-end;
-	margin-left: 0 !important;
-	margin-right: 0 !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
 	margin-bottom: calc( var(--space_buffer) * 2 ) !important;
-	max-width: inherit !important;
+	max-width: var( --width__column_full, inherit ); !important;
 	min-width: inherit !important;
 	width: 100% !important;
 }
@@ -53,6 +61,45 @@ html .milestone.alignleft .detail {
 	padding-left: 0;
 	padding-right: calc( var(--space_buffer) * 2 );
 }
+
+
+/** 
+ * Beta: these styles connect timelines that aren't aligned alike.
+ */
+.milestone {
+	position: relative;
+}
+.milestone:not(.alignleft):not(.alignright) + .milestone.alignleft::before,
+.milestone:not(.alignleft):not(.alignright) + .milestone.alignright::before {
+	content: '';
+	background-color: #fff;
+	height: var(--timeline_width, 2px);
+	left: var(--space_buffer);
+	position: absolute;
+	width: calc( 50% - var(--space_buffer) );
+}
+.milestone.alignleft + .milestone:not(.alignleft):not(.alignright)::before,
+.milestone.alignright + .milestone:not(.alignleft):not(.alignright)::before {
+	content: '';
+	background-color: #fff;
+	height: var(--timeline_width, 2px);
+	position: absolute;
+	width: calc( 50% - var(--space_buffer ) );
+}
+
+/* add a little space **/
+.milestone:not(.alignleft):not(.alignright) + .milestone.alignleft .detail,
+.milestone.alignleft + .milestone:not(.alignleft):not(.alignright) .detail,
+.milestone.alignright + .milestone:not(.alignleft):not(.alignright) .detail {
+	padding-top: var(--space_buffer);
+}
+/* schooch the marker down a bit **/
+.milestone:not(.alignleft):not(.alignright) + .milestone.alignleft .timeline::before,
+.milestone.alignleft + .milestone:not(.alignleft):not(.alignright)[class*='marker-'] .timeline::before,
+.milestone.alignright + .milestone:not(.alignleft):not(.alignright)[class*='marker-'] .timeline::before {
+	top: calc( var(--space_buffer) * 2.75 );
+}
+
 
 
 
@@ -80,6 +127,8 @@ html .milestone.alignleft .detail {
 	height: 22px;
 }
 
+
+
 .marker-dot .timeline::before {
 	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23000' cx='21' cy='21' r='18' /%3E%3C/svg%3E");
 }
@@ -88,20 +137,51 @@ html .milestone.alignleft .detail {
 		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23fff' cx='21' cy='21' r='18' /%3E%3C/svg%3E");
 	}
 }
-
-.marker-diamond .timeline::before {
-	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Crect fill='%23000' x='6.2' y='6.2' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -8.6985 21)' width='29.5' height='29.5' /%3E%3C/svg%3E");
+.marker-dot-hollow .timeline::before {
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23000' cx='21' cy='21' r='18' /%3E%3Ccircle fill='%23fff' cx='21' cy='21' r='14' /%3E%3C/svg%3E");
 }
 @media (prefers-color-scheme: dark) {
-	.marker-diamond .timeline::before {
-		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Crect fill='%23fff' x='6.2' y='6.2' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -8.6985 21)' width='29.5' height='29.5' /%3E%3C/svg%3E");
+	.marker-dot-hollow .timeline::before {
+		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23fff' cx='21' cy='21' r='18' /%3E%3Ccircle fill='%23000' cx='21' cy='21' r='14' /%3E%3C/svg%3E");
 	}
 }
 
 
-
-.date {
-/* 	border: 1px dashed pink; */
-	font-size: .95rem;
-	text-transform: uppercase;
+.marker-diamond .timeline::before {
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23000' x='6.2' y='6.2' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -8.6985 21)' width='29.5' height='29.5' /%3E %3C/svg%3E");
 }
+@media (prefers-color-scheme: dark) {
+	.marker-diamond .timeline::before {
+		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23fff' x='6.2' y='6.2' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -8.6985 21)' width='29.5' height='29.5' /%3E %3C/svg%3E");
+	}
+}
+
+.marker-diamond-hollow .timeline::before {
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Cg transform='rotate(45 21 21)' %3E %3Crect fill='%23000' x='6' y='6' width='30' height='30' /%3E %3Crect fill='%23fff' x='10' y='10' width='22' height='22' /%3E %3C/g%3E %3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+	.marker-diamond-hollow .timeline::before {
+		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Cg transform='rotate(45 21 21)' %3E %3Crect fill='%23fff' x='6' y='6' width='30' height='30' /%3E %3Crect fill='%23000' x='10' y='10' width='22' height='22' /%3E %3C/g%3E %3C/svg%3E");
+	}
+}
+
+
+.marker-square .timeline::before {
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23000' x='4' y='4' width='32' height='32' /%3E %3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+	.marker-square .timeline::before {
+		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23fff' x='4' y='4' width='32' height='32' /%3E %3C/svg%3E");
+	}
+}
+
+.marker-square-hollow .timeline::before {
+	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23000' x='4' y='4' width='32' height='32' /%3E %3Crect fill='%23fff' x='8' y='8' width='24' height='24' /%3E %3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+	.marker-square-hollow .timeline::before {
+		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23fff' x='4' y='4' width='32' height='32' /%3E %3Crect fill='%23000' x='8' y='8' width='24' height='24' /%3E %3C/svg%3E");
+	}
+}
+
+
