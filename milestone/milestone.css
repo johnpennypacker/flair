@@ -1,58 +1,59 @@
 .milestone {
+	--timeline_width: 2px;
+	--space_buffer: var(--type_size, 1rem);
 	align-items: stretch;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
-	margin-bottom: 2rem;
-	padding: 0 1rem;
+	margin-bottom: calc( var(--space_buffer) * 2 );
+	padding: 0 var(--space_buffer);
 }
 .milestone + .milestone {
-	margin-top: -2rem !important;
+	margin-top: calc( var(--space_buffer) * -2 ) !important;
 }
 
 .milestone .detail {
-	padding-left: 2em;
+	padding-left: calc( var(--space_buffer) * 2 );
 }
 
-
 .milestone .timeline {
-  flex: 0 0 2px;
+  flex: 0 0 var(--timeline_width, 2px);
 	position: relative;
 }
 
-html .milestone.alignright,
-html .milestone.alignleft {
+
+/** left / right aligned; overrides default float behavior **/
+
+.milestone.alignright,
+.milestone.alignleft {
 	float: none !important;
 	justify-content: flex-end;
 	margin-left: 0 !important;
 	margin-right: 0 !important;
-	margin-bottom: 2rem !important;
+	margin-bottom: calc( var(--space_buffer) * 2 ) !important;
 	max-width: inherit !important;
 	min-width: inherit !important;
 	width: 100% !important;
 }
 
-
-
-html .milestone.alignright {
-}
 html .milestone.alignright .detail {
 	flex: 0 0 50%;
-	padding-left: 2em;
+	padding-left: calc( var(--space_buffer) * 2 );
 }
 
 html .milestone.alignleft {
 	flex-direction: row-reverse;
 }
 html .milestone.alignleft .timeline {
-	left: -2px;
+	left: calc( var(--timeline_width, 2px) * -1 );
 }
 html .milestone.alignleft .detail {
 	flex: 0 0 50%;
 	padding-left: 0;
-	padding-right: 2em;
+	padding-right: calc( var(--space_buffer) * 2 );
 }
+
 
 
 
@@ -74,7 +75,7 @@ html .milestone.alignleft .detail {
 	background-size: 22px 22px;
 	content: " ";
 	position: absolute;
-	top: 1.75em; left: -10px;
+	top: calc( var(--space_buffer) * 1.75 ); left: -10px;
 	width: 22px;
 	height: 22px;
 }
