@@ -18,11 +18,12 @@ if ( !defined('ABSPATH') )
  */
 function flair_enqueus() {
 	wp_enqueue_script( 'flair', plugins_url( 'flair.js', __FILE__ ), array() );
-
 	wp_enqueue_style( 'flair', plugins_url( 'flair.css', __FILE__ ), array() );
 
 	wp_enqueue_script( 'flair-carousel', plugins_url( 'carousel/carousel.js', __FILE__ ), array() );
 	wp_enqueue_style( 'flair-carousel', plugins_url( 'carousel/carousel.css', __FILE__ ), array() );
+
+	wp_enqueue_style( 'flair-iconic', plugins_url( 'iconic/iconic.css', __FILE__ ), array() );
 
 }
 add_action( 'wp_enqueue_scripts', 'flair_enqueus' );

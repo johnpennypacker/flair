@@ -6,7 +6,9 @@
 		__ = i18n.__,
 		InnerBlocks = blockEditor.InnerBlocks,
 		SelectControl = components.SelectControl,
-		ToggleControl = components.ToggleControl;
+		ToggleControl = components.ToggleControl,
+		InspectorControls = blockEditor.InspectorControls,
+		PanelBody = components.PanelBody;
 
 	blocks.registerBlockType( 'flair/milestone', {
 	
@@ -20,13 +22,12 @@
 
 		edit: function( props ) {
 
-			var InspectorControls = blockEditor.InspectorControls;
-			var PanelBody = components.PanelBody;
 			var markers = [
 				{ value: 0, label: __( 'Select a Marker...' ) },
 				{ value: 'dot', label: __( 'Dot' ) },
 				{ value: 'diamond', label: __( 'Diamond' ) }
 			];
+			
 			var classes = [ 'milestone', 'flair-io' ];
 			if ( props.attributes.marker ) {
 				classes.push( 'marker-' + props.attributes.marker );
@@ -37,17 +38,24 @@
 				useBlockProps({
 					className: classes.join(' '),
         }),
-				el( blockEditor.RichText, {
-					tagName: 'div',
-					className: 'date',
-					value: props.attributes.date,
-					allowedFormats: [ 'core/bold', 'core/italic' ],
-					onChange: function( v ) {
-						props.setAttributes( { date: v } ); // Store updated content as a block attribute
-					},
-					placeholder: __( 'Apr 30' ), // Display this text before any content has been added by the user
+				el( 'div', {
+					className: 'timeline',
 				}),
-				el( InnerBlocks ),
+				el( 'div', {
+					className: 'detail',
+				},
+					el( blockEditor.RichText, {
+						tagName: 'div',
+						className: 'date',
+						value: props.attributes.date,
+						allowedFormats: [ 'core/bold', 'core/italic' ],
+						onChange: function( v ) {
+							props.setAttributes( { date: v } );
+						},
+						placeholder: __( 'Apr 30' ),
+					}),
+					el( InnerBlocks ),
+				),
 				el( InspectorControls, { 
 					key: 'group',
 					},
@@ -81,12 +89,19 @@
 				useBlockProps.save({
 					className: classes.join(' '),
         }),
-        el( blockEditor.RichText.Content, blockEditor.useBlockProps.save( {
+				el( 'div', {
+					className: 'timeline',
+				}),
+				el( 'div', {
+					className: 'detail',
+				},
+				el( blockEditor.RichText.Content, {
 					tagName: 'div',
 					className: 'date',
 					value: props.attributes.date,
-				})),
+				}),
 				el( InnerBlocks.Content )
+				),
 			);
 		}
 

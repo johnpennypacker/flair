@@ -1,50 +1,98 @@
 .milestone {
+	align-items: stretch;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
 	margin-bottom: 2rem;
-	padding: 1rem 1rem .125rem 5rem;
-	position: relative;
+	padding: 0 1rem;
 }
 .milestone + .milestone {
-	margin-top: -2rem;
+	margin-top: -2rem !important;
+}
+
+.milestone .detail {
+	padding-left: 2em;
 }
 
 
-/** create the line with a background gradient **/
-.milestone {
-	background: linear-gradient(90deg, rgba(0,0,0,0) 1.45rem, rgba(0,0,0,1) 1.45rem, rgba(0,0,0,1) 1.55rem, rgba(0,0,0,0) 1.55rem);
+.milestone .timeline {
+  flex: 0 0 2px;
+	position: relative;
+}
+
+html .milestone.alignright,
+html .milestone.alignleft {
+	float: none !important;
+	justify-content: flex-end;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	margin-bottom: 2rem !important;
+	max-width: inherit !important;
+	min-width: inherit !important;
+	width: 100% !important;
+}
+
+
+
+html .milestone.alignright {
+}
+html .milestone.alignright .detail {
+	flex: 0 0 50%;
+	padding-left: 2em;
+}
+
+html .milestone.alignleft {
+	flex-direction: row-reverse;
+}
+html .milestone.alignleft .timeline {
+	left: -2px;
+}
+html .milestone.alignleft .detail {
+	flex: 0 0 50%;
+	padding-left: 0;
+	padding-right: 2em;
+}
+
+
+
+/** timeline line / colors **/
+.milestone .timeline {
+	background-color: #000;
 }
 @media (prefers-color-scheme: dark) {
-	.milestone {
-		background: linear-gradient(90deg, rgba(255,255,255,0) 1.45rem, rgba(255,255,255,1) 1.45rem, rgba(255,255,255,1) 1.55rem, rgba(255,255,255,0) 1.55rem);
+	.milestone .timeline {
+		background-color: #fff;
 	}
 }
 
 
 /** create markers with pseudo elements that have svg backgrounds **/
-.milestone[class*='marker-']::before {
-	background-position: 50% 1.1125rem;
+.milestone[class*='marker-'] .timeline::before {
+	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	background-size: 21px 21px;
+	background-size: 22px 22px;
 	content: " ";
 	position: absolute;
-	top: 0; left: 0;
-	width: 3rem;
-	height: 100%;
+	top: 1.75em; left: -10px;
+	width: 22px;
+	height: 22px;
 }
 
-.marker-dot::before {
+.marker-dot .timeline::before {
 	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23000' cx='21' cy='21' r='18' /%3E%3C/svg%3E");
 }
 @media (prefers-color-scheme: dark) {
-	.marker-dot::before {
+	.marker-dot .timeline::before {
 		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23fff' cx='21' cy='21' r='18' /%3E%3C/svg%3E");
 	}
 }
 
-.marker-diamond::before {
+.marker-diamond .timeline::before {
 	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Crect fill='%23000' x='6.2' y='6.2' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -8.6985 21)' width='29.5' height='29.5' /%3E%3C/svg%3E");
 }
 @media (prefers-color-scheme: dark) {
-	.marker-diamond::before {
+	.marker-diamond .timeline::before {
 		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Crect fill='%23fff' x='6.2' y='6.2' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -8.6985 21)' width='29.5' height='29.5' /%3E%3C/svg%3E");
 	}
 }
