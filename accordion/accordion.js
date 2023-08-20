@@ -15,6 +15,8 @@
 	
 		var h, b;
 		
+		el.classList.add( "js" );
+		
 		h = el.querySelector( ".header" );
 		
 		b = document.createElement( "BUTTON" );
@@ -25,7 +27,10 @@
 		b.addEventListener( "click", handleClick );
 		
 		h.appendChild( b );
+		var d = el.querySelector( ".detail" );
+		d.style.visibility = "hidden"; // coupled with css, eliminates flash of content on load
 		el.classList.add("closed");
+		d.style.visibility = "visible";
 
 	}
 	

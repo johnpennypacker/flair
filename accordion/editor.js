@@ -39,10 +39,6 @@
 			})
 		),
 
-		supports: {
-	    align: true
-		},
-
 		edit: function( props ) {
 
 			var classes = [ 'flair-accordion', 'flair-io' ];

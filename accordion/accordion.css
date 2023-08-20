@@ -2,10 +2,22 @@
 	--space_buffer: var(--type_size, 1rem);
 	border: 1px solid rgba(var(--color__base_900), 1);
 	margin-bottom: calc( var( --space_buffer ) * 2 );
+	
 }
 .flair-accordion + .flair-accordion {
-	margin-top: calc( var( --space_buffer ) * -2 );
+	clear: both;
+	margin-top: calc( var( --space_buffer ) * -2 ) !important;
 }
+
+.flair-accordion.alignleft,
+.flair-accordion.alignright {
+	margin-bottom: calc( var(--space_buffer) * 2 ) !important;
+	max-width: calc( var( --width__column_full, inherit ) * .65 ) !important;
+	width: calc( var( --width__column_full, inherit ) * .65 ) !important;
+}
+
+
+
 .flair-accordion .header {
 	background-color: rgba(var(--color__base_900), 1);
 	border-bottom: 1px solid rgba(var(--color__base_800), 1);
@@ -22,11 +34,19 @@
 	top: 0; right: 0; left: 0; bottom: 0;
 }
 
+/** this hacky css helps eliminate a flash of content on load **/
+.flair-accordion.js .detail {
+	padding: 0;
+}
+.flair-accordion .detail,
+.flair-accordion.open .detail {
+	padding: var( --space_buffer ) calc( var( --space_buffer ) * 1.5 );
+}
 
-.flair-accordion .detail {
+.flair-accordion.open .detail,
+.flair-accordion.closed .detail {
 	background-color: transparent;
 	overflow: hidden;
-	padding: var( --space_buffer ) calc( var( --space_buffer ) * 1.5 );
 	max-height: 100vh;
 	transition: .5s all ease-in-out;	
 }

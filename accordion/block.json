@@ -27,10 +27,8 @@
 		}
 	},
 	"supports": {
-		"color": {
-			"background": "true",
-			"gradients": "true"
-		}
+		"align": true,
+		"anchor": true
 	},
 	"editorScript": "file:./editor.js",
 	"editorStyle": "file:./editor.css",
