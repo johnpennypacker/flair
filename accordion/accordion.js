@@ -32,7 +32,7 @@
 		var d = el.querySelector( ".detail" );
 		
 		d.style.visibility = "hidden"; // coupled with css, eliminates flash of content on load
-		if( el.id == fragment ) {
+		if( el.id && el.id == fragment ) {
 			el.classList.add("open");			
 		} else {
 			el.classList.add("closed");
