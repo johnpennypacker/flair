@@ -33,11 +33,12 @@
 }
 
 .flair-accordion .detail * {
-	transition: .4s font-size ease-in-out;	
+	transition: .2s all ease-in-out;	
 }
 .flair-accordion.closed .detail * {
 	border: 0;
 	font-size: 0;
+	height: 0;
 	margin: 0;
 	padding: 0;
 	visibility: hidden;
