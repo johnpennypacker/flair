@@ -12,6 +12,10 @@
 	margin-bottom: 0;
 	padding: calc( var( --space_buffer ) * .5 ) calc( var( --space_buffer ) * 3 ) calc( var( --space_buffer ) * .5 ) calc( var( --space_buffer ) * 1.5 );
 	position: relative;
+	transition: .2s background-color ease-in-out;	
+}
+.flair-accordion .header:hover {
+	background-color: rgba(var(--color__link), 1);
 }
 .flair-accordion .header button {
 	position: absolute;
@@ -20,16 +24,18 @@
 
 
 .flair-accordion .detail {
+	background-color: transparent;
 	overflow: hidden;
-	margin: var( --space_buffer ) calc( var( --space_buffer ) * 1.5 );
+	padding: var( --space_buffer ) calc( var( --space_buffer ) * 1.5 );
 	max-height: 100vh;
 	transition: .5s all ease-in-out;	
 }
 
 
 .flair-accordion.closed .detail {
+	background-color: rgba(var(--color__link), 1);
 	max-height: 0;
-	margin: 0;
+	padding: 0;
 }
 
 .flair-accordion .detail * {
