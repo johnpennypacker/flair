@@ -1,0 +1,44 @@
+.flair-accordion {
+	--space_buffer: var(--type_size, 1rem);
+	border: 1px solid rgba(var(--color__base_900), 1);
+	margin-bottom: calc( var( --space_buffer ) * 2 );
+}
+.flair-accordion + .flair-accordion {
+	margin-top: calc( var( --space_buffer ) * -2 );
+}
+.flair-accordion .header {
+	background-color: rgba(var(--color__base_900), 1);
+	border-bottom: 1px solid rgba(var(--color__base_800), 1);
+	margin-bottom: 0;
+	padding: calc( var( --space_buffer ) * .5 ) calc( var( --space_buffer ) * 3 ) calc( var( --space_buffer ) * .5 ) calc( var( --space_buffer ) * 1.5 );
+	position: relative;
+}
+.flair-accordion .header button {
+	position: absolute;
+	top: 0; right: 0; left: 0; bottom: 0;
+}
+
+
+.flair-accordion .detail {
+	overflow: hidden;
+	margin: var( --space_buffer ) calc( var( --space_buffer ) * 1.5 );
+	max-height: 100vh;
+	transition: .5s all ease-in-out;	
+}
+
+
+.flair-accordion.closed .detail {
+	max-height: 0;
+	margin: 0;
+}
+
+.flair-accordion .detail * {
+	transition: .4s font-size ease-in-out;	
+}
+.flair-accordion.closed .detail * {
+	border: 0;
+	font-size: 0;
+	margin: 0;
+	padding: 0;
+	visibility: hidden;
+}

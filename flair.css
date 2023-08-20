@@ -29,3 +29,44 @@ a:hover {
 	transform: rotateZ(-5deg);
 }
 
+
+.flair-toggle-x {
+	background-color: transparent !important;
+	border: 0 !important;
+	font-size: 0 !important;
+	padding: 0 !important;
+	position: relative;
+	width: 1.5rem;
+	width: 100%;
+}
+button.flair-toggle-x:hover {
+	background-color: transparent !important;
+	border: 0 !important;
+	box-shadow: none;
+	transform: none;
+}
+.flair-toggle-x::before,
+.flair-toggle-x::after {
+	background-color: #fff;
+	content: '';
+	height: 2px;
+	position: absolute;
+	right: 1.5rem;
+	top: 1.375rem;
+	transition: .2s all ease;
+	width: 1rem;
+}
+
+.flair-toggle-x::before {
+	transform: rotate(0deg);
+}
+.flair-toggle-x::after {
+	transform: rotate(90deg);
+}
+
+.open .flair-toggle-x::before {
+	transform: rotate(315deg);
+}
+.open .flair-toggle-x::after {
+	transform: rotate(225deg);
+}
