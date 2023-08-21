@@ -5,7 +5,7 @@
 	var BlockControls = blockEditor.BlockControls;
 	var AlignmentToolbar = blockEditor.AlignmentToolbar;
 
-	blocks.registerBlockType( 'flair/eyebrow', {
+	blocks.registerBlockType( "flair/eyebrow", {
 	
 		icon: el("svg", { width: 24, height: 24 },
 			el("rect", { 
@@ -34,25 +34,25 @@
 					blockProps,
 					el(
 							BlockControls,
-							{ key: 'controls' },
+							{ key: "controls" },
 							el( AlignmentToolbar, {
 								value: props.attributes.alignment,
 								onChange: function( v ) {
-									props.setAttributes( { alignment: v === undefined ? 'none' : v } )
+									props.setAttributes( { alignment: v === undefined ? "none" : v } )
 								},
 							})
 					),
 					el( blockEditor.RichText, {
-							key: 'content',
+							key: "content",
 							style: { textAlign: props.attributes.alignment },
-							tagName: 'p',
-							className: 'eyebrow flair-io',
+							tagName: "div",
+							className: "eyebrow flair-io",
 							value: props.attributes.content,
-							allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript' ],
+							allowedFormats: [ "core/bold", "core/italic", "core/subscript", "core/superscript" ],
 							onChange: function( v ) {
 								props.setAttributes( { content: v } ); 
 							},
-							placeholder: __( 'Eyebrow text...' ),
+							placeholder: __( "Eyebrow text..." ),
 					} )
 			);
 		},
@@ -63,13 +63,10 @@
 		save: function( props ) {
 			var blockProps = blockEditor.useBlockProps.save();
 
-			var classes = 'eyebrow flair-io';
-// 			if( props.attributes.alignment )  {
-// 				classes.push()
-// 			}
+			var classes = "eyebrow flair-io";
 					
 			return el( blockEditor.RichText.Content, blockEditor.useBlockProps.save( {
-				tagName: 'p',
+				tagName: "div",
 				className: classes,
 				style: { textAlign: props.attributes.alignment },
 				value: props.attributes.content

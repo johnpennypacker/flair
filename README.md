@@ -6,6 +6,7 @@ Let's aim for 15 pieces of flair.
 ## Blocks
 - accordion 
 - cards [in progress]
+- eyebrow
 - sidebar / inset / boxout
 - sidler
 - milestone (timeline)

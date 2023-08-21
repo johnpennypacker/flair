@@ -5,3 +5,16 @@
 	margin-bottom: 1em;
 	text-transform: uppercase;
 }
+
+/** display sub / super script in their original case **/
+.eyebrow sub, .eyebrow sup {
+	font-size: 1em;
+	text-transform: none;
+	
+}
+.eyebrow sub {
+	bottom: 0;
+}
+.eyebrow sup {
+	top: -.15em;
+}
