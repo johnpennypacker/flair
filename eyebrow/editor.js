@@ -2,6 +2,8 @@
 
 	var el = element.createElement;
 	var __ = i18n.__;
+	var BlockControls = blockEditor.BlockControls;
+	var AlignmentToolbar = blockEditor.AlignmentToolbar;
 
 	blocks.registerBlockType( 'flair/eyebrow', {
 	
@@ -26,18 +28,33 @@
 		edit: function( props ) {
 					
 			var blockProps = wp.blockEditor.useBlockProps();
-			var content = props.attributes.content;
 			
-			return el( blockEditor.RichText, {
-				tagName: 'div',
-				className: 'eyebrow flair-io',
-				value: props.attributes.content,
-				allowedFormats: [ 'core/bold', 'core/italic' ],
-				onChange: function( content ) {
-					props.setAttributes( { content: content } ); // Store updated content as a block attribute
-				},
-				placeholder: __( 'Eyebrow text...' ), // Display this text before any content has been added by the user
-			});
+			return el(
+					'div',
+					blockProps,
+					el(
+							BlockControls,
+							{ key: 'controls' },
+							el( AlignmentToolbar, {
+								value: props.attributes.alignment,
+								onChange: function( v ) {
+									props.setAttributes( { alignment: v === undefined ? 'none' : v } )
+								},
+							})
+					),
+					el( blockEditor.RichText, {
+							key: 'content',
+							style: { textAlign: props.attributes.alignment },
+							tagName: 'p',
+							className: 'eyebrow flair-io',
+							value: props.attributes.content,
+							allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript' ],
+							onChange: function( v ) {
+								props.setAttributes( { content: v } ); 
+							},
+							placeholder: __( 'Eyebrow text...' ),
+					} )
+			);
 		},
 		
 		/**
@@ -47,10 +64,14 @@
 			var blockProps = blockEditor.useBlockProps.save();
 
 			var classes = 'eyebrow flair-io';
-		
+// 			if( props.attributes.alignment )  {
+// 				classes.push()
+// 			}
+					
 			return el( blockEditor.RichText.Content, blockEditor.useBlockProps.save( {
-				tagName: 'div',
+				tagName: 'p',
 				className: classes,
+				style: { textAlign: props.attributes.alignment },
 				value: props.attributes.content
 			}));
 		}

@@ -14,7 +14,14 @@
 			"type": "string",
 			"source": "html",
 			"selector": ".eyebrow"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "none"
 		}
+	},
+	"supports": {
+		"align": true
 	},
 	"editorScript": "file:./editor.js",
 	"editorStyle": "file:./editor.css",
