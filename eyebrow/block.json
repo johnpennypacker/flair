@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "flair/eyebrow",
+	"title": "Eyebrow",
+	"category": "text",
+	"icon": "text",
+	"description": "Creates a pre-header, kicker, or overline",
+	"keywords": [ "overline", "kicker", "header", "eyebrow" ],
+	"version": "0.1",
+	"textdomain": "jape",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".eyebrow"
+		}
+	},
+	"editorScript": "file:./editor.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./eyebrow.css"
+}
