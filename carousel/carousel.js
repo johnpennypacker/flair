@@ -169,11 +169,20 @@
 		wrap.dataset.slideIndex = 0;
 		
 		wrap.dataset.xer = 1;
-		if( el.classList.contains( "double" ) ) {
+		var rect = wrap.getBoundingClientRect();
+		
+		if( rect.width > 400 && el.classList.contains( "double" ) ) {
 			wrap.dataset.xer = 2;
 		}
+
 		if( el.classList.contains( "triple" ) ) {
-			wrap.dataset.xer = 3;
+			if ( rect.width > 640 ) {
+				wrap.dataset.xer = 3;
+			} else {
+				el.classList.remove( "triple" );
+				el.classList.add( "double" );
+				wrap.dataset.xer = 2;
+			}
 		}
 
 		return wrap;

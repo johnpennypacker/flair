@@ -35,10 +35,10 @@
 }
 
 .wp-block-columns.carousel.double .wp-block-column {
-	flex-basis: calc( 50% - var( --carousel_gap ) );
+	flex-basis: calc( 50% - var( --carousel_gap ) ) !important;
 }
 .wp-block-columns.carousel.triple .wp-block-column {
-	flex-basis: calc( (100% / 3) - var( --carousel_gap ) );
+	flex-basis: calc( (100% / 3) - var( --carousel_gap ) ) !important;
 }
 
 .carousel-wrap button {
