@@ -14,11 +14,24 @@
 		carousels.forEach( function( el ) {
 			observe( el );
 			var w = wrapCarousel( el );
+			// w.dataset.slideDist = getSlideDistance( w );
 			addPrevNextButtons( w );
 			addDots( w );
 			updateButtons( w );
+						
 		});
 		
+	}
+	
+	function getSlideDistance( el ) {
+		var cols = el.querySelectorAll( ".carousel > div" );
+		var cols = [...cols];
+
+		var rect = cols[0].getBoundingClientRect();
+		var rect2 = cols[1].getBoundingClientRect();
+
+		return (rect2.width - ( rect.width + rect.left )) * -1;
+
 	}
 	
 	function observe( el ) {
@@ -27,9 +40,10 @@
 		//** add intersection data to images and major sections **/
 		if ('IntersectionObserver' in window) {
 			var options = {
-				root: null,
+				root: el,
 				rootMargin: '0px',
-				threshold: buildThreshold( ( rect.width / 2.2 ) )
+				threshold: [0, 0.2, 0.6, 0.8, 1]
+// 				threshold: buildThreshold( ( rect.width / 60 ) )
 			}
 			var observer = new IntersectionObserver(observerCallback, options);
 			var els = el.querySelectorAll(":scope > .wp-block-column");
@@ -41,17 +55,46 @@
 	}
 	
 	function observerCallback(entries, observer) {
-		entries.forEach(function(entry) {
-			if( entry.intersectionRatio > .9 ) {
+		entries.every(function(entry) {
+			entry.target.dataset.intersection = entry.intersectionRatio;
+			entry.target.dataset.isIntersecting = entry.isIntersecting;
+			if( entry.intersectionRatio > .6 ) {
 				var c = entry.target.parentNode;
 				var wrap = c.parentNode;
 				var index = Array.prototype.indexOf.call( c.children, entry.target );
-				wrap.dataset.slideIndex = index;
-				updateButtons( wrap );
-			}
-		});
-	}
 
+				// this is where the dots are getting messed up on doubles and triples...
+				// we need this to "auto-detect" the slide position when the user scrolls
+				// but it misbehaves when a the user clicks a dot/button
+				// the "fix" is the callbackCallBack function that limits execution 
+				// to just the last iteration.
+				// it mostly works
+				// wrap.dataset.slideIndex = index;
+	 			// updateButtons( wrap );
+				return false;
+			}
+			return true;
+		});
+		callbackCallBack(entries[0].target.parentNode);
+	}
+	
+	function callbackCallBack( carousel ) {
+			var els = carousel.querySelectorAll(".wp-block-column");			
+			els = [...els];
+			els.every(function( el ) {
+				if( el.dataset.intersection > .6 && el.dataset.isIntersecting ) {
+
+					var wrap = carousel.parentNode;
+					var index = Array.prototype.indexOf.call( carousel.children, el );
+					wrap.dataset.slideIndex = index;
+
+					updateButtons( wrap );
+					return false;
+				}
+				return true;
+			});
+	}
+	
 	function buildThreshold(num) {
 		let thresholds = [];
 
@@ -65,15 +108,30 @@
 	}
 
 
-	function updatePosition( el, index ) {
+	function updatePosition( el ) {
+		var xer = (el.dataset.xer * 1);
+		// sanity check
+		var index = el.dataset.slideIndex;
 		if ( index < 0 ) {
-			return false;
+			index = 0;
+			el.dataset.slideIndex = index;
 		}
-		el.dataset.slideIndex = index;
+		var max = ( el.dataset.slideCount * 1 ) + 1 - xer;
+		if ( index > max ) {
+			index = max;
+			el.dataset.slideIndex = index;
+		}
+		// end sanity check
+
 		var c = el.querySelector( ".carousel" );
 		var rect = el.getBoundingClientRect();
-		c.scrollLeft = rect.width * index;
-		//updateButtons( el ); // IntersectionObserver handles this
+		var dist = rect.width / (el.dataset.xer * 1);
+		c.scrollLeft = dist * index;
+
+
+// 		c.scrollLeft = Math.floor( el.dataset.slideDist * index );
+
+		// updateButtons( el ); // IntersectionObserver handles this
 	}
 	
 	function updateButtons( el ) {
@@ -93,7 +151,7 @@
 		if( 0 == el.dataset.slideIndex ) {
 			p.classList.add('disabled');
 		}
-		if( el.dataset.slideCount-1 == el.dataset.slideIndex ) {
+		if( el.dataset.slideCount == el.dataset.slideIndex ) {
 			n.classList.add('disabled');
 		}
 		
@@ -109,6 +167,14 @@
 		var slides = el.querySelectorAll(":scope > div");		
 		wrap.dataset.slideCount = slides.length;
 		wrap.dataset.slideIndex = 0;
+		
+		wrap.dataset.xer = 1;
+		if( el.classList.contains( "double" ) ) {
+			wrap.dataset.xer = 2;
+		}
+		if( el.classList.contains( "triple" ) ) {
+			wrap.dataset.xer = 3;
+		}
 
 		return wrap;
 	}
@@ -130,7 +196,8 @@
 				dot.classList.add("dot");
 				dot.dataset.slideIndex = i;
 				dot.addEventListener( "click", function() {
-					updatePosition( el, i );
+					el.dataset.slideIndex = i;
+					updatePosition( el );
 				});
 				dots.appendChild(dot);
 			})(i)
@@ -142,15 +209,13 @@
 	function addPrevNextButtons( el ) {
 		var f, r;
 		var c = el.querySelector( ".carousel" );
-		
+		var xer = (el.dataset.xer * 1);
 		r = document.createElement("BUTTON");
 		r.innerHTML = "Previous";
 		r.classList.add("previous");
 		r.addEventListener( "click", function() {
-			if( el.dataset.slideIndex > 0 )  {
-				el.dataset.slideIndex = (el.dataset.slideIndex*1) - 1;
-				updatePosition( el, el.dataset.slideIndex );
-			}
+			el.dataset.slideIndex = (el.dataset.slideIndex*1) - xer;
+			updatePosition( el );
 		});
 		el.appendChild(r);
 
@@ -158,10 +223,8 @@
 		f.innerHTML = "Next";
 		f.classList.add("next");
 		f.addEventListener( "click", function() {
-			if( el.dataset.slideIndex < el.dataset.slideCount - 1 )  {
-				el.dataset.slideIndex = (el.dataset.slideIndex*1) + 1;
-				updatePosition( el, el.dataset.slideIndex );
-			}
+			el.dataset.slideIndex = (el.dataset.slideIndex*1) + xer;
+			updatePosition( el );
 		});
 		el.appendChild(f);
 

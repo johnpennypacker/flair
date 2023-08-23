@@ -2,13 +2,16 @@
 	--carousel_bg: var(--color__base_200, '255,255,0');
 	--carousel_fg: var(--color__base_900, '255,255,255');
 	--carousel_active: var(--color__accent, '255,255,255');
+	--carousel_gap: calc( var( --type__size, 1rem ) * 2);
 	margin-bottom: 2rem;
 	position: relative;
 }
 
+
 .wp-block-columns.carousel {
 	display: flex;
 	flex-wrap: nowrap !important; /* because WP default styles use importat */
+	gap: var( --carousel_gap );
 	overflow: hidden;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
@@ -28,7 +31,14 @@
 .wp-block-columns.carousel .wp-block-column {
 	flex: 0 0 auto;
 	scroll-snap-align: start;
-	width: 100%;
+	flex-basis: 100%;
+}
+
+.wp-block-columns.carousel.double .wp-block-column {
+	flex-basis: calc( 50% - var( --carousel_gap ) );
+}
+.wp-block-columns.carousel.triple .wp-block-column {
+	flex-basis: calc( (100% / 3) - var( --carousel_gap ) );
 }
 
 .carousel-wrap button {
