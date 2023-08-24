@@ -175,6 +175,8 @@
 			wrap.dataset.xer = 2;
 		}
 
+		// this is a pretty kludgy way to manage responsive columns
+		// maybe css vars would be better, ala el.setProperty( '--foo', bar );
 		if( el.classList.contains( "triple" ) ) {
 			if ( rect.width > 640 ) {
 				wrap.dataset.xer = 3;

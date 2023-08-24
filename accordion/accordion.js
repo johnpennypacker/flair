@@ -41,21 +41,31 @@
 
 	}
 	
-	function handleClick() {
+	function handleClick(e) {
 		var a = this.closest( ".flair-accordion" );
 		
 		if( a.classList.contains("open") ) {
 			a.classList.remove("open");
 			a.classList.add("closed");
 			this.setAttribute("aria-expanded", false );
-			document.location.hash = '';
+// 			e.preventDefault();
+			if( !! document.location.hash ) {
+				history.pushState( {}, "", window.location.pathname + window.location.search );
+			}
+// 			document.location.hash = '';
 		} else {
 			a.classList.remove("closed");
 			a.classList.add("open");
 			this.setAttribute("aria-expanded", true );
 			var id = ( a.id ) ? a.id : '';
-			document.location.hash = a.id;
+// 			e.preventDefault();
+// 			document.location.hash = a.id;
+			var url = new URL(location);
+			url.hash = a.id
+			history.pushState( {}, "", url );
+
 		}
+		return false;
 	//	console.log("that clicks");
 	}
 
