@@ -43,3 +43,12 @@ function flair_register_blocks() {
 
 }
 add_action( 'init', 'flair_register_blocks' );
+
+
+/**
+ * Enqueue Editor assets.
+ */
+function flair_enqueue_editor_assets() {
+	wp_enqueue_style( 'flair-editor-carousel', plugins_url( 'carousel/editor.css', __FILE__ ), array() );
+}
+add_action( 'enqueue_block_editor_assets', 'flair_enqueue_editor_assets' );
