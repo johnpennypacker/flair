@@ -13,29 +13,9 @@
 	blocks.registerBlockType( "flair/accordion", {
 	
 		icon: el("svg", { width: 24, height: 24 },
-			el("rect", { 
-				x: "1", y: "1", width: "22", height: "22", fill: "#2f2f2f"
-			}),
-			el("rect", { 
-				x: "2", y: "6", width: "20", height: "16", fill: "#fff" 
-			}),
-			el("rect", { 
-				x: "2", y: "2", width: "16", height: "3", fill: "#fff"
-			}),
-			el("rect", { 
-				x: "19", y: "2", width: "3", height: "3", fill: "#fff"
-			}),
-			el("rect", { 
-				x: "4", y: "9", width: "14", height: "1", fill: "#2f2f2f"
-			}),
-			el("rect", { 
-				x: "4", y: "12", width: "15", height: "1", fill: "#2f2f2f"
-			}),
-			el("rect", { 
-				x: "4", y: "18", width: "11", height: "1", fill: "#2f2f2f"
-			}),
-			el("rect", { 
-				x: "4", y: "15", width: "14", height: "1", fill: "#2f2f2f"
+			el("path", {
+				d: "M21,10L23,16L21,16L23,22L4,22L1,13L3,13L1,7L3,7L1,1L20,1L23,10L21,10ZM4.108,10L5.442,14L20.225,14L18.892,10L4.108,10ZM18.558,3L3.775,3C3.775,3 5.442,8 5.442,8L20.225,8L18.558,3ZM4.108,16L5.442,20L20.225,20L18.892,16L4.108,16Z",
+				fill: "#2f2f2f"
 			})
 		),
 

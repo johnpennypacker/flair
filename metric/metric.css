@@ -1,0 +1,16 @@
+.metric {
+	font-size: var( --type__size, 1.1rem );
+	margin-bottom: var( --type__size, 1em );
+}
+.metric > em,
+.metric .qualifier {
+	display: block;
+}
+
+.metric em {
+	display: block;
+/* 	font-family: var(	--type__serif, inherit ); */
+	font-size: calc( var( --type__size, 1em ) * 3.75 );
+	font-style: normal;
+	font-weight: bold;
+}

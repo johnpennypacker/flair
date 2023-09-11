@@ -1,0 +1,9 @@
+.flair-accordion  {
+	--default_color: 180,180,180;
+	--border_color: var(--color__base_900, var( --default_color ) );
+	border: 2px solid rgba( var(--border_color), 1 );
+}
+.flair-accordion .header  {
+	border-bottom: 1px solid rgba(  var(--border_color), 1 );
+	margin-top: 0;
+}

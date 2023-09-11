@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "flair/metric",
+	"title": "Metric",
+	"category": "text",
+	"icon": "text",
+	"description": "Display stats in style",
+	"keywords": [ "number", "percentage", "metric", "data" ],
+	"version": "0.1",
+	"textdomain": "clarku",
+	"attributes": {
+		"number": {
+			"type": "string",
+			"source": "html",
+			"selector": "em"
+		},
+		"qualifier": {
+			"type": "string",
+			"source": "html",
+			"selector": ".qualifier"
+		},
+		"link": {
+			"type": "string",
+			"source": "html",
+			"selector": "a",
+			"attribute": "href"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"align": true
+	},
+	"editorStyle": "file:./editor.css",
+	"editorScript": "file:./editor.js",
+	"style": "file:./metric.css"
+}

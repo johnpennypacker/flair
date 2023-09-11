@@ -1,0 +1,49 @@
+.fixie {
+	align-items: center;
+	
+	display: flex;
+	justify-content: center;
+
+	margin: 0;
+	height: 100vh;
+	scroll-snap-align: start;
+	top: 0;
+}
+
+.fixie .background {
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	opacity: 0;
+	z-index: -1;
+}
+
+.fixie[data-is-intersecting] .background {
+	opacity: calc( var( --intersection-ratio ) * 1.95 );
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.fixie .foreground {
+}
+
+
+.fixie .background {
+	background-color: #900;
+}
+.fixie + .fixie .background {
+	background-color: #009;
+}
+.fixie + .fixie + .fixie .background {
+	background-color: #090;
+}
+
+.fixie {
+	margin-bottom: 50vh;
+}
+.fixie + .fixie {
+	margin-top: -50vh;
+}

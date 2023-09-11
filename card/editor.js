@@ -94,7 +94,7 @@
 				}
 			}
 
-			 console.log('edit', props);
+// 			 console.log('edit', props);
 			
 			return el( 'div', Object.assign( blockProps ), 
 				getLink(),
@@ -177,7 +177,7 @@
 			};
 
 			
-			 console.log('save', attributes);
+// 			 console.log('save', attributes);
 		
 			return el( 'div', { className: classes }, 
 				el(

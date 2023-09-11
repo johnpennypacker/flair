@@ -1,0 +1,9 @@
+[role=textbox]:empty,
+[role=textbox].is-empty {
+	background-color: rgba( var( --color__base_700 ), 1 );
+	color: rgba( var( --color__base_300), 1 );
+}
+
+.wp-block.metric em {
+	font-style: normal;
+}
