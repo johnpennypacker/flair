@@ -19,14 +19,15 @@
 		MediaUpload = blockEditor.MediaUpload,
 		useSelect = data.useSelect;
 
-		function bgPosition( p ) {
-			if( ! p ) {
-				return "";
+		function bgPosition( fp ) {
+			if( ! fp ) {
+				return undefined;
 			} 
-			return (p.x * 100) + "% " + (p.y * 100) + "%"
+			return (fp.x * 100) + "% " + (fp.y * 100) + "%";
 		}
 
 		function bgStyles( atts ) {
+
 			var styles = { };
 			if( atts.mediaURL ) {
 				styles.backgroundImage = "url(" + atts.mediaURL + ")";
@@ -68,6 +69,9 @@
 		edit: function( props ) {
 
 			var classes = getClassNames( props.attributes );
+			
+			console.log("edit props", props.attributes );
+			console.log("edit bg", bgStyles( props.attributes ) );
 
 			function hasInnerBlocks() {
 				useSelect(
@@ -173,7 +177,7 @@
 				return el(
 					"div",
 					useBlockProps({
-						className: classes.join(" "),
+						className: classes.join( " " ),
 					}),
 					el( "div", {
 						className: "background",
@@ -200,20 +204,24 @@
 		save: function( props ) {
 			var classes = getClassNames( props.attributes );
 
+			console.log("save atts", props.attributes);
+			
+			console.log("save bg", bgStyles( props.attributes ) );
+			
 			return el(
 				'div',
 				useBlockProps.save({
 					className: classes.join( " " ),
         }),
-				el( 'div', {
+				el( "div", {
 					className: "background",
 					style: bgStyles( props.attributes )
 					}
 				),
-				el( 'div', {
+				el( "div", {
 						className: "foreground"
 					},
-					el( InnerBlocks.Content)
+					el( InnerBlocks.Content )
 				)
 			);
 		}

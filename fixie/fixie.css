@@ -5,9 +5,14 @@
 	justify-content: center;
 
 	margin: 0;
-	height: 100vh;
+/* 
+	min-height: 50vh;
+ */
 	scroll-snap-align: start;
 	top: 0;
+
+	border: 1px dashed pink;
+
 }
 
 .fixie .background {
@@ -42,8 +47,8 @@
 }
 
 .fixie {
-	margin-bottom: 50vh;
+	padding: 100vh 0;
 }
 .fixie + .fixie {
-	margin-top: -50vh;
+	padding-top: -100vh;
 }

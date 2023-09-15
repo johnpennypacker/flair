@@ -19,19 +19,13 @@
 			"type": "number"
 		},
 		"mediaURL": {
-			"type": "string",
-			"source": "attribute",
-			"selector": ".media img",
-			"attribute": "src"
+			"type": "string"
 		},
 		"mediaAlt": {
-			"type": "string",
-			"source": "attribute",
-			"selector": ".media img",
-			"attribute": "alt"
+			"type": "string"
 		},
 		"focalPoint": {
-			"type": "string"
+			"type": "object"
 		},
 		"background": {
 			"type": "string"
