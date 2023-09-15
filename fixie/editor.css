@@ -1,9 +1,14 @@
-.flair-accordion  {
-	--default_color: 180,180,180;
-	--border_color: var(--color__base_900, var( --default_color ) );
-	border: 2px solid rgba( var(--border_color), 1 );
+.fixie {
+	flex-direction: column;
 }
-.flair-accordion .header  {
-	border-bottom: 1px solid rgba(  var(--border_color), 1 );
-	margin-top: 0;
+.fixie .background {
+	opacity: 1;
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.fixie .background .media {
+	border: 1px dashed pink;
 }

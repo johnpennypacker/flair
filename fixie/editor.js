@@ -1,4 +1,4 @@
-(function ( blocks, element, blockEditor, components, i18n ) {
+(function ( blocks, element, blockEditor, components, data, i18n ) {
 	
 	var el = element.createElement,
 		registerBlockType = blocks.registerBlockType,
@@ -7,8 +7,16 @@
 		InnerBlocks = blockEditor.InnerBlocks,
 		SelectControl = components.SelectControl,
 		ToggleControl = components.ToggleControl,
+		PanelBody = components.PanelBody,
+		BlockAlignmentMatrixControl = components.BlockAlignmentMatrixControl,
+		FullHeightAlignmentControl = components.FullHeightAlignmentControl,
+		FocalPointPicker = components.FocalPointPicker,
+		BlockControls = blockEditor.BlockControls,
 		InspectorControls = blockEditor.InspectorControls,
-		PanelBody = components.PanelBody;
+		MediaReplaceFlow = blockEditor.MediaReplaceFlow,
+		MediaUpload = blockEditor.MediaUpload,
+		useSelect = data.useSelect;
+	
 
 	blocks.registerBlockType( "flair/fixie", {
 	
@@ -33,24 +41,137 @@
 		edit: function( props ) {
 
 			var classes = [ 'fixie', 'flair-io' ];
+			if( props.attributes.mediaURL ) {
+				classes.push('has-media');
+			}
 
-			return el(
-				'div',
-				useBlockProps({
-					className: classes.join(' '),
-        }),
-				el( 'div', {
-					className: 'background'
-					}
-				),
-				el( 'div', {
-					className: 'foreground'
-					},
-					el( InnerBlocks )
-				)
-
+			const hasInnerBlocks = useSelect(
+				( select ) =>
+					select( blockEditor.store ).getBlock( props.clientId ).innerBlocks.length >
+					0,
+				[ props.clientId ]
 			);
-		},
+			
+			function bgPosition(p) {
+				if( ! p ) {
+					return "";
+				} 
+				return (p.x * 100) + "% " + (p.y * 100) + "%"
+			}
+
+			
+			
+			function sideBarControls() {
+
+				return el( InspectorControls, { 
+					key: 'group',
+					},
+					el( PanelBody, {
+						title: __('Fixie options'),
+						initialOpen: true
+					},
+					el( FocalPointPicker, {
+						label: __( 'Focal Point' ),
+						url: props.attributes.mediaURL,
+						value: props.attributes.marker,
+						help: __( 'Select the marker style.' ),
+						onChange: function( v ) {
+							console.log(v);
+							props.setAttributes( { marker: v } );
+						}
+					}),
+					el( SelectControl, {
+						label: __( 'Marker' ),
+						options: [],
+						value: props.attributes.marker,
+						help: __( 'Select the marker style.' ),
+						onChange: function( v ) {
+							props.setAttributes( { marker: v } );
+						}
+					})
+
+					) // end PanelBody
+				); //end InspectorControls
+
+			};
+
+			function blockControls() {
+
+				return el( BlockControls, {
+						group: "block"
+					},
+					el( BlockAlignmentMatrixControl, {
+							label: __( 'Change content position' ),
+							value: props.attributes.contentPosition,
+							onChange: function ( v ) {},
+	// 						isDisabled: ! hasInnerBlocks
+						})
+				),
+				el( BlockControls, {
+						group: "other"
+					}, 
+					el( MediaReplaceFlow, {
+						mediaId: props.attributes.mediaID,
+						mediaURL: props.attributes.mediaURL,
+						allowedTypes: [ 'image', 'video' ],
+						accept: "image/*,video/*",
+						onSelect: function (v) {
+							props.setAttributes( { 
+								mediaId: v.id,
+								mediaAlt: v.alt,
+								mediaURL: v.url
+							} );
+						},
+						onToggleFeaturedImage: function (v) {},
+						useFeaturedImage: function (v) {
+							props.setAttributes( { 
+								mediaId: v.id,
+								mediaAlt: v.alt,
+								mediaURL: v.url
+							} );
+						},
+						name: ! props.attributes.mediaURL ? __( 'Add Media' ) : __( 'Replace' )
+					})
+// 					,
+// 					el( FullHeightAlignmentControl, {
+// 						isActive: false, //isMinFullHeight,
+// 						onToggle: function( v ) {},
+// 						isDisabled: ! hasInnerBlocks
+// 					})
+				);
+			};
+			
+			function editBody() {
+				return el(
+					'div',
+					useBlockProps({
+						className: classes.join(' '),
+					}),
+					el( 'div', {
+						className: "background",
+						style: {
+							backgroundColor: "pink",
+							backgroundImage: "url(" + props.attributes.mediaURL + ")",
+							backgroundPosition: bgPosition( props.attributes.marker )
+							}
+						}
+					),
+					el( 'div', {
+						className: 'foreground'
+						},
+						el( InnerBlocks )
+					)
+				);
+			};
+
+			return [
+				blockControls(),
+				sideBarControls(),
+				editBody()
+			]
+				
+				
+		}, // end edit
 		
 		save: function( props ) {
 			var classes = [ 'fixie', 'flair-io' ];
@@ -80,6 +201,7 @@
 	window.wp.element,
 	window.wp.blockEditor,
 	window.wp.components,
+	window.wp.data,
 	window.wp.i18n
 );
 

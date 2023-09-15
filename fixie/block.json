@@ -15,6 +15,24 @@
 			"source": "html",
 			"selector": ".foreground"
 		},
+		"mediaID": {
+			"type": "number"
+		},
+		"mediaURL": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".media img",
+			"attribute": "src"
+		},
+		"mediaAlt": {
+			"type": "string",
+			"source": "attribute",
+			"selector": ".media img",
+			"attribute": "alt"
+		},
+		"marker": {
+			"type": "string"
+		},
 		"background": {
 			"type": "string"
 		}
