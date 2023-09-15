@@ -11,7 +11,7 @@
 	scroll-snap-align: start;
 	top: 0;
 
-	border: 1px dashed pink;
+/* 	border: 1px dashed pink; */
 
 }
 
@@ -26,7 +26,7 @@
 }
 
 .fixie[data-is-intersecting] .background {
-	opacity: calc( var( --intersection-ratio ) * 1.95 );
+	opacity: calc( var( --intersection-ratio ) * 1 );
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -36,6 +36,7 @@
 }
 
 
+/* 
 .fixie .background {
 	background-color: #900;
 }
@@ -45,10 +46,12 @@
 .fixie + .fixie + .fixie .background {
 	background-color: #090;
 }
+ */
 
 .fixie {
-	padding: 100vh 0;
+	margin: 60vh 0;
+	padding: 20vh 0; /** helps control when the bg fades in and out **/
 }
 .fixie + .fixie {
-	padding-top: -100vh;
+/* 	margin-top: -60vh; */
 }

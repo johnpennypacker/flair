@@ -2,6 +2,8 @@
 /* 
 	flex-direction: column;
  */
+ padding: 0;
+ height: 100vh;
 }
 .fixie .background {
 	opacity: 1;
