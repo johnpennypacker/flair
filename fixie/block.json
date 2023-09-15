@@ -30,7 +30,7 @@
 			"selector": ".media img",
 			"attribute": "alt"
 		},
-		"marker": {
+		"focalPoint": {
 			"type": "string"
 		},
 		"background": {

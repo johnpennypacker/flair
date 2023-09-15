@@ -1,12 +1,14 @@
 .fixie {
+/* 
 	flex-direction: column;
+ */
 }
 .fixie .background {
 	opacity: 1;
-	position: relative;
+	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 1;
+	z-index: 0;
 }
 
 .fixie .background .media {
