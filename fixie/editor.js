@@ -43,6 +43,15 @@
 			}
 			return classes;
 		}
+		
+		function defaultTemplate() {
+			return [
+				 [ 'core/group', {"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}}, [
+					 [ 'core/heading', { level: 3, placeholder: "This fixie is going to be epic." } ],
+					 [ 'core/paragraph', { "fontSize":"large", placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elit dolor, bibendum vel risus eu, semper imperdiet justo."} ]
+				 ]],
+			];
+		}
 
 	
 
@@ -70,9 +79,6 @@
 
 			var classes = getClassNames( props.attributes );
 			
-			console.log("edit props", props.attributes );
-			console.log("edit bg", bgStyles( props.attributes ) );
-
 			function hasInnerBlocks() {
 				useSelect(
 					( select ) =>
@@ -187,7 +193,9 @@
 					el( "div", {
 						className: "foreground"
 						},
-						el( InnerBlocks )
+						el( InnerBlocks, {
+							template: defaultTemplate()
+						})
 					)
 				);
 			};
@@ -203,10 +211,6 @@
 		
 		save: function( props ) {
 			var classes = getClassNames( props.attributes );
-
-			console.log("save atts", props.attributes);
-			
-			console.log("save bg", bgStyles( props.attributes ) );
 			
 			return el(
 				'div',
