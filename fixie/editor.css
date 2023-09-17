@@ -17,6 +17,7 @@
 
 .fixie .color-picker {
 	background-color: rgba( var(--color__base_700), 1);
+	position: relative;
 }
 .fixie .color-picker span{
 	color: rgba( var(--color__base_100), 1) !important;

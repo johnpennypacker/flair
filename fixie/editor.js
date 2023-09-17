@@ -8,6 +8,7 @@
 		Button = components.Button,
 		SelectControl = components.SelectControl,
 		ToggleControl = components.ToggleControl,
+		TextControl = components.TextControl,
 		PanelBody = components.PanelBody,
 		PanelRow = components.PanelRow,
 		BlockAlignmentMatrixControl = components.BlockAlignmentMatrixControl,
@@ -60,6 +61,22 @@
 		return classes;
 	}
 
+	function colorPicker( props ) {
+		return el( ColorPalette, {
+			label: __( "Background color" ),
+			colors: [
+				{ name: 'Silver', color: 'silver' },
+				{ name: 'White', color: '#fff' },
+				{ name: 'Gray', color: 'gray' },
+			],
+			disableCustomColors: false,
+			enableAlpha: true,
+			value: props.attributes.bgColor,
+			onChange: function( v ) {
+				props.setAttributes( { bgColor: v } );
+			}
+		})
+	}
 
 
 	blocks.registerBlockType( "flair/fixie", {
@@ -92,28 +109,13 @@
 				);
 			}
 			
-			function colorPicker() {
-				return el( ColorPalette, {
-					colors: [
-						{ name: 'Silver', color: 'silver' },
-						{ name: 'White', color: '#fff' },
-						{ name: 'Gray', color: 'gray' },
-        	],
-        	disableCustomColors: false,
-        	enableAlpha: true,
-        	value: props.attributes.bgColor,
-					onChange: function( v ) {
-						props.setAttributes( { bgColor: v } );
-					}
-				})
-			}
 			
 			function sideBarControls() {
 			
-				var focalPicker, clearButton;
+				var focalPicker, clearButton, videoField;
 				if( props.attributes.mediaURL ) {
 					focalPicker = el( FocalPointPicker, {
-						label: __( 'Focal Point' ),
+						label: __( "Focal Point" ),
 						url: props.attributes.mediaURL,
 						value: props.attributes.focalPoint,
 						// help: __( 'Select the marker style.' ),
@@ -133,19 +135,30 @@
 									focalPoint: undefined
 								} );
 							}
-						}, __("Clear Media"));
+						}, __( "Clear Media" ));
 				}
+				
+				videoField = el( TextControl, {
+					label: __( "Video URL" ),
+					type: "text",
+					value: props.attributes.videoURL,
+					onChange: function( v ) {
+						props.setAttributes( { videoURL: v } );
+					}
+				});
 
 				return el( InspectorControls, { 
-					key: 'group',
+					key: "group",
 					},
 					el( PanelBody, {
-							title: __('Fixie options'),
+							title: __( "Fixie options" ),
 							initialOpen: true
 						},
 						focalPicker,
-						el( PanelRow, { }, clearButton ),
-						el( PanelRow, { }, colorPicker() )
+						el( PanelRow, { className: "clear-media" }, clearButton ),
+						el( PanelRow, { className: "color-picker" }, colorPicker( props ) ),
+						// el( PanelRow, { className: "video-field" }, videoField )
+						
 					) // end PanelBody
 				); //end InspectorControls
 
@@ -202,7 +215,7 @@
 				var bg = el( "div", {
 					className: "background",
 					style: bgStyles( props.attributes )
-					}, el( "div", { className: "color-picker column-width" }, colorPicker() )
+					}, el( "div", { className: "color-picker column-width" }, colorPicker( props ) )
 				);
 				
 				return el(
