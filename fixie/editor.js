@@ -39,6 +39,15 @@
 		}
 		return styles;
 	}
+
+	function defaultTemplate() {
+		return [
+			 [ 'core/group', {"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}}, [
+				 [ 'core/heading', { level: 3, placeholder: "This fixie is going to be epic." } ],
+				 [ 'core/paragraph', { "fontSize":"large", placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elit dolor, bibendum vel risus eu, semper imperdiet justo."} ]
+			 ]],
+		];
+	}
 	
 	function getClassNames( atts ) {
 		var classes = [ 'fixie', 'flair-io' ];
@@ -205,7 +214,9 @@
 					el( "div", {
 						className: "foreground"
 						},
-						el( InnerBlocks )
+						el( InnerBlocks, {
+							template: defaultTemplate()
+						})
 					)
 				);
 			};
@@ -221,7 +232,6 @@
 		
 		save: function( props ) {
 			var classes = getClassNames( props.attributes );
-
 			return el(
 				'div',
 				useBlockProps.save({
