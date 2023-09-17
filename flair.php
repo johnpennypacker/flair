@@ -38,6 +38,7 @@ function flair_register_blocks() {
 	register_block_type( __DIR__ . '/card' );
 	register_block_type( __DIR__ . '/eyebrow' );
 	register_block_type( __DIR__ . '/fixie' );
+	register_block_type( __DIR__ . '/hero' );
 	register_block_type( __DIR__ . '/metric' );
 	register_block_type( __DIR__ . '/milestone' );
 	register_block_type( __DIR__ . '/sidebar' );

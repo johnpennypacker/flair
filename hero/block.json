@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "flair/hero",
+	"title": "Hero",
+	"category": "text",
+	"icon": "text",
+	"description": "A prominent element built to grab attention",
+	"keywords": [ "hero", "cover", "lead" ],
+	"version": "0.1",
+	"textdomain": "jape",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".foreground"
+		},
+		"mediaID": {
+			"type": "number"
+		},
+		"mediaURL": {
+			"type": "string"
+		},
+		"mediaAlt": {
+			"type": "string"
+		},
+		"focalPoint": {
+			"type": "object"
+		},
+		"bgColor": {
+			"type": "string"
+		},
+		"videoURL": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"editorScript": "file:./editor.js",
+	"editorStyle": "file:./editor.css",
+	"script": "file:./hero.js",
+	"style": "file:./hero.css"
+}

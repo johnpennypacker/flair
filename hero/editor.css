@@ -1,0 +1,28 @@
+.hero {
+/* 
+	flex-direction: column;
+ */
+ margin: 0 0 2rem;
+ padding: 0;
+ height: 100vh;
+}
+.fixie .background {
+	opacity: 1;
+	position: absolute;
+	top: 0;
+	left: -2rem;
+	width: calc( 100% + 4rem );
+	z-index: 0;
+}
+
+.hero .color-picker {
+	background-color: rgba( var(--color__base_700), 1);
+	position: relative;
+}
+.hero .color-picker span {
+	color: rgba( var(--color__base_100), 1) !important;
+}
+.hero.has-media .color-picker,
+.hero.has-bg-color .color-picker {
+	display: none;
+}
