@@ -13,38 +13,45 @@
 		BlockAlignmentMatrixControl = components.BlockAlignmentMatrixControl,
 		FullHeightAlignmentControl = components.FullHeightAlignmentControl,
 		FocalPointPicker = components.FocalPointPicker,
+		ColorPalette = components.ColorPalette,
 		BlockControls = blockEditor.BlockControls,
 		InspectorControls = blockEditor.InspectorControls,
 		MediaReplaceFlow = blockEditor.MediaReplaceFlow,
 		MediaUpload = blockEditor.MediaUpload,
 		useSelect = data.useSelect;
 
-		function bgPosition( fp ) {
-			if( ! fp ) {
-				return undefined;
-			} 
-			return (fp.x * 100) + "% " + (fp.y * 100) + "%";
-		}
+	function bgPosition( fp ) {
+		if( ! fp ) {
+			return undefined;
+		} 
+		return (fp.x * 100) + "% " + (fp.y * 100) + "%";
+	}
 
-		function bgStyles( atts ) {
+	function bgStyles( atts ) {
 
-			var styles = { };
-			if( atts.mediaURL ) {
-				styles.backgroundImage = "url(" + atts.mediaURL + ")";
-				styles.backgroundPosition = bgPosition( atts.focalPoint );
-			}
-			return styles;
+		var styles = { };
+		if( atts.bgColor ) {
+			styles.backgroundColor = atts.bgColor;
 		}
-		
-		function getClassNames( atts ) {
-			var classes = [ 'fixie', 'flair-io' ];
-			if( atts.mediaURL ) {
-				classes.push('has-media');
-			}
-			return classes;
+		if( atts.mediaURL ) {
+			styles.backgroundImage = "url(" + atts.mediaURL + ")";
+			styles.backgroundPosition = bgPosition( atts.focalPoint );
 		}
-
+		return styles;
+	}
 	
+	function getClassNames( atts ) {
+		var classes = [ 'fixie', 'flair-io' ];
+		if( atts.mediaURL ) {
+			classes.push('has-media');
+		}
+		if( atts.bgColor ) {
+			classes.push('has-bg-color');
+		}
+		return classes;
+	}
+
+
 
 	blocks.registerBlockType( "flair/fixie", {
 	
@@ -70,19 +77,27 @@
 
 			var classes = getClassNames( props.attributes );
 			
-			console.log("edit props", props.attributes );
-			console.log("edit bg", bgStyles( props.attributes ) );
-
 			function hasInnerBlocks() {
 				useSelect(
-					( select ) =>
-						select( blockEditor.store ).getBlock( props.clientId ).innerBlocks.length >
-						0,
-					[ props.clientId ]
+					( select ) => select( blockEditor.store ).getBlock( props.clientId ).innerBlocks.length > 0, [ props.clientId ]
 				);
 			}
 			
-			
+			function colorPicker() {
+				return el( ColorPalette, {
+					colors: [
+						{ name: 'Silver', color: 'silver' },
+						{ name: 'White', color: '#fff' },
+						{ name: 'Gray', color: 'gray' },
+        	],
+        	disableCustomColors: false,
+        	enableAlpha: true,
+        	value: props.attributes.bgColor,
+					onChange: function( v ) {
+						props.setAttributes( { bgColor: v } );
+					}
+				})
+			}
 			
 			function sideBarControls() {
 			
@@ -120,7 +135,8 @@
 							initialOpen: true
 						},
 						focalPicker,
-						el( PanelRow, { }, clearButton )
+						el( PanelRow, { }, clearButton ),
+						el( PanelRow, { }, colorPicker() )
 					) // end PanelBody
 				); //end InspectorControls
 
@@ -173,17 +189,19 @@
 			};
 			
 			function editBody() {
+			
+				var bg = el( "div", {
+					className: "background",
+					style: bgStyles( props.attributes )
+					}, el( "div", { className: "color-picker column-width" }, colorPicker() )
+				);
 				
 				return el(
 					"div",
 					useBlockProps({
 						className: classes.join( " " ),
 					}),
-					el( "div", {
-						className: "background",
-						style: bgStyles( props.attributes )
-						}
-					),
+					bg,
 					el( "div", {
 						className: "foreground"
 						},
@@ -204,10 +222,6 @@
 		save: function( props ) {
 			var classes = getClassNames( props.attributes );
 
-			console.log("save atts", props.attributes);
-			
-			console.log("save bg", bgStyles( props.attributes ) );
-			
 			return el(
 				'div',
 				useBlockProps.save({

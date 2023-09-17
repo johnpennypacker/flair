@@ -2,6 +2,7 @@
 /* 
 	flex-direction: column;
  */
+ margin: 0 0 2rem;
  padding: 0;
  height: 100vh;
 }
@@ -11,4 +12,15 @@
 	top: 0;
 	left: 0;
 	z-index: 0;
+}
+
+.fixie .color-picker {
+	background-color: rgba( var(--color__base_700), 1);
+}
+.fixie .color-picker span{
+	color: rgba( var(--color__base_100), 1) !important;
+}
+.fixie.has-media .color-picker,
+.fixie.has-bg-color .color-picker {
+	display: none;
 }

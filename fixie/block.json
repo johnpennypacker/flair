@@ -27,7 +27,7 @@
 		"focalPoint": {
 			"type": "object"
 		},
-		"background": {
+		"bgColor": {
 			"type": "string"
 		}
 	},
