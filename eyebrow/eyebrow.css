@@ -1,14 +1,14 @@
 .eyebrow {
-	color: #777;
-	font-size: .9em;
+	color: rgba( var(--color__base_300), 1);
+	font-size: calc( var( --type__size, 1em ) * .9 );
 	font-weight: bold;
-	margin-bottom: 1em;
+	margin-bottom: calc( var( --type__size, 1em ) * 1 );
 	text-transform: uppercase;
 }
 
 /** display sub / super script in their original case **/
 .eyebrow sub, .eyebrow sup {
-	font-size: 1em;
+	font-size: calc( var( --type__size, 1em ) * 1 );
 	text-transform: none;
 	
 }
