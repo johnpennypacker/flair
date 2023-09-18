@@ -1,8 +1,107 @@
 .hero {
+	border: 1px dashed pink;
+	display: flex;
+	min-height: 50vh;
 	position: relative;
 }
 
+/* 
+.hero.n {
+	justify-content: center;
+	align-items: flex-start;
+}	
+.hero.ne {
+	justify-content: flex-end;
+	align-items: flex-start;
+}	
+.hero.e {
+	justify-content: flex-end;
+	align-items: center;
+}	
+.hero.se {
+	justify-content: flex-end;
+	align-items: flex-end;
+}	
+.hero.s {
+	justify-content: center;
+	align-items: flex-end;
+}	
+.hero.sw {
+	justify-content: flex-start;
+	align-items: flex-end;
+}	
+.hero.w {
+	justify-content: flex-start;
+	align-items: center;
+}	
+.hero.nw {
+	justify-content: flex-start;
+	align-items: flex-start;
+}	
+.hero.center {
+	justify-content: center;
+	align-items: center;
+}	
+ */
+
+
 .hero .background {
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: 1px dashed green;
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
 }
+.hero .background figure,
+.hero .background img {
+	visibility: hidden; /** this is here to make the alt attribute available, but we use a background image instead. **/
+	margin: 0;
+}
+
+
+.hero .foreground {
+	border: 1px dashed silver;
+	display: flex;
+	margin: 0 auto;
+	max-width: var(--width__column_full);
+	padding: 2rem;
+	position: relative;
+	width: 100%;
+	z-index: 2;
+}
+.hero.n .foreground {
+	justify-content: center;
+	align-items: flex-start;
+}	
+.hero.ne .foreground {
+	justify-content: flex-end;
+	align-items: flex-start;
+}	
+.hero.e .foreground {
+	justify-content: flex-end;
+	align-items: center;
+}	
+.hero.se .foreground {
+	justify-content: flex-end;
+	align-items: flex-end;
+}	
+.hero.s .foreground {
+	justify-content: center;
+	align-items: flex-end;
+}	
+.hero.sw .foreground {
+	justify-content: flex-start;
+	align-items: flex-end;
+}	
+.hero.w .foreground {
+	justify-content: flex-start;
+	align-items: center;
+}	
+.hero.nw .foreground {
+	justify-content: flex-start;
+	align-items: flex-start;
+}	
+.hero.center .foreground {
+	justify-content: center;
+	align-items: center;
+}	

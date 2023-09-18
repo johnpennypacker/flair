@@ -27,18 +27,55 @@
 		} 
 		return (fp.x * 100) + "% " + (fp.y * 100) + "%";
 	}
+	
+	function bgMedia( props ) {
+		var els = [];
+		if( props.attributes.mediaURL ) {
+			els.push( el( "figure", {
+				className: "image",
+				}, el( "img", {
+					"src": props.attributes.mediaURL,
+					"alt": props.attributes.mediaAlt
+				} )
+			));
+		}
+		if( props.attributes.videoURL ) {
+			els.push( el( "figure", {
+				className: "video",
+				}, el( "video", {
+					"src": props.attributes.mediaURL
+				} )
+			));
+		}
+		return els;
+		
+	}
 
-	function bgStyles( atts ) {
+	function getBg( props, context ) {
 
 		var styles = { };
-		if( atts.bgColor ) {
-			styles.backgroundColor = atts.bgColor;
+		if( props.attributes.bgColor ) {
+			styles.backgroundColor = props.attributes.bgColor;
 		}
-		if( atts.mediaURL ) {
-			styles.backgroundImage = "url(" + atts.mediaURL + ")";
-			styles.backgroundPosition = bgPosition( atts.focalPoint );
+		if( props.attributes.mediaURL ) {
+			styles.backgroundImage = "url(" + props.attributes.mediaURL + ")";
+			styles.backgroundPosition = bgPosition( props.attributes.focalPoint );
 		}
-		return styles;
+		
+		var children = [];
+		if( "edit" == context ) {
+			children.push( el( "div", { className: "color-picker column-width" }, colorPicker( props ) ) );
+		}
+		children.push( bgMedia( props ) );
+
+		var bg = el( "div", {
+			className: "background",
+			style: styles,
+			}, children
+		);
+		
+		return bg;
+
 	}
 
 	function defaultTemplate() {
@@ -213,18 +250,12 @@
 			
 			function editBody() {
 			
-				var bg = el( "div", {
-					className: "background",
-					style: bgStyles( props.attributes )
-					}, el( "div", { className: "color-picker column-width" }, colorPicker( props ) )
-				);
-				
 				return el(
 					"div",
 					useBlockProps({
 						className: classes.join( " " ),
 					}),
-					bg,
+					getBg( props, "edit" ),
 					el( "div", {
 						className: "foreground"
 						},
@@ -251,11 +282,7 @@
 				useBlockProps.save({
 					className: classes.join( " " ),
         }),
-				el( "div", {
-					className: "background",
-					style: bgStyles( props.attributes )
-					}
-				),
+				getBg( props, "save" ),
 				el( "div", {
 						className: "foreground"
 					},
