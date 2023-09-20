@@ -24,6 +24,9 @@
 		"mediaAlt": {
 			"type": "string"
 		},
+		"caption": {
+			"type": "string"
+		},
 		"focalPoint": {
 			"type": "object"
 		},

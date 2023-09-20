@@ -1,7 +1,4 @@
 .hero {
-	border: 1px dashed pink;
-	display: flex;
-	min-height: 50vh;
 	position: relative;
 }
 
@@ -48,9 +45,9 @@
 .hero .background {
 	background-repeat: no-repeat;
 	background-size: cover;
-	border: 1px dashed green;
 	position: absolute;
-	top: 0; left: 0; right: 0; bottom: 0;
+	top: 0; left: 0; right: 0; 
+	height: 100vh;
 }
 .hero .background figure,
 .hero .background img {
@@ -60,11 +57,10 @@
 
 
 .hero .foreground {
-	border: 1px dashed silver;
 	display: flex;
 	margin: 0 auto;
-	max-width: var(--width__column_full);
-	padding: 2rem;
+	min-height: 100vh;
+	padding: calc( var( --type__size ) * 2 );
 	position: relative;
 	width: 100%;
 	z-index: 2;
@@ -105,3 +101,10 @@
 	justify-content: center;
 	align-items: center;
 }	
+
+.hero .caption {
+	font-size: calc( var( --type__size ) * .85 );
+	padding: calc( var( --type__size ) * .5 ) 0 0 calc( var( --type__size ) * 2 );
+	position: relative;
+	z-index: 1;
+}

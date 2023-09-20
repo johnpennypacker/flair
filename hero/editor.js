@@ -170,6 +170,7 @@
 									mediaId: undefined,
 									mediaAlt: undefined,
 									mediaURL: undefined,
+									caption: undefined,
 									focalPoint: undefined
 								} );
 							}
@@ -226,7 +227,8 @@
 							props.setAttributes( { 
 								mediaId: v.id,
 								mediaAlt: v.alt,
-								mediaURL: v.url
+								mediaURL: v.url,
+								caption: v.caption
 							} );
 						},
 						onToggleFeaturedImage: function (v) {},
@@ -255,13 +257,17 @@
 					useBlockProps({
 						className: classes.join( " " ),
 					}),
-					getBg( props, "edit" ),
-					el( "div", {
-						className: "foreground"
+					el( "header", {
 						},
-						el( InnerBlocks, {
-							template: defaultTemplate()
-						})
+						getBg( props, "edit" ),
+						el( "div", {
+							className: "foreground"
+							},
+							el( InnerBlocks, {
+								template: defaultTemplate()
+							})
+						),
+						el( "p", { className: "caption" }, props.attributes.caption )	
 					)
 				);
 			};
@@ -282,11 +288,15 @@
 				useBlockProps.save({
 					className: classes.join( " " ),
         }),
-				getBg( props, "save" ),
-				el( "div", {
-						className: "foreground"
-					},
-					el( InnerBlocks.Content )
+					el( "header", {
+						},
+					getBg( props, "save" ),
+					el( "div", {
+							className: "foreground"
+						},
+						el( InnerBlocks.Content )
+					),
+					el( "p", { className: "caption" }, props.attributes.caption )
 				)
 			);
 		}
