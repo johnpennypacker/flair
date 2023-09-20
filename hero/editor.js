@@ -9,6 +9,7 @@
 		SelectControl = components.SelectControl,
 		ToggleControl = components.ToggleControl,
 		TextControl = components.TextControl,
+		TextareaControl = components.TextareaControl,
 		PanelBody = components.PanelBody,
 		PanelRow = components.PanelRow,
 		BlockAlignmentMatrixControl = components.BlockAlignmentMatrixControl,
@@ -147,7 +148,6 @@
 				);
 			}
 			
-			
 			function sideBarControls() {
 			
 				var focalPicker, clearButton, videoField;
@@ -177,6 +177,24 @@
 						}, __( "Clear Media" ));
 				}
 				
+				altField = el( TextControl, {
+					label: __( "Alt text" ),
+					type: "text",
+					value: props.attributes.mediaAlt,
+					onChange: function( v ) {
+						props.setAttributes( { mediaAlt: v } );
+					}
+				});
+
+				captionField = el( TextareaControl, {
+					label: __( "Caption" ),
+					type: "text",
+					value: props.attributes.caption,
+					onChange: function( v ) {
+						props.setAttributes( { caption: v } );
+					}
+				});
+
 				videoField = el( TextControl, {
 					label: __( "Video URL" ),
 					type: "text",
@@ -196,6 +214,8 @@
 						focalPicker,
 						el( PanelRow, { className: "clear-media" }, clearButton ),
 						el( PanelRow, { className: "color-picker" }, colorPicker( props ) ),
+						el( PanelRow, { className: "alt-field" }, altField ),
+						el( PanelRow, { className: "caption-field" }, captionField ),
 						el( PanelRow, { className: "video-field" }, videoField )
 						
 					) // end PanelBody
@@ -267,7 +287,17 @@
 								template: defaultTemplate()
 							})
 						),
-						el( "p", { className: "caption" }, props.attributes.caption )	
+						el( blockEditor.RichText, {
+							tagName: "p",
+							className: "caption",
+							value: props.attributes.caption,
+							allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
+							onChange: function( v ) {
+								props.setAttributes( { caption: v } );
+							},
+							placeholder: __( 'caption' ), 
+						})
+
 					)
 				);
 			};
