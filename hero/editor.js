@@ -45,7 +45,9 @@
 			els.push( el( "figure", {
 				className: "video",
 				}, el( "video", {
-					"src": props.attributes.mediaURL
+					"src": props.attributes.videoURL,
+					"autoplay": "autoplay",
+					"loop": "loop"
 				} )
 			));
 		}
