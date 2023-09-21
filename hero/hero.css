@@ -124,5 +124,7 @@
 	width: 50%; 
 }
 .hero.vertical .foreground {
+	align-items: center;
+	justify-content: flex-start;
 	width: 50%; 
 }
