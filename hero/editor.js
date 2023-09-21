@@ -37,7 +37,12 @@
 				className: "image",
 				}, el( "img", {
 					"src": props.attributes.mediaURL,
-					"alt": props.attributes.mediaAlt
+					"alt": props.attributes.mediaAlt,
+					"style": { 
+						'--originX': ( props.attributes.focalPoint.x * 100 ) + "%",
+						'--originY': ( props.attributes.focalPoint.y * 100 ) + "%",
+						objectPosition: bgPosition( props.attributes.focalPoint )
+					}
 				} )
 			));
 		}
