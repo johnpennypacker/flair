@@ -109,3 +109,20 @@
 	position: relative;
 	z-index: 1;
 }
+
+
+.hero.vertical header {
+	display: flex;
+	flex-direction: row;
+}
+.hero.vertical.reverse header {
+	flex-direction: row-reverse;
+}
+.hero.vertical .background {
+	position: relative;
+	top: 0; left: 0;
+	width: 50%; 
+}
+.hero.vertical .foreground {
+	width: 50%; 
+}

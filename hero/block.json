@@ -33,6 +33,10 @@
 		"bgColor": {
 			"type": "string"
 		},
+		"style": {
+			"default": "horizontal",
+			"type": "string"
+		},
 		"videoURL": {
 			"type": "string"
 		}

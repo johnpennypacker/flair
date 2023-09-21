@@ -6,6 +6,7 @@
 		__ = i18n.__,
 		InnerBlocks = blockEditor.InnerBlocks,
 		Button = components.Button,
+		ButtonGroup = components.ButtonGroup,
 		SelectControl = components.SelectControl,
 		ToggleControl = components.ToggleControl,
 		TextControl = components.TextControl,
@@ -90,12 +91,15 @@
 	}
 	
 	function getClassNames( atts ) {
-		var classes = [ 'hero', 'flair-io' ];
+		var classes = [ "hero", "flair-io" ];
 		if( atts.mediaURL ) {
-			classes.push('has-media');
+			classes.push( "has-media" );
 		}
 		if( atts.bgColor ) {
-			classes.push('has-bg-color');
+			classes.push( "has-bg-color" );
+		}
+		if( atts.style ) {
+			classes.push( atts.style );
 		}
 		return classes;
 	}
@@ -150,7 +154,7 @@
 			
 			function sideBarControls() {
 			
-				var focalPicker, clearButton, videoField;
+				var focalPicker, clearButton, videoField, stylePicker, altField, captionField;
 				if( props.attributes.mediaURL ) {
 					focalPicker = el( FocalPointPicker, {
 						label: __( "Focal Point" ),
@@ -176,6 +180,26 @@
 							}
 						}, __( "Clear Media" ));
 				}
+				
+				stylePicker = el( ButtonGroup, {
+						className: "style",
+						label: __( "Style" )
+					},
+					el( Button, {
+						disabled: ( ! props.attributes.mediaURL ),
+						isPressed: ( props.attributes.style == "horizontal"),
+						onClick: function ( v ) { props.setAttributes( { style: "horizontal" } ) },
+						size: "small",
+						variant: "secondary"
+					}, "Horizontal" ),
+					el( Button, {
+						disabled: ( ! props.attributes.mediaURL ),
+						isPressed: ( props.attributes.style == "vertical"),
+						onClick: function ( v ) { props.setAttributes( { style: "vertical" } ) },
+						size: "small",
+						variant: "secondary"
+					}, "Vertical" ),
+			 	);
 				
 				altField = el( TextControl, {
 					label: __( "Alt text" ),
@@ -211,6 +235,7 @@
 							title: __( "Hero options" ),
 							initialOpen: true
 						},
+						el( PanelRow, { className: "style" }, stylePicker ),
 						focalPicker,
 						el( PanelRow, { className: "clear-media" }, clearButton ),
 						el( PanelRow, { className: "color-picker" }, colorPicker( props ) ),
@@ -226,18 +251,14 @@
 			function blockControls() {
 
 				return el( BlockControls, {
-						group: "block"
-					},
-					el( BlockAlignmentMatrixControl, {
-							label: __( "Change content position" ),
-							value: props.attributes.contentPosition,
-							onChange: function ( v ) {},
-	 						isDisabled: ! hasInnerBlocks
-						})
-				),
-				el( BlockControls, {
 						group: "other"
 					}, 
+// 					el( BlockAlignmentMatrixControl, {
+// 							label: __( "Change content position" ),
+// 							value: props.attributes.contentPosition,
+// 							onChange: function ( v ) {},
+// 	 						isDisabled: ! hasInnerBlocks
+// 					}),
 					el( MediaReplaceFlow, {
 						mediaId: props.attributes.mediaID,
 						mediaURL: props.attributes.mediaURL,
@@ -286,19 +307,18 @@
 							el( InnerBlocks, {
 								template: defaultTemplate()
 							})
-						),
-						el( blockEditor.RichText, {
-							tagName: "p",
-							className: "caption",
-							value: props.attributes.caption,
-							allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
-							onChange: function( v ) {
-								props.setAttributes( { caption: v } );
-							},
-							placeholder: __( 'caption' ), 
-						})
-
-					)
+						)
+					),
+					el( blockEditor.RichText, {
+						tagName: "p",
+						className: "caption",
+						value: props.attributes.caption,
+						allowedFormats: [ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ],
+						onChange: function( v ) {
+							props.setAttributes( { caption: v } );
+						},
+						placeholder: __( 'caption' ), 
+					})
 				);
 			};
 
@@ -325,9 +345,9 @@
 							className: "foreground"
 						},
 						el( InnerBlocks.Content )
-					),
-					el( "p", { className: "caption" }, props.attributes.caption )
-				)
+					)
+				),
+				el( "p", { className: "caption" }, props.attributes.caption )
 			);
 		}
 
