@@ -125,6 +125,7 @@
 }
 .hero.vertical .foreground {
 	align-items: center;
+	background-color: rgba( var( --color__base_700 ), 1);
 	justify-content: flex-start;
 	width: 50%; 
 }
