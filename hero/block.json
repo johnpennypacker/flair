@@ -28,7 +28,8 @@
 			"type": "string"
 		},
 		"focalPoint": {
-			"type": "object"
+			"type": "object",
+			"default": { "x": ".5", "y": ".5" }
 		},
 		"bgColor": {
 			"type": "string"
