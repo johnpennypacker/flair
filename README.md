@@ -11,6 +11,7 @@ Let's aim for 15 pieces of flair.
 - sidebar / inset / boxout
 - sidler
 - milestone (timeline)
+- adds left and right alignment options on the group block... possibly obviating need for sidebar
 
 ## Classes
 - .carousel converts WP Columns Block into a carousel. Add class carousel to make it happen.  Also add class double or triple to make two or three cols visible at a time.

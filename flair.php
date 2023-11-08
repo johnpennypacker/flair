@@ -54,5 +54,7 @@ add_action( 'init', 'flair_register_blocks' );
 function flair_enqueue_editor_assets() {
 	wp_enqueue_style( 'flair-editor-carousel', plugins_url( 'carousel/editor.css', __FILE__ ), array() );
 	wp_enqueue_style( 'flair-iconic', plugins_url( 'iconic/iconic.css', __FILE__ ), array() );
+
+	wp_enqueue_script( 'flair-editor', plugins_url( 'flair-editor.js', __FILE__ ), array() );
 }
 add_action( 'enqueue_block_editor_assets', 'flair_enqueue_editor_assets' );
