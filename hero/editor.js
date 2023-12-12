@@ -13,8 +13,10 @@
 		TextareaControl = components.TextareaControl,
 		PanelBody = components.PanelBody,
 		PanelRow = components.PanelRow,
-		BlockAlignmentMatrixControl = components.BlockAlignmentMatrixControl,
+
+		BlockAlignmentMatrixControl = components.__experimentalAlignmentMatrixControl,
 		FullHeightAlignmentControl = components.FullHeightAlignmentControl,
+
 		FocalPointPicker = components.FocalPointPicker,
 		ColorPalette = components.ColorPalette,
 		BlockControls = blockEditor.BlockControls,
@@ -260,12 +262,12 @@
 				return el( BlockControls, {
 						group: "other"
 					}, 
-// 					el( BlockAlignmentMatrixControl, {
-// 							label: __( "Change content position" ),
-// 							value: props.attributes.contentPosition,
-// 							onChange: function ( v ) {},
-// 	 						isDisabled: ! hasInnerBlocks
-// 					}),
+					el( BlockAlignmentMatrixControl, {
+							label: __( "Change content position" ),
+							value: props.attributes.contentPosition,
+							onChange: function ( v ) {},
+	 						isDisabled: ! hasInnerBlocks
+					}),
 					el( MediaReplaceFlow, {
 						mediaId: props.attributes.mediaID,
 						mediaURL: props.attributes.mediaURL,

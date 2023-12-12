@@ -1,4 +1,4 @@
-.carousel-wrap {
+.flairousel-wrap {
 	--carousel_bg: var(--color__base_200, '255,255,0');
 	--carousel_fg: var(--color__base_900, '255,255,255');
 	--carousel_active: var(--color__accent, '255,255,255');
@@ -8,7 +8,7 @@
 }
 
 
-.wp-block-columns.carousel {
+.wp-block-columns.flairousel {
 	display: flex;
 	flex-wrap: nowrap !important; /* because WP default styles use importat */
 	gap: var( --carousel_gap );
@@ -20,28 +20,28 @@
 	scrollbar-width: none; /* works with  FF */
 	overflow-x: scroll; 
 }
-.wp-block-columns.carousel::-webkit-scrollbar {
+.wp-block-columns.flairousel::-webkit-scrollbar {
     display: none; /* works with Chrome, Safari, and Opera */
 }
 
 
-.wp-block-columns.carousel.overflow-auto {
+.wp-block-columns.flairousel.overflow-auto {
 	overflow: auto;
 }
-.wp-block-columns.carousel .wp-block-column {
+.wp-block-columns.flairousel .wp-block-column {
 	flex: 0 0 auto;
 	scroll-snap-align: start;
 	flex-basis: 100%;
 }
 
-.wp-block-columns.carousel.double .wp-block-column {
+.wp-block-columns.flairousel.double .wp-block-column {
 	flex-basis: calc( 50% - var( --carousel_gap ) ) !important;
 }
-.wp-block-columns.carousel.triple .wp-block-column {
+.wp-block-columns.flairousel.triple .wp-block-column {
 	flex-basis: calc( (100% / 3) - var( --carousel_gap ) ) !important;
 }
 
-.carousel-wrap button {
+.flairousel-wrap button {
 	background-color: rgba(var(--carousel_bg), 1);
 	border: 0;
 	color: rgba(var(--carousel_fg), 1);
@@ -50,14 +50,14 @@
 	-webkit-appearance: none;
 }
 
-.carousel-wrap button.disabled {
+.flairousel-wrap button.disabled {
 	pointer-events: none;
 	opacity: .5;
 }
 
 
-.carousel-wrap .previous,
-.carousel-wrap .next {
+.flairousel-wrap .previous,
+.flairousel-wrap .next {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	background-size: 12px 12px;
@@ -66,26 +66,26 @@
 	position: absolute;
 	text-indent: -999em;
 }
-.carousel-wrap .previous {
+.flairousel-wrap .previous {
 
 	background-image: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="utf-8"%3F><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 12 12" ><polygon points="8,11.8 2.2,6 8,0.2 9.4,1.6 5,6 9.4,10.4 "/></svg>');
 	right: -2em;
 	top: calc(50% - 1.1em);
 }
-.carousel-wrap .next {
+.flairousel-wrap .next {
 	background-image: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="utf-8"%3F><svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 12 12" ><polygon points="4,11.8 2.6,10.4 7,6 2.6,1.6 4,0.2 9.8,6 "/></svg>');
 	right: -2em;
 	top: calc(50% + 1em);
 }
 
 
-.carousel-wrap .dots {
+.flairousel-wrap .dots {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;
 }
 
-.carousel-wrap .dot {
+.flairousel-wrap .dot {
 	background-color: rgba(var(--carousel_bg), 1);
 	border-radius: 50%;
 	height: .75em;
@@ -94,7 +94,7 @@
 	transition: all .2s ease;
 	width: .75em;	
 }
-.carousel-wrap .dot[data-is-selected="1"] {
+.flairousel-wrap .dot[data-is-selected="1"] {
 	background-color: rgba(var(--carousel_active), 1);
 }
 

@@ -9,7 +9,7 @@
 	
 	function initCarousel() {
 
-		carousels = document.querySelectorAll( ".carousel" );
+		carousels = document.querySelectorAll( ".flairousel" );
 				
 		carousels.forEach( function( el ) {
 			observe( el );
@@ -24,7 +24,7 @@
 	}
 	
 	function getSlideDistance( el ) {
-		var cols = el.querySelectorAll( ".carousel > div" );
+		var cols = el.querySelectorAll( ".flairousel > div" );
 		var cols = [...cols];
 
 		var rect = cols[0].getBoundingClientRect();
@@ -123,7 +123,7 @@
 		}
 		// end sanity check
 
-		var c = el.querySelector( ".carousel" );
+		var c = el.querySelector( ".flairousel" );
 		var rect = el.getBoundingClientRect();
 		var dist = rect.width / (el.dataset.xer * 1);
 		c.scrollLeft = dist * index;
@@ -160,7 +160,7 @@
 	
 	function wrapCarousel( el ) {
 		var wrap = document.createElement("DIV");
-		wrap.classList.add("carousel-wrap");
+		wrap.classList.add("flairousel-wrap");
 		el.parentNode.insertBefore( wrap, el );		
 		wrap.appendChild( el );
 		
@@ -219,7 +219,7 @@
 	
 	function addPrevNextButtons( el ) {
 		var f, r;
-		var c = el.querySelector( ".carousel" );
+		var c = el.querySelector( ".flairousel" );
 		var xer = (el.dataset.xer * 1);
 		r = document.createElement("BUTTON");
 		r.innerHTML = "Previous";

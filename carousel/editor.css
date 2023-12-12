@@ -1,10 +1,10 @@
-.carousel {
+.flairousel {
 	--carousel_gap: calc( var( --type__size, 1rem ) * 2);
 	margin-bottom: 2rem;
 }
 
 
-.wp-block-columns.carousel {
+.wp-block-columns.flairousel {
 	flex-wrap: nowrap !important; /* because WP default styles use importat */
 	gap: var( --carousel_gap );
 	scroll-behavior: smooth;
@@ -14,15 +14,15 @@
 }
 
 
-.wp-block-columns.carousel .wp-block-column {
+.wp-block-columns.flairousel .wp-block-column {
 	flex: 0 0 auto;
 	scroll-snap-align: start;
 	flex-basis: 100%;
 }
 
-.wp-block-columns.carousel.double .wp-block-column {
+.wp-block-columns.flairousel.double .wp-block-column {
 	flex-basis: calc( 50% - var( --carousel_gap ) ) !important;
 }
-.wp-block-columns.carousel.triple .wp-block-column {
+.wp-block-columns.flairousel.triple .wp-block-column {
 	flex-basis: calc( (100% / 3) - var( --carousel_gap ) ) !important;
 }
