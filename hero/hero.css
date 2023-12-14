@@ -103,6 +103,22 @@
 	width: 100%;
 	z-index: 2;
 }
+
+/* 
+.hero.top .foreground {
+	align-items: flex-start;
+}
+.hero.bottom .foreground {
+	align-items: flex-end;
+}
+.hero.left .foreground {
+	justify-content: flex-start;
+}
+.hero.right .foreground {
+	justify-content: flex-end;
+}
+ */
+
 .hero.n .foreground {
 	justify-content: center;
 	align-items: flex-start;
@@ -135,7 +151,7 @@
 	justify-content: flex-start;
 	align-items: flex-start;
 }	
-.hero.center .foreground {
+.hero.center-center .foreground {
 	justify-content: center;
 	align-items: center;
 }	

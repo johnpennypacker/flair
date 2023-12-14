@@ -15,7 +15,7 @@
 		PanelRow = components.PanelRow,
 
 		BlockAlignmentMatrixControl = components.__experimentalAlignmentMatrixControl,
-		FullHeightAlignmentControl = components.FullHeightAlignmentControl,
+		//FullHeightAlignmentControl = components.FullHeightAlignmentControl,
 
 		FocalPointPicker = components.FocalPointPicker,
 		ColorPalette = components.ColorPalette,
@@ -109,6 +109,20 @@
 		}
 		if( atts.style ) {
 			classes.push( atts.style );
+		}
+		if( atts.contentPosition ) {
+			var map = {
+				"top left": "nw",
+				"top center": "n",
+				"top right": "ne",
+				"center left": "w",
+				"center center": "center-center",
+				"center right": "e",
+				"bottom left": "sw",
+				"bottom center": "s",
+				"bottom right": "se",
+			}
+			classes.push( map[atts.contentPosition] );
 		}
 		return classes;
 	}
@@ -262,12 +276,6 @@
 				return el( BlockControls, {
 						group: "other"
 					}, 
-					el( BlockAlignmentMatrixControl, {
-							label: __( "Change content position" ),
-							value: props.attributes.contentPosition,
-							onChange: function ( v ) {},
-	 						isDisabled: ! hasInnerBlocks
-					}),
 					el( MediaReplaceFlow, {
 						mediaId: props.attributes.mediaID,
 						mediaURL: props.attributes.mediaURL,
@@ -290,6 +298,18 @@
 							} );
 						},
 						name: ! props.attributes.mediaURL ? __( "Add Media" ) : __( "Replace" )
+					}),
+					el( BlockAlignmentMatrixControl, {
+							label: __( "Change content position" ),
+							value: props.attributes.contentPosition,
+							defaultValue: "bottom center",
+							width: 48,
+							onChange: function ( v ) {
+								props.setAttributes( { 
+									contentPosition: v
+								} );
+							},
+	 						isDisabled: ! hasInnerBlocks
 					})
 // 					,
 // 					el( FullHeightAlignmentControl, {

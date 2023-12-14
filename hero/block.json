@@ -38,6 +38,9 @@
 			"default": "horizontal",
 			"type": "string"
 		},
+		"contentPosition": {
+			"type": "string"
+		},
 		"videoURL": {
 			"type": "string"
 		}
