@@ -5,6 +5,7 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	margin-bottom: 2rem;
+	padding-bottom: 1rem;
 	position: relative;
 	width: 100%;
 }
@@ -129,6 +130,8 @@
 
 .card .media img {
 	display: block;
+	height: auto;
+	width: 100%;
 }
 .card .link:hover ~ .media img {
 	transform: scale(1.05);
