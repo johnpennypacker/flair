@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Flair
- * Description:       Spices jape up a bit
+ * Description:       Fanciful additions to WordPress.
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           0.1.0

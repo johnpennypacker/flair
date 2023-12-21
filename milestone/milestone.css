@@ -16,6 +16,9 @@
 .milestone .detail {
 	padding-left: calc( var(--space_buffer) * 2 );
 }
+.milestone .detail .date + p {
+	margin-top: 0;
+}
 
 .milestone .timeline {
   flex: 0 0 var(--timeline_width, 2px);
@@ -81,7 +84,7 @@ html .milestone.alignleft .detail {
 .milestone.alignleft + .milestone:not(.alignleft):not(.alignright)::before,
 .milestone.alignright + .milestone:not(.alignleft):not(.alignright)::before {
 	content: '';
-	background-color: #fff;
+	background-color: rgba( var( --color__base_900, 1 ) );
 	height: var(--timeline_width, 2px);
 	position: absolute;
 	width: calc( 50% - var(--space_buffer ) );
@@ -106,82 +109,29 @@ html .milestone.alignleft .detail {
 
 /** timeline line / colors **/
 .milestone .timeline {
-	background-color: #000;
-}
-@media (prefers-color-scheme: dark) {
-	.milestone .timeline {
-		background-color: #fff;
-	}
+	background-color: rgba( var( --color__base_100, 1 ) );
 }
 
 
-/** create markers with pseudo elements that have svg backgrounds **/
+/** create markers using styled pseudo elements **/
 .milestone[class*='marker-'] .timeline::before {
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: 22px 22px;
+	background-color:  rgba( var( --color__base_100, 1 ) );
+	border: var( --timeline_width ) solid rgba( var( --color__base_100, 1 ) );
 	content: " ";
 	position: absolute;
-	top: calc( var(--space_buffer) * 1.75 ); left: -10px;
-	width: 22px;
-	height: 22px;
+	top: calc( var(--space_buffer) * 1.75 ); left: calc( var( --type__size ) * -.425 );
+	width: calc( var( --type__size ) * .75 );
+	height: calc( var( --type__size ) * .75 );
+}
+.milestone[class*='marker-'][class*='hollow'] .timeline::before {
+	background-color:  rgba( var( --color__base_900, 1 ) );
 }
 
-
-
-.marker-dot .timeline::before {
-	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23000' cx='21' cy='21' r='18' /%3E%3C/svg%3E");
+.milestone[class*='dot'] .timeline::before {
+ border-radius: 50%;
 }
-@media (prefers-color-scheme: dark) {
-	.marker-dot .timeline::before {
-		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23fff' cx='21' cy='21' r='18' /%3E%3C/svg%3E");
-	}
+.milestone[class*='diamond'] .timeline::before {
+	transform: rotate(45deg);
 }
-.marker-dot-hollow .timeline::before {
-	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23000' cx='21' cy='21' r='18' /%3E%3Ccircle fill='%23fff' cx='21' cy='21' r='14' /%3E%3C/svg%3E");
+.milestone[class*='square'] .timeline::before {
 }
-@media (prefers-color-scheme: dark) {
-	.marker-dot-hollow .timeline::before {
-		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E%3Ccircle fill='%23fff' cx='21' cy='21' r='18' /%3E%3Ccircle fill='%23000' cx='21' cy='21' r='14' /%3E%3C/svg%3E");
-	}
-}
-
-
-.marker-diamond .timeline::before {
-	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23000' x='6.2' y='6.2' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -8.6985 21)' width='29.5' height='29.5' /%3E %3C/svg%3E");
-}
-@media (prefers-color-scheme: dark) {
-	.marker-diamond .timeline::before {
-		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23fff' x='6.2' y='6.2' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -8.6985 21)' width='29.5' height='29.5' /%3E %3C/svg%3E");
-	}
-}
-
-.marker-diamond-hollow .timeline::before {
-	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Cg transform='rotate(45 21 21)' %3E %3Crect fill='%23000' x='6' y='6' width='30' height='30' /%3E %3Crect fill='%23fff' x='10' y='10' width='22' height='22' /%3E %3C/g%3E %3C/svg%3E");
-}
-@media (prefers-color-scheme: dark) {
-	.marker-diamond-hollow .timeline::before {
-		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Cg transform='rotate(45 21 21)' %3E %3Crect fill='%23fff' x='6' y='6' width='30' height='30' /%3E %3Crect fill='%23000' x='10' y='10' width='22' height='22' /%3E %3C/g%3E %3C/svg%3E");
-	}
-}
-
-
-.marker-square .timeline::before {
-	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23000' x='4' y='4' width='32' height='32' /%3E %3C/svg%3E");
-}
-@media (prefers-color-scheme: dark) {
-	.marker-square .timeline::before {
-		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23fff' x='4' y='4' width='32' height='32' /%3E %3C/svg%3E");
-	}
-}
-
-.marker-square-hollow .timeline::before {
-	background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23000' x='4' y='4' width='32' height='32' /%3E %3Crect fill='%23fff' x='8' y='8' width='24' height='24' /%3E %3C/svg%3E");
-}
-@media (prefers-color-scheme: dark) {
-	.marker-square-hollow .timeline::before {
-		background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E %3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 42 42'%3E %3Crect fill='%23fff' x='4' y='4' width='32' height='32' /%3E %3Crect fill='%23000' x='8' y='8' width='24' height='24' /%3E %3C/svg%3E");
-	}
-}
-
-
