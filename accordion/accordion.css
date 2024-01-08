@@ -31,6 +31,7 @@
 	background-color: rgba(var(--color__link), 1);
 }
 .flair-accordion .header button {
+	cursor: pointer;
 	position: absolute;
 	top: 0; right: 0; left: 0; bottom: 0;
 }
