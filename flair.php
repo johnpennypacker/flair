@@ -23,6 +23,9 @@ function flair_enqueus() {
 	wp_enqueue_script( 'flair-carousel', plugins_url( 'carousel/carousel.js', __FILE__ ), array() );
 	wp_enqueue_style( 'flair-carousel', plugins_url( 'carousel/carousel.css', __FILE__ ), array() );
 
+	wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer/zoomer.js', __FILE__ ), array() );
+	wp_enqueue_style( 'flair-zoomer', plugins_url( 'zoomer/zoomer.css', __FILE__ ), array() );
+
 	wp_enqueue_style( 'flair-iconic', plugins_url( 'iconic/iconic.css', __FILE__ ), array() );
 
 }
@@ -58,3 +61,26 @@ function flair_enqueue_editor_assets() {
 	wp_enqueue_script( 'flair-editor', plugins_url( 'flair-editor.js', __FILE__ ), array() );
 }
 add_action( 'enqueue_block_editor_assets', 'flair_enqueue_editor_assets' );
+
+
+
+// function flair_block_styles() {
+// 	register_block_style(
+// 		'core/columns',
+// 		array(
+// 			'name'         => 'flair-flairousel',
+// 			'label'        => __( 'Carousel', 'flair' ),
+// 			/*
+// 			 * Styles for the custom Arrow icon style of the Details block
+// 			 */
+// 			'inline_style' => '
+// 			.flair-flairousel {
+// 			}
+// 			.flair-flairousel .foo {
+// 				list-style-type: "\2192\00a0\00a0\00a0";
+// 			}',
+// 		)
+// 	);
+// }
+// 
+// add_action( 'init', 'flair_block_styles' );
