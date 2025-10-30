@@ -55,6 +55,21 @@ a:hover {
 }
 */
 
+:where(.aspect-24-1) .media {
+	aspect-ratio: 2.4/1;
+}
+:where(.aspect-16-9) .media {
+	aspect-ratio: 16/9;
+}
+:where(.aspect-3-2) .media {
+	aspect-ratio: 3/2;
+}
+:where(.aspect-1-1) .media {
+	aspect-ratio: 1;
+}
+
+
+
 .slant {
 	transform: rotateZ(-5deg);
 }

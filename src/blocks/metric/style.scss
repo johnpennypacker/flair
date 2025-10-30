@@ -1,0 +1,15 @@
+:where(.flair-metric) {
+	font-size: var( --type__size, 1.1rem );
+	margin-block-end: var( --type__size, 1em );
+
+    & > em,
+    & .qualifier {
+        display: block;
+    }
+
+    & > em {
+        font-size: calc( var( --type__size, 1em ) * 3.75 );
+        font-style: normal;
+        font-weight: bold;
+    }
+}

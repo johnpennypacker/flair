@@ -61,7 +61,16 @@ return array(
 				'type' => 'string'
 			),
 			'orientation' => array(
-				'type' => 'string'
+				'type' => 'string',
+				'default' => 'auto'
+			),
+			'aspect' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'h3'
 			),
 			'call' => array(
 				'type' => 'string',
@@ -75,5 +84,41 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
+	),
+	'metric' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/metric',
+		'version' => '0.2.0',
+		'title' => 'Metric',
+		'category' => 'widgets',
+		'description' => 'Display a key figure in a dramatic way.',
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'number' => array(
+				'type' => 'string'
+			),
+			'qualifier' => array(
+				'type' => 'string'
+			),
+			'link' => array(
+				'type' => 'string'
+			),
+			'orientation' => array(
+				'type' => 'string',
+				'default' => 'auto'
+			)
+		),
+		'supports' => array(
+			'align' => true,
+			'html' => false
+		),
+		'textdomain' => 'flair',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
 	)
 );

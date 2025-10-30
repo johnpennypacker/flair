@@ -10,28 +10,16 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-$classes = ['flair-card'];
+$classes = ['flair-metric'];
 if( isset( $attributes['orientation'] ) ) {
 	$classes[] = 'orientation-' . $attributes['orientation'] ;
 }
-if( isset( $attributes['aspect'] ) ) {
-	$classes[] = 'aspect-' . $attributes['aspect'] ;
-}
-
 //  echo '<pre>', print_r($attributes, TRUE), '</pre>';
 
 ?>
-<div class="flair-card-wrapper">
+<div class="flair-wrapper flair-metric-wrapper">
 	<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>  
-		<div class="text">
-			<<?php echo $attributes['heading'] ?> class="title">
-				<a href="<?php echo $attributes['href']; ?>" class="link"><?php echo $attributes['title']; ?></a>
-			</<?php echo $attributes['heading'] ?>>
-			<p class="excerpt"><?php echo $attributes['excerpt']; ?></p>
-			<small class="attribution"><?php echo $attributes['attribution']; ?></small>
-		</div>
-		<div class="media">
-			<img src="<?php echo $attributes['asset']['url']; ?>" alt="<?php echo $attributes['asset']['alt']; ?>">
-		</div>
+		<em><?php echo $attributes['number']; ?></em>
+		<span class="qualifier"><?php echo $attributes['qualifier']; ?></span>
 	</div>
 </div>

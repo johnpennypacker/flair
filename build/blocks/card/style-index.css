@@ -40,6 +40,14 @@
   position: relative;
   width: 100%;
 }
+:where(.flair-card).orientation-horizontal {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+}
+:where(.flair-card).orientation-horizontal .media {
+  max-width: 50%;
+}
 :where(.flair-card) .text {
   order: 2;
   padding: 1rem;
@@ -75,6 +83,11 @@
   position: relative;
   z-index: 99;
   pointer-events: auto;
+}
+:where(.flair-card):where([class*=aspect]):not([class*=aspect-none]) .media img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
 }
 :where(.flair-card):has(.link) {
   transition: transform 0.2s ease-in-out;

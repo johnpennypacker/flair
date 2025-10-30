@@ -45,6 +45,15 @@
 	position: relative;
 	width: 100%;
 
+	&.orientation-horizontal {
+		flex-direction: row;
+		align-items: stretch;
+		justify-content: stretch;
+		.media {
+			max-width: 50%;
+		}
+	}
+
 	.text {
 		order: 2;
 		padding: 1rem;
@@ -83,6 +92,17 @@
 			pointer-events: auto;
 		}
 	}
+
+	&:where([class*='aspect']):not([class*='aspect-none']) {
+		.media {
+			img {
+				object-fit: cover;
+				height: 100%;
+			}
+		}
+	}
+
+	
 
 
 	&:has(.link) {

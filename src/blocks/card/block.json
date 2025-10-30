@@ -51,7 +51,16 @@
 			"type": "string"
 		},
 		"orientation": {
-			"type": "string"
+			"type": "string",
+			"default": "auto"
+		},
+		"aspect": {
+			"type": "string",
+			"default": "none"
+		},
+		"heading": {
+			"type": "string",
+			"default": "h3"
 		},
 		"call": {
 			"type": "string",

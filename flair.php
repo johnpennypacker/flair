@@ -42,7 +42,7 @@ function flair_enqueue_editor_assets() {
 
 	wp_enqueue_script( 'flair-editor', plugins_url( 'flair-editor.js', __FILE__ ), array() );
 }
-add_action( 'enqueue_block_editor_assets', 'flair_enqueue_editor_assets' );
+//add_action( 'enqueue_block_editor_assets', 'flair_enqueue_editor_assets' );
 
 
 /**

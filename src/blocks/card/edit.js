@@ -19,14 +19,17 @@ import {
 import { 
 	Button,
 	PanelBody,
+	PanelRow,
 	Popover,
 	ToolbarButton,
 	__experimentalToggleGroupControl as ToggleGroupControl,
     __experimentalToggleGroupControlOption as ToggleGroupControlOption
 } from "@wordpress/components";
-import { displayShortcut, isKeyboardEvent, ENTER } from '@wordpress/keycodes';
-import { link, linkOff } from '@wordpress/icons';
-import { useSelect } from '@wordpress/data';
+import { 
+	link, 
+	linkOff 
+} from '@wordpress/icons';
+
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -86,11 +89,6 @@ export default function Edit({ attributes, setAttributes }) {
 		return false;
 	}
 
-	function startEditing( event ) {
-		event.preventDefault();
-		setIsEditingURL( true );
-	}
-
 	const linkPopover = () => {
 		const [ isVisible, setIsVisible ] = useState( false );
 		const toggleLink = () => {
@@ -128,15 +126,7 @@ export default function Edit({ attributes, setAttributes }) {
 							href: null,
 						});
 					}}
-					// forceIsEditingLink={ isEditingURL }
-					// settings={ LINK_SETTINGS }
-					// createSuggestion={
-					// 	createPageEntity && handleCreate
-					// }
-					// withCreateSuggestion={ userCanCreatePages }
-					// createSuggestionButtonText={ createButtonText }
-				/>
-					
+					/>
 				</Popover> }
 			</ToolbarButton>
 		);
@@ -144,10 +134,20 @@ export default function Edit({ attributes, setAttributes }) {
 	}
 
 	const orientationToggles = () => {
+		let help = 'Auto will usually display as vertical. When very wide, it will appear horizontal.'
+		switch(attributes.orientation) {
+			case 'vertical': 
+				help = 'The card will always display as a vertical stack.';
+				break;
+			case 'horizontal': 
+				help = 'The card will always display side by side as a horizontal row.';
+				break;
+		}
 		return (
+		<>
         <ToggleGroupControl
             label={__("Orientation")}
-            value="auto"
+            value={attributes.orientation}
 			onChange={( value ) => {
 				setAttributes({ 
 					orientation: value 
@@ -160,9 +160,80 @@ export default function Edit({ attributes, setAttributes }) {
             <ToggleGroupControlOption value="vertical" label="Vertical" />
             <ToggleGroupControlOption value="horizontal" label="Horizontal" />
         </ToggleGroupControl>
+		<p
+		style={{marginBlockEnd:'1rem'}}
+		class="block-editor-hooks__layout-constrained-helptext">
+		{help}
+		</p>
+		</>
     );
 	}
 
+	const headingLevelToggles = () => {
+		return (
+		<>
+        <ToggleGroupControl
+            label={__("Heading level")}
+            value={attributes.heading}
+			onChange={( value ) => {
+				setAttributes({ 
+					heading: value 
+				});
+			}}
+			__next40pxDefaultSize
+			__nextHasNoMarginBottom
+        >
+            <ToggleGroupControlOption value="h1" label="h1" />
+            <ToggleGroupControlOption value="h2" label="h2" />
+            <ToggleGroupControlOption value="h3" label="h3" />
+            <ToggleGroupControlOption value="h4" label="h4" />
+            <ToggleGroupControlOption value="h5" label="h5" />
+            <ToggleGroupControlOption value="h6" label="h6" />
+        </ToggleGroupControl>
+		<p
+		class="block-editor-hooks__layout-constrained-helptext"
+		style={{marginBlockEnd:'1rem'}}
+		>Be sure that your headings follow a logical nested hierarchy.</p>
+		</>
+    );
+	}
+
+	const aspectRatioToggles = () => {
+		return (
+		<>
+        <ToggleGroupControl
+            label={__("Aspect ratio")}
+            value={attributes.aspect}
+			onChange={( value ) => {
+				setAttributes({ 
+					aspect: value 
+				});
+			}}
+			__next40pxDefaultSize
+			__nextHasNoMarginBottom
+        >
+            <ToggleGroupControlOption value="none" label="None" />
+            <ToggleGroupControlOption value="3-2" label="3:2" />
+            <ToggleGroupControlOption value="16-9" label="16:9" />
+            <ToggleGroupControlOption value="1-1" label="1:1" />
+            <ToggleGroupControlOption value="24-1" label="2.4:1" />
+        </ToggleGroupControl>
+		<p
+		class="block-editor-hooks__layout-constrained-helptext"
+		style={{marginBlockEnd:'1rem'}}
+		>Crop the image to preserve an aspect ratio.</p>
+		</>
+    );
+	}
+
+	const calculateClassName = () => {
+		let c = ['flair-card'];
+		c.push( 'aspect-' + attributes.aspect );
+		c.push( 'orintation-' + attributes.orientation );
+		return c.join(' ');
+	}
+
+	const Heading = `${attributes.heading}`;
 
 	return (
 		<>
@@ -195,16 +266,18 @@ export default function Edit({ attributes, setAttributes }) {
 		</BlockControls>
 		
 		<InspectorControls>
-				<PanelBody
-					title={ __( 'Card orientation', 'flair' ) }
-				>
-					{orientationToggles()}
-				</PanelBody>
-			</InspectorControls>
-		<div class="flair-card-wrapper">
-			<div { ...useBlockProps({ className:'flair-card'}) }>  
+			<PanelBody
+				title={ __( 'Card properties', 'flair' ) }
+			>
+				<PanelRow><fieldset>{orientationToggles()}</fieldset></PanelRow>
+				<PanelRow><fieldset>{headingLevelToggles()}</fieldset></PanelRow>
+				<PanelRow><fieldset>{aspectRatioToggles()}</fieldset></PanelRow>
+			</PanelBody>
+		</InspectorControls>
+		<div class="flair-wrapper flair-card-wrapper">
+			<div { ...useBlockProps({ className:calculateClassName() }) }>  
 				<div class="text">
-					<h2 class="title">
+					<Heading class="title">
 					<RichText
 					{ ...useBlockProps() }
 					tagName='a'
@@ -218,7 +291,7 @@ export default function Edit({ attributes, setAttributes }) {
 						});
 					}}
 					/>
-					</h2>
+					</Heading>
 					<RichText
 					{ ...useBlockProps() }
 					tagName='p'

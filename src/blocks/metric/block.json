@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flair/metric",
+	"version": "0.2.0",
+	"title": "Metric",
+	"category": "widgets",
+	"description": "Display a key figure in a dramatic way.",
+	"example": {},
+	"attributes": {
+		"number": {
+			"type": "string"
+		},
+		"qualifier": {
+			"type": "string"
+		},
+		"link": {
+			"type": "string"
+		},
+		"orientation": {
+			"type": "string",
+			"default": "auto"
+		}
+	},
+	"supports": {
+		"align": true,
+		"html": false
+	},
+	"textdomain": "flair",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
