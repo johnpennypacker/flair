@@ -1,17 +1,19 @@
 <?php
 /**
  * Plugin Name:       Flair
- * Description:       Fanciful additions to WordPress.
- * Requires at least: 5.8
- * Requires PHP:      7.0
- * Version:           0.1.0
+ * Description:       Fanciful add-ons.  Take two.
+ * Version:           0.2.0
+ * Requires at least: 6.7
+ * Requires PHP:      7.4
  * Author:            John Pennypacker
- * Text Domain:       jape
+ * Text Domain:       flair
+ *
+ * @package CreateBlock
  */
 
-// Block direct requests
-if ( !defined('ABSPATH') )
-	die('-1');
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 /**
  * Add the main flair script and stylesheet
@@ -31,26 +33,6 @@ function flair_enqueus() {
 }
 add_action( 'wp_enqueue_scripts', 'flair_enqueus' );
 
-
-/**
- * Register blocks.
- */
-function flair_register_blocks() {
-
-	register_block_type( __DIR__ . '/accordion' );
-	register_block_type( __DIR__ . '/card' );
-	register_block_type( __DIR__ . '/eyebrow' );
-	register_block_type( __DIR__ . '/fixie' );
-	register_block_type( __DIR__ . '/hero' );
-	register_block_type( __DIR__ . '/metric' );
-	register_block_type( __DIR__ . '/milestone' );
-	register_block_type( __DIR__ . '/sidebar' );
-	register_block_type( __DIR__ . '/sidler' );
-
-}
-add_action( 'init', 'flair_register_blocks' );
-
-
 /**
  * Enqueue Editor assets.
  */
@@ -63,24 +45,60 @@ function flair_enqueue_editor_assets() {
 add_action( 'enqueue_block_editor_assets', 'flair_enqueue_editor_assets' );
 
 
+/**
+ * Registers the block using a `blocks-manifest.php` file, which improves the performance of block type registration.
+ * Behind the scenes, it also registers all assets so they can be enqueued
+ * through the block editor in the corresponding context.
+ *
+ * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
+ * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
+ */
+function flair_blocks_init() {
+	/**
+	 * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
+	 * based on the registered block metadata.
+	 * Added in WordPress 6.8 to simplify the block metadata registration process added in WordPress 6.7.
+	 *
+	 * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
+	 */
+	if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
+		wp_register_block_types_from_metadata_collection( __DIR__ . '/build/blocks', __DIR__ . '/build/blocks-manifest.php' );
+		return;
+	}
 
-// function flair_block_styles() {
-// 	register_block_style(
-// 		'core/columns',
-// 		array(
-// 			'name'         => 'flair-flairousel',
-// 			'label'        => __( 'Carousel', 'flair' ),
-// 			/*
-// 			 * Styles for the custom Arrow icon style of the Details block
-// 			 */
-// 			'inline_style' => '
-// 			.flair-flairousel {
-// 			}
-// 			.flair-flairousel .foo {
-// 				list-style-type: "\2192\00a0\00a0\00a0";
-// 			}',
-// 		)
-// 	);
-// }
-// 
-// add_action( 'init', 'flair_block_styles' );
+	/**
+	 * Registers the block(s) metadata from the `blocks-manifest.php` file.
+	 * Added to WordPress 6.7 to improve the performance of block type registration.
+	 *
+	 * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
+	 */
+	if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
+		wp_register_block_metadata_collection( __DIR__ . '/build/blocks', __DIR__ . '/build/blocks-manifest.php' );
+	}
+	/**
+	 * Registers the block type(s) in the `blocks-manifest.php` file.
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/register_block_type/
+	 */
+	$manifest_data = require __DIR__ . '/build/blocks-manifest.php';
+	foreach ( array_keys( $manifest_data ) as $block_type ) {
+		register_block_type( __DIR__ . "/build/blocks/{$block_type}" );
+	}
+}
+add_action( 'init', 'flair_blocks_init' );
+
+
+function flair_add_block_category( $categories ) {
+	$flair_category = array(
+		array(
+			'slug'  => 'flair',
+			'title' => __( 'Flair', 'flair' ),
+			'icon'  => null,
+		),
+	);
+
+	return array_merge( $categories, $flair_category );
+}
+add_filter( 'block_categories_all', 'flair_add_block_category', 10, 2 );
+
+// @todo: consolidate js and css https://developer.wordpress.org/news/2024/09/how-to-build-a-multi-block-plugin/

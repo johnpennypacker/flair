@@ -1,0 +1,115 @@
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/card/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/**
+ *
+ */
+:root {
+  --color__base_100: 26, 21, 17;
+  --color__base_200: 39, 34, 30;
+  --color__base_300: 56, 51, 47;
+  --color__base_400: 111, 106, 102;
+  --color__base_500: 152, 147, 143;
+  --color__base_600: 215, 210, 206;
+  --color__base_700: 226, 221, 217;
+  --color__base_800: 248, 243, 239;
+  --color__base_900: 255, 255, 255;
+  --color__brand: 204, 0, 0;
+  --color__brand_contrast: 255, 255, 255;
+  --color__accent: 57, 119, 212;
+  --color__accent_contrast: 255, 255, 255;
+  --color__highlight: 244, 215, 81;
+  --color__highlight_text: 0, 0, 0;
+  --color__message: var(--color__base_500);
+  --color__succcess: 0, 163, 42;
+  --color__error: 214, 54, 56;
+  --color__link: var(--color__brand);
+  --color__link_contrast: var(--color__brand_contrast);
+  --color__visited: 214,99,73;
+  --color__visited_contrast: var(--color__brand_contrast);
+  --color__hover: 255, 0, 0;
+  --color__hover_contrast: var(--color__brand_contrast);
+}
+:where(.flair-card) {
+  background-color: rgba(var(--color__base_900), 1);
+  color: rgba(var(--color__base_100), 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-block-end: 2rem;
+  position: relative;
+  width: 100%;
+}
+:where(.flair-card) .text {
+  order: 2;
+  padding: 1rem;
+  z-index: 1;
+}
+:where(.flair-card) .media {
+  order: 1;
+}
+:where(.flair-card) .link {
+  color: inherit;
+  text-decoration: inherit;
+}
+:where(.flair-card) .title {
+  font-family: inherit;
+  font-weight: bold;
+  font-size: calc(var(--type__size) * 1.25);
+}
+:where(.flair-card) .excerpt {
+  margin: 0 0 calc(var(--type__size) * 1);
+}
+:where(.flair-card) .call {
+  background-color: rgba(var(--color__base_700), 1);
+  padding: calc(var(--type__size) * 1);
+  position: relative;
+  text-align: center;
+}
+:where(.flair-card) .excerpt {
+  flex-grow: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+:where(.flair-card) .excerpt a {
+  position: relative;
+  z-index: 99;
+  pointer-events: auto;
+}
+:where(.flair-card):has(.link) {
+  transition: transform 0.2s ease-in-out;
+}
+:where(.flair-card):has(.link)::before {
+  box-shadow: 0 0 5px rgba(var(--color__base_700), 1);
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: all 0.2s ease-in-out;
+  z-index: 0;
+}
+:where(.flair-card):has(.link:hover) {
+  background-color: inherit;
+  color: inherit;
+}
+:where(.flair-card):has(.link:hover) {
+  transform: translateY(-2px);
+}
+:where(.flair-card):has(.link:hover)::before {
+  box-shadow: 0 3px 10px rgba(var(--color__base_700), 1);
+  transform: translateY(-2px);
+}
+:where(.flair-card) .media {
+  overflow: hidden;
+}
+:where(.flair-card) .media img {
+  display: block;
+  height: auto;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+:where(.flair-card):has(.link:hover) .media img {
+  transform: scale(1.03);
+}

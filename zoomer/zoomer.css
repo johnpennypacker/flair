@@ -7,6 +7,7 @@
 
 .zoomer {
 /* 			clip-path: stroke-box circle( 1% at var(--mouse-pct-x) var(--mouse-pct-y) );			 */
+	--z: 2;
 
 	position: absolute;
 	left: 0;
@@ -18,11 +19,10 @@
 	transition: opacity .3s ease;
 }
 .ok-zoomer:hover .zoomer {
-	--z: 2;
 
 	clip-path: circle( calc( 30% * ( 1 / var(--z) ) ) at var(--mouse-pct-x) var(--mouse-pct-y) );			
 	opacity: 1;
 	scale: var(--z);
 	transform-origin: var(--mouse-pct-x) var(--mouse-pct-y);
-	
+
 }

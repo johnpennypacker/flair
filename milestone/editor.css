@@ -1,9 +1,0 @@
-.milestone {
-	border: 0;
-}
-.wp-block-flair-milestone + .wp-block-flair-milestone {
-	margin-top: calc( var( --type__size, 1em ) * -2 ) !important;
-}
-.wp-block-flair-milestone {
-	margin-bottom: calc( var( --type__size, 1em ) * 2 ) !important;
-}

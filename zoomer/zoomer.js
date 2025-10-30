@@ -13,6 +13,11 @@
 			el.style.setProperty( "--mouse-pos-x", 0 );
 			el.style.setProperty( "--mouse-pos-y", 0 );
 			el.addEventListener( "mousemove", watchMouse, true );
+
+// 			var glassFrame = document.createElement("div");
+// 			glassFrame.className = "zoomer-frame";
+// 			el.appendChild(glassFrame);
+
 			var glass = document.createElement("img");
 			glass.src = el.querySelector("img").src;
 			glass.className = "zoomer";
