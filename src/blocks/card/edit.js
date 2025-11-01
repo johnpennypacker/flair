@@ -16,7 +16,7 @@ import {
 	MediaReplaceFlow,
 	RichText
 } from '@wordpress/block-editor';
-import { 
+import {
 	Button,
 	PanelBody,
 	PanelRow,
@@ -25,9 +25,9 @@ import {
 	__experimentalToggleGroupControl as ToggleGroupControl,
     __experimentalToggleGroupControlOption as ToggleGroupControlOption
 } from "@wordpress/components";
-import { 
-	link, 
-	linkOff 
+import {
+	link,
+	linkOff
 } from '@wordpress/icons';
 
 
@@ -59,12 +59,12 @@ export default function Edit({ attributes, setAttributes }) {
 
 	//console.log('atts', attributes);
 	//console.log( 'props', useBlockProps() );
-	
+
 	const blockIsSelected = () => {
 		let props = useBlockProps();
 		return props.className.includes("is-selected");
 	}
-	
+
 	const onSelectMedia = (media) => {
 		setAttributes({
 			asset: {
@@ -100,7 +100,7 @@ export default function Edit({ attributes, setAttributes }) {
 			});
 		}
 		return (
-			<ToolbarButton 
+			<ToolbarButton
 			onClick={ () => {
 				if( ! isURLSet() ) {
 					toggleLink();
@@ -130,16 +130,16 @@ export default function Edit({ attributes, setAttributes }) {
 				</Popover> }
 			</ToolbarButton>
 		);
-	
+
 	}
 
 	const orientationToggles = () => {
 		let help = 'Auto will usually display as vertical. When very wide, it will appear horizontal.'
 		switch(attributes.orientation) {
-			case 'vertical': 
+			case 'vertical':
 				help = 'The card will always display as a vertical stack.';
 				break;
-			case 'horizontal': 
+			case 'horizontal':
 				help = 'The card will always display side by side as a horizontal row.';
 				break;
 		}
@@ -149,8 +149,8 @@ export default function Edit({ attributes, setAttributes }) {
             label={__("Orientation")}
             value={attributes.orientation}
 			onChange={( value ) => {
-				setAttributes({ 
-					orientation: value 
+				setAttributes({
+					orientation: value
 				});
 			}}
 			__next40pxDefaultSize
@@ -176,8 +176,8 @@ export default function Edit({ attributes, setAttributes }) {
             label={__("Heading level")}
             value={attributes.heading}
 			onChange={( value ) => {
-				setAttributes({ 
-					heading: value 
+				setAttributes({
+					heading: value
 				});
 			}}
 			__next40pxDefaultSize
@@ -205,8 +205,8 @@ export default function Edit({ attributes, setAttributes }) {
             label={__("Aspect ratio")}
             value={attributes.aspect}
 			onChange={( value ) => {
-				setAttributes({ 
-					aspect: value 
+				setAttributes({
+					aspect: value
 				});
 			}}
 			__next40pxDefaultSize
@@ -231,6 +231,31 @@ export default function Edit({ attributes, setAttributes }) {
 		c.push( 'aspect-' + attributes.aspect );
 		c.push( 'orientation-' + attributes.orientation );
 		return c.join(' ');
+	}
+
+	const mediaElement = () => {
+		let s = blockIsSelected();
+		if( attributes.asset.url ) {
+			return (
+				<figure class="media">
+					<img
+					src={attributes.asset.url}
+					alt={attributes.asset.alt} />
+				</figure>
+			);
+		} else {
+			if( s ) {
+				return (
+					<MediaPlaceholder
+					onSelect={onSelectMedia}
+					allowedTypes={['image']}
+					/>
+				);
+			}
+		}
+
+		return null;
+
 	}
 
 	const Heading = `${attributes.heading}`;
@@ -262,9 +287,9 @@ export default function Edit({ attributes, setAttributes }) {
 			}
 			/>
 			{linkPopover()}
-			
+
 		</BlockControls>
-		
+
 		<InspectorControls>
 			<PanelBody
 				title={ __( 'Card properties', 'flair' ) }
@@ -275,7 +300,7 @@ export default function Edit({ attributes, setAttributes }) {
 			</PanelBody>
 		</InspectorControls>
 		<div class="flair-wrapper flair-card-wrapper">
-			<div { ...useBlockProps({ className:calculateClassName() }) }>  
+			<div { ...useBlockProps({ className:calculateClassName() }) }>
 				<div class="text">
 					<Heading class="title">
 					<RichText
@@ -286,8 +311,8 @@ export default function Edit({ attributes, setAttributes }) {
 					value={attributes.title}
 					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
 					onChange={( value ) => {
-						setAttributes({ 
-							title: value 
+						setAttributes({
+							title: value
 						});
 					}}
 					/>
@@ -300,8 +325,8 @@ export default function Edit({ attributes, setAttributes }) {
 					value={attributes.excerpt}
 					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
 					onChange={( value ) => {
-						setAttributes({ 
-							excerpt: value 
+						setAttributes({
+							excerpt: value
 						});
 					}}
 					/>
@@ -313,24 +338,13 @@ export default function Edit({ attributes, setAttributes }) {
 					value={attributes.attribution}
 					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
 					onChange={( value ) => {
-						setAttributes({ 
-							attribution: value 
+						setAttributes({
+							attribution: value
 						});
 					}}
 					/>
 				</div>
-				{attributes.asset.url ? (
-					<figure class="media">
-						<img src={attributes.asset.url}
-						alt="" />
-					</figure>
-				) : (
-				<MediaPlaceholder
-				onSelect={onSelectMedia}
-				allowedTypes={['image']}
-				/>
-				
-				)}
+				{ mediaElement() }
 			</div>
 		</div>
 		</>

@@ -315,6 +315,26 @@ function Edit({
     c.push('orientation-' + attributes.orientation);
     return c.join(' ');
   };
+  const mediaElement = () => {
+    let s = blockIsSelected();
+    if (attributes.asset.url) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("figure", {
+        class: "media",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+          src: attributes.asset.url,
+          alt: attributes.asset.alt
+        })
+      });
+    } else {
+      if (s) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+          onSelect: onSelectMedia,
+          allowedTypes: ['image']
+        });
+      }
+    }
+    return null;
+  };
   const Heading = `${attributes.heading}`;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
@@ -405,16 +425,7 @@ function Edit({
               });
             }
           })]
-        }), attributes.asset.url ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("figure", {
-          class: "media",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
-            src: attributes.asset.url,
-            alt: ""
-          })
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
-          onSelect: onSelectMedia,
-          allowedTypes: ['image']
-        })]
+        }), mediaElement()]
       })
     })]
   });
