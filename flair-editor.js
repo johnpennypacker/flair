@@ -10,7 +10,9 @@ function addGroupAlignments( settings, name ) {
 	return settings;
 }
 
-// addFilter( 'hookName', 'namespace', callback, priority )
-wp.hooks.addFilter( 'blocks.registerBlockType', 'flair/groupAlign', addGroupAlignments );
+window.addEventListener("load", (event) => { 
+	// addFilter( 'hookName', 'namespace', callback, priority )
+	wp.hooks.addFilter( 'blocks.registerBlockType', 'flair/groupAlign', addGroupAlignments );
+})
 
 })();
