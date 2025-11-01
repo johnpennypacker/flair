@@ -80,7 +80,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 	const calculateClassName = () => {
 		let c = ['flair-metric'];
-		c.push( 'orintation-' + attributes.orientation );
+		c.push( 'orientation-' + attributes.orientation );
 		return c.join(' ');
 	}
 	return (

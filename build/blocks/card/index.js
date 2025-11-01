@@ -312,7 +312,7 @@ function Edit({
   const calculateClassName = () => {
     let c = ['flair-card'];
     c.push('aspect-' + attributes.aspect);
-    c.push('orintation-' + attributes.orientation);
+    c.push('orientation-' + attributes.orientation);
     return c.join(' ');
   };
   const Heading = `${attributes.heading}`;

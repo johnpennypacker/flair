@@ -110,7 +110,7 @@ function Edit({
   };
   const calculateClassName = () => {
     let c = ['flair-metric'];
-    c.push('orintation-' + attributes.orientation);
+    c.push('orientation-' + attributes.orientation);
     return c.join(' ');
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
