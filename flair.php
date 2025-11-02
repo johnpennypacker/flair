@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 include_once( 'carousel/carousel.php' ); 
+include_once( 'zoomer/zoomer.php' ); 
 
 /**
  * Add the main flair script and stylesheet
@@ -23,9 +24,6 @@ include_once( 'carousel/carousel.php' );
 function flair_enqueus() {
 	wp_enqueue_script( 'flair', plugins_url( 'flair.js', __FILE__ ), array() );
 	wp_enqueue_style( 'flair', plugins_url( 'flair.css', __FILE__ ), array() );
-
-	wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer/zoomer.js', __FILE__ ), array() );
-	wp_enqueue_style( 'flair-zoomer', plugins_url( 'zoomer/zoomer.css', __FILE__ ), array() );
 
 	wp_enqueue_style( 'flair-iconic', plugins_url( 'iconic/iconic.css', __FILE__ ), array() );
 
