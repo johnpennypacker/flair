@@ -4,7 +4,7 @@
   "name": "flair/metric",
   "version": "0.2.0",
   "title": "Metric",
-  "category": "widgets",
+  "category": "flair",
   "description": "Display a key figure in a dramatic way.",
   "example": {},
   "attributes": {

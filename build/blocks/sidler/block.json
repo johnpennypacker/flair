@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "flair/sidler",
+  "version": "0.1.0",
+  "title": "Sidler",
+  "category": "flair",
+  "icon": "smiley",
+  "description": "It's like a marquee for Gen alpha.",
+  "example": {},
+  "attributes": {
+    "content": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "color": {
+      "background": "true",
+      "gradients": "true"
+    },
+    "html": false
+  },
+  "textdomain": "flair",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

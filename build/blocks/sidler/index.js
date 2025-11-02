@@ -2,19 +2,19 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/metric/block.json":
+/***/ "./src/blocks/sidler/block.json":
 /*!**************************************!*\
-  !*** ./src/blocks/metric/block.json ***!
+  !*** ./src/blocks/sidler/block.json ***!
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/metric","version":"0.2.0","title":"Metric","category":"flair","description":"Display a key figure in a dramatic way.","example":{},"attributes":{"number":{"type":"string"},"qualifier":{"type":"string"},"link":{"type":"string"},"orientation":{"type":"string","default":"auto"}},"supports":{"align":true,"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/sidler","version":"0.1.0","title":"Sidler","category":"flair","icon":"smiley","description":"It\'s like a marquee for Gen alpha.","example":{},"attributes":{"content":{"type":"string"}},"supports":{"color":{"background":"true","gradients":"true"},"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
-/***/ "./src/blocks/metric/edit.js":
+/***/ "./src/blocks/sidler/edit.js":
 /*!***********************************!*\
-  !*** ./src/blocks/metric/edit.js ***!
+  !*** ./src/blocks/sidler/edit.js ***!
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -26,11 +26,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/metric/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/sidler/editor.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * Retrieves the translation of text.
  *
@@ -44,7 +42,6 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-
 
 
 /**
@@ -68,102 +65,30 @@ function Edit({
   attributes,
   setAttributes
 }) {
-  const orientationToggles = () => {
-    let help = 'Auto will usually display as vertical. In certain conditions, it will appear horizontal.';
-    switch (attributes.orientation) {
-      case 'vertical':
-        help = 'The card will always display as a vertical stack.';
-        break;
-      case 'horizontal':
-        help = 'The card will always display side by side as a horizontal row.';
-        break;
-    }
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Orientation"),
-        value: attributes.orientation,
-        onChange: value => {
-          setAttributes({
-            orientation: value
-          });
-        },
-        __next40pxDefaultSize: true,
-        __nextHasNoMarginBottom: true,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
-          value: "auto",
-          label: "Auto"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
-          value: "vertical",
-          label: "Vertical"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
-          value: "horizontal",
-          label: "Horizontal"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-        style: {
-          marginBlockEnd: '1rem'
-        },
-        class: "block-editor-hooks__layout-constrained-helptext",
-        children: help
-      })]
-    });
-  };
-  const calculateClassName = () => {
-    let c = ['flair-metric'];
-    c.push('orientation-' + attributes.orientation);
-    return c.join(' ');
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card properties', 'flair'),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("fieldset", {
-            children: orientationToggles()
-          })
-        })
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      class: "flair-wrapper flair-metric-wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-          className: calculateClassName()
-        }),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-          allowedFormats: ["core/link"],
-          className: !attributes.number ? "is-empty" : "",
-          disableLineBreaks: true,
-          tagName: "em",
-          value: attributes.number,
-          onChange: value => {
-            setAttributes({
-              number: value
-            });
-          },
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("100%")
-        }, "number"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-          allowedFormats: ["core/link", "core/bold", "core/italic", "core/subscript", "core/superscript"],
-          className: !attributes.qualifier ? "is-empty qualifier" : "qualifier",
-          disableLineBreaks: true,
-          tagName: "span",
-          value: attributes.qualifier,
-          onChange: value => {
-            setAttributes({
-              qualifier: value
-            });
-          },
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("awesome")
-        }, "qualifier")]
-      })
-    })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+      className: 'sidler'
+    }),
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      tagName: "div",
+      className: "line",
+      value: attributes.content,
+      allowedFormats: ['core/bold', 'core/italic'],
+      onChange: value => {
+        setAttributes({
+          content: value
+        });
+      },
+      placeholder: "sidle..."
+    })
   });
 }
 
 /***/ }),
 
-/***/ "./src/blocks/metric/editor.scss":
+/***/ "./src/blocks/sidler/editor.scss":
 /*!***************************************!*\
-  !*** ./src/blocks/metric/editor.scss ***!
+  !*** ./src/blocks/sidler/editor.scss ***!
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -173,18 +98,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/metric/index.js":
+/***/ "./src/blocks/sidler/index.js":
 /*!************************************!*\
-  !*** ./src/blocks/metric/index.js ***!
+  !*** ./src/blocks/sidler/index.js ***!
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/metric/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/metric/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/blocks/metric/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/sidler/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/sidler/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/blocks/sidler/block.json");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 /**
@@ -209,16 +134,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const metricIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+const sidlerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
   viewBox: "0 0 24 24",
   xmlns: "http://www.w3.org/2000/svg",
   "aria-hidden": "true",
   focusable: "false",
-  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
-    x: "1",
-    y: "1",
-    width: "22",
-    height: "22",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+    d: "M7.303,1.042L1.961,1.042L-0.039,23.072L5.359,23.072C3.242,21.88 1.977,19.757 1.977,17.095L1.977,17.051C1.977,13.004 5.118,10.527 10.625,10.195L16.95,9.819L16.95,8.072C16.95,5.507 15.291,3.959 12.328,3.959C9.563,3.959 7.86,5.264 7.462,7.121L7.418,7.32L2.906,7.32L2.928,7.077C3.144,4.478 4.683,2.271 7.303,1.042ZM16.95,23.072L16.95,20.037L16.861,20.037C16.17,21.317 15.125,22.359 13.856,23.072L16.95,23.072ZM17.588,1.042C20.222,2.302 21.749,4.637 21.749,7.674L21.749,23.072L21.99,23.072L23.99,1.042L17.588,1.042ZM6.799,16.985L6.799,16.941C6.799,14.972 8.391,13.712 11.266,13.535L16.95,13.181L16.95,14.994C16.95,18.024 14.406,20.302 11.045,20.302C8.479,20.302 6.799,19.019 6.799,16.985Z",
     fill: "rgb(47,47,47);"
   })
 });
@@ -233,14 +155,14 @@ const metricIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4_
    * @see ./edit.js
    */
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
-  icon: metricIcon
+  icon: sidlerIcon
 });
 
 /***/ }),
 
-/***/ "./src/blocks/metric/style.scss":
+/***/ "./src/blocks/sidler/style.scss":
 /*!**************************************!*\
-  !*** ./src/blocks/metric/style.scss ***!
+  !*** ./src/blocks/sidler/style.scss ***!
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -267,16 +189,6 @@ module.exports = window["wp"]["blockEditor"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["blocks"];
-
-/***/ }),
-
-/***/ "@wordpress/components":
-/*!************************************!*\
-  !*** external ["wp","components"] ***!
-  \************************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["components"];
 
 /***/ }),
 
@@ -410,8 +322,8 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"blocks/metric/index": 0,
-/******/ 			"blocks/metric/style-index": 0
+/******/ 			"blocks/sidler/index": 0,
+/******/ 			"blocks/sidler/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -461,7 +373,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/metric/style-index"], () => (__webpack_require__("./src/blocks/metric/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/sidler/style-index"], () => (__webpack_require__("./src/blocks/sidler/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

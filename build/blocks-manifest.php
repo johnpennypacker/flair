@@ -90,7 +90,7 @@ return array(
 		'name' => 'flair/metric',
 		'version' => '0.2.0',
 		'title' => 'Metric',
-		'category' => 'widgets',
+		'category' => 'flair',
 		'description' => 'Display a key figure in a dramatic way.',
 		'example' => array(
 			
@@ -119,5 +119,36 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
+	),
+	'sidler' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/sidler',
+		'version' => '0.1.0',
+		'title' => 'Sidler',
+		'category' => 'flair',
+		'icon' => 'smiley',
+		'description' => 'It\'s like a marquee for Gen alpha.',
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'content' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'color' => array(
+				'background' => 'true',
+				'gradients' => 'true'
+			),
+			'html' => false
+		),
+		'textdomain' => 'flair',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
 	)
 );
