@@ -16,26 +16,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 include_once( 'carousel/carousel.php' ); 
+include_once( 'iconic/iconic.php' ); 
 include_once( 'zoomer/zoomer.php' ); 
 
 /**
  * Add the main flair script and stylesheet
  */
-function flair_enqueus() {
+function flair_enqueues() {
 	wp_enqueue_script( 'flair', plugins_url( 'flair.js', __FILE__ ), array() );
 	wp_enqueue_style( 'flair', plugins_url( 'flair.css', __FILE__ ), array() );
-
-	wp_enqueue_style( 'flair-iconic', plugins_url( 'iconic/iconic.css', __FILE__ ), array() );
-
 }
-add_action( 'wp_enqueue_scripts', 'flair_enqueus' );
+add_action( 'wp_enqueue_scripts', 'flair_enqueues' );
 
 /**
  * Enqueue Editor assets.
  */
 function flair_enqueue_editor_assets() {
-	wp_enqueue_style( 'flair-editor-carousel', plugins_url( 'carousel/editor.css', __FILE__ ), array() );
-	wp_enqueue_style( 'flair-iconic', plugins_url( 'iconic/iconic.css', __FILE__ ), array() );
 	wp_enqueue_script( 'flair-editor', plugins_url( 'flair-editor.js', __FILE__ ), array('wp-hooks'), strtotime('now'), array( 'in_footer' => true, 'strategy'  => 'defer') );
 }
 add_action( 'enqueue_block_assets', 'flair_enqueue_editor_assets' );
