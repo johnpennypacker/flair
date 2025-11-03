@@ -1,0 +1,33 @@
+<?php
+/**
+ * 
+ */
+
+/**
+ * Add the fixie script and stylesheet.
+ */
+function flair_fixie_enqueues() {
+	// wp_enqueue_script( 'flair-fixie', FLAIR_URL . 'src/fixie/fixie.js', array('wp-hooks'), '', array( 'in_footer' => true, 'strategy'  => 'defer') );
+
+	$asset = include FLAIR_PATH . 'build/fixie/style.asset.php';
+	wp_enqueue_style( 'flair-fixie', FLAIR_URL . 'build/fixie/style.css', $asset['dependencies'], $asset['version'] );
+}
+add_action( 'wp_enqueue_scripts', 'flair_fixie_enqueues' );
+
+/**
+ * Enqueue editor assets.
+ */
+function flair_fixie_editor_enqueues() {
+	if ( ! is_admin() ) {
+		return;
+	}
+	$asset = include FLAIR_PATH . 'build/fixie/variation.asset.php';
+	wp_enqueue_script( 'flair-fixie-variation', FLAIR_URL . 'build/fixie/variation.js', array_merge($asset['dependencies'], ['wp-hooks', 'wp-blocks']), $asset['version'] );
+
+	$asset = include FLAIR_PATH . 'build/fixie/style.asset.php';
+	wp_enqueue_style( 'flair-fixie', FLAIR_URL . 'build/fixie/style.css', $asset['dependencies'], $asset['version'] );
+
+    $asset = include FLAIR_PATH . 'build/fixie/editor.asset.php';
+	wp_enqueue_style( 'flair-fixie-editor', FLAIR_URL . 'build/fixie/editor.css', $asset['dependencies'], $asset['version'] );
+}
+add_action( 'enqueue_block_assets', 'flair_fixie_editor_enqueues' );

@@ -1,0 +1,52 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flair/fixie",
+	"version": "0.2.0",
+	"title": "Fixie",
+	"category": "flair",
+	"description": "A fullscreen fixed segment with scrolling foreground",
+	"example": {},
+	"attributes": {
+		"content": {
+			"type": "string"
+		},
+		"asset": {
+			"type": "object",
+			"default": {
+				"url": null
+			},
+			"id": {
+				"type": "number"
+			},
+			"url": {
+				"type": "string"
+			},
+			"alt": {
+				"type": "string"
+			},
+			"focalPoint": {
+				"type": "object"	
+			}
+		},
+		"focalPoint": {
+			"type": "object"
+		},
+		"bgColor": {
+			"type": "string"
+		},
+		"videoURL": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"align": true,
+		"anchor": true,
+		"html": false
+	},
+	"textdomain": "flair",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

@@ -86,7 +86,7 @@ export default function Edit({ attributes, setAttributes }) {
 	return (
 		<>
 		<InspectorControls>
-			<PanelBody title={ __( 'Card properties', 'flair' ) }>
+			<PanelBody title={ __( 'Metric properties', 'flair' ) }>
 				<PanelRow><fieldset>{orientationToggles()}</fieldset></PanelRow>
 			</PanelBody>
 		</InspectorControls>

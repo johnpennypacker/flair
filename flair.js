@@ -19,7 +19,7 @@
 				threshold: buildThreshold( 100 )
 			}
 			let observer = new IntersectionObserver(observerCallback, options);
-			let els = document.querySelectorAll(".wp-block-cover, img, header, footer, nav, section, .flair-io");
+			let els = document.querySelectorAll(".wp-block-cover, figure, header, footer, nav, section, .flair-io");
 
 			els.forEach(function(el) {
 				observer.observe(el);
@@ -57,26 +57,46 @@
 
 		entries.forEach(function(entry) {
 		
-			var top = entry.boundingClientRect.top;
-			var height = entry.boundingClientRect.height;
-			var width = entry.boundingClientRect.width;
-			var pct = 0;
-			var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+			var ratio = entry.intersectionRatio;
+			var boundingRect = entry.boundingClientRect;
+			var intersectionRect = entry.intersectionRect;
+			var output;
+			
+			var targetElement = entry.target;
 
+			if (ratio === 0) {
+				output = 'outside';
+			} else if (ratio < .99) {
+				if ( boundingRect.top < intersectionRect.top ) {
+					output = 'top';
+				} else {
+					output = 'bottom';
+				}
+			} else {
+				output = 'inside';
+			}			
+
+			var top = entry.boundingClientRect.top;
+			var pct = 0;
+			var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+			var height = entry.boundingClientRect.height;
+			
+			targetElement.dataset.intersection = output;
 
 			// set the distance from the top of the element to the top of the viewport
-			entry.target.style.setProperty( '--from-top', top );
-			entry.target.style.setProperty( '--height', height );
-			entry.target.style.setProperty( '--width', width );
-			entry.target.dataset.isIntersecting = entry.isIntersecting;
-			entry.target.style.setProperty( '--intersecting', entry.isIntersecting );
-			
-			if( entry.target.dataset.wasVisible == true || entry.isIntersecting ) {
-				entry.target.dataset.wasVisible = true;
-				entry.target.style.setProperty( '--was-visible', true );
+			targetElement.style.setProperty( '--from-top', top );
+			targetElement.style.setProperty( '--pct-from-top', top/vh );
+			targetElement.dataset.isIntersecting = entry.isIntersecting;
+			targetElement.style.setProperty( '--intersecting', entry.isIntersecting );
+			targetElement.style.setProperty( '--height', height );
+			targetElement.style.setProperty( '--vh', vh );
+
+			if( height > vh ) {
+				targetElement.style.setProperty( '--intersection-ratio', 1 - (top/vh) );
+			} else {
+				targetElement.style.setProperty( '--intersection-ratio', entry.intersectionRatio );
 			}
 			
-			entry.target.style.setProperty( '--intersection-ratio', entry.intersectionRatio );
 		});
 	}
 

@@ -1,7 +1,7 @@
 {
 	"name": "flair",
 	"version": "0.2.0",
-	"description": "Fanciful add-ons.  Take two.",
+	"description": "Fanciful add-ons. Take two.",
 	"author": "John Pennypacker",
 	"main": "build/index.js",
 	"scripts": {
