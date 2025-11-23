@@ -12,7 +12,7 @@ import {
 	BlockControls,
 	InspectorControls,
 	LinkControl,
-    MediaPlaceholder,
+	MediaPlaceholder,
 	MediaReplaceFlow,
 	RichText
 } from '@wordpress/block-editor';

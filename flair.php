@@ -28,8 +28,10 @@ include_once( 'build/zoomer/zoomer.php' );
  * Add the main flair script and stylesheet
  */
 function flair_enqueues() {
-	wp_enqueue_script( 'flair', FLAIR_URL . 'flair.js', array() );
-	wp_enqueue_style( 'flair', FLAIR_URL . 'flair.css', array() );
+	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
+
+	wp_enqueue_script( 'flair', FLAIR_URL . 'build/flair-core/flair.js', array(), $asset['version'] );
+	wp_enqueue_style( 'flair', FLAIR_URL . 'build/flair-core/front-end.css', array(), $asset['version'] );
 }
 add_action( 'wp_enqueue_scripts', 'flair_enqueues' );
 
@@ -37,7 +39,8 @@ add_action( 'wp_enqueue_scripts', 'flair_enqueues' );
  * Enqueue Editor assets.
  */
 function flair_enqueue_editor_assets() {
-	wp_enqueue_script( 'flair-editor', FLAIR_URL . 'flair-editor.js', array('wp-hooks'), strtotime('now'), array( 'in_footer' => true, 'strategy'  => 'defer') );
+	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
+	wp_enqueue_script( 'flair-editor', FLAIR_URL . 'build/flair-core/flair-editor.js', $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
 }
 add_action( 'enqueue_block_assets', 'flair_enqueue_editor_assets' );
 

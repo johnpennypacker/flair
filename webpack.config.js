@@ -17,6 +17,10 @@ module.exports = {
 		'fixie/frontend': '/src/fixie/frontend.scss',
 		'fixie/editor': '/src/fixie/editor.scss',
 
+		'flair-core/frontend': '/src/flair-core/flair-front.scss',
+		'flair-core/flair': '/src/flair-core/flair.js',
+		'flair-core/flair-editor': '/src/flair-core/flair-editor.js',
+
 		'flairousel/frontend': '/src/flairousel/frontend.scss',
 		'flairousel/editor': '/src/flairousel/editor.scss',
 		'flairousel/carousel': '/src/flairousel/carousel.js',

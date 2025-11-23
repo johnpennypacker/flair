@@ -1,21 +1,19 @@
-:where(.flair-metric) {
-    display: flex;
-    flex-direction: column;
+:where( .flair-metric ) {
 	font-size: var( --type__size, 1.1rem );
-	gap: var( --type__size, 1em );
+	margin-bottom: var( --type__size, 1em );
 
-    & > em,
-    & .qualifier {
-        display: block;
-    }
+	& > em,
+	& .qualifier {
+		display: block;
+	}
 
-    & > em {
-        font-size: calc( var( --type__size, 1em ) * 3.75 );
-        font-style: normal;
-        font-weight: bold;
-    }
-    &.orientation-horizontal {
-        flex-direction: row;
-        align-items: center;
-    }
+	em {
+		display: block;
+		font-size: calc( var( --type__size, 1em ) * 3 );
+		font-style: normal;
+		font-weight: bold;
+	}
 }
+
+
+

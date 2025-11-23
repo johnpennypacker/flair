@@ -1,5 +1,13 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
+:where( .flair-metric ) {
+
+	[role=textbox]:empty,
+	[role=textbox].is-empty {
+		background-color: rgba( var( --color__base_700 ), 1 );
+		color: rgba( var( --color__base_300), 1 );
+	}
+
+	em {
+		font-style: normal;
+	}
+
+}

@@ -88,13 +88,27 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/metric',
-		'version' => '0.2.0',
+		'version' => '0.1.0',
 		'title' => 'Metric',
 		'category' => 'flair',
-		'description' => 'Display a key figure in a dramatic way.',
+		'description' => 'Display stats in style',
+		'keywords' => array(
+			'number',
+			'percentage',
+			'metric',
+			'data'
+		),
 		'example' => array(
 			
 		),
+		'supports' => array(
+			'align' => array(
+				'left',
+				'right',
+				'center'
+			)
+		),
+		'textdomain' => 'flair',
 		'attributes' => array(
 			'number' => array(
 				'type' => 'string'
@@ -102,19 +116,11 @@ return array(
 			'qualifier' => array(
 				'type' => 'string'
 			),
-			'link' => array(
-				'type' => 'string'
-			),
-			'orientation' => array(
+			'alignment' => array(
 				'type' => 'string',
-				'default' => 'auto'
+				'default' => 'center'
 			)
 		),
-		'supports' => array(
-			'align' => true,
-			'html' => false
-		),
-		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
