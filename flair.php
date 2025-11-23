@@ -19,10 +19,10 @@ define( 'FLAIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'FLAIR_URL', plugin_dir_url( __FILE__ ) );
 
 
-include_once( 'carousel/carousel.php' ); 
-include_once( 'src/fixie/index.php' ); 
-include_once( 'iconic/iconic.php' ); 
-include_once( 'zoomer/zoomer.php' ); 
+include_once( 'carousel/carousel.php' );
+include_once( 'build/fixie/index.php' );
+include_once( 'build/iconic/iconic.php' );
+include_once( 'build/zoomer/zoomer.php' );
 
 /**
  * Add the main flair script and stylesheet
