@@ -1,28 +1,28 @@
-.flairousel {
+:where( .flairousel ) {
 	--carousel_gap: calc( var( --type__size, 1rem ) * 2);
 	margin-block-end: 2rem;
 }
 
 
-.wp-block-columns.flairousel {
+:where( .wp-block-columns.flairousel ) {
 	flex-wrap: nowrap !important; /* because WP default styles use importat */
 	gap: var( --carousel_gap );
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
 	-webkit-overflow-scrolling: touch;
-	overflow-x: scroll; 
+	overflow-x: scroll;
 }
 
 
-.wp-block-columns.flairousel .wp-block-column {
+:where( .wp-block-columns.flairousel .wp-block-column ) {
 	flex: 0 0 auto;
 	scroll-snap-align: start;
 	flex-basis: 100%;
 }
 
-.wp-block-columns.flairousel.double .wp-block-column {
+:where( .wp-block-columns.flairousel.double .wp-block-column ) {
 	flex-basis: calc( 50% - var( --carousel_gap ) ) !important;
 }
-.wp-block-columns.flairousel.triple .wp-block-column {
+:where( .wp-block-columns.flairousel.triple .wp-block-column ) {
 	flex-basis: calc( (100% / 3) - var( --carousel_gap ) ) !important;
 }

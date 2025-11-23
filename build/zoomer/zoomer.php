@@ -7,9 +7,16 @@
  * Add the zoomer script and stylesheet
  */
 function flair_zoomer_enqueues() {
+	wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer.js', __FILE__ ), array('wp-hooks'), '', array( 'in_footer' => true, 'strategy'  => 'defer') );
+	wp_enqueue_style( 'flair-zoomer', plugins_url( 'zoomer.css', __FILE__ ), array() );
+
 	$asset = include FLAIR_PATH . 'build/zoomer/zoomer.asset.php';
-	wp_enqueue_style( 'flair-zoomer', plugins_url( 'zoomer.css', __FILE__ ), [], $asset['version'] );
-	wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer.js', __FILE__ ), array('wp-hooks'), '', array( 'in_footer' => true, 'strategy'  => 'defer'), $asset['version'] );
+	wp_enqueue_style( 'flair-zoomer', FLAIR_URL . 'build/zoomer/zoomer.css', $asset['dependencies'], $asset['version'] );
+
+	wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer.js', __FILE__ ), array('wp-hooks'), '', array( 'in_footer' => true, 'strategy'  => 'defer') );
+	wp_enqueue_style( 'flair-zoomer', plugins_url( 'zoomer.css', __FILE__ ), array() );
+
+
 }
 add_action( 'wp_enqueue_scripts', 'flair_zoomer_enqueues' );
 

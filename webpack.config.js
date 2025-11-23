@@ -17,10 +17,15 @@ module.exports = {
 		'fixie/frontend': '/src/fixie/frontend.scss',
 		'fixie/editor': '/src/fixie/editor.scss',
 
+		'flairousel/frontend': '/src/flairousel/frontend.scss',
+		'flairousel/editor': '/src/flairousel/editor.scss',
+		'flairousel/carousel': '/src/flairousel/carousel.js',
+
 		'iconic/iconic': '/src/iconic/iconic.scss',
 
 		'zoomer/zoomer-styles': '/src/zoomer/zoomer.scss',
 		'zoomer/zoomer': '/src/zoomer/zoomer.js'
+
 	},
 	plugins: [
 	  ...defaultConfig.plugins,
