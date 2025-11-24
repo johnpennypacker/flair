@@ -21,5 +21,5 @@
  */
  
 /* eslint-disable no-console */
-console.log("Hello World! (from create-block-fixie block)");
+console.log("Hello World! (from create-block-milestone block)");
 /* eslint-enable no-console */

@@ -49,7 +49,7 @@ export default function Edit({ attributes, setAttributes }) {
 					{ ...useBlockProps() }
 					tagName='em'
 					className=''
-					disableLineBreaks="true"
+					disableLineBreaks='true'
 					placeholder={__('100%')}
 					value={attributes.number}
 					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
@@ -63,7 +63,7 @@ export default function Edit({ attributes, setAttributes }) {
 					{ ...useBlockProps() }
 					tagName='span'
 					className='qualifier'
-					disableLineBreaks="true"
+					disableLineBreaks='true'
 					placeholder={__('Awesome')}
 					value={attributes.qualifier}
 					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}

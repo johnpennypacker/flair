@@ -126,6 +126,39 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'milestone' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/milestone',
+		'version' => '0.1.0',
+		'title' => 'Milestone',
+		'category' => 'flair',
+		'description' => 'Creates an entry on a timeline',
+		'keywords' => array(
+			'date',
+			'milestone',
+			'timeline'
+		),
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'align' => true
+		),
+		'textdomain' => 'flair',
+		'attributes' => array(
+			'date' => array(
+				'type' => 'string'
+			),
+			'marker' => array(
+				'type' => 'string'
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'sidler' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
