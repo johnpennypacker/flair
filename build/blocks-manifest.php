@@ -84,6 +84,41 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'eyebrow' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/eyebrow',
+		'version' => '0.1.0',
+		'title' => 'Eyebrow',
+		'category' => 'flair',
+		'description' => 'Creates a pre-header, kicker, or overline',
+		'keywords' => array(
+			'overline',
+			'kicker',
+			'header',
+			'eyebrow'
+		),
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'content' => array(
+				'type' => 'string'
+			),
+			'element' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'align' => true,
+			'html' => false,
+			'splitting' => false
+		),
+		'textdomain' => 'flair',
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'metric' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

@@ -21,5 +21,5 @@
  */
  
 /* eslint-disable no-console */
-console.log("Hello World! (from create-block-milestone block)");
+console.log("Hello World! (from create-block-eyebrow block)");
 /* eslint-enable no-console */
