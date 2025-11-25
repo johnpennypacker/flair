@@ -42,12 +42,27 @@ import './editor.scss';
 const elements = [
 	{ value: 0, label: __( 'Select an element...' ) },
 	{ value: 'div', label: __( '<div>' ) },
-	{ value: 'h1', label: __( '<h1>' ) }
+	{ value: 'p', label: __( '<p>' ) },
+	{ value: 'h1', label: __( '<h1>' ) },
+	{ value: 'h2', label: __( '<h2>' ) },
+	{ value: 'h3', label: __( '<h3>' ) },
+	{ value: 'h4', label: __( '<h4>' ) },
+	{ value: 'h5', label: __( '<h5>' ) },
+	{ value: 'h6', label: __( '<h6>' ) },
+	{ value: 'aside', label: __( '<aside>' ) },
 ];
 
 const calculateClassName = () => {
 	let c = ['flair-milestone'];
 	return c.join(' ');
+}
+
+const getElement = (el) => {
+	if( !! el ) {
+		return el;
+	} else {
+		return "div";
+	}
 }
 
 
@@ -93,7 +108,7 @@ export default function Edit(props) {
 		<div class="flair-wrapper flair-eyebrow-wrapper">
 			<div { ...useBlockProps({ className:calculateClassName() }) }>
 				<RichText
-				tagName='div'
+				tagName={ getElement(element) }
 				className='eyebrow'
 				disableLineBreaks='true'
 				placeholder={__('Eyebrow')}

@@ -66,12 +66,40 @@ const elements = [{
   value: 'div',
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<div>')
 }, {
+  value: 'p',
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<p>')
+}, {
   value: 'h1',
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<h1>')
+}, {
+  value: 'h2',
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<h2>')
+}, {
+  value: 'h3',
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<h3>')
+}, {
+  value: 'h4',
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<h4>')
+}, {
+  value: 'h5',
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<h5>')
+}, {
+  value: 'h6',
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<h6>')
+}, {
+  value: 'aside',
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<aside>')
 }];
 const calculateClassName = () => {
   let c = ['flair-milestone'];
   return c.join(' ');
+};
+const getElement = el => {
+  if (!!el) {
+    return el;
+  } else {
+    return "div";
+  }
 };
 
 /**
@@ -118,7 +146,7 @@ function Edit(props) {
           className: calculateClassName()
         }),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-          tagName: "div",
+          tagName: getElement(element),
           className: "eyebrow",
           disableLineBreaks: "true",
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Eyebrow'),
@@ -193,44 +221,39 @@ const eyebrowIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4
   focusable: "false",
   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
     x: "1",
+    y: "1",
+    width: "22",
+    height: "22",
+    fill: "rgb(255,255,255)"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    x: "1",
     y: "3",
-    class: "st0",
     width: "14",
     height: "2",
     fill: "rgb(15,90,42)"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
     x: "1",
     y: "15",
-    class: "st1",
     width: "22",
     height: "1",
     fill: "rgb(47,47,47)"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
     x: "1",
     y: "18",
-    class: "st1",
     width: "22",
     height: "1",
     fill: "rgb(47,47,47)"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
     x: "1",
     y: "21",
-    class: "st1",
     width: "22",
     height: "1",
     fill: "rgb(47,47,47)"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
     x: "1",
     y: "7",
-    class: "st1",
     width: "22",
     height: "5",
-    fill: "rgb(47,47,47)"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
-    x: "1",
-    y: "1",
-    width: "22",
-    height: "22",
     fill: "rgb(47,47,47)"
   })]
 });
