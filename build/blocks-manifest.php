@@ -112,7 +112,8 @@ return array(
 		'supports' => array(
 			'align' => true,
 			'html' => false,
-			'splitting' => false
+			'splitting' => false,
+			'color' => true
 		),
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',
