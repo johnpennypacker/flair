@@ -9,7 +9,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  margin-bottom: calc(var(--space_buffer) * 2);
+  margin-block-end: 0;
   padding: 0 var(--space_buffer);
 }
 :where(.flair-milestone) .details {
@@ -26,7 +26,7 @@
   font-size: 0.95rem;
   text-transform: uppercase;
 }
-.flair-milestone + .flair-milestone {
+.flair-milestone-wrapper + .flair-milestone-wrapper {
   margin-top: calc(var(--space_buffer) * -2) !important;
 }
 /** left / right aligned; overrides default float behavior **/
@@ -102,6 +102,7 @@ html .flair-milestone.alignleft .details {
   background-color: rgba(var(--color__base_100, 47, 47, 47));
   border: var(--timeline_width) solid rgba(var(--color__base_100, 47, 47, 47));
   content: " ";
+  padding: 0.2em;
   position: absolute;
   top: calc(var(--space_buffer) * 1.75);
   left: calc(var(--type__size) * -0.425);
@@ -109,7 +110,7 @@ html .flair-milestone.alignleft .details {
   height: calc(var(--type__size) * 0.75);
 }
 .flair-milestone[class*=marker-][class*=hollow] .timeline::before {
-  background-color: rgba(var(--color__base_900, 47, 47, 47));
+  background-color: rgba(var(--color__base_900, 255, 255, 255));
 }
 .flair-milestone[class*=dot] .timeline::before {
   border-radius: 50%;

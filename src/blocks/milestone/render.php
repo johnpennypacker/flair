@@ -20,7 +20,10 @@ if( isset( $attributes['marker'] ) ) {
 ?>
 <div class="flair-wrapper flair-milestone-wrapper">
 	<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
-		<div class="timeline"><?php echo $attributes['date']; ?></div>
-		<div class="details"><?php echo $content; ?></div>
+		<div class="timeline"></div>
+		<div class="details">
+			<div class="date"><?php echo $attributes['date']; ?></div>
+			<?php echo $content; ?>
+		</div>
 	</div>
 </div>

@@ -47,8 +47,9 @@ const markers = [
 	{ value: 'square-hollow', label: __( 'Square (Hollow)' ) }
 ];
 
-const calculateClassName = () => {
+const calculateClassName = (attributes) => {
 	let c = ['flair-milestone'];
+	c.push('marker-' + attributes.marker);
 	return c.join(' ');
 }
 
@@ -70,7 +71,6 @@ export default function Edit({ attributes, setAttributes }) {
 				title={ __( 'Milestone properties', 'flair' ) }
 				initialOpen="true"
 			>
-
 				<PanelRow>
 					<fieldset>
 						<SelectControl
@@ -90,20 +90,23 @@ export default function Edit({ attributes, setAttributes }) {
 			</PanelBody>
 		</InspectorControls>
 		<div class="flair-wrapper flair-milestone-wrapper">
-			<div { ...useBlockProps({ className:calculateClassName() }) }>
-				<RichText
-				tagName='div'
-				className='eyebrow'
-				placeholder={__('Apr 30')}
-				value={attributes.date}
-				allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-				onChange={( value ) => {
-					setAttributes({
-						date: value
-					});
-				}}
-				/>
-				<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} directInsert />
+			<div { ...useBlockProps({ className:calculateClassName(attributes) }) }>
+				<div class="timeline" />
+				<div class="details">
+					<RichText
+					tagName='div'
+					className='eyebrow'
+					placeholder={__('Apr 30')}
+					value={attributes.date}
+					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+					onChange={( value ) => {
+						setAttributes({
+							date: value
+						});
+					}}
+					/>
+					<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} directInsert />
+				</div>
 			</div>
 		</div>
 		</>

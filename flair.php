@@ -30,8 +30,8 @@ include_once( 'build/zoomer/zoomer.php' );
 function flair_enqueues() {
 	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
 
-	wp_enqueue_script( 'flair', FLAIR_URL . 'build/flair-core/flair.js', array(), $asset['version'] );
-	wp_enqueue_style( 'flair', FLAIR_URL . 'build/flair-core/front-end.css', array(), $asset['version'] );
+	wp_enqueue_script( 'flair', FLAIR_URL . 'build/flair-core/flair.js', $asset['dependencies'], $asset['version'] );
+	wp_enqueue_style( 'flair', FLAIR_URL . 'build/flair-core/frontend.css', array(), $asset['version'] );
 }
 add_action( 'wp_enqueue_scripts', 'flair_enqueues' );
 
@@ -42,7 +42,7 @@ function flair_enqueue_editor_assets() {
 	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
 	wp_enqueue_script( 'flair-editor', FLAIR_URL . 'build/flair-core/flair-editor.js', $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
 }
-add_action( 'enqueue_block_assets', 'flair_enqueue_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'flair_enqueue_editor_assets' );
 
 
 /**

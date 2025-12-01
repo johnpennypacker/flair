@@ -7,8 +7,9 @@
  * Add the carousel script and stylesheet.
  */
 function flair_carousel_enqueues() {
-	wp_enqueue_script( 'flair-carousel', plugins_url( 'carousel.js', __FILE__ ), array('wp-hooks'), '', array( 'in_footer' => true, 'strategy'  => 'defer') );
-	wp_enqueue_style( 'flair-carousel', plugins_url( 'front-end.css', __FILE__ ), array() );
+	$asset = include FLAIR_PATH . 'build/flairousel/carousel.asset.php';
+	wp_enqueue_script( 'flair-carousel', plugins_url( 'carousel.js', __FILE__ ), $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
+	wp_enqueue_style( 'flair-carousel', plugins_url( 'frontend.css', __FILE__ ), $asset['version'] );
 }
 add_action( 'wp_enqueue_scripts', 'flair_carousel_enqueues' );
 

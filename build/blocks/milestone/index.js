@@ -78,8 +78,9 @@ const markers = [{
   value: 'square-hollow',
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Square (Hollow)')
 }];
-const calculateClassName = () => {
+const calculateClassName = attributes => {
   let c = ['flair-milestone'];
+  c.push('marker-' + attributes.marker);
   return c.join(' ');
 };
 
@@ -121,24 +122,29 @@ function Edit({
       class: "flair-wrapper flair-milestone-wrapper",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-          className: calculateClassName()
+          className: calculateClassName(attributes)
         }),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-          tagName: "div",
-          className: "eyebrow",
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Apr 30'),
-          value: attributes.date,
-          allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
-          onChange: value => {
-            setAttributes({
-              date: value
-            });
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
-          defaultBlock: ['core/paragraph', {
-            placeholder: "Lorem ipsum..."
-          }],
-          directInsert: true
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          class: "timeline"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          class: "details",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+            tagName: "div",
+            className: "eyebrow",
+            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Apr 30'),
+            value: attributes.date,
+            allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
+            onChange: value => {
+              setAttributes({
+                date: value
+              });
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+            defaultBlock: ['core/paragraph', {
+              placeholder: "Lorem ipsum..."
+            }],
+            directInsert: true
+          })]
         })]
       })
     })]
