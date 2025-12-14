@@ -12,9 +12,12 @@
   --color__base_800: 248, 243, 239;
   --color__base_900: 239, 239, 239;
   --type__size: 1.1rem;
+  --flair-font-size: 1.1rem;
+  --flair-color-primary: #000;
+  --flair-color-secondary: #9a7500;
 }
 
-/* 
+/*
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color__base_900: 17, 17, 17;
@@ -32,7 +35,7 @@
 
 /* fades elements in as they enter the view port; fades out as they leave */
 
-/* 
+/*
 header, img {
 	opacity: var(--intersection-ratio);
 }
@@ -40,7 +43,7 @@ header, img {
 
 /* creates a wobbly effect; needs work */
 
-/* 
+/*
 a:hover {
 	display: inline-block;
 	position: relative;
@@ -52,7 +55,7 @@ a:hover {
 
 /* creates a spot light effect */
 
-/* 
+/*
 a:hover {
  	background: radial-gradient(circle at calc(100% * var(--mouse-x-pct)) calc(100% * var(--mouse-y-pct)), var(--color__highlight) 0%,  var(--color__brand) 80%);
  	background-position: calc(100% * var(--mouse-x-pct)) calc(100% * var(--mouse-y-pct));

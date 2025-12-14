@@ -4,40 +4,14 @@
 /**
  *
  */
-:root {
-  --color__base_100: 26, 21, 17;
-  --color__base_200: 39, 34, 30;
-  --color__base_300: 56, 51, 47;
-  --color__base_400: 111, 106, 102;
-  --color__base_500: 152, 147, 143;
-  --color__base_600: 215, 210, 206;
-  --color__base_700: 226, 221, 217;
-  --color__base_800: 248, 243, 239;
-  --color__base_900: 255, 255, 255;
-  --color__brand: 204, 0, 0;
-  --color__brand_contrast: 255, 255, 255;
-  --color__accent: 57, 119, 212;
-  --color__accent_contrast: 255, 255, 255;
-  --color__highlight: 244, 215, 81;
-  --color__highlight_text: 0, 0, 0;
-  --color__message: var(--color__base_500);
-  --color__succcess: 0, 163, 42;
-  --color__error: 214, 54, 56;
-  --color__link: var(--color__brand);
-  --color__link_contrast: var(--color__brand_contrast);
-  --color__visited: 214,99,73;
-  --color__visited_contrast: var(--color__brand_contrast);
-  --color__hover: 255, 0, 0;
-  --color__hover_contrast: var(--color__brand_contrast);
-}
 :where(.flair-card) {
-  background-color: rgba(var(--color__base_900), 1);
-  color: rgba(var(--color__base_100), 1);
+  color: var(--flair-color-primary);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-block-end: 2rem;
+  margin-block-end: calc(var(--flair-font-size) * 2);
   position: relative;
+  transition: transform 0.2s ease-in-out;
   width: 100%;
 }
 :where(.flair-card).orientation-horizontal {
@@ -48,9 +22,21 @@
 :where(.flair-card).orientation-horizontal .media {
   max-width: 50%;
 }
+:where(.flair-card):has(.link) {
+  cursor: pointer;
+}
+:where(.flair-card) .media {
+  overflow: hidden;
+}
+:where(.flair-card) .media img {
+  display: block;
+  height: auto;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
 :where(.flair-card) .text {
   order: 2;
-  padding: 1rem;
+  padding: calc(var(--flair-font-size) * 1);
   z-index: 1;
 }
 :where(.flair-card) .media {
@@ -63,14 +49,17 @@
 :where(.flair-card) .title {
   font-family: inherit;
   font-weight: bold;
-  font-size: calc(var(--type__size) * 1.25);
+  font-size: calc(var(--flair-font-size) * 1.25);
 }
 :where(.flair-card) .excerpt {
-  margin: 0 0 calc(var(--type__size) * 1);
+  font-size: calc(var(--flair-font-size) * 1);
+}
+:where(.flair-card) .attribution {
+  font-size: calc(var(--flair-font-size) * 0.875);
 }
 :where(.flair-card) .call {
-  background-color: rgba(var(--color__base_700), 1);
-  padding: calc(var(--type__size) * 1);
+  background-color: var(--flair-color-secondary);
+  padding: calc(var(--flair-font-size) * 1);
   position: relative;
   text-align: center;
 }
@@ -89,11 +78,8 @@
      object-fit: cover;
   height: 100%;
 }
-:where(.flair-card):has(.link) {
-  transition: transform 0.2s ease-in-out;
-}
-:where(.flair-card):has(.link)::before {
-  box-shadow: 0 0 5px rgba(var(--color__base_700), 1);
+:where(.flair-card)::before {
+  box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 70%);
   content: "";
   position: absolute;
   top: 0;
@@ -103,27 +89,13 @@
   transition: all 0.2s ease-in-out;
   z-index: 0;
 }
-:where(.flair-card):has(.link:hover) {
-  background-color: inherit;
-  color: inherit;
-}
-:where(.flair-card):has(.link:hover) {
+:where(.flair-card):focus-within, :where(.flair-card):hover {
   transform: translateY(-2px);
 }
-:where(.flair-card):has(.link:hover)::before {
-  box-shadow: 0 3px 10px rgba(var(--color__base_700), 1);
-  transform: translateY(-2px);
+:where(.flair-card):focus-within::before, :where(.flair-card):hover::before {
+  box-shadow: 0 3px 10px color-mix(in oklab, var(--flair-color-primary), white 70%);
 }
-:where(.flair-card) .media {
-  overflow: hidden;
-}
-:where(.flair-card) .media img {
-  display: block;
-  height: auto;
-  transition: all 0.2s ease-in-out;
-  width: 100%;
-}
-:where(.flair-card):has(.link:hover) .media img {
+:where(.flair-card):focus-within .media img, :where(.flair-card):hover .media img {
   transform: scale(1.03);
 }
 

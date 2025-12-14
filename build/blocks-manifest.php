@@ -82,6 +82,7 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./card.js',
 		'render' => 'file:./render.php'
 	),
 	'eyebrow' => array(
