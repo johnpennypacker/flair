@@ -306,7 +306,7 @@ export default function Edit({ attributes, setAttributes }) {
 					<RichText
 					{ ...useBlockProps() }
 					tagName='a'
-					className=''
+					className='link'
 					placeholder={__('My card')}
 					value={attributes.title}
 					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}

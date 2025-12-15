@@ -30,7 +30,7 @@ if( isset( $attributes['aspect'] ) ) {
 			<?php if( ! empty( $attributes['excerpt'] ) ): ?>
 			<p class="excerpt"><?php echo $attributes['excerpt']; ?></p>
 			<?php endif; ?>
-			<?php if( ! empty( $attributes['attribution'] ) ): ?>
+			<?php if( ! empty( trim( $attributes['attribution'] ) ) ): ?>
 			<small class="attribution"><?php echo $attributes['attribution']; ?></small>
 			<?php endif; ?>
 		</div>

@@ -390,7 +390,7 @@ function Edit({
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
               ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
               tagName: "a",
-              className: "",
+              className: "link",
               placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('My card'),
               value: attributes.title,
               allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
