@@ -1,10 +1,5 @@
 <?php
 
-	$templates = [
-		'flair/card.php',
-// 			'flair/card.html',
-		'template-parts/flair/card.php',
-// 			'template-parts/flair/card.html',
-	];
+	$template_name = 'card';
 
-	flair_use_template( $templates, $attributes, $block, $content );
+	flair_use_template( $template_name, $attributes, $block, $content );

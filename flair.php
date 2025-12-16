@@ -109,13 +109,21 @@ add_filter( 'block_categories_all', 'flair_add_block_category', 10, 2 );
 /**
  * Check for a theme template, if none, use flair's default.
  *
- * @param array $templates is an array of template options to use
- * @param array $attributes the typical template variables
+ * @param str $template_name is the name of the component / template to look for
+ * @param arr $attributes the typical template variables
  * @param obj $block the block instance
  * @param str $content the block content
  * @return bool
  */
-function flair_use_template( $templates=[], $attributes, $block, $content ) {
+function flair_use_template( $template_name, $attributes, $block, $content ) {
+
+	$templates = [
+		'flair/' . $template_name . '.php',
+// 			'flair/' . $template_name . '.html',
+		'template-parts/flair/' . $template_name . '.php',
+// 			'template-parts/flair/' . $template_name . '.html',
+	];
+
 
 	// First, search for PHP templates, which block themes can also use.
 	$template = locate_template( $templates );
@@ -123,12 +131,12 @@ function flair_use_template( $templates=[], $attributes, $block, $content ) {
 
 	// Pass the result into the block template locator and let it figure
 	// out whether block templates are supported and this template exists.
-	$template = locate_block_template( $template, 'flair-card', $templates );
+	$template = locate_block_template( $template, 'flair-' . $template_name, $templates );
 // 		echo '<pre>block template: ', print_r( $template, TRUE ), '</pre>';
 
 	// if we couldn't find a template in the theme, use the one from the plugin
 	if( empty( $template ) ) {
-		$template = FLAIR_PATH . 'template-parts/card.php';
+		$template = FLAIR_PATH . 'template-parts/' . $template_name . '.php';
 	}
 
 	return load_template( $template, FALSE, ['attributes' => $attributes, 'block' => $block, 'content' => $content ] );

@@ -13,6 +13,12 @@ This is the long description. No limit, and you can use Markdown (as well as in 
 For backwards compatibility, if this section is missing, the full length of the short description will be used, and
 Markdown parsed.
 
+
+== Themeing ==
+
+Copy the template files found in template-parts into your theme. e.g. template/parts/flair/template.php
+Edit to taste.
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
