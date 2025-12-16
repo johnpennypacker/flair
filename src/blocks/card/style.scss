@@ -126,5 +126,20 @@
 }
 
 
+.flair-card-wrapper {
+	container-name: card;
+	container-type: inline-size;
+}
+@container card (width > 600px) {
+	.flair-card {
+		flex-direction: row;
+		align-items: stretch;
+		justify-content: stretch;
+		.media {
+			max-width: 50%;
+		}
+	}
+}
+
 
 

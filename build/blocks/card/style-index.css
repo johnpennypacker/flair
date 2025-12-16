@@ -104,5 +104,19 @@
 :where(.flair-card):focus-within .media img, :where(.flair-card):hover .media img {
   transform: scale(1.03);
 }
+.flair-card-wrapper {
+  container-name: card;
+  container-type: inline-size;
+}
+@container card (width > 600px) {
+  .flair-card {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  .flair-card .media {
+    max-width: 50%;
+  }
+}
 
 /*# sourceMappingURL=style-index.css.map*/
