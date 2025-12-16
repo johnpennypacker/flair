@@ -104,3 +104,33 @@ function flair_add_block_category( $categories ) {
 add_filter( 'block_categories_all', 'flair_add_block_category', 10, 2 );
 
 // @todo: consolidate js and css https://developer.wordpress.org/news/2024/09/how-to-build-a-multi-block-plugin/
+
+
+/**
+ * Check for a theme template, if none, use flair's default.
+ *
+ * @param array $templates is an array of template options to use
+ * @param array $attributes the typical template variables
+ * @param obj $block the block instance
+ * @param str $content the block content
+ * @return bool
+ */
+function flair_use_template( $templates=[], $attributes, $block, $content ) {
+
+	// First, search for PHP templates, which block themes can also use.
+	$template = locate_template( $templates );
+// 		echo '<pre>template: ', print_r( $template, TRUE ), '</pre>';
+
+	// Pass the result into the block template locator and let it figure
+	// out whether block templates are supported and this template exists.
+	$template = locate_block_template( $template, 'flair-card', $templates );
+// 		echo '<pre>block template: ', print_r( $template, TRUE ), '</pre>';
+
+	// if we couldn't find a template in the theme, use the one from the plugin
+	if( empty( $template ) ) {
+		$template = FLAIR_PATH . 'template-parts/card.php';
+	}
+
+	return load_template( $template, FALSE, ['attributes' => $attributes, 'block' => $block, 'content' => $content ] );
+
+}
