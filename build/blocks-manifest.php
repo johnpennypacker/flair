@@ -26,6 +26,9 @@ return array(
 				'type' => 'string',
 				'default' => '#'
 			),
+			'target' => array(
+				'type' => 'string'
+			),
 			'asset' => array(
 				'type' => 'object',
 				'selector' => '.media img',

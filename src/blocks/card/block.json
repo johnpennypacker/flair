@@ -16,6 +16,9 @@
 			"type": "string",
 			"default": "#"
 		},
+		"target": {
+			"type": "string"
+		},
 		"asset": {
 			"type": "object",
 			"selector": ".media img",

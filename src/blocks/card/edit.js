@@ -90,47 +90,59 @@ export default function Edit({ attributes, setAttributes }) {
 	}
 
 	const linkPopover = () => {
-		const [ isVisible, setIsVisible ] = useState( false );
-		const toggleLink = () => {
-			setIsVisible( ( state ) => ! state );
-		};
-		const unlink = () => {
-			setAttributes({
-				href: null,
-			});
-		}
-		return (
-			<ToolbarButton
-			onClick={ () => {
-				if( ! isURLSet() ) {
-					toggleLink();
-				} else {
-					unlink();
-				}
-			}}
-			name="link"
-			className={ ! isURLSet() ? '' : 'is-pressed' }
-			icon={ ! isURLSet() ? link : linkOff }
-			title={ ! isURLSet() ? __( 'Link' ) : __( 'Unlink' ) }
-			>
-				{ isVisible && <Popover>
-					<LinkControl
-					value={ {url:attributes.href} }
-					onChange={ (value) => {
-						setAttributes({
-							href: value.url,
-						});
-					}}
-					onRemove={ () => {
-						setAttributes({
-							href: null,
-						});
-					}}
-					/>
-				</Popover> }
-			</ToolbarButton>
-		);
 
+		const [ popoverAnchor, setPopoverAnchor ] = useState( null );
+		const [ isEditingURL, setIsEditingURL ] = useState( false );
+
+		return(
+			<>
+				<ToolbarButton
+					ref={ setPopoverAnchor }
+					name="link"
+					icon={ link }
+					title={ __( 'Link', 'flair' ) }
+					onClick={ () => setIsEditingURL( true ) }
+					isActive={ !! attributes.href }
+				/>
+				{ isEditingURL && (
+					<Popover
+						anchor={ popoverAnchor }
+						onClose={ () => setIsEditingURL( false ) }
+						focusOnMount={ true }
+						offset={ 10 }
+						className="enable-linked-groups__link-popover"
+						variant="alternate"
+					>
+						<LinkControl
+							value={ {
+								url: attributes.href,
+								opensInNewTab: attributes.target === '_blank',
+							} }
+
+							onChange={ ( {
+								url: newURL = '',
+								opensInNewTab,
+							} ) => {
+								setAttributes( {
+									href: newURL,
+									target: opensInNewTab
+										? '_blank'
+										: undefined,
+								} );
+								setIsEditingURL( false );
+							} }
+							onRemove={ () => {
+								setAttributes({
+									href: null,
+									target: undefined,
+								});
+							}}
+						/>
+					</Popover>
+				) }
+
+			</>
+		);
 	}
 
 	const orientationToggles = () => {

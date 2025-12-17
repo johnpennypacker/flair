@@ -16,13 +16,18 @@ if( isset( $attributes['aspect'] ) ) {
 <div class="flair-card-wrapper">
 	<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 		<div class="text">
+			<?php if( isset( $attributes['title'] ) && isset( $attributes['href'] ) ): ?>
 			<<?php echo $attributes['heading'] ?> class="title">
 				<a href="<?php echo $attributes['href']; ?>" class="link"><?php echo $attributes['title']; ?></a>
 			</<?php echo $attributes['heading'] ?>>
+			<?php else: ?>
+				<div class="flair-warning"><p><strong>Warning:</strong> this block is missing a title and link.</p></div>
+			<?php endif; ?>
+
 			<?php if( ! empty( $attributes['excerpt'] ) ): ?>
 			<p class="excerpt"><?php echo $attributes['excerpt']; ?></p>
 			<?php endif; ?>
-			<?php if( ! empty( trim( $attributes['attribution'] ) ) ): ?>
+			<?php if( isset( $attributes['attribution'] ) && ! empty( trim( $attributes['attribution'] ) ) ): ?>
 			<small class="attribution"><?php echo $attributes['attribution']; ?></small>
 			<?php endif; ?>
 		</div>
