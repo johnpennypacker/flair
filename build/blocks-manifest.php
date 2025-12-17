@@ -183,12 +183,16 @@ return array(
 			
 		),
 		'supports' => array(
-			'align' => true
+			'html' => false
 		),
 		'textdomain' => 'flair',
 		'attributes' => array(
 			'date' => array(
 				'type' => 'string'
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'left'
 			),
 			'marker' => array(
 				'type' => 'string'

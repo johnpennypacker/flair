@@ -14,15 +14,6 @@
   transition: transform 0.2s ease-in-out;
   width: 100%;
 }
-:where(.flair-card).orientation-horizontal {
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: stretch;
-}
-:where(.flair-card).orientation-horizontal .media {
-  margin-block-end: 0;
-  max-width: 50%;
-}
 :where(.flair-card):has(.link) {
   cursor: pointer;
 }
@@ -106,16 +97,25 @@
   transform: scale(1.03);
 }
 .flair-card-wrapper {
-  container-name: card;
+  container-name: flair-card;
   container-type: inline-size;
 }
-@container card (width > 600px) {
-  .flair-card {
+:where(.flair-card.orientation-horizontal) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+}
+:where(.flair-card.orientation-horizontal) .media {
+  margin-block-end: 0;
+  max-width: 50%;
+}
+@container flair-card (width > 600px) {
+  :where(.flair-card:not(.orientation-vertical)) {
     flex-direction: row;
     align-items: stretch;
     justify-content: stretch;
   }
-  .flair-card .media {
+  :where(.flair-card:not(.orientation-vertical)) .media {
     margin-block-end: 0;
     max-width: 50%;
   }

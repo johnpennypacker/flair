@@ -13,12 +13,16 @@
   ],
   "example": {},
   "supports": {
-    "align": true
+    "html": false
   },
   "textdomain": "flair",
   "attributes": {
     "date": {
       "type": "string"
+    },
+    "layout": {
+      "type": "string",
+      "default": "left"
     },
     "marker": {
       "type": "string"

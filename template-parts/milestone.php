@@ -7,6 +7,9 @@ $classes = ['flair-milestone'];
 if( isset( $attributes['marker'] ) ) {
 	$classes[] = 'marker-' . $attributes['marker'] ;
 }
+if( isset( $attributes['layout'] ) ) {
+	$classes[] = 'layout-' . $attributes['layout'] ;
+}
 
 // echo '<pre>', print_r($content, TRUE), '</pre>';
 

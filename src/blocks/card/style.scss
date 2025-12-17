@@ -13,16 +13,6 @@
 	transition: transform .2s ease-in-out;
 	width: 100%;
 
-	&.orientation-horizontal {
-		flex-direction: row;
-		align-items: stretch;
-		justify-content: stretch;
-		.media {
-			margin-block-end: 0;
-			max-width: 50%;
-		}
-	}
-
 	&:has(.link) {
 		cursor: pointer;
 	}
@@ -109,37 +99,50 @@
 	&:focus-within,
 	&:hover {
 		transform: translateY(-2px);
-
 		&::before {
 			box-shadow: 0 3px 10px color-mix(in oklab, var(--flair-color-primary), white 85%);
 		}
-
 		.media img {
 			transform: scale(1.03);
 		}
-
-
 	}
 
-
-
-
 }
 
+// for whatever reason; using a mixin wrecks the container query.  so don't do that.
+// %f-card-h {
+// 	flex-direction: row;
+// 	align-items: stretch;
+// 	justify-content: stretch;
+// 	.media {
+// 		margin-block-end: 0;
+// 		max-width: 50%;
+// 	}
+// }
 
 .flair-card-wrapper {
-	container-name: card;
+	container-name: flair-card;
 	container-type: inline-size;
 }
-@container card (width > 600px) {
-	.flair-card {
-		flex-direction: row;
-		align-items: stretch;
-		justify-content: stretch;
-		.media {
-			margin-block-end: 0;
-			max-width: 50%;
-		}
+
+:where(.flair-card.orientation-horizontal) {
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: stretch;
+	.media {
+		margin-block-end: 0;
+		max-width: 50%;
+	}
+}
+@container flair-card (width > 600px) {
+	:where(.flair-card:not(.orientation-vertical)) {
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: stretch;
+	.media {
+		margin-block-end: 0;
+		max-width: 50%;
+	}
 	}
 }
 

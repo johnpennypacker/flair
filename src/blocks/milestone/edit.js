@@ -16,8 +16,9 @@ import {
 	PanelBody,
 	PanelRow,
 	SelectControl,
-	ToggleControl
-} from "@wordpress/components";
+	__experimentalToggleGroupControl as ToggleGroupControl,
+  __experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
+  } from "@wordpress/components";
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -86,6 +87,61 @@ export default function Edit({ attributes, setAttributes }) {
 							__nextHasNoMarginBottom
 						/>
 					</fieldset>
+				</PanelRow>
+				<PanelRow>
+					<ToggleGroupControl
+						__next40pxDefaultSize
+						isBlock
+						label="Layout"
+						value={attributes.layout}
+						onChange={( value ) => {
+								setAttributes({
+									layout: value
+								});
+							}}
+					>
+						<ToggleGroupControlOptionIcon
+							label="Left"
+							value="left"
+							icon={(
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+									<rect fill="currentColor" x="4" y="4" width="10" height="8"/>
+									<rect fill="currentColor" x="2" y="2" width="1" height="12"/>
+								</svg>
+							)}
+						/>
+						<ToggleGroupControlOptionIcon
+							label="Center Left"
+							value="center-left"
+							icon={(
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+									<rect fill="currentColor" x="3" y="4" width="5" height="8"/>
+									<rect fill="currentColor" x="9" y="2" width="1" height="12"/>
+								</svg>
+							)}
+						/>
+						<ToggleGroupControlOptionIcon
+							label="Center Right"
+							value="center-right"
+							icon={(
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+									<rect fill="currentColor" x="8" y="4" width="5" height="8"/>
+									<rect fill="currentColor" x="6" y="2" width="1" height="12"/>
+								</svg>
+							)}
+						/>
+						<ToggleGroupControlOptionIcon
+							label="Right"
+							value="right"
+							icon={(
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+									<rect fill="currentColor" x="2" y="4" width="10" height="8"/>
+									<rect fill="currentColor" x="13" y="2" width="1" height="12"/>
+								</svg>
+							)}
+						/>
+
+					</ToggleGroupControl>
 				</PanelRow>
 			</PanelBody>
 		</InspectorControls>

@@ -16,12 +16,13 @@
 		"date": {
 			"type": "string"
 		},
+		"layout": {
+			"type": "string",
+			"default": "left"
+		},
 		"marker": {
 			"type": "string"
 		}
-	},
-	"supports": {
-		"align": true
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
