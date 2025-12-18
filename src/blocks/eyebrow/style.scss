@@ -1,11 +1,11 @@
-:where(.eyebrow) {
-	font-size: calc( var( --type__size, 1em ) * .9 );
+:where(.flair-eyebrow) {
+	font-size: calc( var( --flair-font-size, 1em ) * .9 );
 	font-weight: bold;
-	margin-bottom: calc( var( --type__size, 1em ) * 1 );
+	margin-bottom: calc( var( --flair-font-size, 1em ) * 1 );
 	text-transform: uppercase;
 
 	& sub, & sup {
-		font-size: calc( var( --type__size, 1em ) * 1 );
+		font-size: calc( var( --flair-font-size, 1em ) * 1 );
 		text-transform: none;
 	}
 	& sub {

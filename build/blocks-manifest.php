@@ -117,7 +117,10 @@ return array(
 			'align' => true,
 			'html' => false,
 			'splitting' => false,
-			'color' => true
+			'color' => array(
+				'background' => false,
+				'text' => true
+			)
 		),
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',

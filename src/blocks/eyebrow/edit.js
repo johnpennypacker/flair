@@ -53,7 +53,7 @@ const elements = [
 ];
 
 const calculateClassName = () => {
-	let c = ['flair-milestone'];
+	let c = ['flair-wrapper flair-eyebrow-wrapper'];
 	return c.join(' ');
 }
 
@@ -105,8 +105,8 @@ export default function Edit(props) {
 				</PanelRow>
 			</PanelBody>
 		</InspectorControls>
-		<div class="flair-wrapper flair-eyebrow-wrapper">
-			<div { ...useBlockProps({ className:calculateClassName() }) }>
+		<div { ...useBlockProps({ className:calculateClassName() }) }>
+			<div class="flair-eyebrow">
 				<RichText
 				tagName={ getElement(element) }
 				className='eyebrow'

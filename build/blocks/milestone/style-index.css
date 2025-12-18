@@ -2,7 +2,7 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/milestone/style.scss ***!
   \********************************************************************************************************************************************************************************************************************************************************/
 :where(.flair-milestone-wrapper) {
-  --timeline_width: 4px;
+  --timeline_width: .25em;
   --space_buffer: var(--flair-font-size, 1em);
 }
 
@@ -68,7 +68,7 @@
 }
 
 .flair-milestone-wrapper[class*=diamond] .timeline::before {
-  --side: calc( var( --space_buffer ) * .65 ); /** scale down a bit **/
+  --side: calc( var( --space_buffer ) * .65 ); /** rotated square looks big; scale down a bit **/
   transform: rotate(45deg);
 }
 
@@ -76,11 +76,11 @@
   flex-direction: row-reverse;
 }
 
-:where(.flair-milestone-wrapper).layout-center-left .flair-milestone {
+:where(.flair-milestone-wrapper).layout-center-right .flair-milestone {
   margin-inline-start: calc(50% - var(--space_buffer) - var(--timeline_width) / 2);
 }
 
-:where(.flair-milestone-wrapper).layout-center-right .flair-milestone {
+:where(.flair-milestone-wrapper).layout-center-left .flair-milestone {
   flex-direction: row-reverse;
   margin-inline-end: calc(50% - var(--space_buffer) - var(--timeline_width) / 2);
 }

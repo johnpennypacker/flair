@@ -8,7 +8,7 @@
   \***************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/eyebrow","version":"0.1.0","title":"Eyebrow","category":"flair","description":"Creates a pre-header, kicker, or overline","keywords":["overline","kicker","header","eyebrow"],"example":{},"attributes":{"content":{"type":"string"},"element":{"type":"string"}},"supports":{"align":true,"html":false,"splitting":false,"color":true},"textdomain":"flair","editorScript":"file:./index.js","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/eyebrow","version":"0.1.0","title":"Eyebrow","category":"flair","description":"Creates a pre-header, kicker, or overline","keywords":["overline","kicker","header","eyebrow"],"example":{},"attributes":{"content":{"type":"string"},"element":{"type":"string"}},"supports":{"align":true,"html":false,"splitting":false,"color":{"background":false,"text":true}},"textdomain":"flair","editorScript":"file:./index.js","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -91,7 +91,7 @@ const elements = [{
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<aside>')
 }];
 const calculateClassName = () => {
-  let c = ['flair-milestone'];
+  let c = ['flair-wrapper flair-eyebrow-wrapper'];
   return c.join(' ');
 };
 const getElement = el => {
@@ -140,11 +140,11 @@ function Edit(props) {
         })
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      class: "flair-wrapper flair-eyebrow-wrapper",
+      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+        className: calculateClassName()
+      }),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-          className: calculateClassName()
-        }),
+        class: "flair-eyebrow",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
           tagName: getElement(element),
           className: "eyebrow",

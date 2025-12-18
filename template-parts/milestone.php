@@ -18,7 +18,7 @@ if( isset( $attributes['layout'] ) ) {
 	<div class="flair-milestone">
 		<div class="timeline"></div>
 		<div class="details">
-			<div class="date"><?php echo $attributes['date']; ?></div>
+			<div class="date flair-eyebrow"><?php echo $attributes['date']; ?></div>
 			<?php echo $args['content']; ?>
 		</div>
 	</div>

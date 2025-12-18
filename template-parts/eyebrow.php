@@ -3,7 +3,7 @@
 $attributes = $args['attributes'];
 
 
-$classes = ['flair-eyebrow'];
+$classes = ['flair-wrapper flair-eyebrow-wrapper'];
 // if( isset( $attributes['marker'] ) ) {
 // 	$classes[] = 'marker-' . $attributes['marker'] ;
 // }
@@ -16,8 +16,8 @@ if( ! empty ( $attributes['element'] ) ) {
 }
 
 ?>
-<div class="flair-wrapper flair-eyebrow-wrapper">
-	<<?php echo $element ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+	<<?php echo $element ?> class="flair-eyebrow">
 		<?php echo $attributes['content']; ?>
 	</<?php echo $element ?>>
 </div>

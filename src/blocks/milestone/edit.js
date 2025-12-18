@@ -152,7 +152,7 @@ export default function Edit({ attributes, setAttributes }) {
 				<div class="details">
 					<RichText
 					tagName='div'
-					className='eyebrow'
+					className='date flair-eyebrow'
 					placeholder={__('Apr 30')}
 					value={attributes.date}
 					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
