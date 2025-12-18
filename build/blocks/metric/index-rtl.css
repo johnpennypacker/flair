@@ -3,8 +3,8 @@
   \******************************************************************************************************************************************************************************************************************************************************/
 :where(.flair-metric) [role=textbox]:empty,
 :where(.flair-metric) [role=textbox].is-empty {
-  background-color: rgba(var(--color__base_700), 1);
-  color: rgba(var(--color__base_300), 1);
+  background-color: #ddd;
+  color: #333;
 }
 :where(.flair-metric) em {
   font-style: normal;

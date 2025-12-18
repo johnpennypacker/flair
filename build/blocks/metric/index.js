@@ -54,7 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const calculateClassName = () => {
-  let c = ['flair-metric'];
+  let c = ['flair-wrapper flair-metric-wrapper'];
   return c.join(' ');
 };
 
@@ -71,11 +71,11 @@ function Edit({
   setAttributes
 }) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-    class: "flair-wrapper flair-metric-wrapper",
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+      className: calculateClassName()
+    }),
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-        className: calculateClassName()
-      }),
+      class: "flair-metric",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
         ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
         tagName: "em",

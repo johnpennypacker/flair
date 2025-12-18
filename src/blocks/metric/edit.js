@@ -28,7 +28,7 @@ import './editor.scss';
 
 
 const calculateClassName = () => {
-	let c = ['flair-metric'];
+	let c = ['flair-wrapper flair-metric-wrapper'];
 	return c.join(' ');
 }
 
@@ -43,8 +43,8 @@ const calculateClassName = () => {
 export default function Edit({ attributes, setAttributes }) {
 
 	return (
-		<div class="flair-wrapper flair-metric-wrapper">
-			<div { ...useBlockProps({ className:calculateClassName() }) }>
+		<div { ...useBlockProps({ className:calculateClassName() }) }>
+			<div class="flair-metric">
 					<RichText
 					{ ...useBlockProps() }
 					tagName='em'
