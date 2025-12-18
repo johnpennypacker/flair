@@ -2,7 +2,7 @@
 
 $attributes = $args['attributes'];
 
-$classes = ['flair-card'];
+$classes = ['flair-card-wrapper'];
 if( isset( $attributes['orientation'] ) ) {
 	$classes[] = 'orientation-' . $attributes['orientation'] ;
 }
@@ -13,8 +13,8 @@ if( isset( $attributes['aspect'] ) ) {
 //  echo '<pre>', print_r($attributes, TRUE), '</pre>';
 
 ?>
-<div class="flair-card-wrapper">
-	<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+	<div class="flair-card">
 		<div class="text">
 			<?php if( isset( $attributes['title'] ) && isset( $attributes['href'] ) ): ?>
 			<<?php echo $attributes['heading'] ?> class="title">

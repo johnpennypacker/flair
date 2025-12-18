@@ -288,7 +288,7 @@ function Edit({
     });
   };
   const calculateClassName = () => {
-    let c = ['flair-card'];
+    let c = ['flair-wrapper flair-card-wrapper'];
     c.push('aspect-' + attributes.aspect);
     c.push('orientation-' + attributes.orientation);
     return c.join(' ');
@@ -356,11 +356,11 @@ function Edit({
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      class: "flair-wrapper flair-card-wrapper",
+      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+        className: calculateClassName()
+      }),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
-          className: calculateClassName()
-        }),
+        class: "flair-card",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           class: "text",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Heading, {

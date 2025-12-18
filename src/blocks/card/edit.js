@@ -239,7 +239,7 @@ export default function Edit({ attributes, setAttributes }) {
 	}
 
 	const calculateClassName = () => {
-		let c = ['flair-card'];
+		let c = ['flair-wrapper flair-card-wrapper'];
 		c.push( 'aspect-' + attributes.aspect );
 		c.push( 'orientation-' + attributes.orientation );
 		return c.join(' ');
@@ -311,8 +311,8 @@ export default function Edit({ attributes, setAttributes }) {
 				<PanelRow><fieldset>{aspectRatioToggles()}</fieldset></PanelRow>
 			</PanelBody>
 		</InspectorControls>
-		<div class="flair-wrapper flair-card-wrapper">
-			<div { ...useBlockProps({ className:calculateClassName() }) }>
+		<div { ...useBlockProps({ className:calculateClassName() }) }>
+			<div class="flair-card">
 				<div class="text">
 					<Heading class="title">
 					<RichText

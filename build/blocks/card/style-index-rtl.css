@@ -71,11 +71,6 @@
   z-index: 99;
   pointer-events: auto;
 }
-:where(.flair-card):where([class*=aspect]):not([class*=aspect-none]) .media img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  height: 100%;
-}
 :where(.flair-card)::before {
   box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 85%);
   content: "";
@@ -96,26 +91,31 @@
 :where(.flair-card):focus-within .media img, :where(.flair-card):hover .media img {
   transform: scale(1.03);
 }
+:where(.flair-card-wrapper[class*=aspect]):not([class*=aspect-none]) .media img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
 .flair-card-wrapper {
   container-name: flair-card;
   container-type: inline-size;
 }
-:where(.flair-card.orientation-horizontal) {
+:where(.flair-card-wrapper.orientation-horizontal) .flair-card {
   flex-direction: row;
   align-items: stretch;
   justify-content: stretch;
 }
-:where(.flair-card.orientation-horizontal) .media {
+:where(.flair-card-wrapper.orientation-horizontal) .flair-card .media {
   margin-block-end: 0;
   max-width: 50%;
 }
 @container flair-card (width > 600px) {
-  :where(.flair-card:not(.orientation-vertical)) {
+  :where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card {
     flex-direction: row;
     align-items: stretch;
     justify-content: stretch;
   }
-  :where(.flair-card:not(.orientation-vertical)) .media {
+  :where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card .media {
     margin-block-end: 0;
     max-width: 50%;
   }

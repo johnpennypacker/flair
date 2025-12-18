@@ -77,16 +77,6 @@
 		}
 	}
 
-	&:where([class*='aspect']):not([class*='aspect-none']) {
-		.media {
-			img {
-				object-fit: cover;
-				height: 100%;
-			}
-		}
-	}
-
-
 	&::before {
 		box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 85%);
 		content: '';
@@ -109,6 +99,15 @@
 
 }
 
+:where(.flair-card-wrapper[class*='aspect']):not([class*='aspect-none']) {
+	.media {
+		img {
+			object-fit: cover;
+			height: 100%;
+		}
+	}
+}
+
 // for whatever reason; using a mixin wrecks the container query.  so don't do that.
 // %f-card-h {
 // 	flex-direction: row;
@@ -125,7 +124,7 @@
 	container-type: inline-size;
 }
 
-:where(.flair-card.orientation-horizontal) {
+:where(.flair-card-wrapper.orientation-horizontal) .flair-card {
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: stretch;
@@ -135,7 +134,7 @@
 	}
 }
 @container flair-card (width > 600px) {
-	:where(.flair-card:not(.orientation-vertical)) {
+	:where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card {
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: stretch;
