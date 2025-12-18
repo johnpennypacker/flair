@@ -1,10 +1,13 @@
-:where( .flair-milestone ) {
+:where( .flair-milestone-wrapper ) {
 	--timeline_width: 4px;
 	--space_buffer: var(--flair-font-size, 1em);
+}
+:where( .flair-milestone ) {
 	align-items: stretch;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	gap: calc( var(--space_buffer) * 2 );
 	justify-content: flex-start;
 // 	margin-bottom: calc( var(--space_buffer) * 2 );
 	margin-block-end: 0;
@@ -12,7 +15,7 @@
 
 	.details {
 		padding-block: 1rem;
-		padding-left: calc( var(--space_buffer) * 2 );
+// 		padding-left: calc( var(--space_buffer) * 2 );
 	}
 	.details .date + p {
 		margin-top: 0;
@@ -30,12 +33,9 @@
 
 }
 
-.flair-milestone-wrapper + .flair-milestone-wrapper {
-	margin-block-start: calc( var(--space_buffer) * -2 ) !important;
+.flair-milestone-wrapper + .flair-milestone-wrapper  {
+	margin-block-start: 0 !important;
 }
-
-
-
 
 
 
@@ -70,4 +70,57 @@
 	transform: rotate(45deg);
 }
 .flair-milestone[class*='square'] .timeline::before {
+}
+
+
+
+:where(.flair-milestone) {
+	&.layout-right {
+		flex-direction: row-reverse;
+	}
+	&.layout-center-left {
+		margin-inline-start: calc( 50% - var( --space_buffer ) - ( var( --timeline_width ) / 2 ) );
+	}
+	&.layout-center-right {
+		flex-direction: row-reverse;
+		margin-inline-end: calc( 50% - var( --space_buffer ) - ( var( --timeline_width ) / 2 ) );
+	}
+}
+
+
+/**
+ * the line can be in one of three places: left, center, right.
+ */
+
+/** draw a line from L to R or R to L **/
+.flair-milestone-wrapper:has(.layout-left) + .flair-milestone-wrapper:has(.layout-right)::before,
+.flair-milestone-wrapper:has(.layout-right) + .flair-milestone-wrapper:has(.layout-left)::before, {
+	border-block-start: var( --timeline_width ) solid var( --flair-color-primary );
+	content: '';
+	display: block;
+	margin: 0 var(--space_buffer);
+}
+
+/** draw a line from C to L or L to C **/
+.flair-milestone-wrapper:has(.layout-left) + .flair-milestone-wrapper:has(.layout-center-left)::before,
+.flair-milestone-wrapper:has(.layout-left) + .flair-milestone-wrapper:has(.layout-center-right)::before,
+.flair-milestone-wrapper:has(.layout-center-right) + .flair-milestone-wrapper:has(.layout-left)::before,
+.flair-milestone-wrapper:has(.layout-center-left) + .flair-milestone-wrapper:has(.layout-left)::before {
+	border-block-start: var( --timeline_width ) solid var( --flair-color-primary );
+	content: '';
+	display: block;
+	margin-inline-start: var(--space_buffer);
+	margin-inline-end: calc( 50% - ( var( --timeline_width ) / 2 ) );
+}
+
+/** draw a line from C to R or R to C **/
+.flair-milestone-wrapper:has(.layout-right) + .flair-milestone-wrapper:has(.layout-center-left)::before,
+.flair-milestone-wrapper:has(.layout-right) + .flair-milestone-wrapper:has(.layout-center-right)::before,
+.flair-milestone-wrapper:has(.layout-center-left) + .flair-milestone-wrapper:has(.layout-right)::before,
+.flair-milestone-wrapper:has(.layout-center-right) + .flair-milestone-wrapper:has(.layout-right)::before {
+	border-block-start: var( --timeline_width ) solid var( --flair-color-primary );
+	content: '';
+	display: block;
+	margin-inline-end: var(--space_buffer);
+	margin-inline-start: calc( 50% - ( var( --timeline_width ) / 2 ) );
 }

@@ -81,6 +81,7 @@ const markers = [{
 const calculateClassName = attributes => {
   let c = ['flair-milestone'];
   c.push('marker-' + attributes.marker);
+  c.push('layout-' + attributes.layout);
   return c.join(' ');
 };
 
