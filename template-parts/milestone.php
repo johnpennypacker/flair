@@ -3,7 +3,7 @@
 $attributes = $args['attributes'];
 
 
-$classes = ['flair-milestone'];
+$classes = ['flair-milestone-wrapper'];
 if( isset( $attributes['marker'] ) ) {
 	$classes[] = 'marker-' . $attributes['marker'] ;
 }
@@ -14,8 +14,8 @@ if( isset( $attributes['layout'] ) ) {
 // echo '<pre>', print_r($content, TRUE), '</pre>';
 
 ?>
-<div class="flair-wrapper flair-milestone-wrapper">
-	<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+	<div class="flair-milestone">
 		<div class="timeline"></div>
 		<div class="details">
 			<div class="date"><?php echo $attributes['date']; ?></div>

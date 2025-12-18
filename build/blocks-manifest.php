@@ -183,6 +183,7 @@ return array(
 			
 		),
 		'supports' => array(
+			'color' => true,
 			'html' => false
 		),
 		'textdomain' => 'flair',

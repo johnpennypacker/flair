@@ -49,7 +49,7 @@ const markers = [
 ];
 
 const calculateClassName = (attributes) => {
-	let c = ['flair-milestone'];
+	let c = ['flair-wrapper flair-milestone-wrapper'];
 	c.push('marker-' + attributes.marker);
 	c.push('layout-' + attributes.layout);
 	return c.join(' ');
@@ -146,8 +146,8 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelRow>
 			</PanelBody>
 		</InspectorControls>
-		<div class="flair-wrapper flair-milestone-wrapper">
-			<div { ...useBlockProps({ className:calculateClassName(attributes) }) }>
+		<div  { ...useBlockProps({ className:calculateClassName(attributes) }) }>
+			<div class="flair-milestone">
 				<div class="timeline" />
 				<div class="details">
 					<RichText

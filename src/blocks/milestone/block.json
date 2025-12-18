@@ -9,6 +9,7 @@
 	"keywords": [ "date", "milestone", "timeline" ],
 	"example": {},
 	"supports": {
+		"color": true,
 		"html": false
 	},
 	"textdomain": "flair",

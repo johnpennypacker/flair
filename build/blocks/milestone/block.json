@@ -13,6 +13,7 @@
   ],
   "example": {},
   "supports": {
+    "color": true,
     "html": false
   },
   "textdomain": "flair",
