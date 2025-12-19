@@ -40,7 +40,9 @@ const calculateClassName = () => {
  *
  * @return {Element} Element to render.
  */
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit(props) {
+
+	const { attributes, setAttributes, isSelected } = props;
 
 	return (
 		<div { ...useBlockProps({ className:calculateClassName() }) }>

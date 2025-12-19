@@ -55,7 +55,9 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit(props) {
+
+	const { attributes, setAttributes, isSelected } = props;
 
 	//console.log('atts', attributes);
 	//console.log( 'props', useBlockProps() );

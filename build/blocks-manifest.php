@@ -145,10 +145,8 @@ return array(
 			
 		),
 		'supports' => array(
-			'align' => array(
-				'left',
-				'right',
-				'center'
+			'typography' => array(
+				'textAlign' => true
 			)
 		),
 		'textdomain' => 'flair',
@@ -227,9 +225,11 @@ return array(
 		'supports' => array(
 			'color' => array(
 				'background' => 'true',
-				'gradients' => 'true'
+				'gradients' => 'true',
+				'text' => 'true'
 			),
-			'html' => false
+			'html' => false,
+			'splitting' => false
 		),
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',

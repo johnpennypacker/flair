@@ -94,10 +94,13 @@ __webpack_require__.r(__webpack_exports__);
  * @return {Element} Element to render.
  */
 
-function Edit({
-  attributes,
-  setAttributes
-}) {
+function Edit(props) {
+  const {
+    attributes,
+    setAttributes,
+    isSelected
+  } = props;
+
   //console.log('atts', attributes);
   //console.log( 'props', useBlockProps() );
 

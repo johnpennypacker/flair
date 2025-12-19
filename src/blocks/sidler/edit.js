@@ -11,11 +11,16 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { 
+import {
 	InspectorControls,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
+
+import {
+	createBlock,
+	getDefaultBlockName
+} from '@wordpress/blocks';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -33,7 +38,8 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit(props) {
+	const { attributes, setAttributes, isSelected } = props;
 	return (
 		<div { ...useBlockProps({
 			className: 'sidler'
@@ -43,10 +49,16 @@ export default function Edit({ attributes, setAttributes }) {
 			className='line'
 			value={attributes.content}
 			allowedFormats={['core/bold', 'core/italic']}
+			disableLineBreaks='true'
 			onChange={( value ) => {
-				setAttributes( { content: value } ); 
+				setAttributes( { content: value } );
 			}}
 			placeholder='sidle...'
+			__unstableOnSplitAtEnd={ () =>
+				props.insertBlocksAfter(
+					createBlock( getDefaultBlockName() )
+				)
+			}
 			></RichText>
 		</div>
 	);

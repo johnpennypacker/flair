@@ -1,3 +1,6 @@
+// this adds wp as a dependency so the code below doesn't run too early.
+import { __ } from '@wordpress/i18n';
+
 ( function() {
 
 	// enables all of the align supports on group blocks

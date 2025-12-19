@@ -6,13 +6,13 @@
  */
 
  :where(.sidler) {
-	color: inherit;	
+	color: inherit;
 	margin-block-end: 6rem;
 	position: relative;
- 	width: 100vw;	
+ 	width: 100vw;
 
 	.line {
-		--start: calc(1px * var(--width));
+		--start: calc(1px * var(--line-width));
 		--range: calc(var(--start) + calc(1px * var(--line-width)));
 		--pct: var(--mid-percent);
 		font-size: 40vh;
@@ -20,11 +20,11 @@
 
 		white-space: nowrap;
 		min-width: fit-content;
-		mix-blend-mode: exclusion;
+// 		mix-blend-mode: exclusion;
 		position: relative;
 
 		transform: translateX(calc(var(--start) - calc(var(--range) * var(--pct))));
-		transition: .1s transform ease;
+
 	}
 
 	&.rtl .line,

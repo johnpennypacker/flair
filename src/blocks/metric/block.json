@@ -25,7 +25,9 @@
 		}
 	},
 	"supports": {
-		"align": ["left", "right", "center"]
+		"typography": {
+			"textAlign": true
+		}
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
