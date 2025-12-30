@@ -53,6 +53,9 @@
 		"attribution": {
 			"type": "string"
 		},
+		"button": {
+			"type": "string"
+		},
 		"orientation": {
 			"type": "string",
 			"default": "auto"

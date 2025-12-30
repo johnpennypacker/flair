@@ -31,7 +31,7 @@ var link_default = /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE
   \************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/card","version":"0.2.0","title":"Card","category":"flair","description":"It\'s like a link with tons of context.","example":{},"supports":{"align":["left","right","center","wide"],"html":false},"attributes":{"href":{"type":"string","default":"#"},"target":{"type":"string"},"asset":{"type":"object","selector":".media img","default":{"url":null},"id":{"type":"number"},"url":{"type":"string","source":"attribute","attribute":"src"},"alt":{"type":"string","source":"attribute","attribute":"alt"}},"title":{"type":"string"},"meta":{"type":"string","source":"html","selector":".meta"},"excerpt":{"type":"string"},"attribution":{"type":"string"},"orientation":{"type":"string","default":"auto"},"aspect":{"type":"string","default":"none"},"heading":{"type":"string","default":"h3"},"call":{"type":"string","source":"text","selector":".call"}},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./card.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/card","version":"0.2.0","title":"Card","category":"flair","description":"It\'s like a link with tons of context.","example":{},"supports":{"align":["left","right","center","wide"],"html":false},"attributes":{"href":{"type":"string","default":"#"},"target":{"type":"string"},"asset":{"type":"object","selector":".media img","default":{"url":null},"id":{"type":"number"},"url":{"type":"string","source":"attribute","attribute":"src"},"alt":{"type":"string","source":"attribute","attribute":"alt"}},"title":{"type":"string"},"meta":{"type":"string","source":"html","selector":".meta"},"excerpt":{"type":"string"},"attribution":{"type":"string"},"button":{"type":"string"},"orientation":{"type":"string","default":"auto"},"aspect":{"type":"string","default":"none"},"heading":{"type":"string","default":"h3"},"call":{"type":"string","source":"text","selector":".call"}},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./card.js","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -369,7 +369,6 @@ function Edit(props) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Heading, {
             class: "title",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-              ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
               tagName: "a",
               className: "link",
               placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('My card'),
@@ -382,7 +381,6 @@ function Edit(props) {
               }
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-            ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
             tagName: "p",
             className: "excerpt",
             placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The body of my great card'),
@@ -394,7 +392,6 @@ function Edit(props) {
               });
             }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-            ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
             tagName: "small",
             className: "attribution",
             placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Anonymous'),
@@ -403,6 +400,17 @@ function Edit(props) {
             onChange: value => {
               setAttributes({
                 attribution: value
+              });
+            }
+          }), (attributes.button || isSelected) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+            tagName: "p",
+            className: "button",
+            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Explore'),
+            value: attributes.button,
+            allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
+            onChange: value => {
+              setAttributes({
+                button: value
               });
             }
           })]

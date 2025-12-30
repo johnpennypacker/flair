@@ -39,7 +39,7 @@
     e.target.style.setProperty('--mouse-y-pct', e.offsetY / e.target.offsetHeight);
   }
 
-  /** 
+  /**
    * Seeds random numbers to css vars
    */
   function changeRando() {

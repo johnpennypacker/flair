@@ -49,8 +49,22 @@
   font-weight: bold;
   font-size: calc(var(--flair-font-size) * 1.25);
 }
-:where(.flair-card) .excerpt {
+:where(.flair-card) .excerpt, :where(.flair-card) .button {
   font-size: calc(var(--flair-font-size) * 1);
+}
+:where(.flair-card) .button {
+  color: var(--flair-color-secondary);
+  margin-inline: calc(var(--flair-font-size) * -1.5);
+  margin-block-end: calc(var(--flair-font-size) * -1.5) !important;
+  padding: calc(var(--flair-font-size) * 1.5);
+  transition: all 0.2s ease;
+}
+:where(.flair-card) .button::before {
+  content: "";
+  display: block;
+  border-block-start: 1px solid color-mix(in srgb, var(--flair-color-secondary), transparent 80%);
+  margin-block-start: calc(var(--flair-font-size) * -1.5) !important;
+  margin-block-end: calc(var(--flair-font-size) * 1.5) !important;
 }
 :where(.flair-card) .attribution {
   font-size: calc(var(--flair-font-size) * 0.875);
@@ -90,6 +104,11 @@
 }
 :where(.flair-card):focus-within .media img, :where(.flair-card):hover .media img {
   transform: scale(1.03);
+}
+:where(.flair-card):focus-within .button, :where(.flair-card):hover .button {
+  background-color: color-mix(in srgb, var(--flair-color-secondary), transparent 50%);
+  color: var(--flair-color-primary);
+  transition: all 0.2s ease;
 }
 :where(.flair-card-wrapper[class*=aspect]):not([class*=aspect-none]) .media img {
   -o-object-fit: cover;

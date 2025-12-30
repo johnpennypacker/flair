@@ -63,6 +63,9 @@ return array(
 			'attribution' => array(
 				'type' => 'string'
 			),
+			'button' => array(
+				'type' => 'string'
+			),
 			'orientation' => array(
 				'type' => 'string',
 				'default' => 'auto'

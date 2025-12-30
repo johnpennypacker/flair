@@ -318,7 +318,6 @@ export default function Edit(props) {
 				<div class="text">
 					<Heading class="title">
 					<RichText
-					{ ...useBlockProps() }
 					tagName='a'
 					className='link'
 					placeholder={__('My card')}
@@ -332,7 +331,6 @@ export default function Edit(props) {
 					/>
 					</Heading>
 					<RichText
-					{ ...useBlockProps() }
 					tagName='p'
 					className='excerpt'
 					placeholder={__('The body of my great card')}
@@ -345,7 +343,6 @@ export default function Edit(props) {
 					}}
 					/>
 					<RichText
-					{ ...useBlockProps() }
 					tagName='small'
 					className='attribution'
 					placeholder={__('Anonymous')}
@@ -357,6 +354,21 @@ export default function Edit(props) {
 						});
 					}}
 					/>
+					{ (attributes.button || isSelected) && (
+						<RichText
+						tagName='p'
+						className='button'
+						placeholder={__('Explore')}
+						value={attributes.button}
+						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+						onChange={( value ) => {
+							setAttributes({
+								button: value
+							});
+						}}
+						/>
+					)
+					}
 				</div>
 				{ mediaElement() }
 			</div>

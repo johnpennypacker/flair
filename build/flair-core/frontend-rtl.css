@@ -136,3 +136,75 @@ button.flair-toggle-x:hover {
 .open .flair-toggle-x::after {
   transform: rotate(-225deg);
 }
+
+.arrow-start, .arrow-end {
+  --weight: 2px;
+  background-color: pink;
+  position: relative;
+}
+
+.arrow-start:before, .arrow-end:before, .arrow-start:after, .arrow-end:after {
+  box-sizing: content-box;
+  content: "";
+  display: block;
+  position: absolute;
+}
+
+.arrow-start:before, .arrow-end:before {
+  border-top: var(--weight) solid currentColor;
+  height: 0;
+  width: 0;
+  transition: all 0.15s ease;
+  top: 50%;
+}
+
+.arrow-start:after, .arrow-end:after {
+  border: var(--weight) solid currentColor;
+  border-width: var(--weight) 0 0 var(--weight);
+  transform: translateX(0) rotateZ(-45deg);
+  transition: all 0.2s ease;
+  height: 0.5em;
+  width: 0.5em;
+  top: calc(50% - 0.25em);
+}
+
+.arrow-start:hover:before, .arrow-end:hover:before {
+  width: 1em;
+}
+
+.arrow-start:hover:after, .arrow-end:hover:after {
+  transform: translateX(-1em) rotateZ(-45deg);
+}
+
+.arrow-end {
+  padding-inline-end: 2em;
+}
+
+.arrow-end:before {
+  right: calc(100% - 1em);
+}
+
+.arrow-end:after {
+  left: 1em;
+}
+
+.arrow-start {
+  padding-inline-start: 2em;
+}
+
+.arrow-start:before {
+  right: 1em;
+}
+
+.arrow-start:after {
+  border-width: 0 var(--weight) var(--weight) 0;
+  right: 1em;
+}
+
+.arrow-start:hover:before {
+  transform: translateX(calc(-1*(-1em + var(--weight))));
+}
+
+.arrow-start:hover:after {
+  transform: translateX(calc(-1*(-1em + var(--weight)))) rotateZ(-45deg);
+}

@@ -1,9 +1,9 @@
 ( function() {
 
 	var links;
-	
+
 	document.addEventListener('DOMContentLoaded', initFlair);
-	
+
 	function initFlair() {
 		/** add hover x and y coordinates to links and buttons **/
 		links = document.querySelectorAll('a, button, .button');
@@ -29,10 +29,10 @@
 		}
 
 		// setInterval(changeRando, 1000);
-		
+
 	}
 
-	
+
 	function buttonFlair(e) {
 		const x = e.pageX - e.target.offsetX;
 		const y = e.pageY - e.target.offsetY;
@@ -44,7 +44,7 @@
 
 	}
 
-	/** 
+	/**
 	 * Seeds random numbers to css vars
 	 */
 	function changeRando() {
@@ -56,12 +56,12 @@
 	function observerCallback(entries, observer) {
 
 		entries.forEach(function(entry) {
-		
+
 			var ratio = entry.intersectionRatio;
 			var boundingRect = entry.boundingClientRect;
 			var intersectionRect = entry.intersectionRect;
 			var output;
-			
+
 			var targetElement = entry.target;
 
 			if (ratio === 0) {
@@ -74,13 +74,13 @@
 				}
 			} else {
 				output = 'inside';
-			}			
+			}
 
 			var top = entry.boundingClientRect.top;
 			var pct = 0;
 			var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 			var height = entry.boundingClientRect.height;
-			
+
 			targetElement.dataset.intersection = output;
 
 			// set the distance from the top of the element to the top of the viewport
@@ -96,7 +96,7 @@
 			} else {
 				targetElement.style.setProperty( '--intersection-ratio', entry.intersectionRatio );
 			}
-			
+
 		});
 	}
 

@@ -30,6 +30,9 @@ if( isset( $attributes['aspect'] ) ) {
 			<?php if( isset( $attributes['attribution'] ) && ! empty( trim( $attributes['attribution'] ) ) ): ?>
 			<small class="attribution"><?php echo $attributes['attribution']; ?></small>
 			<?php endif; ?>
+			<?php if( isset( $attributes['button'] ) && ! empty( trim( $attributes['button'] ) ) ): ?>
+			<p class="button"><?php echo $attributes['button']; ?></p>
+			<?php endif; ?>
 		</div>
 		<div class="media">
 			<?php if( ! empty( $attributes['asset']['url'] ) ): ?>

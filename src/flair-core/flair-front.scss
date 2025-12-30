@@ -132,3 +132,72 @@ button.flair-toggle-x:hover {
 .open .flair-toggle-x::after {
 	transform: rotate(225deg);
 }
+
+%arrow {
+	--weight: 2px;
+	background-color: pink;
+	position: relative;
+	&:before,
+	&:after {
+		box-sizing: content-box;
+		content: '';
+		display: block;
+		position: absolute;
+	}
+	&:before {
+		border-top: var( --weight ) solid currentColor;
+		height: 0;
+		width: 0;
+		transition: all .15s ease;
+		top: calc( 50% );
+	}
+	&:after {
+		border: var( --weight ) solid currentColor;
+		border-width: var( --weight ) var( --weight ) 0 0;
+		transform: translateX(0) rotateZ(45deg);
+		transition: all .2s ease;
+		height: .5em;
+		width: .5em;
+		top: calc( 50% - .25em );
+	}
+	&:hover {
+		&:before {
+			width: 1em;
+		}
+		&:after {
+			transform: translateX(1em) rotateZ(45deg);
+		}
+	}
+}
+
+.arrow-end {
+	@extend %arrow;
+	padding-inline-end: 2em;
+	&:before {
+		left: calc(100% - 1em);
+	}
+	&:after {
+		right: 1em;
+	}
+}
+
+.arrow-start {
+	@extend %arrow;
+	padding-inline-start: 2em;
+	&:before {
+		left: 1em;
+	}
+	&:after {
+		border-width: 0 0 var( --weight ) var( --weight );
+		left: 1em;
+	}
+	&:hover {
+		&:before {
+			transform: translateX( calc( -1em + var( --weight ) ) );
+		}
+		&:after {
+			transform: translateX( calc( -1em + var( --weight ) ) ) rotateZ(45deg);
+		}
+	}
+}
+
