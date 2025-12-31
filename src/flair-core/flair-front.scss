@@ -149,7 +149,7 @@ button.flair-toggle-x:hover {
 		height: 0;
 		width: 0;
 		transition: all .15s ease;
-		top: calc( 50% );
+		top: 50%;
 	}
 	&:after {
 		border: var( --weight ) solid currentColor;

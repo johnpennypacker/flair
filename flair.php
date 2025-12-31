@@ -142,3 +142,56 @@ function flair_use_template( $template_name, $attributes, $block, $content ) {
 	return load_template( $template, FALSE, ['attributes' => $attributes, 'block' => $block, 'content' => $content ] );
 
 }
+
+
+
+
+
+
+
+function flair_add_list_option_to_columns() {
+	register_block_style( 'core/columns', array(
+		'name'         => 'list',
+		'label'        => __( 'List', 'flair' ),
+		'inline_style' => '.wp-block-image.is-style-hand-drawn img {
+			border: 2px solid currentColor;
+			overflow: hidden;
+			box-shadow: 0 4px  10px 0 rgba( 0, 0, 0, 0.3 );
+			border-radius: 255px 15px 225px 15px/15px 225px 15px 255px !important;
+		}'
+    ) );
+}
+add_action( 'init', 'flair_add_list_option_to_columns' );
+
+
+
+function flair_columns_to_list( $block_content, $block ) {
+
+	if( isset( $block['attrs']['className'] ) && 'is-style-list' == $block['attrs']['className'] ) {
+		// Add the custom class to the block content using the HTML API.
+		$processor = new WP_HTML_Tag_Processor( $block_content );
+
+		if( $processor->next_tag( array( 'class_name' => 'wp-block-columns' ) ) ) {
+			$processor->add_class( 'example-class' );
+		}
+
+// 		echo '<pre>';
+// 		var_dump( $cols );
+// 		echo '</pre>';
+
+
+		if ( $processor->next_tag( 'p' ) ) {
+			$processor->add_class( 'example-class' );
+		}
+
+
+
+		return $processor->get_updated_html();
+
+	}
+
+}
+add_filter( 'render_block_core/columns', 'flair_columns_to_list', 10, 2 );
+
+
+

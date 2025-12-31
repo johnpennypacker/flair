@@ -27,6 +27,9 @@
   width: 100%;
 }
 :where(.flair-card) .text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
   order: 2;
   padding: calc(var(--flair-font-size) * 1.5);
   z-index: 1;
@@ -77,6 +80,7 @@
 }
 :where(.flair-card) .excerpt {
   flex-grow: 1;
+  margin-block-start: 0;
   pointer-events: none;
   z-index: 2;
 }

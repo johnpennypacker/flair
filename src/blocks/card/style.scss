@@ -29,6 +29,9 @@
 	}
 
 	.text {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 2;
 		order: 2;
 		padding: calc(var(--flair-font-size) * 1.5);
 		z-index: 1;
@@ -84,6 +87,7 @@
 
 	.excerpt {
 		flex-grow: 1;
+		margin-block-start: 0;
 		pointer-events: none;
 		z-index: 2;
 		a {
@@ -153,16 +157,19 @@
 		margin-block-end: 0;
 		max-width: 50%;
 	}
+	.text {
+
+	}
 }
 @container flair-card (width > 600px) {
 	:where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card {
-	flex-direction: row;
-	align-items: stretch;
-	justify-content: stretch;
-	.media {
-		margin-block-end: 0;
-		max-width: 50%;
-	}
+		flex-direction: row;
+		align-items: stretch;
+		justify-content: stretch;
+		.media {
+			margin-block-end: 0;
+			max-width: 50%;
+		}
 	}
 }
 
