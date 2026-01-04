@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 
 /**
- * 
+ *
  */
 
 const {
@@ -107,6 +107,7 @@ registerBlockVariation('core/cover',
   title: __('Fixie', 'flair'),
   description: __('A fullscreen fixed segment with scrolling foreground.', 'flair'),
   isDefault: false,
+  category: 'flair',
   attributes: {
     className: 'flair-fixie'
   },

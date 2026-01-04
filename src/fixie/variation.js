@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 const { registerBlockVariation } = wp.blocks;
@@ -12,7 +12,8 @@ registerBlockVariation(
 		title: __('Fixie', 'flair'),
 		description: __('A fullscreen fixed segment with scrolling foreground.', 'flair'),
 		isDefault: false,
-		attributes: { 
+		category: 'flair',
+		attributes: {
 			className: 'flair-fixie'
 		},
 		scope: ['inserter'],
