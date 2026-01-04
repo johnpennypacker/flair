@@ -15,6 +15,16 @@
 	--flair-color-secondary: #9a7500;
 }
 
+ul.wp-block-columns {
+	margin-inline-start: 0;
+	padding-inline-start: 0;
+	li.wp-block-column {
+		display: block;
+		list-style: none;
+	}
+}
+
+
 /*
 @media (prefers-color-scheme: dark) {
 	:root {

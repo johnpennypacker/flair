@@ -164,34 +164,49 @@ function flair_add_list_option_to_columns() {
 add_action( 'init', 'flair_add_list_option_to_columns' );
 
 
-
 function flair_columns_to_list( $block_content, $block ) {
 
 	if( isset( $block['attrs']['className'] ) && 'is-style-list' == $block['attrs']['className'] ) {
-		// Add the custom class to the block content using the HTML API.
-		$processor = new WP_HTML_Tag_Processor( $block_content );
 
-		if( $processor->next_tag( array( 'class_name' => 'wp-block-columns' ) ) ) {
-			$processor->add_class( 'example-class' );
+		$dom = new DOMDocument();
+
+		libxml_use_internal_errors( TRUE ); // suppresses warnings about svg elements, etc.
+		@$dom->loadHTML( '<?xml encoding="utf-8" ?>' . $block_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+		$xpath = new DOMXPath( $dom );
+
+    $col = $xpath->query("//*[contains(@class, 'wp-block-column')]");
+		foreach ($col as $div) {
+			$ul = flair_change_tag_name( $div, 'li' );
 		}
 
-// 		echo '<pre>';
-// 		var_dump( $cols );
-// 		echo '</pre>';
-
-
-		if ( $processor->next_tag( 'p' ) ) {
-			$processor->add_class( 'example-class' );
+    $cols = $xpath->query("//*[contains(@class, 'wp-block-columns')]");
+		foreach ($cols as $div) {
+			$ul = flair_change_tag_name( $div, 'ul' );
 		}
 
-
-
-		return $processor->get_updated_html();
+		$block_content = $dom->saveHTML();
 
 	}
-
+	return $block_content;
 }
 add_filter( 'render_block_core/columns', 'flair_columns_to_list', 10, 2 );
 
-
+function flair_change_tag_name( $node, $name ) {
+	$childnodes = array();
+	foreach ($node->childNodes as $child){
+		$childnodes[] = $child;
+	}
+	$newnode = $node->ownerDocument->createElement($name);
+	foreach ($childnodes as $child){
+		$child2 = $node->ownerDocument->importNode($child, true);
+		$newnode->appendChild($child2);
+	}
+	foreach ($node->attributes as $attrName => $attrNode) {
+		$attrName = $attrNode->nodeName;
+		$attrValue = $attrNode->nodeValue;
+		$newnode->setAttribute($attrName, $attrValue);
+	}
+	$node->parentNode->replaceChild($newnode, $node);
+	return $newnode;
+}
 
