@@ -342,6 +342,7 @@ export default function Edit(props) {
 						});
 					}}
 					/>
+					{ (attributes.attribution || isSelected) && (
 					<RichText
 					tagName='small'
 					className='attribution'
@@ -354,6 +355,8 @@ export default function Edit(props) {
 						});
 					}}
 					/>
+					)
+					}
 					{ (attributes.button || isSelected) && (
 						<RichText
 						tagName='p'
