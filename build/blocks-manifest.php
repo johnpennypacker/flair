@@ -1,6 +1,39 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'boxout' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/boxout',
+		'version' => '0.1.0',
+		'title' => 'Boxout',
+		'category' => 'flair',
+		'description' => 'Display related content',
+		'keywords' => array(
+			'boxout',
+			'sidebar',
+			'aside'
+		),
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'align' => true,
+			'color' => array(
+				'text' => true,
+				'link' => true,
+				'background' => true
+			)
+		),
+		'textdomain' => 'flair',
+		'attributes' => array(
+			
+		),
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'card' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

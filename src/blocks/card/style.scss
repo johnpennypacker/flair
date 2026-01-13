@@ -60,7 +60,7 @@
 	}
 	.button {
 // 		border-block-start: 1px solid color-mix(in srgb, var(--flair-color-secondary), transparent 80%);
-		color: var(--flair-color-secondary);
+		color: currentColor;
 		margin-inline: calc(var(--flair-font-size) * -1.5);
 		margin-block-end: calc(var(--flair-font-size) * -1.5) !important;
 		padding: calc(var(--flair-font-size) * 1.5);
@@ -69,19 +69,13 @@
 		&::before {
 			content: '';
 			display: block;
-			border-block-start: 1px solid color-mix(in srgb, var(--flair-color-secondary), transparent 80%);
+			border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 80%);
 			margin-block-start: calc(var(--flair-font-size) * -1.5) !important;
 			margin-block-end: calc(var(--flair-font-size) * 1.5) !important;
 		}
 	}
 	.attribution {
 		font-size: calc(var(--flair-font-size) * .875);
-	}
-	.call {
-		background-color: var(--flair-color-secondary);
-		padding: calc(var(--flair-font-size) * 1);
-		position: relative;
-		text-align: center;
 	}
 
 	.excerpt {
@@ -115,9 +109,12 @@
 			transform: scale(1.03);
 		}
 		.button {
-			background-color: color-mix(in srgb, var(--flair-color-secondary), transparent 50%);
+			background-color: color-mix(in srgb, currentColor, transparent 80%);
 			color: var(--flair-color-primary);
 			transition: all .2s ease;
+			&::before {
+				border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 100%);
+			}
 		}
 	}
 

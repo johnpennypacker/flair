@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flair/boxout",
+	"version": "0.1.0",
+	"title": "Boxout",
+	"category": "flair",
+	"description": "Display related content",
+	"keywords": [ "boxout", "sidebar", "aside" ],
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "flair",
+	"attributes": {
+	},
+	"supports": {
+		"align": true,
+		 "color": {
+			"text": true,
+			"link": true,
+			"background": true
+    }
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

@@ -55,7 +55,7 @@
   font-size: calc(var(--flair-font-size) * 1);
 }
 :where(.flair-card) .button {
-  color: var(--flair-color-secondary);
+  color: currentColor;
   margin-inline: calc(var(--flair-font-size) * -1.5);
   margin-block-end: calc(var(--flair-font-size) * -1.5) !important;
   padding: calc(var(--flair-font-size) * 1.5);
@@ -64,18 +64,12 @@
 :where(.flair-card) .button::before {
   content: "";
   display: block;
-  border-block-start: 1px solid color-mix(in srgb, var(--flair-color-secondary), transparent 80%);
+  border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 80%);
   margin-block-start: calc(var(--flair-font-size) * -1.5) !important;
   margin-block-end: calc(var(--flair-font-size) * 1.5) !important;
 }
 :where(.flair-card) .attribution {
   font-size: calc(var(--flair-font-size) * 0.875);
-}
-:where(.flair-card) .call {
-  background-color: var(--flair-color-secondary);
-  padding: calc(var(--flair-font-size) * 1);
-  position: relative;
-  text-align: center;
 }
 :where(.flair-card) .excerpt {
   flex-grow: 1;
@@ -109,9 +103,12 @@
   transform: scale(1.03);
 }
 :where(.flair-card):focus-within .button, :where(.flair-card):hover .button {
-  background-color: color-mix(in srgb, var(--flair-color-secondary), transparent 50%);
+  background-color: color-mix(in srgb, currentColor, transparent 80%);
   color: var(--flair-color-primary);
   transition: all 0.2s ease;
+}
+:where(.flair-card):focus-within .button::before, :where(.flair-card):hover .button::before {
+  border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 100%);
 }
 :where(.flair-card-wrapper[class*=aspect]):not([class*=aspect-none]) .media img {
   -o-object-fit: cover;
