@@ -1,7 +1,7 @@
 === Flair ===
 Contributors:      Flair team
 Tags:              block
-Tested up to:      6.7
+Tested up to:      6.9
 Stable tag:        0.1.0
 
 Example block scaffolded with Create Block tool.

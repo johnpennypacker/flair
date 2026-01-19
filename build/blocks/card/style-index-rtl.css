@@ -30,7 +30,8 @@
   flex-direction: column;
   flex-grow: 2;
   order: 2;
-  padding: calc(var(--flair-font-size) * 1.5);
+  padding: 1.5em;
+  padding: calc(var(--wp--style--block-gap, 1rem) * 1.5);
   z-index: 1;
 }
 :where(.flair-card) .text > :first-child {
@@ -49,27 +50,23 @@
 :where(.flair-card) .title {
   font-family: inherit;
   font-weight: bold;
-  font-size: calc(var(--flair-font-size) * 1.25);
-}
-:where(.flair-card) .excerpt, :where(.flair-card) .button {
-  font-size: calc(var(--flair-font-size) * 1);
 }
 :where(.flair-card) .button {
   color: currentColor;
-  margin-inline: calc(var(--flair-font-size) * -1.5);
-  margin-block-end: calc(var(--flair-font-size) * -1.5) !important;
-  padding: calc(var(--flair-font-size) * 1.5);
+  margin-inline: calc(var(--wp--style--block-gap, 1rem) * -1.5);
+  margin-block-end: calc(var(--wp--style--block-gap, 1rem) * -1.5) !important;
+  padding: calc(var(--wp--style--block-gap, 1rem) * 1.5);
   transition: all 0.2s ease;
 }
 :where(.flair-card) .button::before {
   content: "";
   display: block;
   border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 80%);
-  margin-block-start: calc(var(--flair-font-size) * -1.5) !important;
-  margin-block-end: calc(var(--flair-font-size) * 1.5) !important;
+  margin-block-start: calc(var(--wp--style--block-gap, 1rem) * -1.5);
+  margin-block-end: calc(var(--wp--style--block-gap, 1rem) * 1.5);
 }
 :where(.flair-card) .attribution {
-  font-size: calc(var(--flair-font-size) * 0.875);
+  font-size: 80%;
 }
 :where(.flair-card) .excerpt {
   flex-grow: 1;
@@ -128,6 +125,11 @@
   margin-block-end: 0;
   max-width: 50%;
 }
+:where(.flair-card-wrapper.orientation-horizontal).aspect-none img, :where(.flair-card-wrapper.orientation-horizontal):not([class*=aspect]) img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
 @container flair-card (width > 600px) {
   :where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card {
     flex-direction: row;
@@ -137,5 +139,10 @@
   :where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card .media {
     margin-block-end: 0;
     max-width: 50%;
+  }
+  .flair-card-wrapper.aspect-none img, .flair-card-wrapper:not([class*=aspect]) img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 100%;
   }
 }

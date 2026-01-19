@@ -1,0 +1,35 @@
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/kinetic/frontend.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes bob {
+  0% {
+    transform: translateX(-10rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+:where(.kinetic) span {
+  display: inline-block;
+  visibility: hidden;
+  transition: all 0.1s ease;
+  will-change: opacity, transform;
+}
+:where(.kinetic) span.visible {
+  visibility: visible;
+  animation: 0.1s linear pop;
+}
+:where(.kinetic) span.visible.period {
+  animation: 0.1s linear bob;
+  display: inline-block;
+}

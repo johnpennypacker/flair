@@ -27,6 +27,9 @@ module.exports = {
 
 		'iconic/iconic': '/src/iconic/iconic.scss',
 
+		'kinetic/kinetic-styles': '/src/kinetic/frontend.scss',
+		'kinetic/kinetic': '/src/kinetic/kinetic.js',
+
 		'zoomer/zoomer-styles': '/src/zoomer/zoomer.scss',
 		'zoomer/zoomer': '/src/zoomer/zoomer.js'
 

@@ -1,0 +1,33 @@
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: translateY( 1rem );
+  }
+  100% {
+    opacity: 1;
+    transform: translateY( 0 );
+  }
+}
+@keyframes bob {
+  0% {
+    transform: translateX( 10rem );
+  }
+  100% {
+    transform: translateX( 0 );
+  }
+}
+
+:where( .kinetic ) span {
+	display: inline-block;
+	visibility: hidden;
+	transition: all .1s ease;
+	will-change: opacity, transform;
+	&.visible {
+		visibility: visible;
+		animation: .1s linear pop;
+	}
+	&.visible.period {
+		animation: .1s linear bob;
+		display: inline-block;
+	}
+}
