@@ -8,7 +8,7 @@
  */
 function flair_iconic_enqueues() {
 	$asset = include FLAIR_PATH . 'build/flair-core/flair.asset.php';
-	wp_enqueue_style( 'flair-iconic', FLAIR_URL . 'build/kinetic/iconic.css', [], $asset['version'] );
+	wp_enqueue_style( 'flair-iconic', FLAIR_URL . 'build/iconic/iconic.css', [], $asset['version'] );
 }
 add_action( 'wp_enqueue_scripts', 'flair_iconic_enqueues' );
 

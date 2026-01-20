@@ -22,6 +22,7 @@ define( 'FLAIR_URL', plugin_dir_url( __FILE__ ) );
 include_once( 'build/flairousel/carousel.php' );
 include_once( 'build/fixie/index.php' );
 include_once( 'build/iconic/iconic.php' );
+include_once( 'build/kinetic/kinetic.php' );
 include_once( 'build/zoomer/zoomer.php' );
 
 /**
