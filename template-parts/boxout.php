@@ -8,9 +8,15 @@ if( isset( $attributes['orientation'] ) ) {
 }
 //  echo '<pre>', print_r($attributes, TRUE), '</pre>';
 
+$el = 'aside'; // the default;
+if( isset( $attributes['element'] ) ) {
+	$el = $attributes['element'];
+}
+
+
 ?>
-<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+<<?php echo $el; ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 	<div class="flair-boxout">
 		<?php echo $args['content']; ?>
 	</div>
-</div>
+</<?php echo $el; ?>>

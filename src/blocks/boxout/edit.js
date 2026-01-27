@@ -6,8 +6,15 @@
 import { __ } from '@wordpress/i18n';
 
 import {
-	InnerBlocks
+	InnerBlocks,
+	InspectorControls
 } from '@wordpress/block-editor';
+
+import {
+	PanelBody,
+	PanelRow,
+	SelectControl
+} from '@wordpress/components';
 
 
 /**
@@ -45,11 +52,36 @@ export default function Edit(props) {
 	const { attributes, setAttributes, isSelected } = props;
 
 	return (
+		<>
+		<InspectorControls>
+			<PanelBody
+				title={ __( 'Boxout properties', 'flair' ) }
+			>
+				<PanelRow>
+					<SelectControl
+							label="HTML Element"
+							value={ attributes.element }
+							options={ [
+								{ label: 'Default (<aside>)', value: 'aside' },
+								{ label: '<div>', value: 'div' },
+								{ label: '<section>', value: 'section' },
+							] }
+							onChange={( value ) => {
+								setAttributes({
+									element: value
+								});
+							}}
+							__next40pxDefaultSize
+					/>
+				</PanelRow>
+			</PanelBody>
+		</InspectorControls>
 		<div { ...useBlockProps({ className:calculateClassName() }) }>
 			<div class="flair-boxout">
 				<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} directInsert />
 			</div>
 		</div>
+	</>
 	);
 
 

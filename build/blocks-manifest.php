@@ -19,15 +19,28 @@ return array(
 		),
 		'supports' => array(
 			'align' => true,
+			'anchor' => true,
 			'color' => array(
 				'text' => true,
 				'link' => true,
 				'background' => true
+			),
+			'shadow' => true,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => false
+			),
+			'typography' => array(
+				'textAlign' => true
 			)
 		),
 		'textdomain' => 'flair',
 		'attributes' => array(
-			
+			'element' => array(
+				'type' => 'string',
+				'default' => 'aside'
+			)
 		),
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
