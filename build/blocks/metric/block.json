@@ -14,6 +14,18 @@
   ],
   "example": {},
   "supports": {
+    "anchor": true,
+    "color": {
+      "text": true,
+      "link": true,
+      "background": true
+    },
+    "shadow": false,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": false
+    },
     "typography": {
       "textAlign": true
     }

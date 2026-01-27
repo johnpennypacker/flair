@@ -48,7 +48,6 @@ export default function Edit(props) {
 		<div { ...useBlockProps({ className:calculateClassName() }) }>
 			<div class="flair-metric">
 					<RichText
-					{ ...useBlockProps() }
 					tagName='em'
 					className=''
 					disableLineBreaks='true'
@@ -62,7 +61,6 @@ export default function Edit(props) {
 					}}
 					/>
 					<RichText
-					{ ...useBlockProps() }
 					tagName='span'
 					className='qualifier'
 					disableLineBreaks='true'

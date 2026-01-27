@@ -194,6 +194,18 @@ return array(
 			
 		),
 		'supports' => array(
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'link' => true,
+				'background' => true
+			),
+			'shadow' => false,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => false
+			),
 			'typography' => array(
 				'textAlign' => true
 			)
