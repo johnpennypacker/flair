@@ -176,6 +176,30 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'layer' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/layer',
+		'version' => '0.1.0',
+		'title' => 'Layer',
+		'category' => 'flair',
+		'description' => 'A layer of content within a stack.',
+		'example' => array(
+			
+		),
+		'parent' => array(
+			'flair/stack'
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'flair',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'metric' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -291,6 +315,30 @@ return array(
 			),
 			'html' => false,
 			'splitting' => false
+		),
+		'textdomain' => 'flair',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'stack' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/stack',
+		'version' => '0.1.0',
+		'title' => 'Stack',
+		'category' => 'flair',
+		'allowedBlocks' => array(
+			'flair/layer'
+		),
+		'description' => 'A stack of content.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
 		),
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',

@@ -21,11 +21,9 @@ import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 
-const boxoutIcon = (
-	 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-		<rect x="2" y="2" width="20" height="20" fill="rgb(47,47,47)"/>
-		<rect x="4" y="4" width="16" height="16" fill="rgb(180,180,180)"/>
-		<rect x="6" y="6" width="12" height="12" fill="rgb(255,255,255)"/>
+const layerIcon = (
+	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		<path d="M23.021,9.962l-11.055,8.102l-11.02,-8.061l11.051,-4.85l11.024,4.809Zm-3.987,0.443l-7.034,-3.069l-7.07,3.103l7.035,5.146l7.069,-5.18Z" fill="currentColor" />
 	</svg>
 );
 
@@ -39,9 +37,8 @@ registerBlockType( metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
-	icon: boxoutIcon,
+	icon: layerIcon,
 	save: props => {
 		return <InnerBlocks.Content />
 	}
-
 } );
