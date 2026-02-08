@@ -1,9 +1,37 @@
 .flair-stack {
 	aspect-ratio: 3/2;
-	position: relative;
+
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+
 	.flair-layer {
-		position: absolute;
-		top: 0; left: 0; bottom: 0; right: 0;
+		grid-area: 1 / 1;
+	}
+
+
+	overflow: hidden;
+	outline: 1px dashed red;
+	.flair-layer {
+		--depth: 1;
+		&:nth-child(2) {
+			--depth: 4;
+		}
+		&:nth-child(3) {
+			--depth: 3;
+		}
+		&:nth-child(4) {
+			--depth: 2;
+		}
+
+		scale: 1.15;
+		// position: relative;
+		// top: -7%; right: -7%; bottom: -7%; left: -7%;
+		
+		--shiftX: calc( ( 2% * var( --mouse-bias-x ) ) * var(--depth) );
+		--shiftY: calc( ( 2% * var( --mouse-bias-y ) ) * var(--depth) );
+		transform: translate3d( var(--shiftX), var(--shiftY), 0 );
+		// transform: translateX( var( --shiftX) );
 	}
 
 }

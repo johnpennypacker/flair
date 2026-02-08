@@ -3,14 +3,34 @@
   \****************************************************************************************************************************************************************************************************************************************************/
 .flair-stack {
   aspect-ratio: 3/2;
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
 }
 .flair-stack .flair-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  grid-area: 1/1;
+}
+.flair-stack {
+  overflow: hidden;
+  outline: 1px dashed red;
+}
+.flair-stack .flair-layer {
+  --depth: 1;
+}
+.flair-stack .flair-layer:nth-child(2) {
+  --depth: 4;
+}
+.flair-stack .flair-layer:nth-child(3) {
+  --depth: 3;
+}
+.flair-stack .flair-layer:nth-child(4) {
+  --depth: 2;
+}
+.flair-stack .flair-layer {
+  scale: 1.15;
+  --shiftX: calc( ( 2% * var( --mouse-bias-x ) ) * var(--depth) );
+  --shiftY: calc( ( 2% * var( --mouse-bias-y ) ) * var(--depth) );
+  transform: translate3d(var(--shiftX), var(--shiftY), 0);
 }
 
 /*# sourceMappingURL=style-index.css.map*/
