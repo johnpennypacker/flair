@@ -11,6 +11,7 @@
   "description": "A stack of content.",
   "example": {},
   "supports": {
+    "align": true,
     "html": false
   },
   "textdomain": "flair",

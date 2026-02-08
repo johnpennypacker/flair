@@ -338,6 +338,7 @@ return array(
 			
 		),
 		'supports' => array(
+			'align' => true,
 			'html' => false
 		),
 		'textdomain' => 'flair',

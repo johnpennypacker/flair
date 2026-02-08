@@ -52,11 +52,20 @@ export default function Edit(props) {
 
 	const { attributes, setAttributes, isSelected } = props;
 
+	const STACK_TEMPLATE = [
+		[ 'flair/layer', {} ],
+		[ 'flair/layer', {} ],
+		[ 'flair/layer', {} ]
+	];
+
 	return (
 		<>
 			<div { ...useBlockProps({ className:calculateClassName() }) }>
 				<div class="flair-stack">
-					<InnerBlocks directInsert />
+					<InnerBlocks
+						template={STACK_TEMPLATE}
+						templateLock={false}
+					/>
 					<ButtonBlockAppender rootClientId={ props.clientId } />
 				</div>
 			</div>

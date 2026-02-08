@@ -11,7 +11,10 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { 
+	useBlockProps, 
+	InnerBlocks
+ } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,10 +32,21 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( props ) {
+
+	const { attributes, setAttributes, isSelected } = props;
+
+	const LAYER_TEMPLATE = [
+		[ 'core/paragraph', { placeholder:"This is a layer."} ]
+	];
+
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Layer – hello from the editor!', 'layer' ) }
-		</p>
+		<>
+			<div { ...useBlockProps({ className:"flair-layer" }) }>
+				<InnerBlocks
+					template={ LAYER_TEMPLATE }
+				/>
+			</div>
+		</>
 	);
 }

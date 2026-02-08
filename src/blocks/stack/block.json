@@ -5,10 +5,11 @@
 	"version": "0.1.0",
 	"title": "Stack",
 	"category": "flair",
-   "allowedBlocks": [ "flair/layer" ],
+	"allowedBlocks": [ "flair/layer" ],
 	"description": "A stack of content.",
 	"example": {},
 	"supports": {
+		"align": true,
 		"html": false
 	},
 	"textdomain": "flair",

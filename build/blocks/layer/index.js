@@ -2,21 +2,11 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/layer/block.json":
-/*!*************************************!*\
-  !*** ./src/blocks/layer/block.json ***!
-  \*************************************/
-/***/ ((module) => {
-
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/layer","version":"0.1.0","title":"Layer","category":"flair","description":"A layer of content within a stack.","example":{},"parent":["flair/stack"],"supports":{"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
-
-/***/ }),
-
-/***/ "./src/blocks/layer/edit.js":
+/***/ "./src/blocks/layer/edit.js"
 /*!**********************************!*\
   !*** ./src/blocks/layer/edit.js ***!
   \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -61,32 +51,34 @@ __webpack_require__.r(__webpack_exports__);
  * @return {Element} Element to render.
  */
 
-function Edit() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Layer – hello from the editor!', 'layer')
+function Edit(props) {
+  const {
+    attributes,
+    setAttributes,
+    isSelected
+  } = props;
+  const LAYER_TEMPLATE = [['core/paragraph', {
+    placeholder: "This is a layer."
+  }]];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+        className: "flair-layer"
+      }),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+        template: LAYER_TEMPLATE
+      })
+    })
   });
 }
 
-/***/ }),
+/***/ },
 
-/***/ "./src/blocks/layer/editor.scss":
-/*!**************************************!*\
-  !*** ./src/blocks/layer/editor.scss ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./src/blocks/layer/index.js":
+/***/ "./src/blocks/layer/index.js"
 /*!***********************************!*\
   !*** ./src/blocks/layer/index.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
@@ -148,59 +140,81 @@ const layerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__
   }
 });
 
-/***/ }),
+/***/ },
 
-/***/ "./src/blocks/layer/style.scss":
-/*!*************************************!*\
-  !*** ./src/blocks/layer/style.scss ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./src/blocks/layer/editor.scss"
+/*!**************************************!*\
+  !*** ./src/blocks/layer/editor.scss ***!
+  \**************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
-/***/ }),
+/***/ },
 
-/***/ "@wordpress/block-editor":
+/***/ "./src/blocks/layer/style.scss"
 /*!*************************************!*\
-  !*** external ["wp","blockEditor"] ***!
+  !*** ./src/blocks/layer/style.scss ***!
   \*************************************/
-/***/ ((module) => {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-module.exports = window["wp"]["blockEditor"];
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
 
-/***/ }),
 
-/***/ "@wordpress/blocks":
-/*!********************************!*\
-  !*** external ["wp","blocks"] ***!
-  \********************************/
-/***/ ((module) => {
+/***/ },
 
-module.exports = window["wp"]["blocks"];
-
-/***/ }),
-
-/***/ "@wordpress/i18n":
-/*!******************************!*\
-  !*** external ["wp","i18n"] ***!
-  \******************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["i18n"];
-
-/***/ }),
-
-/***/ "react/jsx-runtime":
+/***/ "react/jsx-runtime"
 /*!**********************************!*\
   !*** external "ReactJSXRuntime" ***!
   \**********************************/
-/***/ ((module) => {
+(module) {
 
 module.exports = window["ReactJSXRuntime"];
 
-/***/ })
+/***/ },
+
+/***/ "@wordpress/block-editor"
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+(module) {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ },
+
+/***/ "@wordpress/blocks"
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+(module) {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ },
+
+/***/ "@wordpress/i18n"
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+(module) {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ },
+
+/***/ "./src/blocks/layer/block.json"
+/*!*************************************!*\
+  !*** ./src/blocks/layer/block.json ***!
+  \*************************************/
+(module) {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/layer","version":"0.1.0","title":"Layer","category":"flair","description":"A layer of content within a stack.","example":{},"parent":["flair/stack"],"supports":{"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+
+/***/ }
 
 /******/ 	});
 /************************************************************************/
@@ -213,6 +227,12 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Check if module exists (development only)
+/******/ 		if (__webpack_modules__[moduleId] === undefined) {
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
