@@ -37,7 +37,7 @@
 		transform: rotateX(180deg);
 	}
 
-	.button, a {
+	.button, a, .dropdown-item {
 		color: currentColor;
 		text-decoration: none;
 	}
@@ -50,16 +50,16 @@
 		top: 0;
 		left: 0;
 		width: fit-content;
-		a {
+		.dropdown-item {
 			display: block;
 			text-wrap: nowrap;
 			transition: background-color .2s ease;
 		}
-		a + a {
+		.dropdown-item + .dropdown-item {
 			border-block-start: 1px solid currentColor;
 		}
-		a:hover,
-		a.selected {
+		.dropdown-item:hover,
+		.dropdown-item.selected {
 			background-color: color-mix(in oklab, var(--flair-color-primary), white 85%);
 		}
 	}

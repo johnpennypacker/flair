@@ -61,12 +61,15 @@ export default function Edit(props) {
 	return (
 		<>
 			<div { ...useBlockProps({ className:calculateClassName() }) }>
+				<p class="label">I am a: </p>
 				<div class="dropdown">
-					<InnerBlocks
-						template={ MULTIBUTTON_TEMPLATE }
-						templateLock={false}
-					/>
-					<ButtonBlockAppender rootClientId={ props.clientId } />
+					<div class="options shown">
+						<InnerBlocks
+							template={ MULTIBUTTON_TEMPLATE }
+							templateLock={false}
+						/>
+						<ButtonBlockAppender rootClientId={ props.clientId } />
+					</div>
 				</div>
 			</div>
 		</>

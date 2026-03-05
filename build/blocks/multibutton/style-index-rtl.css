@@ -39,7 +39,7 @@
 :where(.flair-multibutton) .button[aria-expanded=true]::after {
   transform: rotateX(180deg);
 }
-:where(.flair-multibutton) .button, :where(.flair-multibutton) a {
+:where(.flair-multibutton) .button, :where(.flair-multibutton) a, :where(.flair-multibutton) .dropdown-item {
   color: currentColor;
   text-decoration: none;
 }
@@ -53,16 +53,16 @@
   width: -moz-fit-content;
   width: fit-content;
 }
-:where(.flair-multibutton) .options a {
+:where(.flair-multibutton) .options .dropdown-item {
   display: block;
   text-wrap: nowrap;
   transition: background-color 0.2s ease;
 }
-:where(.flair-multibutton) .options a + a {
+:where(.flair-multibutton) .options .dropdown-item + .dropdown-item {
   border-block-start: 1px solid currentColor;
 }
-:where(.flair-multibutton) .options a:hover,
-:where(.flair-multibutton) .options a.selected {
+:where(.flair-multibutton) .options .dropdown-item:hover,
+:where(.flair-multibutton) .options .dropdown-item.selected {
   background-color: color-mix(in oklab, var(--flair-color-primary), white 85%);
 }
 :where(.flair-multibutton) .options {
