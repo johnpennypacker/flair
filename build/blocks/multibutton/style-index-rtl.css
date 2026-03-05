@@ -1,0 +1,85 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/multibutton/style.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+:where(.flair-multibutton) {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* 	padding: .75rem 1rem; */
+}
+:where(.flair-multibutton) .label, :where(.flair-multibutton) .dropdown {
+  font-size: inherit;
+  line-height: 1.3;
+  margin: 0;
+}
+:where(.flair-multibutton) .label, :where(.flair-multibutton) .dropdown a {
+  padding: 1rem 1.25rem;
+}
+:where(.flair-multibutton) .label {
+  padding-inline-start: 0;
+}
+:where(.flair-multibutton) .dropdown {
+  position: relative;
+}
+:where(.flair-multibutton) .button {
+  display: block;
+  background-color: var(--flair-color-secondary);
+  width: -moz-fit-content;
+  width: fit-content;
+}
+:where(.flair-multibutton) .button::after {
+  content: "▾";
+  display: inline-block;
+  height: 1.3em;
+  transition: transform 0.2s ease;
+  text-align: center;
+  width: 1.3em;
+}
+:where(.flair-multibutton) .button[aria-expanded=true]::after {
+  transform: rotateX(180deg);
+}
+:where(.flair-multibutton) .button, :where(.flair-multibutton) a {
+  color: currentColor;
+  text-decoration: none;
+}
+:where(.flair-multibutton) .options {
+  background-color: var(--flair-color-secondary);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+:where(.flair-multibutton) .options a {
+  display: block;
+  text-wrap: nowrap;
+  transition: background-color 0.2s ease;
+}
+:where(.flair-multibutton) .options a + a {
+  border-block-start: 1px solid currentColor;
+}
+:where(.flair-multibutton) .options a:hover,
+:where(.flair-multibutton) .options a.selected {
+  background-color: color-mix(in oklab, var(--flair-color-primary), white 85%);
+}
+:where(.flair-multibutton) .options {
+  display: none;
+}
+:where(.flair-multibutton) .options.shown {
+  display: flex;
+  z-index: 11;
+}
+@media all and (min-width: 380px) {
+  :where(.flair-multibutton) {
+    flex-direction: row;
+  }
+  :where(.flair-multibutton) .button {
+    width: calc(100% + 3rem);
+  }
+  :where(.flair-multibutton) .button::after {
+    float: left;
+  }
+}

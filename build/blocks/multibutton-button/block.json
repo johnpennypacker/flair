@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "flair/multibutton-button",
+  "version": "0.1.0",
+  "title": "Multibutton Button",
+  "category": "flair",
+  "description": "The individual buttons that go inside a multibutton.",
+  "example": {},
+  "parent": [
+    "flair/multibutton"
+  ],
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "href": {
+      "type": "string",
+      "default": "#"
+    },
+    "text": {
+      "type": "string"
+    }
+  },
+  "textdomain": "flair",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

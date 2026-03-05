@@ -290,6 +290,60 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'multibutton' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/multibutton',
+		'version' => '0.1.0',
+		'title' => 'Multibutton',
+		'category' => 'flair',
+		'description' => 'A hybrid button/dropdown.',
+		'example' => array(
+			
+		),
+		'allowedBlocks' => array(
+			'flair/multibutton-button'
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'flair',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'multibutton-button' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/multibutton-button',
+		'version' => '0.1.0',
+		'title' => 'Multibutton Button',
+		'category' => 'flair',
+		'description' => 'The individual buttons that go inside a multibutton.',
+		'example' => array(
+			
+		),
+		'parent' => array(
+			'flair/multibutton'
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'href' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'text' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'flair',
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php'
+	),
 	'sidler' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

@@ -1,0 +1,86 @@
+:where( .flair-multibutton ) {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+/* 	padding: .75rem 1rem; */
+
+	.label, .dropdown {
+		font-size: inherit;
+		line-height: 1.3;
+		margin: 0;
+	}
+	.label, .dropdown a {
+		padding: 1rem 1.25rem;
+	}
+	.label {
+		padding-inline-start: 0;
+	}
+
+	.dropdown {
+		position: relative;
+	}
+
+	.button {
+		display: block;
+		background-color: var( --flair-color-secondary );
+		width: fit-content;
+	}
+	.button::after {
+		content: "▾";
+		display: inline-block;
+		height: 1.3em;
+		transition: transform .2s ease;
+		text-align: center;
+		width: 1.3em;
+	}
+	.button[aria-expanded="true"]::after {
+		transform: rotateX(180deg);
+	}
+
+	.button, a {
+		color: currentColor;
+		text-decoration: none;
+	}
+
+	.options {
+		background-color: var( --flair-color-secondary );
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: fit-content;
+		a {
+			display: block;
+			text-wrap: nowrap;
+			transition: background-color .2s ease;
+		}
+		a + a {
+			border-block-start: 1px solid currentColor;
+		}
+		a:hover,
+		a.selected {
+			background-color: color-mix(in oklab, var(--flair-color-primary), white 85%);
+		}
+	}
+	.options {
+		display: none;
+	}
+	.options.shown {
+		display: flex;
+		z-index: 11;
+	}
+}
+
+@media all and (min-width: 380px) {
+	:where( .flair-multibutton ) {
+		flex-direction: row;
+		.button {
+			width: calc( 100% + 3rem );
+		}
+		.button::after {
+			float: right;
+		}
+	}
+}
+
