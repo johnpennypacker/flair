@@ -11,13 +11,27 @@
   function initMultibutton() {
     var els = document.querySelectorAll(".flair-multibutton");
     els.forEach(function (el) {
+      // we'll switch the options to position absolute, but we want their width first
+      var d = el.querySelector(".dropdown");
+      d.style.minWidth = d.offsetWidth + "px";
+
+      // this'll count as a focusout listener.
+      document.body.addEventListener("click", function (event) {
+        if (el == event.target) {
+          event.preventDefault();
+          event.stopPropagation();
+          closeOptions(el);
+          return false;
+        }
+      });
       var b = el.querySelector(".dropdown-toggle");
-      b.addEventListener("click", showOptionsHandler);
+      b.addEventListener("click", showOptionsHandler, false);
       var items = el.querySelectorAll(".dropdown-item");
       items.forEach(function (item) {
         item.addEventListener("click", selectOptionHandler);
       });
       selectOption(items[0]);
+      el.classList.add("has-js");
     });
   }
 
@@ -34,7 +48,6 @@
       s.focus();
     }
     document.addEventListener("keydown", arrowNav);
-    // 		mb.addEventListener("focusout", function() { closeOptions(mb) });
   }
   function closeOptions(mb) {
     var options = mb.querySelector(".options");
@@ -49,6 +62,7 @@
    */
   function showOptionsHandler(event) {
     event.preventDefault();
+    event.stopPropagation();
     var mb = event.target.closest(".flair-multibutton");
     if (mb.querySelector(".shown")) {
       closeOptions(mb);
@@ -72,7 +86,7 @@
    */
   function selectOption(el) {
     var mb = el.closest(".flair-multibutton");
-    var t = mb.querySelector(".dropdown-toggle");
+    var t = mb.querySelector(".action");
     t.href = el.href;
     t.innerHTML = el.innerHTML;
     clearSelected(mb);

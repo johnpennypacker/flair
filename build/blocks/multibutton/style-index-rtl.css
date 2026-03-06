@@ -3,83 +3,109 @@
   \**********************************************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
 :where(.flair-multibutton) {
+  --bg: color-mix(in oklab, var(--flair-color-secondary), white 30%);
   display: flex;
   flex-direction: column;
   gap: 0;
+  position: relative;
   /* 	padding: .75rem 1rem; */
 }
-:where(.flair-multibutton) .label, :where(.flair-multibutton) .dropdown {
+:where(.flair-multibutton) .dropdown {
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
   font-size: inherit;
   line-height: 1.3;
   margin: 0;
-}
-:where(.flair-multibutton) .label, :where(.flair-multibutton) .dropdown a {
-  padding: 1rem 1.25rem;
-}
-:where(.flair-multibutton) .label {
-  padding-inline-start: 0;
-}
-:where(.flair-multibutton) .dropdown {
   position: relative;
 }
-:where(.flair-multibutton) .button {
-  display: block;
-  background-color: var(--flair-color-secondary);
-  width: -moz-fit-content;
-  width: fit-content;
-}
-:where(.flair-multibutton) .button::after {
-  content: "▾";
+:where(.flair-multibutton) .dropdown a, :where(.flair-multibutton) .dropdown-toggle {
   display: inline-block;
-  height: 1.3em;
+  padding: 1rem 1.25rem;
+}
+:where(.flair-multibutton) .select {
+  display: flex;
+  justify-content: space-between;
+}
+:where(.flair-multibutton) .dropdown-toggle {
+  aspect-ratio: 1;
+  background: var(--flair-color-secondary);
+  border: 0;
+  border-inline-start: 1px solid currentColor;
+  display: block;
+  font-size: inherit;
+  position: relative;
+  width: 3rem;
+  z-index: 12;
+}
+:where(.flair-multibutton) .dropdown-toggle span {
+  clip-path: rect(0 100% 0 0);
+  width: 20ch;
+  display: block;
+}
+:where(.flair-multibutton) .dropdown-toggle::after {
+  content: "▾";
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBvbHlsaW5lIGZpbGw9ImN1cnJlbnRDb2xvciIgcG9pbnRzPSI0IDUgMjAgNSAxMiAxOSIvPjwvc3ZnPg==);
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: 50% 50%;
+  display: flex;
   transition: transform 0.2s ease;
-  text-align: center;
-  width: 1.3em;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
 }
-:where(.flair-multibutton) .button[aria-expanded=true]::after {
-  transform: rotateX(180deg);
+:where(.flair-multibutton) .dropdown-toggle[aria-expanded=true]::after {
+  transform: rotateZ(-180deg);
 }
-:where(.flair-multibutton) .button, :where(.flair-multibutton) a, :where(.flair-multibutton) .dropdown-item {
+:where(.flair-multibutton) .dropdown-toggle, :where(.flair-multibutton) a, :where(.flair-multibutton) .dropdown-item {
   color: currentColor;
   text-decoration: none;
 }
 :where(.flair-multibutton) .options {
-  background-color: var(--flair-color-secondary);
+  background-color: var(--bg);
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
   width: -moz-fit-content;
   width: fit-content;
+  z-index: 11;
 }
 :where(.flair-multibutton) .options .dropdown-item {
   display: block;
+  padding-inline-end: 3rem;
   text-wrap: nowrap;
   transition: background-color 0.2s ease;
 }
 :where(.flair-multibutton) .options .dropdown-item + .dropdown-item {
   border-block-start: 1px solid currentColor;
 }
-:where(.flair-multibutton) .options .dropdown-item:hover,
-:where(.flair-multibutton) .options .dropdown-item.selected {
+:where(.flair-multibutton) .options .dropdown-item:hover {
   background-color: color-mix(in oklab, var(--flair-color-primary), white 85%);
 }
-:where(.flair-multibutton) .options {
-  display: none;
+:where(.flair-multibutton).has-js .options {
+  position: absolute;
 }
-:where(.flair-multibutton) .options.shown {
-  display: flex;
-  z-index: 11;
+:where(.flair-multibutton) .options .dropdown-item {
+  max-height: 0;
+  opacity: 0;
+  padding-block: 0;
+  transition: all 0.1s ease;
+}
+:where(.flair-multibutton) .options.shown .dropdown-item, :where(.flair-multibutton):focus-within .options .dropdown-item {
+  max-height: 20rem;
+  opacity: 1;
+  overflow: hidden;
+  padding-block: 1rem;
 }
 @media all and (min-width: 380px) {
   :where(.flair-multibutton) {
     flex-direction: row;
-  }
-  :where(.flair-multibutton) .button {
-    width: calc(100% + 3rem);
-  }
-  :where(.flair-multibutton) .button::after {
-    float: left;
   }
 }

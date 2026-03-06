@@ -63,7 +63,7 @@ export default function Edit(props) {
 			<div { ...useBlockProps({ className:calculateClassName() }) }>
 				<p class="label">I am a: </p>
 				<div class="dropdown">
-					<div class="options shown">
+					<div class="options">
 						<InnerBlocks
 							template={ MULTIBUTTON_TEMPLATE }
 							templateLock={false}

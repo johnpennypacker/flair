@@ -13,8 +13,8 @@
   --color__base_900: 239, 239, 239;
   --type__size: 1.1rem;
   --flair-font-size: 1.1rem;
-  --flair-color-primary: #000;
-  --flair-color-secondary: #9a7500;
+  --flair-color-primary: var( --wp--preset--color--contrast, #000 );
+  --flair-color-secondary: var( --wp--preset--color--accent-1, #9a7500 );
 }
 
 ul.wp-block-columns {
