@@ -15,15 +15,15 @@
 
 
 			// this'll count as a focusout listener.
-			document.body.addEventListener( "click", function(event) {
-// 				console.log("go", event, el);
-				if( el !== event.target ) {
-					event.preventDefault();
-					event.stopPropagation();
-					closeOptions(el);
-					return false;
-				}
-			});
+// 			document.body.addEventListener( "click", function(event) {
+// // 				console.log("go", event, el);
+// 				if( el !== event.target ) {
+// 					event.preventDefault();
+// 					event.stopPropagation();
+// 					closeOptions(el);
+// 					return false;
+// 				}
+// 			});
 
 
 			var b = el.querySelector(".dropdown-toggle");
