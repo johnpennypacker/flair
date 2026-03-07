@@ -21,6 +21,9 @@
 :where(.flair-multibutton).flair-width-100 {
   width: calc(100% - var(--wp--style--block-gap, 0.5em) * 0.5);
 }
+:where(.flair-multibutton) {
+  /** round off the corners **/
+}
 :where(.flair-multibutton) .dropdown {
   background-color: inherit;
   display: flex;
@@ -39,9 +42,6 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-}
-:where(.flair-multibutton) {
-  /** round off the corners **/
 }
 :where(.flair-multibutton) .action {
   flex-grow: 2;
