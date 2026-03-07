@@ -17,7 +17,8 @@
 
       // this'll count as a focusout listener.
       document.body.addEventListener("click", function (event) {
-        if (el == event.target) {
+        // 				console.log("go", event, el);
+        if (el !== event.target) {
           event.preventDefault();
           event.stopPropagation();
           closeOptions(el);
@@ -39,6 +40,7 @@
    * Show the button options
    */
   function showOptions(mb) {
+    mb.classList.add("is-open");
     var options = mb.querySelector(".options");
     options.classList.add("shown");
     var t = mb.querySelector(".dropdown-toggle");
@@ -50,6 +52,7 @@
     document.addEventListener("keydown", arrowNav);
   }
   function closeOptions(mb) {
+    mb.classList.remove("is-open");
     var options = mb.querySelector(".options");
     options.classList.remove("shown");
     var t = mb.querySelector(".dropdown-toggle");

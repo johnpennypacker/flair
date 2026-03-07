@@ -11,7 +11,11 @@
     "flair/multibutton"
   ],
   "supports": {
-    "html": false
+    "html": false,
+    "layout": null,
+    "typography": {
+      "textAlign": true
+    }
   },
   "attributes": {
     "href": {

@@ -305,7 +305,23 @@ return array(
 			'flair/multibutton-button'
 		),
 		'supports' => array(
-			'html' => false
+			'anchor' => true,
+			'color' => array(
+				'background' => true,
+				'text' => true
+			),
+			'__experimentalExposeControlsToChildren' => true,
+			'layout' => null,
+			'typography' => array(
+				'fontSize' => true,
+				'textAlign' => true
+			)
+		),
+		'attributes' => array(
+			'width' => array(
+				'type' => 'string',
+				'default' => '100%'
+			)
 		),
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',
@@ -329,7 +345,11 @@ return array(
 			'flair/multibutton'
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'layout' => null,
+			'typography' => array(
+				'textAlign' => true
+			)
 		),
 		'attributes' => array(
 			'href' => array(

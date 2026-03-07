@@ -7,6 +7,9 @@
 	if( isset( $attributes['orientation'] ) ) {
 		$classes[] = 'orientation-' . $attributes['orientation'] ;
 	}
+	if( isset( $attributes['width'] ) ) {
+		$classes[] = 'flair-width-' . str_replace( "%", "", $attributes['width'] );
+	}
 
 ?>
 
@@ -14,8 +17,8 @@
 
 		<div class="dropdown">
 			<div class="select">
+				<button aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"><span>Select an action</span></button>
 				<a href="#" class="action button"> </a>
-				<button aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"><span>Other options</span></button>
 			</div>
 			<div class="options" tab-index="0">
 				<?php echo $args['content']; ?>

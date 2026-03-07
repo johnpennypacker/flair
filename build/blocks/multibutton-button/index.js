@@ -31,7 +31,7 @@ var link_default = /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE
   \**************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/multibutton-button","version":"0.1.0","title":"Multibutton Button","category":"flair","description":"The individual buttons that go inside a multibutton.","example":{},"parent":["flair/multibutton"],"supports":{"html":false},"attributes":{"href":{"type":"string","default":"#"},"text":{"type":"string"}},"textdomain":"flair","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/multibutton-button","version":"0.1.0","title":"Multibutton Button","category":"flair","description":"The individual buttons that go inside a multibutton.","example":{},"parent":["flair/multibutton"],"supports":{"html":false,"layout":null,"typography":{"textAlign":true}},"attributes":{"href":{"type":"string","default":"#"},"text":{"type":"string"}},"textdomain":"flair","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ }),
 

@@ -9,7 +9,23 @@
 	"example": {},
 	"allowedBlocks": [ "flair/multibutton-button" ],
 	"supports": {
-		"html": false
+		"anchor": true,
+		"color": {
+			"background": true,
+			"text": true
+		},
+    "__experimentalExposeControlsToChildren": true,
+    "layout": null,
+		"typography": {
+			"fontSize": true,
+			"textAlign": true
+		}
+	},
+	"attributes": {
+		"width": {
+			"type": "string",
+			"default": "100%"
+		}
 	},
 	"textdomain": "flair",
 	"editorScript": "file:./index.js",
