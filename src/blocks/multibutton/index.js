@@ -25,8 +25,9 @@ import metadata from './block.json';
 const mbIcon = (
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 		<path fill="#222" d="M2,8v9c0,.55.45,1,1,1h18c.55,0,1-.45,1-1v-9c0-.55-.45-1-1-1H3c-.55,0-1,.45-1,1ZM14,16H4v-7h10v7Z"/>
-		<rect fill="currentColor" x="16" y="9" width="4" height="7"/>
-		<polygon fill="#222" points="19 12 17 12 18 13 19 12 19 12"/>
+		<rect fill="currentColor" class="b" x="16" y="9" width="4" height="7"/>
+		<polygon fill="#222" points="19 11.75 17 11.75 18 13.25 19 11.75 19 11.75"/>
+		<rect fill="currentColor" x="6.5" y="11.5" width="5" height="2"/>
 	</svg>
 );
 /**

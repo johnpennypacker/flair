@@ -471,16 +471,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const cardIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
-  viewBox: "0 0 24 24",
   xmlns: "http://www.w3.org/2000/svg",
-  "aria-hidden": "true",
-  focusable: "false",
+  viewBox: "0 0 24 24",
   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
-    d: "M23.037,1.042l-22.037,0l0,22.03l22.037,-0l-0,-22.03Zm-1,1l-0,20.03c-0,-0 -20.037,-0 -20.037,-0c-0,-0 -0,-20.03 -0,-20.03l20.037,0Z"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
-    d: "M23.037,1.042l-22.037,0l0,8.958l22.037,-0l-0,-8.958Zm-1,1l-0,6.958c-0,0 -20.037,0 -20.037,0c-0,-0 -0,-6.958 -0,-6.958l20.037,0Z"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
-    d: "M1.26,2.771l21.411,6.631l0.296,-0.955l-21.411,-6.632l-0.296,0.956Z"
+    fill: "#222",
+    d: "M3,22h18c.55,0,1-.45,1-1V3c0-.55-.45-1-1-1H3c-.55,0-1,.45-1,1v18c0,.55.45,1,1,1ZM20,11v9H4v-9h16Z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    fill: "currentColor",
+    x: "4",
+    y: "4",
+    width: "16",
+    height: "5"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    fill: "currentColor",
+    x: "6",
+    y: "13",
+    width: "7",
+    height: "1"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    fill: "currentColor",
+    x: "6",
+    y: "15",
+    width: "11",
+    height: "1"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    fill: "currentColor",
+    x: "6",
+    y: "17",
+    width: "11",
+    height: "1"
   })]
 });
 

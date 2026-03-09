@@ -188,7 +188,7 @@ const boxoutIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5_
     y: "4",
     width: "16",
     height: "16",
-    fill: "rgb(180,180,180)"
+    fill: "currentColor"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "6",
     y: "6",

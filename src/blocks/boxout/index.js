@@ -24,7 +24,7 @@ import metadata from './block.json';
 const boxoutIcon = (
 	 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
 		<rect x="2" y="2" width="20" height="20" fill="rgb(47,47,47)"/>
-		<rect x="4" y="4" width="16" height="16" fill="rgb(180,180,180)"/>
+		<rect x="4" y="4" width="16" height="16" fill="currentColor"/>
 		<rect x="6" y="6" width="12" height="12" fill="rgb(255,255,255)"/>
 	</svg>
 );
