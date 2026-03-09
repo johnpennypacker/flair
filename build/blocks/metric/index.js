@@ -160,26 +160,24 @@ __webpack_require__.r(__webpack_exports__);
 const metricIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
-  width: "24",
-  height: "24",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
-    x: "2",
-    y: "16",
-    class: "st0",
-    width: "20",
-    height: "2",
-    fill: "rgb(47,47,47)"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
-    x: "2",
-    y: "20",
-    class: "st0",
-    width: "20",
-    height: "2",
-    fill: "rgb(47,47,47)"
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("polygon", {
+    fill: "currentColor",
+    points: "10.84 10.5 12.84 10.5 13.16 8.5 11.16 8.5 10.84 10.5"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
-    class: "st0",
-    d: "M17,7V5h-2V3h-2v2h-2V3H9v2H7v2h2v2H7v2h2v2h2v-2h2v2h2v-2h2V9h-2V7H17z M13,9h-2V7h2V9z",
-    fill: "rgb(47,47,47)"
+    fill: "currentColor",
+    d: "M21,2H3c-.55,0-1,.45-1,1v18c0,.55.45,1,1,1h18c.55,0,1-.45,1-1V3c0-.55-.45-1-1-1ZM16.66,8.5h-1.5l-.32,2h1.5l-.32,2h-1.5l-.24,1.5h-2l.24-1.5h-2l-.24,1.5h-2l.24-1.5h-1.5l.32-2h1.5l.32-2h-1.5l.32-2h1.5l.24-1.5h2l-.24,1.5h2l.24-1.5h2l-.24,1.5h1.5l-.32,2Z"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    fill: "#fff",
+    x: "5",
+    y: "16",
+    width: "14",
+    height: "1"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    fill: "#fff",
+    x: "5",
+    y: "18",
+    width: "14",
+    height: "1"
   })]
 });
 

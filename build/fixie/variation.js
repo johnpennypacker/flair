@@ -114,37 +114,59 @@ registerBlockVariation('core/cover',
   scope: ['inserter'],
   icon: {
     src: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 24 24",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        x: "1",
-        y: "1",
-        width: "22",
-        height: "22",
-        fill: "rgb(47,47,47)"
+        fill: "currentColor",
+        x: "4",
+        y: "4",
+        width: "16",
+        height: "16"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
+        fill: "#222",
+        d: "M3,22h18c.55,0,1-.45,1-1V3c0-.55-.45-1-1-1H3c-.55,0-1,.45-1,1v18c0,.55.45,1,1,1ZM20,4v16H4V4h16Z"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        x: "3",
-        y: "3",
-        width: "18",
-        height: "8",
-        fill: "white"
+        fill: "#fff",
+        x: "4",
+        y: "6.5",
+        width: "16",
+        height: "8"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
+        fill: "currentColor",
         x: "6",
-        y: "13",
-        width: "1",
-        height: "3",
-        fill: "white"
+        y: "8",
+        width: "12",
+        height: "1"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        x: "11",
-        y: "13",
-        width: "1",
-        height: "5",
-        fill: "white"
+        fill: "currentColor",
+        x: "6",
+        y: "10",
+        width: "12",
+        height: "1"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        x: "16",
-        y: "13",
+        fill: "currentColor",
+        x: "6",
+        y: "12",
+        width: "12",
+        height: "1"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
+        fill: "#fff",
+        x: "8",
+        y: "15.75",
         width: "1",
-        height: "7",
-        fill: "white"
+        height: "1.5"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
+        fill: "#fff",
+        x: "11.5",
+        y: "15.75",
+        width: "1",
+        height: "2.5"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
+        fill: "#fff",
+        x: "15",
+        y: "15.75",
+        width: "1",
+        height: "3.75"
       })]
     })
   },
