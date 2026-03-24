@@ -48,30 +48,30 @@ export default function Edit(props) {
 		<div { ...useBlockProps({ className:calculateClassName() }) }>
 			<div class="flair-metric">
 					<RichText
-					tagName='em'
-					className=''
-					disableLineBreaks='true'
-					placeholder={__('100%')}
-					value={attributes.number}
-					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-					onChange={( value ) => {
-						setAttributes({
-							number: value
-						});
-					}}
+						tagName='em'
+						className=''
+						disableLineBreaks='true'
+						placeholder={__('100%')}
+						value={attributes.number}
+						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+						onChange={( value ) => {
+							setAttributes({
+								number: value
+							});
+						}}
 					/>
 					<RichText
-					tagName='span'
-					className='qualifier'
-					disableLineBreaks='true'
-					placeholder={__('Awesome')}
-					value={attributes.qualifier}
-					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-					onChange={( value ) => {
-						setAttributes({
-							qualifier: value
-						});
-					}}
+						tagName='span'
+						className='qualifier'
+						disableLineBreaks='true'
+						placeholder={__('Awesome')}
+						value={attributes.qualifier}
+						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+						onChange={( value ) => {
+							setAttributes({
+								qualifier: value
+							});
+						}}
 					/>
 			</div>
 		</div>

@@ -65,7 +65,23 @@ return array(
 				'center',
 				'wide'
 			),
-			'html' => false
+			'anchor' => true,
+			'color' => array(
+				'background' => true,
+				'text' => true
+			),
+			'html' => false,
+			'shadow' => true,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => false
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true
+			)
 		),
 		'attributes' => array(
 			'href' => array(
@@ -218,19 +234,27 @@ return array(
 			
 		),
 		'supports' => array(
+			'align' => array(
+				'left',
+				'right',
+				'center'
+			),
 			'anchor' => true,
 			'color' => array(
-				'text' => true,
+				'background' => true,
 				'link' => true,
-				'background' => true
+				'text' => true
 			),
-			'shadow' => false,
+			'html' => false,
+			'shadow' => true,
 			'spacing' => array(
 				'margin' => true,
 				'padding' => true,
 				'blockGap' => false
 			),
 			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
 				'textAlign' => true
 			)
 		),

@@ -5,7 +5,6 @@
  *
  */
 :where(.flair-card) {
-  color: var(--flair-color-primary);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -47,12 +46,7 @@
   color: inherit;
   text-decoration: inherit;
 }
-:where(.flair-card) .title {
-  font-family: inherit;
-  font-weight: bold;
-}
 :where(.flair-card) .button {
-  color: currentColor;
   margin-inline: calc(var(--wp--style--block-gap, 1rem) * -1.5);
   margin-block-end: calc(var(--wp--style--block-gap, 1rem) * -1.5) !important;
   padding: calc(var(--wp--style--block-gap, 1rem) * 1.5);
@@ -101,7 +95,6 @@
 }
 :where(.flair-card):focus-within .button, :where(.flair-card):hover .button {
   background-color: color-mix(in srgb, currentColor, transparent 80%);
-  color: var(--flair-color-primary);
   transition: all 0.2s ease;
 }
 :where(.flair-card):focus-within .button::before, :where(.flair-card):hover .button::before {

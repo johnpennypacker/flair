@@ -18,6 +18,7 @@ import {
 } from '@wordpress/block-editor';
 import {
 	Button,
+	Disabled,
 	PanelBody,
 	PanelRow,
 	Popover,
@@ -316,62 +317,64 @@ export default function Edit(props) {
 		<div { ...useBlockProps({ className:calculateClassName() }) }>
 			<div class="flair-card">
 				<div class="text">
+
 					<Heading class="title">
-					<RichText
-					tagName='a'
-					className='link'
-					placeholder={__('My card')}
-					value={attributes.title}
-					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-					onChange={( value ) => {
-						setAttributes({
-							title: value
-						});
-					}}
-					/>
+						<RichText
+							tagName='a'
+							className='link'
+							placeholder={__('My card')}
+							value={attributes.title}
+							allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+							onChange={( value ) => {
+								setAttributes({
+									title: value
+								});
+							}}
+						/>
 					</Heading>
 					<RichText
-					tagName='p'
-					className='excerpt'
-					placeholder={__('The body of my great card')}
-					value={attributes.excerpt}
-					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-					onChange={( value ) => {
-						setAttributes({
-							excerpt: value
-						});
-					}}
+						tagName='p'
+						className='excerpt'
+						placeholder={__('The body of my great card')}
+						value={attributes.excerpt}
+						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+						onChange={( value ) => {
+							setAttributes({
+								excerpt: value
+							});
+						}}
 					/>
 					{ (attributes.attribution || isSelected) && (
 					<RichText
-					tagName='small'
-					className='attribution'
-					placeholder={__('Anonymous')}
-					value={attributes.attribution}
-					allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-					onChange={( value ) => {
-						setAttributes({
-							attribution: value
-						});
-					}}
+						tagName='small'
+						className='attribution'
+						placeholder={__('Anonymous')}
+						value={attributes.attribution}
+						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+						onChange={( value ) => {
+							setAttributes({
+								attribution: value
+							});
+						}}
 					/>
 					)
 					}
 					{ (attributes.button || isSelected) && (
 						<RichText
-						tagName='p'
-						className='button'
-						placeholder={__('Explore')}
-						value={attributes.button}
-						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-						onChange={( value ) => {
-							setAttributes({
-								button: value
-							});
-						}}
+							tagName='p'
+							className='button'
+							placeholder={__('Explore')}
+							value={attributes.button}
+							allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+							onChange={( value ) => {
+								setAttributes({
+									button: value
+								});
+							}}
 						/>
 					)
 					}
+
 				</div>
 				{ mediaElement() }
 			</div>

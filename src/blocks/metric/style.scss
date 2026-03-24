@@ -1,5 +1,5 @@
 :where( .flair-metric ) {
-	font-size: var( --type__size, 1.1rem );
+// 	font-size: var( --type__size, 1.1rem );
 	margin-bottom: var( --type__size, 1em );
 
 	& > em,
@@ -11,7 +11,7 @@
 		display: block;
 		font-size: calc( var( --type__size, 1em ) * 3 );
 		font-style: normal;
-		font-weight: bold;
+// 		font-weight: bold;
 	}
 }
 
