@@ -388,6 +388,94 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'render' => 'file:./render.php'
 	),
+	'overlay' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/overlay',
+		'version' => '0.2.0',
+		'title' => 'Overlay',
+		'category' => 'flair',
+		'description' => 'It\'s a cross between a card and a cover.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'align' => array(
+				'left',
+				'right',
+				'center',
+				'wide'
+			),
+			'anchor' => true,
+			'color' => array(
+				'background' => true,
+				'text' => true
+			),
+			'html' => false,
+			'shadow' => true,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => false
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true
+			)
+		),
+		'attributes' => array(
+			'href' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'target' => array(
+				'type' => 'string'
+			),
+			'asset' => array(
+				'type' => 'object',
+				'selector' => '.media img',
+				'default' => array(
+					'url' => null
+				),
+				'id' => array(
+					'type' => 'number'
+				),
+				'url' => array(
+					'type' => 'string',
+					'source' => 'attribute',
+					'attribute' => 'src'
+				),
+				'alt' => array(
+					'type' => 'string',
+					'source' => 'attribute',
+					'attribute' => 'alt'
+				)
+			),
+			'title' => array(
+				'type' => 'string'
+			),
+			'eyebrow' => array(
+				'type' => 'string'
+			),
+			'excerpt' => array(
+				'type' => 'string'
+			),
+			'aspect' => array(
+				'type' => 'string',
+				'default' => '3-2'
+			),
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'h3'
+			)
+		),
+		'textdomain' => 'flair',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'sidler' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
