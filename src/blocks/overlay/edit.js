@@ -246,7 +246,7 @@ export default function Edit(props) {
 			onSelect={onSelectMedia}
 			allowedTypes={['image', 'video']}
 			value={attributes.asset.id}
-			accept="image/*"
+			accept="image/*,video/*"
 			name={!attributes.asset.url ? __('Add Media', 'flair') : __('Replace Media', 'flair')}
 			children={
 				(<Button

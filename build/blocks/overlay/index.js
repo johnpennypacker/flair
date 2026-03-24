@@ -281,7 +281,7 @@ function Edit(props) {
         onSelect: onSelectMedia,
         allowedTypes: ['image', 'video'],
         value: attributes.asset.id,
-        accept: "image/*",
+        accept: "image/*,video/*",
         name: !attributes.asset.url ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Media', 'flair') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace Media', 'flair'),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
           className: "components-toolbar__control flair-remove-button",
