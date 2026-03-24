@@ -282,7 +282,7 @@ function Edit(props) {
         allowedTypes: ['image', 'video'],
         value: attributes.asset.id,
         accept: "image/*",
-        name: !attributes.asset.url ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Image') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace Image'),
+        name: !attributes.asset.url ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Media', 'flair') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace Media', 'flair'),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
           className: "components-toolbar__control flair-remove-button",
           onClick: () => {
@@ -321,7 +321,7 @@ function Edit(props) {
           children: [(attributes.eyebrow || isSelected) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
             tagName: "div",
             className: "flair-eyebrow",
-            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Kicker'),
+            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Eyebrow', 'flair'),
             value: attributes.eyebrow,
             allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
             onChange: value => {
@@ -334,7 +334,7 @@ function Edit(props) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
               tagName: "a",
               className: "link",
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('My overlay'),
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('My overlay', 'flair'),
               value: attributes.title,
               allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
               onChange: value => {
@@ -343,7 +343,7 @@ function Edit(props) {
                 });
               }
             })
-          }), (attributes.eyebrow || isSelected) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
+          }), (_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content || isSelected) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
             defaultBlock: ['core/paragraph', {
               placeholder: "Lorem ipsum..."
             }],

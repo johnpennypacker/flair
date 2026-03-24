@@ -247,7 +247,7 @@ export default function Edit(props) {
 			allowedTypes={['image', 'video']}
 			value={attributes.asset.id}
 			accept="image/*"
-			name={!attributes.asset.url ? __('Add Image') : __('Replace Image')}
+			name={!attributes.asset.url ? __('Add Media', 'flair') : __('Replace Media', 'flair')}
 			children={
 				(<Button
 				className="components-toolbar__control flair-remove-button"
@@ -281,7 +281,7 @@ export default function Edit(props) {
 					<RichText
 						tagName='div'
 						className='flair-eyebrow'
-						placeholder={__('Kicker')}
+						placeholder={__('Eyebrow', 'flair')}
 						value={attributes.eyebrow}
 						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
 						onChange={( value ) => {
@@ -297,7 +297,7 @@ export default function Edit(props) {
 						<RichText
 							tagName='a'
 							className='link'
-							placeholder={__('My overlay')}
+							placeholder={__('My overlay', 'flair')}
 							value={attributes.title}
 							allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
 							onChange={( value ) => {
@@ -307,7 +307,7 @@ export default function Edit(props) {
 							}}
 						/>
 					</Heading>
-					{ (attributes.eyebrow || isSelected) && (
+					{ (InnerBlocks.Content || isSelected) && (
 						<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} directInsert />
 					)}
 				</div>
