@@ -93,6 +93,7 @@ export default function Edit(props) {
 				<PanelRow>
 					<ToggleGroupControl
 						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 						isBlock
 						label="Layout"
 						value={attributes.layout}
@@ -163,7 +164,7 @@ export default function Edit(props) {
 						});
 					}}
 					/>
-					<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} directInsert />
+					<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} />
 				</div>
 			</div>
 		</div>

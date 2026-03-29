@@ -122,6 +122,7 @@ function Edit(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
             __next40pxDefaultSize: true,
+            __nextHasNoMarginBottom: true,
             isBlock: true,
             label: "Layout",
             value: attributes.layout,
@@ -238,8 +239,7 @@ function Edit(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
             defaultBlock: ['core/paragraph', {
               placeholder: "Lorem ipsum..."
-            }],
-            directInsert: true
+            }]
           })]
         })]
       })
