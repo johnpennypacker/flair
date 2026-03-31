@@ -292,7 +292,6 @@ export default function Edit(props) {
 					/>
 					)
 					}
-
 					<Heading class="title">
 						<RichText
 							tagName='a'

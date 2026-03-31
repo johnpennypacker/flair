@@ -6,6 +6,9 @@
   var links;
   document.addEventListener('DOMContentLoaded', initFlair);
   function initFlair() {
+    /** add css classnames to cardish structures **/
+    initCardish();
+
     /** add hover x and y coordinates to links and buttons **/
     links = document.querySelectorAll('a, button, .button');
     links.forEach(function (el) {
@@ -29,6 +32,15 @@
     }
 
     // setInterval(changeRando, 1000);
+  }
+  function initCardish() {
+    let cardishes = document.querySelectorAll('.cardish');
+    cardishes.forEach(function (c) {
+      let h = c.querySelectorAll('h2:has(a), h3:has(a), h4:has(a), h5:has(a)');
+      if (h[0]) {
+        h[0].classList.add('cardish-title');
+      }
+    });
   }
   function buttonFlair(e) {
     const x = e.pageX - e.target.offsetX;

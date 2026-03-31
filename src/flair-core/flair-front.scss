@@ -216,3 +216,47 @@ button.flair-toggle-x:hover {
 	}
 }
 
+
+
+.cardish {
+// 	outline: 2px dashed pink;
+	position: relative;
+	transition: all .2s ease-in-out;
+
+	.text {
+		padding-block-end: calc( var( --wp--style--block-gap ) * 1 );
+		padding-inline: calc( var( --wp--style--block-gap ) * 1 );
+	}
+
+	.cardish-title a {
+		&::before {
+			box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 85%);
+			content: '';
+			position: absolute;
+			top: 0; left: 0; bottom: 0; right: 0;
+			transition: all .2s ease-in-out;
+			z-index: 0;
+		}
+		&:hover::before {
+			box-shadow: 0 3px 10px color-mix(in oklab, var(--flair-color-primary), white 85%);
+		}
+	}
+
+	&:has( .cardish-title a:hover ) {
+		transform: translateY(-2px);
+	}
+
+	&:has( .cardish-title a ) figure {
+		overflow: hidden;
+	}
+	&:has( .cardish-title a ) img,
+	&:has( .cardish-title a ) figure span {
+		transition: all .15s ease-in-out;
+	}
+	&:has( .cardish-title a:hover ) img,
+	&:has( .cardish-title a:hover ) figure span {
+		transform: scale(1.03);
+	}
+
+
+}
