@@ -221,17 +221,22 @@ button.flair-toggle-x:hover {
   transform: translateX(calc(-1*(-1em + var(--weight)))) rotateZ(-45deg);
 }
 
-.cardish {
+:where(.cardish) {
   position: relative;
   transition: all 0.2s ease-in-out;
 }
 
-.cardish .text {
+:where(.cardish) .text {
   padding-block-end: calc(var(--wp--style--block-gap) * 1);
   padding-inline: calc(var(--wp--style--block-gap) * 1);
 }
 
-.cardish .cardish-title a::before {
+:where(.cardish) a:not(.cardish-title a) {
+  position: relative;
+  z-index: 1;
+}
+
+:where(.cardish) .cardish-title a::before {
   box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 85%);
   content: "";
   position: absolute;
@@ -243,22 +248,18 @@ button.flair-toggle-x:hover {
   z-index: 0;
 }
 
-.cardish .cardish-title a:hover::before {
+:where(.cardish) .cardish-title a:hover::before {
   box-shadow: 0 3px 10px color-mix(in oklab, var(--flair-color-primary), white 85%);
 }
 
-.cardish:has(.cardish-title a:hover) {
-  transform: translateY(-2px);
-}
-
-.cardish:has(.cardish-title a) figure {
+:where(.cardish):has(.cardish-title a) figure {
   overflow: hidden;
 }
 
-.cardish:has(.cardish-title a) img, .cardish:has(.cardish-title a) figure span {
+:where(.cardish):has(.cardish-title a) img, :where(.cardish):has(.cardish-title a) figure span {
   transition: all 0.15s ease-in-out;
 }
 
-.cardish:has(.cardish-title a:hover) img, .cardish:has(.cardish-title a:hover) figure span {
+:where(.cardish):has(.cardish-title a:hover) img, :where(.cardish):has(.cardish-title a:hover) figure span {
   transform: scale(1.03);
 }

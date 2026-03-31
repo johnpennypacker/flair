@@ -218,7 +218,7 @@ button.flair-toggle-x:hover {
 
 
 
-.cardish {
+:where(.cardish) {
 // 	outline: 2px dashed pink;
 	position: relative;
 	transition: all .2s ease-in-out;
@@ -226,6 +226,11 @@ button.flair-toggle-x:hover {
 	.text {
 		padding-block-end: calc( var( --wp--style--block-gap ) * 1 );
 		padding-inline: calc( var( --wp--style--block-gap ) * 1 );
+	}
+
+	a:not(.cardish-title a) {
+		position: relative;
+		z-index: 1;
 	}
 
 	.cardish-title a {
@@ -243,7 +248,7 @@ button.flair-toggle-x:hover {
 	}
 
 	&:has( .cardish-title a:hover ) {
-		transform: translateY(-2px);
+// 		transform: translateY(-2px);
 	}
 
 	&:has( .cardish-title a ) figure {
