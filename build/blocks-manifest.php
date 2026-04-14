@@ -274,7 +274,8 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php'
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
 	),
 	'milestone' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -410,6 +411,9 @@ return array(
 			'color' => array(
 				'background' => true,
 				'text' => true
+			),
+			'dimensions' => array(
+				'minHeight' => true
 			),
 			'html' => false,
 			'shadow' => true,

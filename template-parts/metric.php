@@ -10,7 +10,7 @@ if( isset( $attributes['orientation'] ) ) {
 
 ?>
 <div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
-	<div class="flair-metric">
+	<div class="flair-metric flair-io">
 		<em><?php echo $attributes['number']; ?></em>
 		<span class="qualifier"><?php echo $attributes['qualifier']; ?></span>
 	</div>

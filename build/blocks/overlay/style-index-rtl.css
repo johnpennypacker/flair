@@ -4,6 +4,9 @@
 /**
  *
  */
+:where(.flair-overlay-wrapper) {
+  display: flex;
+}
 :where(.flair-overlay-wrapper).aspect-24-1 .flair-overlay {
   aspect-ratio: 2.4/1;
 }

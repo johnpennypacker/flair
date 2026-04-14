@@ -4,6 +4,8 @@
 
 :where(.flair-overlay-wrapper) {
 
+	display: flex;
+
 	&.aspect-24-1 .flair-overlay {
 		aspect-ratio: 2.4/1;
 	}

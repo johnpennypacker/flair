@@ -19,6 +19,9 @@
       "background": true,
       "text": true
     },
+    "dimensions": {
+      "minHeight": true
+    },
     "html": false,
     "shadow": true,
     "spacing": {
