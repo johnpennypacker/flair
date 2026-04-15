@@ -17,7 +17,6 @@
 
 	}
 
-
 	const countablize = (el) => {
 		el.innerHTML = el.innerHTML.replace(/(\d+)/g, '<span class="metric-count">$1</span>')
 	}

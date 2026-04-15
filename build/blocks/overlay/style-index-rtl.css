@@ -30,15 +30,13 @@
 :where(.flair-overlay):has(.link) {
   cursor: pointer;
 }
-:where(.flair-overlay) .text, :where(.flair-overlay) .media {
+:where(.flair-overlay) .media {
+  overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-}
-:where(.flair-overlay) .media {
-  overflow: hidden;
 }
 :where(.flair-overlay) .media img {
   display: block;
