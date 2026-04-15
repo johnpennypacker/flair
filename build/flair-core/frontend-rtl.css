@@ -271,7 +271,7 @@ button.flair-toggle-x:hover {
   --frame-transition-delay: 100ms;
   opacity: 0;
   transform: translateY(4rem) rotateZ(-1deg);
-  transition: var(--frame-transition-duration) transform ease, calc(var(--frame-transition-duration) * 1.2) opacity ease-in;
+  transition: var(--frame-transition-duration) transform ease, calc(var(--frame-transition-duration) * 0.75) opacity ease-in;
   transition-delay: var(--frame-transition-delay);
 }
 

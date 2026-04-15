@@ -275,7 +275,7 @@ button.flair-toggle-x:hover {
   opacity: 0;
 	transform: translateY(4rem) rotateZ(1deg);
 	//will-change: opacity, transform;
-	transition: var(--frame-transition-duration) transform ease, calc( var(--frame-transition-duration) * 1.2 ) opacity ease-in;
+	transition: var(--frame-transition-duration) transform ease, calc( var(--frame-transition-duration) * .75 ) opacity ease-in;
 	transition-delay: var( --frame-transition-delay );
 }
 .wp-block-columns [data-was-visible]:nth-child(1) {
