@@ -24,7 +24,7 @@ if( isset( $attributes['aspect'] ) ) {
 				<a href="<?php echo $attributes['href']; ?>" class="link"><?php echo $attributes['title']; ?></a>
 			</<?php echo $attributes['heading'] ?>>
 			<?php else: ?>
-				<div class="flair-warning"><p><strong>Warning:</strong> this block is missing a title and link.</p></div>
+				<div class="flair-warning"><p><strong>Warning:</strong> overlay is missing a title and link.</p></div>
 			<?php endif; ?>
 
 			<?php if( ! empty( $args['content'] ) ): ?>

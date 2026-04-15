@@ -2,6 +2,10 @@
  *
  */
 
+/* there has got to be a better way... */
+@use '../eyebrow/style.scss';
+
+
 :where(.flair-overlay-wrapper) {
 
 	display: flex;

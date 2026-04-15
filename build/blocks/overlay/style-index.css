@@ -4,6 +4,12 @@
 /**
  *
  */
+/* there has got to be a better way... */
+:where(.flair-eyebrow) {
+  font-size: 80%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 :where(.flair-overlay-wrapper) {
   display: flex;
 }
