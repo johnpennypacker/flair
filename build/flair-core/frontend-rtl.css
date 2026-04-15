@@ -263,3 +263,37 @@ button.flair-toggle-x:hover {
 :where(.cardish):has(.cardish-title a:hover) img, :where(.cardish):has(.cardish-title a:hover) figure span {
   transform: scale(1.03);
 }
+
+/** animations **/
+
+[data-was-visible]:not(.flair-fixie) {
+  --frame-transition-duration: 400ms;
+  --frame-transition-delay: 100ms;
+  opacity: 0;
+  transform: translateY(4rem) rotateZ(-1deg);
+  transition: var(--frame-transition-duration) transform ease, calc(var(--frame-transition-duration) * 1.2) opacity ease-in;
+  transition-delay: var(--frame-transition-delay);
+}
+
+.wp-block-columns [data-was-visible]:nth-child(1) {
+  --frame-transition-delay: 100ms;
+}
+
+.wp-block-columns [data-was-visible]:nth-child(2) {
+  --frame-transition-delay: 200ms;
+}
+
+.wp-block-columns [data-was-visible]:nth-child(3) {
+  --frame-transition-delay: 300ms;
+}
+
+[data-was-visible=true]:not(.flair-fixie) {
+  opacity: 1;
+  transform: translateY(0rem) rotateZ(0deg);
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}

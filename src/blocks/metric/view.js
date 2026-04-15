@@ -55,10 +55,10 @@
 			if( mutation.type === "attributes" && "data-intersection" == mutation.attributeName ) {
 				let m = mutation.target;
 				if( m.dataset.isIntersecting == "true" && m.dataset.didAnimate == "false" ) {
-					console.log('count it up');
+// 					console.log('count it up');
 					countUp( m );
 				}
-				console.log(mutation);
+// 				console.log(mutation);
 // 				console.log(`The ${mutation.attributeName} attribute was modified.`);
 			}
 		}

@@ -27,14 +27,6 @@
   position: absolute;
   z-index: -1;
 }
-:where(.flair-fixie)[data-is-intersecting=true]:not(:has(img)) :is(.background, .wp-block-cover__background) {
-  opacity: calc((var(--intersection-ratio) - 0) * 1) !important;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
 :where(.flair-fixie)[data-is-intersecting=true]:has(img) :is(.wp-block-cover__image-background) {
   opacity: calc((var(--intersection-ratio) - 0) * 1) !important;
   position: fixed;
@@ -44,7 +36,7 @@
   right: 0;
 }
 :where(.flair-fixie):where(.foreground, .wp-block-cover__inner-container) {
-  /* 
+  /*
   	border: 1px dashed pink;
   */
   margin: 50vh 0;

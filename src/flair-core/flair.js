@@ -22,7 +22,7 @@
 				threshold: buildThreshold( 100 )
 			}
 			let observer = new IntersectionObserver(observerCallback, options);
-			let els = document.querySelectorAll(".wp-block-cover, figure, header, footer, nav, section, .flair-io");
+			let els = document.querySelectorAll(".wp-block-cover, figure, header, footer, nav, section, .flair-io, .wp-block-column");
 
 			els.forEach(function(el) {
 				observer.observe(el);
@@ -103,6 +103,10 @@
 			targetElement.style.setProperty( '--intersecting', entry.isIntersecting );
 			targetElement.style.setProperty( '--height', height );
 			targetElement.style.setProperty( '--vh', vh );
+			if( !! entry.isIntersecting ) {
+				targetElement.dataset.wasVisible = "true";
+				targetElement.style.setProperty( '--was-visible', "true" );
+			}
 
 			if( height > vh ) {
 				targetElement.style.setProperty( '--intersection-ratio', 1 - (top/vh) );
