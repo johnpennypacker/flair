@@ -15,9 +15,11 @@ if( ! empty ( $attributes['element'] ) ) {
 	$element = $attributes['element'];
 }
 
+if ( ! empty( $attributes['content'] ) ):
 ?>
 <div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 	<<?php echo $element ?> class="flair-eyebrow">
 		<?php echo $attributes['content']; ?>
 	</<?php echo $element ?>>
 </div>
+<?php endif; ?>
