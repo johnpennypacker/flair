@@ -115,8 +115,25 @@ registerBlockVariation('core/cover',
   isDefault: false,
   category: 'flair',
   attributes: {
-    className: 'flair-fixie'
+    className: 'flair-fixie',
+    minHeight: 100,
+    minHeightUnit: "vh"
   },
+  innerBlocks: [['core/group', {
+    "style": {
+      "dimensions": {
+        "minHeight": "150vh"
+      }
+    },
+    "layout": {
+      "type": "flex",
+      "orientation": "vertical",
+      "verticalAlignment": "center"
+    }
+  }, [['core/paragraph', {
+    "align": "center",
+    "placeholder": "Write title…"
+  }]]]],
   scope: ['inserter'],
   icon: {
     src: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {

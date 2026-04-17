@@ -10,14 +10,12 @@
 :where(.flair-fixie) {
   align-items: center;
   display: flex;
-  justify-content: center;
-  margin: 0;
-  scroll-snap-align: start;
-  top: 0;
-  min-height: 100vh;
   height: -moz-fit-content;
   height: fit-content;
   position: relative;
+  scroll-snap-align: start;
+  top: 0;
+  outline: 3px dashed black;
 }
 :where(.flair-fixie):is(.background, .wp-block-cover__background) {
   margin: 0;
@@ -30,24 +28,6 @@
 :where(.flair-fixie)[data-is-intersecting=true]:has(img) :is(.wp-block-cover__image-background) {
   opacity: calc((var(--intersection-ratio) - 0) * 1) !important;
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-:where(.flair-fixie):where(.foreground, .wp-block-cover__inner-container) {
-  /*
-  	border: 1px dashed pink;
-  */
-  margin: 50vh 0;
-  min-height: 50vh;
-  width: 100%;
-}
-:where(.flair-fixie):where(.foreground, .wp-block-cover__inner-container) .wp-block-group {
-  min-height: 50vh;
-}
-.flair-fixie + .flair-fixie {
-  /* 	margin-top: -60vh; */
 }
 
 /*# sourceMappingURL=frontend.css.map*/
