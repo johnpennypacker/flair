@@ -15,7 +15,6 @@
   position: relative;
   scroll-snap-align: start;
   top: 0;
-  outline: 3px dashed black;
 }
 :where(.flair-fixie):is(.background, .wp-block-cover__background) {
   margin: 0;
@@ -26,6 +25,7 @@
   z-index: -1;
 }
 :where(.flair-fixie)[data-is-intersecting=true]:has(img) :is(.wp-block-cover__image-background) {
-  opacity: calc((var(--intersection-ratio) - 0) * 1) !important;
+  --minIntersection: .4;
+  opacity: calc((var(--intersection-ratio) - var(--minIntersection)) / (1 - var(--minIntersection)) * 1) !important;
   position: fixed;
 }
