@@ -9,13 +9,6 @@
  */
 :where(.flair-fixie) {
   --minIntersection: .4;
-  align-items: center;
-  display: flex;
-  height: -moz-fit-content;
-  height: fit-content;
-  position: relative;
-  scroll-snap-align: start;
-  top: 0;
   /** adjacent fixies need a lower number here for a smoother transition from one to the next **/
 }
 :where(.flair-fixie):has(+ .flair-fixie[data-intersection=bottom]), :where(.flair-fixie)[data-intersection=top] + .flair-fixie {
