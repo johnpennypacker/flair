@@ -6,6 +6,7 @@
  */
 
 :where(.flair-fixie) {
+	--minIntersection: .4; // this is the point where opacity starts to transition.  .4 means when fixie is 40% visible.
 	align-items: center;
 	display: flex;
 	height: fit-content;
@@ -13,22 +14,23 @@
 	scroll-snap-align: start;
 	top: 0;
 
+	/** adjacent fixies need a lower number here for a smoother transition from one to the next **/
+ 	&:has( + .flair-fixie[data-intersection="bottom"] ),
+	&[data-intersection="top"] + .flair-fixie {
+		--minIntersection: 0; // prevents consecutive fixies from fading out as they transition
+	}
+
 	&:is( .background, .wp-block-cover__background) {
-		margin: 0;
-		width: 100%;
-		height: 100vh;
-		opacity: 0;
+// 		opacity: 0;
 		position: absolute;
 		z-index: -1;
 	}
 
 	&[data-is-intersecting="true"]:has(img) :is( .wp-block-cover__image-background ) {
-		--minIntersection: .4; // this is the point where opacity starts to transition.  .4 means when fixie is 40% visible.
-		opacity: calc(   (var(--intersection-ratio) - var(--minIntersection)) / (1 - var(--minIntersection)) * (1 - 0)    ) !important;
-
-
+		opacity: calc( (var(--intersection-ratio) - var(--minIntersection)) / (1 - var(--minIntersection)) * (1 - 0) ) !important;
 		position: fixed;
 	}
+
 	&:where( .foreground, .wp-block-cover__inner-container ) {
 	}
 

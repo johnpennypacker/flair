@@ -2,11 +2,11 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/link.js"
+/***/ "./node_modules/@wordpress/icons/build-module/library/link.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@wordpress/icons/build-module/library/link.js ***!
   \********************************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -23,13 +23,23 @@ var link_default = /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE
 //# sourceMappingURL=link.js.map
 
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/multibutton-button/edit.js"
+/***/ "./src/blocks/multibutton-button/block.json":
+/*!**************************************************!*\
+  !*** ./src/blocks/multibutton-button/block.json ***!
+  \**************************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/multibutton-button","version":"0.1.0","title":"Multibutton Button","category":"flair","description":"The individual buttons that go inside a multibutton.","example":{},"parent":["flair/multibutton"],"supports":{"html":false,"layout":null,"typography":{"textAlign":true}},"attributes":{"href":{"type":"string","default":"#"},"text":{"type":"string"}},"textdomain":"flair","editorScript":"file:./index.js","render":"file:./render.php"}');
+
+/***/ }),
+
+/***/ "./src/blocks/multibutton-button/edit.js":
 /*!***********************************************!*\
   !*** ./src/blocks/multibutton-button/edit.js ***!
   \***********************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -178,13 +188,25 @@ function Edit(props) {
   });
 }
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/multibutton-button/index.js"
+/***/ "./src/blocks/multibutton-button/editor.scss":
+/*!***************************************************!*\
+  !*** ./src/blocks/multibutton-button/editor.scss ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/blocks/multibutton-button/index.js":
 /*!************************************************!*\
   !*** ./src/blocks/multibutton-button/index.js ***!
   \************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
@@ -254,111 +276,89 @@ const mbbIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.j
   icon: mbbIcon
 });
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/multibutton-button/editor.scss"
-/*!***************************************************!*\
-  !*** ./src/blocks/multibutton-button/editor.scss ***!
-  \***************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ },
-
-/***/ "./src/blocks/multibutton-button/style.scss"
+/***/ "./src/blocks/multibutton-button/style.scss":
 /*!**************************************************!*\
   !*** ./src/blocks/multibutton-button/style.scss ***!
   \**************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
-/***/ },
+/***/ }),
 
-/***/ "react"
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-(module) {
-
-module.exports = window["React"];
-
-/***/ },
-
-/***/ "react/jsx-runtime"
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
-(module) {
-
-module.exports = window["ReactJSXRuntime"];
-
-/***/ },
-
-/***/ "@wordpress/block-editor"
+/***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
   \*************************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["blockEditor"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/blocks"
+/***/ "@wordpress/blocks":
 /*!********************************!*\
   !*** external ["wp","blocks"] ***!
   \********************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["blocks"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/components"
+/***/ "@wordpress/components":
 /*!************************************!*\
   !*** external ["wp","components"] ***!
   \************************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["components"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/i18n"
+/***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
   \******************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["i18n"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/primitives"
+/***/ "@wordpress/primitives":
 /*!************************************!*\
   !*** external ["wp","primitives"] ***!
   \************************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["primitives"];
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/multibutton-button/block.json"
-/*!**************************************************!*\
-  !*** ./src/blocks/multibutton-button/block.json ***!
-  \**************************************************/
-(module) {
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/multibutton-button","version":"0.1.0","title":"Multibutton Button","category":"flair","description":"The individual buttons that go inside a multibutton.","example":{},"parent":["flair/multibutton"],"supports":{"html":false,"layout":null,"typography":{"textAlign":true}},"attributes":{"href":{"type":"string","default":"#"},"text":{"type":"string"}},"textdomain":"flair","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = window["React"];
 
-/***/ }
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ })
 
 /******/ 	});
 /************************************************************************/
@@ -371,12 +371,6 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Check if module exists (development only)
-/******/ 		if (__webpack_modules__[moduleId] === undefined) {
-/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
-/******/ 			e.code = 'MODULE_NOT_FOUND';
-/******/ 			throw e;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {

@@ -6,22 +6,6 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.flair-fixie {
-  /* 
-  	flex-direction: column;
-   */
-  margin: 0 0 calc(var(--type__size, 1em) * 2);
-  padding: 0;
-  height: 100vh;
-}
-.flair-fixie .background {
-  opacity: 1;
-  position: absolute;
-  top: 0;
-  left: -2rem;
-  width: calc(100% + 4rem);
-  z-index: 0;
-}
 .flair-fixie .color-picker {
   background-color: rgba(var(--color__base_700), 1);
   position: relative;

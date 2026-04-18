@@ -8,6 +8,7 @@
  * Replace them with your own styles or remove the file completely.
  */
 :where(.flair-fixie) {
+  --minIntersection: .4;
   align-items: center;
   display: flex;
   height: -moz-fit-content;
@@ -15,17 +16,16 @@
   position: relative;
   scroll-snap-align: start;
   top: 0;
+  /** adjacent fixies need a lower number here for a smoother transition from one to the next **/
+}
+:where(.flair-fixie):has(+ .flair-fixie[data-intersection=bottom]), :where(.flair-fixie)[data-intersection=top] + .flair-fixie {
+  --minIntersection: 0;
 }
 :where(.flair-fixie):is(.background, .wp-block-cover__background) {
-  margin: 0;
-  width: 100%;
-  height: 100vh;
-  opacity: 0;
   position: absolute;
   z-index: -1;
 }
 :where(.flair-fixie)[data-is-intersecting=true]:has(img) :is(.wp-block-cover__image-background) {
-  --minIntersection: .4;
   opacity: calc((var(--intersection-ratio) - var(--minIntersection)) / (1 - var(--minIntersection)) * 1) !important;
   position: fixed;
 }
