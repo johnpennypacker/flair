@@ -20,8 +20,15 @@
 		--minIntersection: 0; // prevents consecutive fixies from fading out as they transition
 	}
 
+	//set opacity of the background; could be color block or image
+	&[data-is-intersecting="true"]:not(:has(img)) span.wp-block-cover__background,
 	&[data-is-intersecting="true"]:has(img) :is( .wp-block-cover__image-background ) {
 		opacity: calc( (var(--intersection-ratio) - var(--minIntersection)) / (1 - var(--minIntersection)) * (1 - 0) ) !important;
+		position: fixed;
+		z-index: -1;
+	}
+	// honor the overlay settings a designer sets in the editor
+	&[data-is-intersecting="true"]:has(img) span.wp-block-cover__background {
 		position: fixed;
 		z-index: -1;
 	}

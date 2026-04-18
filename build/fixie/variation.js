@@ -149,19 +149,19 @@ registerBlockVariation('core/cover',
         width: "16",
         height: "8"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "currentColor",
+        fill: "#222",
         x: "6",
         y: "8",
         width: "12",
         height: "1"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "currentColor",
+        fill: "#222",
         x: "6",
         y: "10",
         width: "12",
         height: "1"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "currentColor",
+        fill: "#222",
         x: "6",
         y: "12",
         width: "12",
@@ -187,7 +187,9 @@ registerBlockVariation('core/cover',
       })]
     })
   },
-  isActive: ['className']
+  isActive: blockAttributes => {
+    return blockAttributes.className.includes('flair-fixie');
+  }
 });
 })();
 
