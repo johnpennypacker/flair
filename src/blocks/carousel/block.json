@@ -8,6 +8,7 @@
 	"description": "A slider.",
 	"icon": "format-gallery",
 	"supports": {
+		"align": true,
 		"html": false,
     "layout": null,
 		"spacing": {

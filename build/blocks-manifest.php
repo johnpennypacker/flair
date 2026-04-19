@@ -182,6 +182,7 @@ return array(
 		'description' => 'A slider.',
 		'icon' => 'format-gallery',
 		'supports' => array(
+			'align' => true,
 			'html' => false,
 			'layout' => null,
 			'spacing' => array(

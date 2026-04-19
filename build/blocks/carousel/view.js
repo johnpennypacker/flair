@@ -8,6 +8,7 @@
 (function () {
   var carousels;
   document.addEventListener("DOMContentLoaded", initCarousel);
+  window.addEventListener("resize", resized);
   function initWrapper(el) {
     var wrap = el.closest(".flair-carousel-wrapper");
     var slides = el.querySelectorAll(":scope > div");
@@ -42,6 +43,12 @@
       stops.push(stop);
     });
     el.dataset.stops = stops;
+  }
+  function resized() {
+    carousels = document.querySelectorAll(".flair-carousel");
+    carousels.forEach(function (el) {
+      calculateStops(el);
+    });
   }
   function initCarousel() {
     carousels = document.querySelectorAll(".flair-carousel");
