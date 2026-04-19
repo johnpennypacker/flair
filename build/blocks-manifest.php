@@ -172,6 +172,78 @@ return array(
 		'viewScript' => 'file:./card.js',
 		'render' => 'file:./render.php'
 	),
+	'carousel' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/carousel',
+		'version' => '0.1.0',
+		'title' => 'Carousel',
+		'category' => 'flair',
+		'description' => 'A slider.',
+		'icon' => 'format-gallery',
+		'supports' => array(
+			'html' => false,
+			'layout' => null,
+			'typography' => array(
+				'textAlign' => true
+			)
+		),
+		'attributes' => array(
+			'perpage' => array(
+				'type' => 'string',
+				'default' => '1'
+			),
+			'showArrows' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showDots' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'example' => array(
+			
+		),
+		'textdomain' => 'flair',
+		'editorStyle' => 'file:./index.css',
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
+	'carousel-slide' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/carousel-slide',
+		'version' => '0.1.0',
+		'title' => 'Carousel slide',
+		'category' => 'flair',
+		'description' => 'The individual slides within a carousel.',
+		'icon' => 'carrot',
+		'parent' => array(
+			'flair/carousel'
+		),
+		'supports' => array(
+			'html' => false,
+			'layout' => null,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			)
+		),
+		'attributes' => array(
+			
+		),
+		'example' => array(
+			'text' => 'Save'
+		),
+		'textdomain' => 'flair',
+		'editorStyle' => 'file:./index.css',
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php'
+	),
 	'eyebrow' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

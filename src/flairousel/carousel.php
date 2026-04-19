@@ -11,7 +11,7 @@ function flair_carousel_enqueues() {
 	wp_enqueue_script( 'flair-carousel', plugins_url( 'carousel.js', __FILE__ ), $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
 	wp_enqueue_style( 'flair-carousel', plugins_url( 'frontend.css', __FILE__ ), $asset['version'] );
 }
-add_action( 'wp_enqueue_scripts', 'flair_carousel_enqueues' );
+//add_action( 'wp_enqueue_scripts', 'flair_carousel_enqueues' );
 
 /**
  * Enqueue Editor assets.
@@ -19,7 +19,7 @@ add_action( 'wp_enqueue_scripts', 'flair_carousel_enqueues' );
 function flair_carousel_editor_enqueues() {
 	wp_enqueue_style( 'flair-carousel-editor', plugins_url( 'editor.css', __FILE__ ), array() );
 }
-add_action( 'enqueue_block_assets', 'flair_carousel_editor_enqueues' );
+//add_action( 'enqueue_block_assets', 'flair_carousel_editor_enqueues' );
 
 
 
@@ -60,4 +60,4 @@ function flair_carousel_variation( $variations, $block_type ) {
 
 	return $variations;
 }
-add_filter( 'get_block_type_variations', 'flair_carousel_variation', 10, 2 );
+//add_filter( 'get_block_type_variations', 'flair_carousel_variation', 10, 2 );

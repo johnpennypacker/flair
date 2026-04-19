@@ -1,0 +1,90 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/carousel/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+:where(.flair-carousel) {
+  --carousel_bg: var(--color__base_200, "255,255,0");
+  --carousel_fg: var(--color__base_900, "255,255,255");
+  --carousel_active: var(--color__accent, "0,255,255");
+  --carousel_gap: calc( var( --type__size, 1rem ) * 2);
+  margin-bottom: 2rem;
+  position: relative;
+}
+:where(.flair-carousel) button {
+  background-color: rgba(var(--carousel_bg), 1);
+  border: 0;
+  color: rgba(var(--carousel_fg), 1);
+  cursor: pointer;
+  display: block;
+  -webkit-appearance: none;
+}
+:where(.flair-carousel) button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+:where(.flair-carousel) .previous, :where(.flair-carousel) .next {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  text-indent: -999em;
+}
+:where(.flair-carousel) .previous {
+  background-image: url("data:image/svg+xml,<%3Fxml version=\"1.0\" encoding=\"utf-8\"%3F><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 12 12\" ><polygon points=\"8,11.8 2.2,6 8,0.2 9.4,1.6 5,6 9.4,10.4 \"/></svg>");
+  right: -2em;
+  top: calc(50% - 1.1em);
+}
+:where(.flair-carousel) .next {
+  background-image: url("data:image/svg+xml,<%3Fxml version=\"1.0\" encoding=\"utf-8\"%3F><svg  xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"  viewBox=\"0 0 12 12\" ><polygon points=\"4,11.8 2.6,10.4 7,6 2.6,1.6 4,0.2 9.8,6 \"/></svg>");
+  right: -2em;
+  top: calc(50% + 1em);
+}
+:where(.flair-carousel) .dots {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+:where(.flair-carousel) .dot {
+  background-color: rgb(var(--carousel_bg), 1);
+  border-radius: 50%;
+  height: 0.75em;
+  margin: 0.5em;
+  padding: 0;
+  transition: all 0.2s ease;
+  width: 0.75em;
+}
+:where(.flair-carousel) .dot[data-is-selected="1"] {
+  background-color: rgb(var(--carousel_active), 1);
+}
+:where(.flair-carousel) {
+  display: flex;
+  flex-wrap: nowrap !important; /* because WP default styles use importat */
+  gap: var(--carousel_gap);
+  overflow: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none; /* works with IE & Edge */
+  scrollbar-width: none; /* works with  FF */
+  overflow-x: scroll;
+}
+:where(.flair-carousel).overflow-auto {
+  overflow: auto;
+}
+:where(.flair-carousel) .flair-carousel-slide {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  flex-basis: 100%;
+}
+:where(.flair-carousel) .double .flair-carousel-slide {
+  flex-basis: calc(50% - var(--carousel_gap)) !important;
+}
+:where(.flair-carousel) .triple .flair-carousel-slide {
+  flex-basis: calc(33.3333333333% - var(--carousel_gap)) !important;
+}
+:where(.flair-carousel::-webkit-scrollbar) {
+  display: none; /* works with Chrome, Safari, and Opera */
+}
+
+/*# sourceMappingURL=style-index.css.map*/

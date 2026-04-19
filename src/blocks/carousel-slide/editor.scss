@@ -1,0 +1,7 @@
+.flair-carousel-slide > .block-editor-inner-blocks > .block-editor-block-list__layout:empty,
+.flair-carousel-slide > .block-editor-inner-blocks > .block-editor-block-list__layout > p[data-empty="true"],
+.flair-carousel-slide > .block-editor-inner-blocks > .block-editor-block-list__layout:has( .block-list-appender:first-child:last-child) {
+	outline: 1px dashed silver;
+	padding: 2rem;
+}
+
