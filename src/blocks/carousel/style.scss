@@ -1,14 +1,13 @@
-:where( .flair-carousel ) {
-	--carousel_bg: var(--color__base_200, '255,255,0');
-	--carousel_fg: var(--color__base_900, '255,255,255');
-	--carousel_active: var(--color__accent, '0,255,255');
+:is( .flair-carousel-wrapper ) {
+
 	--carousel_gap: calc( var( --type__size, 1rem ) * 2);
 	margin-bottom: 2rem;
 	position: relative;
+
 	button {
-		background-color: rgba(var(--carousel_bg), 1);
+		background-color: color-mix(in srgb, currentColor, transparent 90%);
 		border: 0;
-		color: rgba(var(--carousel_fg), 1);
+		color: currentColor;
 		cursor: pointer;
 		display: block;
 		-webkit-appearance: none;
@@ -46,7 +45,7 @@
 	}
 
 	.dot {
-		background-color: rgb(var(--carousel_bg), 1);
+		background-color: color-mix(in srgb, currentColor, transparent 90%);
 		border-radius: 50%;
 		height: .75em;
 		margin: .5em;
@@ -55,7 +54,7 @@
 		width: .75em;
 	}
 	.dot[data-is-selected="1"] {
-		background-color: rgb(var(--carousel_active), 1);
+		background-color: currentColor;
 	}
 
 }
