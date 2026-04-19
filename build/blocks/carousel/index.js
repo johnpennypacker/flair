@@ -8,7 +8,7 @@
   \****************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/carousel","version":"0.1.0","title":"Carousel","category":"flair","description":"A slider.","icon":"format-gallery","supports":{"html":false,"layout":null,"typography":{"textAlign":true}},"attributes":{"perpage":{"type":"string","default":"1"},"showArrows":{"type":"boolean","default":true},"showDots":{"type":"boolean","default":true}},"example":{},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/carousel","version":"0.1.0","title":"Carousel","category":"flair","description":"A slider.","icon":"format-gallery","supports":{"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"textAlign":true}},"attributes":{"perpage":{"type":"string","default":"1"},"showArrows":{"type":"boolean","default":true},"showDots":{"type":"boolean","default":true}},"example":{},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -132,7 +132,8 @@ function Edit(props) {
               setAttributes({
                 showArrows: value
               });
-            }
+            },
+            __nextHasNoMarginBottom: true
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
@@ -142,7 +143,8 @@ function Edit(props) {
               setAttributes({
                 showDots: value
               });
-            }
+            },
+            __nextHasNoMarginBottom: true
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("fieldset", {

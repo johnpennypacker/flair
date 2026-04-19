@@ -3,7 +3,6 @@
   \*******************************************************************************************************************************************************************************************************************************************************/
 :is(.flair-carousel-wrapper) {
   --carousel_gap: calc( var( --type__size, 1rem ) * 2);
-  margin-bottom: 2rem;
   position: relative;
 }
 :is(.flair-carousel-wrapper) button {
@@ -41,10 +40,11 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  margin-block-start: 1rem;
 }
 :is(.flair-carousel-wrapper) .dot {
-  background-color: color-mix(in srgb, currentColor, transparent 90%);
-  border-radius: 50%;
+  background-color: color-mix(in srgb, currentColor, transparent 70%);
+  border-radius: 0.375em;
   height: 0.75em;
   margin: 0.5em;
   padding: 0;
@@ -53,10 +53,11 @@
 }
 :is(.flair-carousel-wrapper) .dot[data-is-selected="1"] {
   background-color: currentColor;
+  width: 2.5em;
 }
-:where(.flair-carousel) {
+:is(.flair-carousel-wrapper) :where(.flair-carousel) {
   display: flex;
-  flex-wrap: nowrap !important; /* because WP default styles use importat */
+  flex-wrap: nowrap !important; /* because WP default styles use important */
   gap: var(--carousel_gap);
   overflow: hidden;
   scroll-behavior: smooth;
@@ -66,18 +67,18 @@
   scrollbar-width: none; /* works with  FF */
   overflow-x: scroll;
 }
-:where(.flair-carousel).overflow-auto {
+:is(.flair-carousel-wrapper) :where(.flair-carousel).overflow-auto {
   overflow: auto;
 }
-:where(.flair-carousel) .flair-carousel-slide {
+:is(.flair-carousel-wrapper) .flair-carousel-slide {
   flex: 0 0 auto;
   scroll-snap-align: start;
   flex-basis: 100%;
 }
-:where(.flair-carousel) .double .flair-carousel-slide {
+:is(.flair-carousel-wrapper).double .flair-carousel-slide {
   flex-basis: calc(50% - var(--carousel_gap)) !important;
 }
-:where(.flair-carousel) .triple .flair-carousel-slide {
+:is(.flair-carousel-wrapper).triple .flair-carousel-slide {
   flex-basis: calc(33.3333333333% - var(--carousel_gap)) !important;
 }
 :where(.flair-carousel::-webkit-scrollbar) {

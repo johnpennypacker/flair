@@ -3,13 +3,29 @@
   \********************************************************************************************************************************************************************************************************************************************************/
 .flair-carousel > .block-editor-inner-blocks > .block-editor-block-list__layout {
   display: flex;
-  flex-direction: row;
-  outline: 3px dashed red;
+  flex-wrap: nowrap !important; /* because WP default styles use important */
+  gap: var(--carousel_gap);
+  overflow: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none; /* works with IE & Edge */
+  scrollbar-width: none; /* works with  FF */
+  overflow-x: scroll;
+}
+.flair-carousel > .block-editor-inner-blocks > .block-editor-block-list__layout.overflow-auto {
+  overflow: auto;
 }
 .flair-carousel > .block-editor-inner-blocks > .block-editor-block-list__layout .flair-carousel-slide {
   flex: 0 0 auto;
   scroll-snap-align: start;
   flex-basis: 100%;
+}
+.flair-carousel > .block-editor-inner-blocks > .block-editor-block-list__layout.double .flair-carousel-slide {
+  flex-basis: calc(50% - var(--carousel_gap)) !important;
+}
+.flair-carousel > .block-editor-inner-blocks > .block-editor-block-list__layout.triple .flair-carousel-slide {
+  flex-basis: calc(33.3333333333% - var(--carousel_gap)) !important;
 }
 
 /*# sourceMappingURL=index.css.map*/

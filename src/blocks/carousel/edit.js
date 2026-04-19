@@ -119,6 +119,7 @@ export default function Edit(props) {
 									showArrows: value
 								});
 							}}
+							__nextHasNoMarginBottom
 						/>
 				</PanelRow>
 				<PanelRow>
@@ -130,6 +131,7 @@ export default function Edit(props) {
 									showDots: value
 								});
 							}}
+							__nextHasNoMarginBottom
 						/>
 				</PanelRow>
 				<PanelRow><fieldset>{perPageToggles()}</fieldset></PanelRow>

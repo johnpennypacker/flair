@@ -22,8 +22,7 @@
 			wrap.dataset.xer = 2;
 		}
 
-		// this is a pretty kludgy way to manage responsive columns
-		// maybe css vars would be better, ala el.setProperty( '--foo', bar );
+		// this is a pretty kludgy way to manage breakpoints
 		if( wrap.classList.contains( "triple" ) ) {
 			if ( rect.width > 640 ) {
 				wrap.dataset.xer = 3;
@@ -37,6 +36,19 @@
 		return wrap;
 	}
 
+	function calculateStops(el) {
+		var slides = el.querySelectorAll( ".flair-carousel-slide" );
+		var stops = [];
+
+		var sx = el.getBoundingClientRect().x;
+
+		slides.forEach( function( sl ) {
+			let stop = sl.getBoundingClientRect().x - sx;
+			stops.push( stop );
+		});
+		el.dataset.stops = stops;
+	}
+
 
 	function initCarousel() {
 
@@ -44,10 +56,9 @@
 
 		carousels.forEach( function( el ) {
 			observe( el );
+			calculateStops( el );
 
 			var w = initWrapper(el);
-
-			w.dataset.slideDist = getSlideDistance( w );
 
 			if( w.classList.contains("has-arrows") ) {
 				addPrevNextButtons( w );
@@ -58,17 +69,6 @@
 			updateButtons( w );
 
 		});
-
-	}
-
-	function getSlideDistance( el ) {
-		var cols = el.querySelectorAll( ".flair-carousel > .flair-carousel-slide" );
-		var cols = [...cols];
-
-		var rect = cols[0].getBoundingClientRect();
-		var rect2 = cols[1].getBoundingClientRect();
-
-		return (rect2.width - ( rect.width + rect.left )) * -1;
 
 	}
 
@@ -147,50 +147,51 @@
 
 
 	function updatePosition( el ) {
-		var xer = (el.dataset.xer * 1);
 		// sanity check
-		var index = el.dataset.slideIndex;
-		if ( index < 0 ) {
-			index = 0;
-			el.dataset.slideIndex = index;
+		if ( el.dataset.slideIndex < 0 ) {
+			el.dataset.slideIndex = 0;
 		}
-		var max = ( el.dataset.slideCount * 1 ) + 1 - xer;
-		if ( index > max ) {
-			index = max;
-			el.dataset.slideIndex = index;
+		var max = ( el.dataset.slideCount * 1 ) - 1;
+		if ( el.dataset.slideIndex > max ) {
+			el.dataset.slideIndex = max;
 		}
 		// end sanity check
 
 		var c = el.querySelector( ".flair-carousel" );
-		var rect = el.getBoundingClientRect();
-		var dist = rect.width / (el.dataset.xer * 1);
-		c.scrollLeft = dist * index;
+		var stops = c.dataset.stops.split(",");
+
+		c.scrollLeft = stops[el.dataset.slideIndex];
 
 
-// 		c.scrollLeft = Math.floor( el.dataset.slideDist * index );
-
-		// updateButtons( el ); // IntersectionObserver handles this
 	}
 
-	function updateButtons( el ) {
-		var dots = el.querySelectorAll( ".dot" );
-		dots.forEach( function( d ) {
-			if( d.dataset.slideIndex == el.dataset.slideIndex ) {
-				d.dataset.isSelected = 1;
-			} else {
-				d.dataset.isSelected = 0;
-			}
-		});
 
-		var p = el.querySelector(".previous");
-		var n = el.querySelector(".next");
-		p.classList.remove('disabled');
-		n.classList.remove('disabled');
-		if( 0 == el.dataset.slideIndex ) {
-			p.classList.add('disabled');
+
+	function updateButtons( el ) {
+
+		if( el.classList.contains("has-dots") ) {
+			var dots = el.querySelectorAll( ".dot" );
+			dots.forEach( function( d ) {
+				if( d.dataset.slideIndex == el.dataset.slideIndex ) {
+					d.dataset.isSelected = 1;
+				} else {
+					d.dataset.isSelected = 0;
+				}
+			});
 		}
-		if( el.dataset.slideCount == el.dataset.slideIndex ) {
-			n.classList.add('disabled');
+
+		if( el.classList.contains("has-arrows") ) {
+			var p = el.querySelector(".previous");
+			var n = el.querySelector(".next");
+			p.classList.remove('disabled');
+			n.classList.remove('disabled');
+
+			if( 0 == el.dataset.slideIndex ) {
+				p.classList.add('disabled');
+			}
+			if( (el.dataset.slideCount - 1) == el.dataset.slideIndex ) {
+				n.classList.add('disabled');
+			}
 		}
 
 	}
@@ -199,7 +200,9 @@
 
 
 	function addDots( el ) {
-		var dot, c, dots, slides, i;
+		var xer, dot, c, dots, slides, i;
+
+		xer = (el.dataset.xer * 1);
 
 		c = el.querySelector( ".flair-carousel" );
 
@@ -208,11 +211,11 @@
 		el.appendChild(dots);
 		el.classList.add("has-dots");
 
-		for( i=0; i<el.dataset.slideCount; i++ ) {
+		for( i=0; i<Math.ceil(el.dataset.slideCount / xer); i++ ) {
 			(function(i){
 				dot = document.createElement("BUTTON");
 				dot.classList.add("dot");
-				dot.dataset.slideIndex = i;
+				dot.dataset.slideIndex = i * xer;
 				dot.addEventListener( "click", function() {
 					el.dataset.slideIndex = i;
 					updatePosition( el );

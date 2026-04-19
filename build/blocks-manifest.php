@@ -184,6 +184,11 @@ return array(
 		'supports' => array(
 			'html' => false,
 			'layout' => null,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
 			'typography' => array(
 				'textAlign' => true
 			)

@@ -8,7 +8,7 @@ if( TRUE == $attributes['showArrows'] ) {
 if( TRUE == $attributes['showDots'] ) {
 	$classes[] = 'has-dots';
 }
-switch( $attributes['showDots'] ) {
+switch( $attributes['perpage'] ) {
 	case 3:
 		$classes[] = 'triple';
 	break;

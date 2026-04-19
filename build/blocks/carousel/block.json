@@ -10,6 +10,11 @@
   "supports": {
     "html": false,
     "layout": null,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
     "typography": {
       "textAlign": true
     }
