@@ -1,6 +1,5 @@
 :is( .flair-carousel-wrapper ) {
 
-	--carousel_gap: calc( var( --type__size, 1rem ) * 2);
 	position: relative;
 
 	button {
@@ -60,7 +59,6 @@
 	:where( .flair-carousel ) {
 		display: flex;
 		flex-wrap: nowrap !important; /* because WP default styles use important */
-		gap: var( --carousel_gap );
 		overflow: hidden;
 		scroll-behavior: smooth;
 		scroll-snap-type: x mandatory;
@@ -79,10 +77,10 @@
 		flex-basis: 100%;
 	}
 	&.double .flair-carousel-slide {
-		flex-basis: calc( 50% - var( --carousel_gap ) ) !important;
+		flex-basis: 50% !important;
 	}
 	&.triple .flair-carousel-slide {
-		flex-basis: calc( (100% / 3) - var( --carousel_gap ) ) !important;
+		flex-basis: calc( 100% / 3 ) !important;
 	}
 
 

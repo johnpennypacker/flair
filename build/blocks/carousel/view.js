@@ -15,13 +15,13 @@
     wrap.dataset.slideIndex = 0;
     wrap.dataset.xer = 1;
     var rect = wrap.getBoundingClientRect();
+
+    // this is a pretty kludgy way to manage breakpoints
     if (rect.width > 400 && wrap.classList.contains("double")) {
       wrap.dataset.xer = 2;
     }
-
-    // this is a pretty kludgy way to manage breakpoints
     if (wrap.classList.contains("triple")) {
-      if (rect.width > 640) {
+      if (rect.width > 600) {
         wrap.dataset.xer = 3;
       } else {
         wrap.classList.remove("triple");
@@ -29,6 +29,8 @@
         wrap.dataset.xer = 2;
       }
     }
+    // end breakpoints
+
     return wrap;
   }
   function calculateStops(el) {

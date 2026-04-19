@@ -2,7 +2,6 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/carousel/style.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************/
 :is(.flair-carousel-wrapper) {
-  --carousel_gap: calc( var( --type__size, 1rem ) * 2);
   position: relative;
 }
 :is(.flair-carousel-wrapper) button {
@@ -58,7 +57,6 @@
 :is(.flair-carousel-wrapper) :where(.flair-carousel) {
   display: flex;
   flex-wrap: nowrap !important; /* because WP default styles use important */
-  gap: var(--carousel_gap);
   overflow: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -76,10 +74,10 @@
   flex-basis: 100%;
 }
 :is(.flair-carousel-wrapper).double .flair-carousel-slide {
-  flex-basis: calc(50% - var(--carousel_gap)) !important;
+  flex-basis: 50% !important;
 }
 :is(.flair-carousel-wrapper).triple .flair-carousel-slide {
-  flex-basis: calc(33.3333333333% - var(--carousel_gap)) !important;
+  flex-basis: 33.3333333333% !important;
 }
 :where(.flair-carousel::-webkit-scrollbar) {
   display: none; /* works with Chrome, Safari, and Opera */

@@ -8,17 +8,17 @@ if( TRUE == $attributes['showArrows'] ) {
 if( TRUE == $attributes['showDots'] ) {
 	$classes[] = 'has-dots';
 }
+
 switch( $attributes['perpage'] ) {
 	case 3:
 		$classes[] = 'triple';
-	break;
+		break;
 	case 2:
 		$classes[] = 'double';
-	break;
+		break;
 	default:
 		$classes[] = 'single';
-	break;
-
+		break;
 }
 ?>
 <div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
