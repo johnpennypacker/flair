@@ -12,7 +12,12 @@
     "metric",
     "data"
   ],
-  "example": {},
+  "example": {
+    "attributes": {
+      "number": "100%",
+      "qualifier": "awesome"
+    }
+  },
   "textdomain": "flair",
   "attributes": {
     "number": {

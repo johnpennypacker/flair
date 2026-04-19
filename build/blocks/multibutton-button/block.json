@@ -6,7 +6,6 @@
   "title": "Multibutton Button",
   "category": "flair",
   "description": "The individual buttons that go inside a multibutton.",
-  "example": {},
   "parent": [
     "flair/multibutton"
   ],
@@ -25,6 +24,9 @@
     "text": {
       "type": "string"
     }
+  },
+  "example": {
+    "text": "Save"
   },
   "textdomain": "flair",
   "editorScript": "file:./index.js",

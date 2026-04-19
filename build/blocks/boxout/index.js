@@ -8,7 +8,7 @@
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/boxout","version":"0.1.0","title":"Boxout","category":"flair","description":"Display related content","keywords":["boxout","sidebar","aside"],"example":{},"supports":{"align":true,"anchor":true,"color":{"text":true,"link":true,"background":true},"shadow":true,"spacing":{"margin":true,"padding":true,"blockGap":false},"typography":{"textAlign":true}},"textdomain":"flair","attributes":{"element":{"type":"string","default":"aside"}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/boxout","version":"0.1.0","title":"Boxout","category":"flair","description":"Display related content","keywords":["boxout","sidebar","aside"],"example":{"attributes":{},"innerBlocks":[{"name":"core/paragraph","attributes":{"content":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."}}]},"supports":{"align":true,"anchor":true,"color":{"text":true,"link":true,"background":true},"shadow":true,"spacing":{"margin":true,"padding":true,"blockGap":false},"typography":{"textAlign":true}},"textdomain":"flair","attributes":{"element":{"type":"string","default":"aside"}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 

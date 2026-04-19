@@ -6,7 +6,6 @@
 	"title": "Multibutton",
 	"category": "flair",
 	"description": "A hybrid button/dropdown.",
-	"example": {},
 	"allowedBlocks": [ "flair/multibutton-button" ],
 	"supports": {
 		"anchor": true,
@@ -26,6 +25,22 @@
 			"type": "string",
 			"default": "100%"
 		}
+	},
+	"example": {
+		"innerBlocks": [
+		{
+			"name": "flair/multibutton-button",
+			"attributes": {
+				"text": "Save"
+			}
+		},
+		{
+			"name": "flair/multibutton-button",
+			"attributes": {
+				"text": "Save & Close"
+			}
+		}
+		]
 	},
 	"textdomain": "flair",
 	"editorScript": "file:./index.js",

@@ -30,6 +30,12 @@
 			"default": "center"
 		}
 	},
+	"example": {
+		"attributes": {
+			"number": "100%",
+			"qualifier": "awesome"
+		}
+	},
 	"supports": {
 		"align": [ "left", "right", "center" ],
 		"anchor": true,

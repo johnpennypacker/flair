@@ -11,7 +11,6 @@
     "milestone",
     "timeline"
   ],
-  "example": {},
   "supports": {
     "color": true,
     "html": false
@@ -28,6 +27,18 @@
     "marker": {
       "type": "string"
     }
+  },
+  "example": {
+    "date": "Apr 30",
+    "marker": "dot-hollow",
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
+        }
+      }
+    ]
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",

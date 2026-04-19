@@ -15,7 +15,17 @@ return array(
 			'aside'
 		),
 		'example' => array(
-			
+			'attributes' => array(
+				
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/paragraph',
+					'attributes' => array(
+						'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.'
+					)
+				)
+			)
 		),
 		'supports' => array(
 			'align' => true,
@@ -56,7 +66,16 @@ return array(
 		'category' => 'flair',
 		'description' => 'It\'s like a link with tons of context.',
 		'example' => array(
-			
+			'attributes' => array(
+				'asset' => array(
+					'url' => 'https://pd.w.org/2023/03/8636413c9dfe23357.98014051-768x512.jpg'
+				),
+				'title' => 'Faciamo così',
+				'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.',
+				'button' => 'Explore',
+				'orientation' => 'vertical',
+				'aspect' => '16-9'
+			)
 		),
 		'supports' => array(
 			'align' => array(
@@ -167,9 +186,6 @@ return array(
 			'header',
 			'eyebrow'
 		),
-		'example' => array(
-			
-		),
 		'attributes' => array(
 			'content' => array(
 				'type' => 'string'
@@ -185,6 +201,21 @@ return array(
 			'color' => array(
 				'background' => false,
 				'text' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				'content' => 'Let’s do this'
 			)
 		),
 		'textdomain' => 'flair',
@@ -231,7 +262,10 @@ return array(
 			'data'
 		),
 		'example' => array(
-			
+			'attributes' => array(
+				'number' => '100%',
+				'qualifier' => 'awesome'
+			)
 		),
 		'textdomain' => 'flair',
 		'attributes' => array(
@@ -299,9 +333,6 @@ return array(
 			'milestone',
 			'timeline'
 		),
-		'example' => array(
-			
-		),
 		'supports' => array(
 			'color' => true,
 			'html' => false
@@ -319,6 +350,18 @@ return array(
 				'type' => 'string'
 			)
 		),
+		'example' => array(
+			'date' => 'Apr 30',
+			'marker' => 'dot-hollow',
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/paragraph',
+					'attributes' => array(
+						'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.'
+					)
+				)
+			)
+		),
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
@@ -332,9 +375,6 @@ return array(
 		'title' => 'Multibutton',
 		'category' => 'flair',
 		'description' => 'A hybrid button/dropdown.',
-		'example' => array(
-			
-		),
 		'allowedBlocks' => array(
 			'flair/multibutton-button'
 		),
@@ -357,6 +397,22 @@ return array(
 				'default' => '100%'
 			)
 		),
+		'example' => array(
+			'innerBlocks' => array(
+				array(
+					'name' => 'flair/multibutton-button',
+					'attributes' => array(
+						'text' => 'Save'
+					)
+				),
+				array(
+					'name' => 'flair/multibutton-button',
+					'attributes' => array(
+						'text' => 'Save & Close'
+					)
+				)
+			)
+		),
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
@@ -372,9 +428,6 @@ return array(
 		'title' => 'Multibutton Button',
 		'category' => 'flair',
 		'description' => 'The individual buttons that go inside a multibutton.',
-		'example' => array(
-			
-		),
 		'parent' => array(
 			'flair/multibutton'
 		),
@@ -394,6 +447,9 @@ return array(
 				'type' => 'string'
 			)
 		),
+		'example' => array(
+			'text' => 'Save'
+		),
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',
 		'render' => 'file:./render.php'
@@ -406,9 +462,6 @@ return array(
 		'title' => 'Overlay',
 		'category' => 'flair',
 		'description' => 'It\'s a cross between a card and a cover.',
-		'example' => array(
-			
-		),
 		'supports' => array(
 			'align' => array(
 				'left',
@@ -471,9 +524,6 @@ return array(
 			'eyebrow' => array(
 				'type' => 'string'
 			),
-			'excerpt' => array(
-				'type' => 'string'
-			),
 			'aspect' => array(
 				'type' => 'string',
 				'default' => '3-2'
@@ -481,6 +531,24 @@ return array(
 			'heading' => array(
 				'type' => 'string',
 				'default' => 'h3'
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				'asset' => array(
+					'url' => 'https://pd.w.org/2026/03/36669bbe96800c4c4.81439497-768x960.jpg'
+				),
+				'eyebrow' => 'Your overlay',
+				'title' => 'Faciamo così',
+				'aspect' => '3-2'
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/paragraph',
+					'attributes' => array(
+						'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.'
+					)
+				)
 			)
 		),
 		'textdomain' => 'flair',
@@ -498,9 +566,6 @@ return array(
 		'category' => 'flair',
 		'icon' => 'smiley',
 		'description' => 'It\'s like a marquee for Gen alpha.',
-		'example' => array(
-			
-		),
 		'attributes' => array(
 			'content' => array(
 				'type' => 'string'
@@ -513,7 +578,22 @@ return array(
 				'text' => 'true'
 			),
 			'html' => false,
-			'splitting' => false
+			'splitting' => false,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				'content' => 'Lorem ipsum dolor sit amet.'
+			)
 		),
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',

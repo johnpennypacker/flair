@@ -8,7 +8,7 @@
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/milestone","version":"0.1.0","title":"Milestone","category":"flair","description":"Creates an entry on a timeline","keywords":["date","milestone","timeline"],"example":{},"supports":{"color":true,"html":false},"textdomain":"flair","attributes":{"date":{"type":"string"},"layout":{"type":"string","default":"left"},"marker":{"type":"string"}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/milestone","version":"0.1.0","title":"Milestone","category":"flair","description":"Creates an entry on a timeline","keywords":["date","milestone","timeline"],"supports":{"color":true,"html":false},"textdomain":"flair","attributes":{"date":{"type":"string"},"layout":{"type":"string","default":"left"},"marker":{"type":"string"}},"example":{"date":"Apr 30","marker":"dot-hollow","innerBlocks":[{"name":"core/paragraph","attributes":{"content":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."}}]},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 

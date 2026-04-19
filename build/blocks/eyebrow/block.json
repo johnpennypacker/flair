@@ -12,7 +12,6 @@
     "header",
     "eyebrow"
   ],
-  "example": {},
   "attributes": {
     "content": {
       "type": "string"
@@ -28,6 +27,21 @@
     "color": {
       "background": false,
       "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "content": "Let’s do this"
     }
   },
   "textdomain": "flair",

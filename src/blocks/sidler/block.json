@@ -7,7 +7,6 @@
 	"category": "flair",
 	"icon": "smiley",
 	"description": "It's like a marquee for Gen alpha.",
-	"example": {},
 	"attributes": {
 		"content": {
 			"type": "string"
@@ -20,7 +19,22 @@
 			"text": "true"
 		},
 		"html": false,
-		"splitting": false
+		"splitting": false,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"content": "Lorem ipsum dolor sit amet."
+		}
 	},
 	"textdomain": "flair",
 	"editorScript": "file:./index.js",

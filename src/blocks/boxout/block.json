@@ -36,6 +36,18 @@
 			"textAlign": true
     }
 	},
+	"example": {
+		"attributes": {
+		},
+		"innerBlocks": [
+		{
+			"name": "core/paragraph",
+			"attributes": {
+				"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
+			}
+		}
+		]
+	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

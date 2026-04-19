@@ -8,7 +8,7 @@
   \*******************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/multibutton","version":"0.1.0","title":"Multibutton","category":"flair","description":"A hybrid button/dropdown.","example":{},"allowedBlocks":["flair/multibutton-button"],"supports":{"anchor":true,"color":{"background":true,"text":true},"__experimentalExposeControlsToChildren":true,"layout":null,"typography":{"fontSize":true,"textAlign":true}},"attributes":{"width":{"type":"string","default":"100%"}},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/multibutton","version":"0.1.0","title":"Multibutton","category":"flair","description":"A hybrid button/dropdown.","allowedBlocks":["flair/multibutton-button"],"supports":{"anchor":true,"color":{"background":true,"text":true},"__experimentalExposeControlsToChildren":true,"layout":null,"typography":{"fontSize":true,"textAlign":true}},"attributes":{"width":{"type":"string","default":"100%"}},"example":{"innerBlocks":[{"name":"flair/multibutton-button","attributes":{"text":"Save"}},{"name":"flair/multibutton-button","attributes":{"text":"Save & Close"}}]},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
