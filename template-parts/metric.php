@@ -18,5 +18,8 @@ $wrapper_element = ( isset( $attributes['href'] ) ) ? 'a' : 'div';
 	<div class="flair-metric flair-io">
 		<em><?php echo $attributes['number']; ?></em>
 		<span class="qualifier"><?php echo $attributes['qualifier']; ?></span>
+		<?php if( isset( $attributes['attribution'] ) ): ?>
+		<small class="attribution"><?php echo $attributes['attribution']; ?></small>
+		<?php endif; ?>
 	</div>
 </<?php echo $wrapper_element; ?>>

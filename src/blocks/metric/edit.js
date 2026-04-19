@@ -168,6 +168,21 @@ export default function Edit(props) {
 								});
 							}}
 						/>
+					{ (attributes.attribution || isSelected) && (
+					<RichText
+						tagName='small'
+						className='attribution'
+						placeholder={__('Source: ')}
+						value={attributes.attribution}
+						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
+						onChange={( value ) => {
+							setAttributes({
+								attribution: value
+							});
+						}}
+					/>
+					)
+					}
 				</div>
 			</div>
 		</>

@@ -196,6 +196,17 @@ function Edit(props) {
               qualifier: value
             });
           }
+        }), (attributes.attribution || isSelected) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+          tagName: "small",
+          className: "attribution",
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Source: '),
+          value: attributes.attribution,
+          allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
+          onChange: value => {
+            setAttributes({
+              attribution: value
+            });
+          }
         })]
       })
     })]
