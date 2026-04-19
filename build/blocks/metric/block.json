@@ -13,6 +13,28 @@
     "data"
   ],
   "example": {},
+  "textdomain": "flair",
+  "attributes": {
+    "number": {
+      "type": "string"
+    },
+    "qualifier": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "attribution": {
+      "type": "string"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    }
+  },
   "supports": {
     "align": [
       "left",
@@ -36,19 +58,6 @@
       "fontSize": true,
       "lineHeight": true,
       "textAlign": true
-    }
-  },
-  "textdomain": "flair",
-  "attributes": {
-    "number": {
-      "type": "string"
-    },
-    "qualifier": {
-      "type": "string"
-    },
-    "alignment": {
-      "type": "string",
-      "default": "center"
     }
   },
   "editorScript": "file:./index.js",

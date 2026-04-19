@@ -233,6 +233,28 @@ return array(
 		'example' => array(
 			
 		),
+		'textdomain' => 'flair',
+		'attributes' => array(
+			'number' => array(
+				'type' => 'string'
+			),
+			'qualifier' => array(
+				'type' => 'string'
+			),
+			'href' => array(
+				'type' => 'string'
+			),
+			'target' => array(
+				'type' => 'string'
+			),
+			'attribution' => array(
+				'type' => 'string'
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => 'center'
+			)
+		),
 		'supports' => array(
 			'align' => array(
 				'left',
@@ -256,19 +278,6 @@ return array(
 				'fontSize' => true,
 				'lineHeight' => true,
 				'textAlign' => true
-			)
-		),
-		'textdomain' => 'flair',
-		'attributes' => array(
-			'number' => array(
-				'type' => 'string'
-			),
-			'qualifier' => array(
-				'type' => 'string'
-			),
-			'alignment' => array(
-				'type' => 'string',
-				'default' => 'center'
 			)
 		),
 		'editorScript' => 'file:./index.js',

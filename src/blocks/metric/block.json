@@ -8,15 +8,21 @@
 	"description": "Display stats in style",
 	"keywords": [ "number", "percentage", "metric", "data" ],
 	"example": {},
-	"supports": {
-		"html": false
-	},
 	"textdomain": "flair",
 	"attributes": {
 		"number": {
 			"type": "string"
 		},
 		"qualifier": {
+			"type": "string"
+		},
+		"href": {
+			"type": "string"
+		},
+		"target": {
+			"type": "string"
+		},
+		"attribution": {
 			"type": "string"
 		},
 		"alignment": {

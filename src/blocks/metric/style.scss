@@ -17,4 +17,9 @@
 }
 
 
+a.flair-metric-wrapper {
+	display: block; /** behave like the div it would otherwise have been **/
+	text-decoration: inherit; /** a little more specific **/
+}
+
 

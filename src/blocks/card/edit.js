@@ -24,7 +24,7 @@ import {
 	Popover,
 	ToolbarButton,
 	__experimentalToggleGroupControl as ToggleGroupControl,
-    __experimentalToggleGroupControlOption as ToggleGroupControlOption
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption
 } from "@wordpress/components";
 import {
 	link,
