@@ -76,9 +76,17 @@
 }
 :is(.flair-carousel-wrapper).double .flair-carousel-slide {
   flex-basis: 50% !important;
+  scroll-snap-align: initial;
+}
+:is(.flair-carousel-wrapper).double .flair-carousel-slide:nth-child(2n+1) {
+  scroll-snap-align: start;
 }
 :is(.flair-carousel-wrapper).triple .flair-carousel-slide {
   flex-basis: 33.3333333333% !important;
+  scroll-snap-align: initial;
+}
+:is(.flair-carousel-wrapper).triple .flair-carousel-slide:nth-child(3n+1) {
+  scroll-snap-align: start;
 }
 :where(.flair-carousel::-webkit-scrollbar) {
   display: none; /* works with Chrome, Safari, and Opera */

@@ -79,12 +79,24 @@
 		scroll-snap-align: start;
 		flex-basis: 100%;
 	}
+
 	&.double .flair-carousel-slide {
 		flex-basis: 50% !important;
+		scroll-snap-align: initial;
+		&:nth-child(2n+1) {
+			scroll-snap-align: start;
+		}
 	}
+
 	&.triple .flair-carousel-slide {
 		flex-basis: calc( 100% / 3 ) !important;
+		scroll-snap-align: initial;
+		&:nth-child(3n+1) {
+			scroll-snap-align: start;
+		}
 	}
+
+
 
 
 }
