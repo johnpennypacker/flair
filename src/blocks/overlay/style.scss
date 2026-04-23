@@ -54,6 +54,15 @@
 		transition: all .2s ease-in-out;
 		width: 100%;
 	}
+	.overlay {
+		overflow: hidden;
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 0;
+		z-index: 1;
+
+		background-color: var( --overlay-color );
+		opacity:calc( var( --overlay-opacity ) / 100 );
+	}
 
 	.text {
 		display: flex;
@@ -63,7 +72,7 @@
 		order: 2;
 		padding: 1.5em;
 		padding: calc( var( --wp--style--block-gap, 1rem ) * 1.5 );
-		z-index: 1;
+		z-index: 2;
 		& > :first-child {
 			margin-block-start: 0;
 		}

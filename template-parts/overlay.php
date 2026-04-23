@@ -8,9 +8,19 @@ if( isset( $attributes['aspect'] ) ) {
 	$classes[] = 'aspect-' . $attributes['aspect'] ;
 }
 
-//  echo '<pre>', print_r($args['content'], TRUE), '</pre>';
+//  echo '<pre>', print_r($args, TRUE), '</pre>';
+
+$overlay_properties  = 'style="';
+if( ! empty( $attributes['overlayColor'] )) {
+	$overlay_properties .= ' --overlay-color: ' . $attributes['overlayColor'] . '; ';
+}
+if( ! empty( $attributes['overlayOpacity'] )) {
+	$overlay_properties .= ' --overlay-opacity: ' . $attributes['overlayOpacity'] . '; ';
+}
+$overlay_properties .= '"';
 
 ?>
+
 <div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 	<div class="flair-overlay">
 		<div class="text">
@@ -32,6 +42,7 @@ if( isset( $attributes['aspect'] ) ) {
 			<?php endif; ?>
 
 		</div>
+		<div class="overlay" <?php echo $overlay_properties; ?>></div>
 		<div class="media">
 			<?php if( ! empty( $attributes['asset']['url'] ) ): ?>
 			<img src="<?php echo $attributes['asset']['url']; ?>" alt="<?php echo $attributes['asset']['alt']; ?>">

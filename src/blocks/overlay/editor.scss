@@ -3,3 +3,7 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.flair-full-grid {
+	grid-column-start: 1;
+	grid-column-end: -1;
+}

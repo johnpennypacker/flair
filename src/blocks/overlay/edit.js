@@ -244,6 +244,15 @@ export default function Edit(props) {
 
 	const Heading = `${attributes.heading}`;
 
+	const styles = {
+		'--overlay-color' : attributes.overlayColor,
+		'--overlay-opacity' : attributes.overlayOpacity
+	}
+
+	const blockProps = useBlockProps( {
+		className: calculateClassName(),
+		style: styles
+	} );
 
 	return (
 		<>
@@ -292,14 +301,16 @@ export default function Edit(props) {
 			<RangeControl
 				__next40pxDefaultSize
 				__nextHasNoMarginBottom
+				className="flair-full-grid"
 				help="Select transparency for the overlay color."
 				value={attributes.overlayOpacity*1}
 				label="Opacity"
 				max={100}
 				min={0}
 				onChange={( value ) => {
+					console.log(value);
 					setAttributes({
-						overlayOpacity: value
+						overlayOpacity: value + ""
 					});
 				}}
 			/>
@@ -312,7 +323,7 @@ export default function Edit(props) {
 				<PanelRow><fieldset>{aspectRatioToggles()}</fieldset></PanelRow>
 			</PanelBody>
 		</InspectorControls>
-		<div { ...useBlockProps({ className:calculateClassName() }) }>
+		<div { ...blockProps }>
 			<div class="flair-overlay">
 				<div class="text">
 					{ (attributes.eyebrow || isSelected) && (
@@ -348,6 +359,10 @@ export default function Edit(props) {
 						<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} directInsert />
 					)}
 				</div>
+				<div class="overlay"
+					data-overlay-color={attributes.overlayColor}
+					data-overlay-opacity={attributes.overlayOpacity}
+				></div>
 				{ mediaElement() }
 			</div>
 		</div>
