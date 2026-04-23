@@ -550,6 +550,7 @@ return array(
 			'anchor' => true,
 			'color' => array(
 				'background' => true,
+				'gradients' => true,
 				'text' => true
 			),
 			'dimensions' => array(
@@ -572,6 +573,13 @@ return array(
 			'href' => array(
 				'type' => 'string',
 				'default' => '#'
+			),
+			'overlayColor' => array(
+				'type' => 'string'
+			),
+			'overlayOpacity' => array(
+				'type' => 'string',
+				'default' => '20'
 			),
 			'target' => array(
 				'type' => 'string'

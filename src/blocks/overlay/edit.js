@@ -15,6 +15,12 @@ import {
 	LinkControl,
 	MediaPlaceholder,
 	MediaReplaceFlow,
+
+	PanelColorSettings,
+	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
+
+	__experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
+	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients,
 	RichText
 } from '@wordpress/block-editor';
 import {
@@ -23,6 +29,7 @@ import {
 	PanelBody,
 	PanelRow,
 	Popover,
+	RangeControl,
 	ToolbarButton,
 	__experimentalToggleGroupControl as ToggleGroupControl,
     __experimentalToggleGroupControlOption as ToggleGroupControlOption
@@ -237,6 +244,7 @@ export default function Edit(props) {
 
 	const Heading = `${attributes.heading}`;
 
+
 	return (
 		<>
 		<BlockControls>
@@ -266,10 +274,40 @@ export default function Edit(props) {
 			{linkPopover()}
 		</BlockControls>
 
+		<InspectorControls group="color">
+			<ColorGradientSettingsDropdown
+				panelId={ props.clientId }
+				settings={ [
+					{
+						label: 'Overlay',
+						hasColorsOrGradients: true,
+						disableCustomColors: false,
+						colorValue: attributes.overlayColor,
+						onColorChange: ( color ) => setAttributes( { overlayColor: color } ),
+						onGradientChange: ( value ) => console.log('gc', value)
+					}
+				] }
+				{ ...useMultipleOriginColorsAndGradients() }
+			/>
+			<RangeControl
+				__next40pxDefaultSize
+				__nextHasNoMarginBottom
+				help="Select transparency for the overlay color."
+				value={attributes.overlayOpacity*1}
+				label="Opacity"
+				max={100}
+				min={0}
+				onChange={( value ) => {
+					setAttributes({
+						overlayOpacity: value
+					});
+				}}
+			/>
+		</InspectorControls>
+
+
 		<InspectorControls>
-			<PanelBody
-				title={ __( 'Overlay properties', 'flair' ) }
-			>
+			<PanelBody>
 				<PanelRow><fieldset>{headingLevelToggles()}</fieldset></PanelRow>
 				<PanelRow><fieldset>{aspectRatioToggles()}</fieldset></PanelRow>
 			</PanelBody>

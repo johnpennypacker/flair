@@ -16,6 +16,7 @@
     "anchor": true,
     "color": {
       "background": true,
+      "gradients": true,
       "text": true
     },
     "dimensions": {
@@ -38,6 +39,13 @@
     "href": {
       "type": "string",
       "default": "#"
+    },
+    "overlayColor": {
+      "type": "string"
+    },
+    "overlayOpacity": {
+      "type": "string",
+      "default": "20"
     },
     "target": {
       "type": "string"
