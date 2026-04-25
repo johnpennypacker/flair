@@ -60,7 +60,7 @@
 		top: 0; right: 0; bottom: 0; left: 0;
 		z-index: 1;
 
-		background-color: var( --overlay-color );
+		background: var( --overlay-color );
 		opacity:calc( var( --overlay-opacity ) / 100 );
 	}
 

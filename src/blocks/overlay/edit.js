@@ -242,6 +242,14 @@ export default function Edit(props) {
 
 	}
 
+	const setOverlayColor = (v, t) => {
+		// onColorChange and onGradientChange fire back to back, so each time, one of these will be undefined.
+		if( undefined == v ) {
+			return;
+		}
+		setAttributes( { overlayColor: v } )
+	}
+
 	const Heading = `${attributes.heading}`;
 
 	const styles = {
@@ -292,8 +300,8 @@ export default function Edit(props) {
 						hasColorsOrGradients: true,
 						disableCustomColors: false,
 						colorValue: attributes.overlayColor,
-						onColorChange: ( color ) => setAttributes( { overlayColor: color } ),
-						onGradientChange: ( value ) => console.log('gc', value)
+						onColorChange: ( color ) => setOverlayColor( color, 'color' ),
+						onGradientChange: ( color ) => setOverlayColor( color, 'gradient' )
 					}
 				] }
 				{ ...useMultipleOriginColorsAndGradients() }
