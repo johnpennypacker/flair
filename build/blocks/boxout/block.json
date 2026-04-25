@@ -11,17 +11,6 @@
     "sidebar",
     "aside"
   ],
-  "example": {
-    "attributes": {},
-    "innerBlocks": [
-      {
-        "name": "core/paragraph",
-        "attributes": {
-          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
-        }
-      }
-    ]
-  },
   "supports": {
     "align": true,
     "anchor": true,
@@ -46,6 +35,17 @@
       "type": "string",
       "default": "aside"
     }
+  },
+  "example": {
+    "attributes": {},
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
+        }
+      }
+    ]
   },
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",

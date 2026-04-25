@@ -72,6 +72,7 @@ export default function Edit(props) {
 								});
 							}}
 							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 					/>
 				</PanelRow>
 			</PanelBody>

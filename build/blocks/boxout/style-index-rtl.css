@@ -1,1 +1,1 @@
-:where(.flair-boxout){background-color:color-mix(in oklab,var(--flair-color-primary),#fff 85%);padding:var(--wp--style--block-gap,1rem)}:where(.flair-boxout-wrapper.has-background .flair-boxout){background-color:inherit}
+:where(.flair-boxout-wrapper){background-color:color-mix(in oklab,var(--flair-color-primary),#fff 85%)}:where(.flair-boxout-wrapper) .flair-boxout{background-color:inherit;padding:var(--wp--style--block-gap,1rem)}

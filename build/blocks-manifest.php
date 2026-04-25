@@ -14,19 +14,6 @@ return array(
 			'sidebar',
 			'aside'
 		),
-		'example' => array(
-			'attributes' => array(
-				
-			),
-			'innerBlocks' => array(
-				array(
-					'name' => 'core/paragraph',
-					'attributes' => array(
-						'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.'
-					)
-				)
-			)
-		),
 		'supports' => array(
 			'align' => true,
 			'anchor' => true,
@@ -50,6 +37,19 @@ return array(
 			'element' => array(
 				'type' => 'string',
 				'default' => 'aside'
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/paragraph',
+					'attributes' => array(
+						'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.'
+					)
+				)
 			)
 		),
 		'editorScript' => 'file:./index.js',

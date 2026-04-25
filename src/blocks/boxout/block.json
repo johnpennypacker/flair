@@ -7,7 +7,6 @@
 	"category": "flair",
 	"description": "Display related content",
 	"keywords": [ "boxout", "sidebar", "aside" ],
-	"example": {},
 	"supports": {
 		"html": false
 	},
@@ -21,7 +20,7 @@
 	"supports": {
 		"align": true,
 		"anchor": true,
-		 "color": {
+		"color": {
 			"text": true,
 			"link": true,
 			"background": true
