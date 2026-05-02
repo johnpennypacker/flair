@@ -44,7 +44,7 @@ registerBlockVariation(
 		},
 		isActive: ( blockAttributes ) => {
 			// check that the value exists; otherwise default covers break
-			if( !! blockAttributes || !! blockAttributes.className ) { return }
+			if( ! blockAttributes || ! blockAttributes.className ) { return }
 			return blockAttributes.className.includes( 'flair-fixie' );
 		}
 	}
