@@ -14,7 +14,7 @@
 :where(.flair-fixie):has(+ .flair-fixie[data-intersection=bottom]), :where(.flair-fixie)[data-intersection=top] + .flair-fixie {
   --minIntersection: 0;
 }
-:where(.flair-fixie)[data-is-intersecting=true]:not(:has(img)) span.wp-block-cover__background, :where(.flair-fixie)[data-is-intersecting=true]:has(img) :is(.wp-block-cover__image-background) {
+:where(.flair-fixie)[data-is-intersecting=true]:not(:has(img)) span.wp-block-cover__background, :where(.flair-fixie)[data-is-intersecting=true] img.wp-block-cover__image-background {
   opacity: calc((var(--intersection-ratio) - var(--minIntersection)) / (1 - var(--minIntersection)) * 1) !important;
   position: fixed;
   z-index: -1;

@@ -15,6 +15,22 @@ function flair_zoomer_enqueues() {
 }
 add_action( 'wp_enqueue_scripts', 'flair_zoomer_enqueues' );
 
+
+// function flair_zoomer_enqueues() {
+//
+// 	$asset = include FLAIR_PATH . 'build/zoomer/zoomer.asset.php';
+// 	wp_enqueue_block_style( 'core/image', array(
+// 		'handle' => 'flair-zoomer',
+// 		'src' => FLAIR_URL . 'build/zoomer/zoomer-styles.css',
+// 		'path' => FLAIR_PATH . 'build/zoomer/zoomer-styles.css',
+// 		'deps' => $asset['dependencies'],
+// 		'ver' => $asset['version'],
+// 	));
+// 	wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer.js', __FILE__ ), $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
+//
+// }
+// add_action( 'after_setup_theme', 'flair_zoomer_enqueues' );
+
 /**
  * Register a variation of columns to use as a carousel.
  */
