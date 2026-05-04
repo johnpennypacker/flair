@@ -81,7 +81,7 @@ const elements = [{
   label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<aside>')
 }];
 const calculateClassName = () => {
-  let c = ['flair-wrapper flair-eyebrow-wrapper'];
+  let c = ['flair-eyebrow'];
   return c.join(' ');
 };
 const getElement = el => {
@@ -133,22 +133,19 @@ function Edit(props) {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
         className: calculateClassName()
       }),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        class: "flair-eyebrow",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-          tagName: getElement(element),
-          className: "eyebrow",
-          disableLineBreaks: "true",
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Eyebrow'),
-          value: content,
-          allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
-          onChange: value => {
-            setAttributes({
-              content: value
-            });
-          },
-          __unstableOnSplitAtEnd: () => props.insertBlocksAfter((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.createBlock)((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.getDefaultBlockName)()))
-        })
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+        tagName: getElement(element),
+        className: "eyebrow",
+        disableLineBreaks: "true",
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Eyebrow'),
+        value: content,
+        allowedFormats: ['core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough'],
+        onChange: value => {
+          setAttributes({
+            content: value
+          });
+        },
+        __unstableOnSplitAtEnd: () => props.insertBlocksAfter((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.createBlock)((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.getDefaultBlockName)()))
       })
     })]
   });

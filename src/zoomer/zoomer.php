@@ -6,6 +6,7 @@
 /**
  * Add the zoomer script and stylesheet
  */
+<<<<<<< HEAD
 function flair_zoomer_enqueues() {
 
 	$asset = include FLAIR_PATH . 'build/zoomer/zoomer.asset.php';
@@ -14,8 +15,18 @@ function flair_zoomer_enqueues() {
 
 	wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer.js', __FILE__ ), $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
 
+=======
+function flair_zoomer_enqueues( $block_content, $block ) {
+	if ( FALSE !== strpos( $block['attrs']['className'], 'ok-zoomer' ) ) {
+		$asset = include FLAIR_PATH . 'build/zoomer/zoomer.asset.php';
+		wp_enqueue_style( 'flair-zoomer', FLAIR_URL . 'build/zoomer/zoomer-styles.css', [], $asset['version'] );
+		wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer.js', __FILE__ ), $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
+	}
+	return $block_content;
+>>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 }
-add_action( 'wp_enqueue_scripts', 'flair_zoomer_enqueues' );
+add_action( 'render_block_core/image', 'flair_zoomer_enqueues', 10, 2 );
+
 
 /**
  * Register a variation of columns to use as a carousel.
