@@ -31,7 +31,7 @@ include_once( 'build/zoomer/zoomer.php' );
 function flair_enqueues() {
 	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
 
-	wp_enqueue_script( 'flair', FLAIR_URL . 'build/flair-core/flair.js', $asset['dependencies'], $asset['version'] );
+	wp_enqueue_script( 'flair', FLAIR_URL . 'build/flair-core/flair.js', $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
 	wp_enqueue_style( 'flair', FLAIR_URL . 'build/flair-core/frontend.css', array(), $asset['version'] );
 }
 add_action( 'wp_enqueue_scripts', 'flair_enqueues' );

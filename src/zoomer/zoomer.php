@@ -9,7 +9,9 @@
 function flair_zoomer_enqueues() {
 
 	$asset = include FLAIR_PATH . 'build/zoomer/zoomer.asset.php';
-	wp_enqueue_style( 'flair-zoomer', FLAIR_URL . 'build/zoomer/zoomer-styles.css', [], $asset['version'] );
+	//wp_enqueue_style( 'flair-zoomer', FLAIR_URL . 'build/zoomer/zoomer-styles.css', [], $asset['version'] );
+	wp_add_inline_style( 'flair', file_get_contents( FLAIR_PATH . 'build/zoomer/zoomer-styles.css' ) );
+
 	wp_enqueue_script( 'flair-zoomer', plugins_url( 'zoomer.js', __FILE__ ), $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
 
 }
