@@ -2,29 +2,11 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-<<<<<<< HEAD
 /***/ "./src/blocks/sidler/edit.js"
 /*!***********************************!*\
   !*** ./src/blocks/sidler/edit.js ***!
   \***********************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-=======
-/***/ "./src/blocks/sidler/block.json":
-/*!**************************************!*\
-  !*** ./src/blocks/sidler/block.json ***!
-  \**************************************/
-/***/ ((module) => {
-
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/sidler","version":"0.1.0","title":"Sidler","category":"flair","icon":"smiley","description":"It\'s like a marquee for Gen alpha.","attributes":{"content":{"type":"string"}},"supports":{"color":{"background":"true","gradients":"true","text":"true"},"html":false,"splitting":false,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true}},"example":{"attributes":{"content":"Lorem ipsum dolor sit amet."}},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
-
-/***/ }),
-
-/***/ "./src/blocks/sidler/edit.js":
-/*!***********************************!*\
-  !*** ./src/blocks/sidler/edit.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -99,7 +81,6 @@ function Edit(props) {
   });
 }
 
-<<<<<<< HEAD
 /***/ },
 
 /***/ "./src/blocks/sidler/index.js"
@@ -107,27 +88,6 @@ function Edit(props) {
   !*** ./src/blocks/sidler/index.js ***!
   \************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-=======
-/***/ }),
-
-/***/ "./src/blocks/sidler/editor.scss":
-/*!***************************************!*\
-  !*** ./src/blocks/sidler/editor.scss ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./src/blocks/sidler/index.js":
-/*!************************************!*\
-  !*** ./src/blocks/sidler/index.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
@@ -183,7 +143,6 @@ const sidlerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4_
   icon: sidlerIcon
 });
 
-<<<<<<< HEAD
 /***/ },
 
 /***/ "./src/blocks/sidler/editor.scss"
@@ -203,21 +162,11 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./src/blocks/sidler/style.scss ***!
   \**************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-=======
-/***/ }),
-
-/***/ "./src/blocks/sidler/style.scss":
-/*!**************************************!*\
-  !*** ./src/blocks/sidler/style.scss ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
-<<<<<<< HEAD
 /***/ },
 
 /***/ "react/jsx-runtime"
@@ -269,49 +218,6 @@ module.exports = window["wp"]["i18n"];
 module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/sidler","version":"0.1.0","title":"Sidler","category":"flair","icon":"smiley","description":"It\'s like a marquee for Gen alpha.","attributes":{"content":{"type":"string"}},"supports":{"color":{"background":"true","gradients":"true","text":"true"},"html":false,"splitting":false,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true}},"example":{"attributes":{"content":"Lorem ipsum dolor sit amet."}},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
-=======
-/***/ }),
-
-/***/ "@wordpress/block-editor":
-/*!*************************************!*\
-  !*** external ["wp","blockEditor"] ***!
-  \*************************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["blockEditor"];
-
-/***/ }),
-
-/***/ "@wordpress/blocks":
-/*!********************************!*\
-  !*** external ["wp","blocks"] ***!
-  \********************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["blocks"];
-
-/***/ }),
-
-/***/ "@wordpress/i18n":
-/*!******************************!*\
-  !*** external ["wp","i18n"] ***!
-  \******************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["i18n"];
-
-/***/ }),
-
-/***/ "react/jsx-runtime":
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
-/***/ ((module) => {
-
-module.exports = window["ReactJSXRuntime"];
-
-/***/ })
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 /******/ 	});
 /************************************************************************/
@@ -325,15 +231,12 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-<<<<<<< HEAD
 /******/ 		// Check if module exists (development only)
 /******/ 		if (__webpack_modules__[moduleId] === undefined) {
 /******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
 /******/ 			e.code = 'MODULE_NOT_FOUND';
 /******/ 			throw e;
 /******/ 		}
-=======
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed

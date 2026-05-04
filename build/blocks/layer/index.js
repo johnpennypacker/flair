@@ -2,29 +2,11 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-<<<<<<< HEAD
 /***/ "./src/blocks/layer/edit.js"
 /*!**********************************!*\
   !*** ./src/blocks/layer/edit.js ***!
   \**********************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-=======
-/***/ "./src/blocks/layer/block.json":
-/*!*************************************!*\
-  !*** ./src/blocks/layer/block.json ***!
-  \*************************************/
-/***/ ((module) => {
-
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/layer","version":"0.1.0","title":"Layer","category":"flair","description":"A layer of content within a stack.","example":{},"parent":["flair/stack"],"supports":{"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
-
-/***/ }),
-
-/***/ "./src/blocks/layer/edit.js":
-/*!**********************************!*\
-  !*** ./src/blocks/layer/edit.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -90,7 +72,6 @@ function Edit(props) {
   });
 }
 
-<<<<<<< HEAD
 /***/ },
 
 /***/ "./src/blocks/layer/index.js"
@@ -98,27 +79,6 @@ function Edit(props) {
   !*** ./src/blocks/layer/index.js ***!
   \***********************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-=======
-/***/ }),
-
-/***/ "./src/blocks/layer/editor.scss":
-/*!**************************************!*\
-  !*** ./src/blocks/layer/editor.scss ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./src/blocks/layer/index.js":
-/*!***********************************!*\
-  !*** ./src/blocks/layer/index.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
@@ -180,7 +140,6 @@ const layerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__
   }
 });
 
-<<<<<<< HEAD
 /***/ },
 
 /***/ "./src/blocks/layer/editor.scss"
@@ -200,21 +159,11 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./src/blocks/layer/style.scss ***!
   \*************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-=======
-/***/ }),
-
-/***/ "./src/blocks/layer/style.scss":
-/*!*************************************!*\
-  !*** ./src/blocks/layer/style.scss ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
-<<<<<<< HEAD
 /***/ },
 
 /***/ "react/jsx-runtime"
@@ -266,49 +215,6 @@ module.exports = window["wp"]["i18n"];
 module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/layer","version":"0.1.0","title":"Layer","category":"flair","description":"A layer of content within a stack.","example":{},"parent":["flair/stack"],"supports":{"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
-=======
-/***/ }),
-
-/***/ "@wordpress/block-editor":
-/*!*************************************!*\
-  !*** external ["wp","blockEditor"] ***!
-  \*************************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["blockEditor"];
-
-/***/ }),
-
-/***/ "@wordpress/blocks":
-/*!********************************!*\
-  !*** external ["wp","blocks"] ***!
-  \********************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["blocks"];
-
-/***/ }),
-
-/***/ "@wordpress/i18n":
-/*!******************************!*\
-  !*** external ["wp","i18n"] ***!
-  \******************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["i18n"];
-
-/***/ }),
-
-/***/ "react/jsx-runtime":
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
-/***/ ((module) => {
-
-module.exports = window["ReactJSXRuntime"];
-
-/***/ })
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 /******/ 	});
 /************************************************************************/
@@ -322,15 +228,12 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-<<<<<<< HEAD
 /******/ 		// Check if module exists (development only)
 /******/ 		if (__webpack_modules__[moduleId] === undefined) {
 /******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
 /******/ 			e.code = 'MODULE_NOT_FOUND';
 /******/ 			throw e;
 /******/ 		}
-=======
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed

@@ -2,7 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-<<<<<<< HEAD
 /***/ "@wordpress/i18n"
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
@@ -12,17 +11,6 @@
 module.exports = window["wp"]["i18n"];
 
 /***/ }
-=======
-/***/ "@wordpress/i18n":
-/*!******************************!*\
-  !*** external ["wp","i18n"] ***!
-  \******************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["i18n"];
-
-/***/ })
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 
 /******/ 	});
 /************************************************************************/
@@ -36,15 +24,12 @@ module.exports = window["wp"]["i18n"];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
-<<<<<<< HEAD
 /******/ 		// Check if module exists (development only)
 /******/ 		if (__webpack_modules__[moduleId] === undefined) {
 /******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
 /******/ 			e.code = 'MODULE_NOT_FOUND';
 /******/ 			throw e;
 /******/ 		}
-=======
->>>>>>> b61bac2977a7c23d8b248b3b4f036ae0190da094
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed
