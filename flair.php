@@ -25,6 +25,15 @@ include_once( 'build/iconic/iconic.php' );
 include_once( 'build/kinetic/kinetic.php' );
 include_once( 'build/zoomer/zoomer.php' );
 
+
+/**
+ * Makes sure that the handle exists for inlining.
+ */
+function flair_initialize_style() {
+	wp_register_style( 'flair', FALSE );
+}
+add_action( 'init', 'flair_initialize_style' );
+
 /**
  * Add the main flair script and stylesheet
  */
@@ -57,6 +66,7 @@ add_action( 'enqueue_block_assets', 'flair_enqueue_editor_assets' );
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
 function flair_blocks_init() {
+
 	/**
 	 * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
 	 * based on the registered block metadata.

@@ -7,11 +7,13 @@
 /**
  * Add the fixie script and stylesheet.
  */
-function flair_fixie_enqueues( $block_content, $block ) {
+function flair_fixie_enqueues( $block_content='', $block=[] ) {
 	if ( isset( $block['attrs']['className'] ) && FALSE !== strpos( $block['attrs']['className'], 'flair-fixie' ) ) {
+
 // 		$asset = include FLAIR_PATH . 'build/fixie/variation.asset.php';
 // 		wp_enqueue_style( 'flair-fixie', FLAIR_URL . 'build/fixie/frontend.css', [], $asset['version'] );
-		wp_add_inline_style( 'flair', file_get_contents( FLAIR_PATH . 'build/fixie/frontend.css' ) );
+	wp_add_inline_style( 'flair', file_get_contents( FLAIR_PATH . 'build/fixie/frontend.css' ) );
+
 	}
 	return $block_content;
 }
