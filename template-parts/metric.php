@@ -16,10 +16,10 @@ $wrapper_element = ( isset( $attributes['href'] ) ) ? 'a' : 'div';
 ?>
 <<?php echo $wrapper_element; ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes), 'href' => ( $attributes['href'] ) ?? NULL ]); ?>>
 	<div class="flair-metric flair-io">
-		<em><?php echo $attributes['number']; ?></em>
-		<span class="qualifier"><?php echo $attributes['qualifier']; ?></span>
+		<em><?php echo esc_html( $attributes['number'] ); ?></em>
+		<span class="qualifier"><?php echo esc_html( $attributes['qualifier'] ); ?></span>
 		<?php if( isset( $attributes['attribution'] ) ): ?>
-		<small class="attribution"><?php echo $attributes['attribution']; ?></small>
+		<small class="attribution"><?php echo esc_html( $attributes['attribution'] ); ?></small>
 		<?php endif; ?>
 	</div>
 </<?php echo $wrapper_element; ?>>

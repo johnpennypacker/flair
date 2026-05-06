@@ -14,6 +14,13 @@ return array(
 			'sidebar',
 			'aside'
 		),
+		'textdomain' => 'flair',
+		'attributes' => array(
+			'element' => array(
+				'type' => 'string',
+				'default' => 'aside'
+			)
+		),
 		'supports' => array(
 			'align' => true,
 			'anchor' => true,
@@ -22,6 +29,7 @@ return array(
 				'link' => true,
 				'background' => true
 			),
+			'html' => false,
 			'shadow' => true,
 			'spacing' => array(
 				'margin' => true,
@@ -30,13 +38,6 @@ return array(
 			),
 			'typography' => array(
 				'textAlign' => true
-			)
-		),
-		'textdomain' => 'flair',
-		'attributes' => array(
-			'element' => array(
-				'type' => 'string',
-				'default' => 'aside'
 			)
 		),
 		'example' => array(

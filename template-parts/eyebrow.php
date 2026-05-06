@@ -18,6 +18,6 @@ if( ! empty ( $attributes['element'] ) ) {
 if ( ! empty( $attributes['content'] ) ):
 ?>
 <<?php echo $element ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
-	<?php echo $attributes['content']; ?>
+	<?php echo esc_html( $attributes['content'] ); ?>
 </<?php echo $element ?>>
 <?php endif; ?>

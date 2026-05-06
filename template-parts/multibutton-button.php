@@ -6,5 +6,5 @@
 ?>
 
 <?php if( isset( $attributes['text'] ) ): ?>
-<a class="dropdown-item" tab-index="-1" href="<?php echo $attributes['href']; ?>"><?php echo $attributes['text']; ?></a>
+<a class="dropdown-item" tab-index="-1" href="<?php echo esc_attr( $attributes['href'] ); ?>"><?php echo esc_html( $attributes['text'] ); ?></a>
 <?php endif; ?>

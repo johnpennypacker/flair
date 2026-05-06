@@ -17,6 +17,6 @@ if( isset( $attributes['element'] ) ) {
 ?>
 <<?php echo $el; ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 	<div class="flair-boxout">
-		<?php echo $args['content']; ?>
+		<?php echo esc_html( $args['content'] ); ?>
 	</div>
 </<?php echo $el; ?>>

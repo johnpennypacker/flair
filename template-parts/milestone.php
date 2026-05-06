@@ -18,8 +18,8 @@ if( isset( $attributes['layout'] ) ) {
 	<div class="flair-milestone">
 		<div class="timeline"></div>
 		<div class="details">
-			<div class="date flair-eyebrow"><?php echo $attributes['date']; ?></div>
-			<?php echo $args['content']; ?>
+			<div class="date flair-eyebrow"><?php echo esc_attr( $attributes['date'] ); ?></div>
+			<?php echo ( $args['content'] ); ?>
 		</div>
 	</div>
 </div>

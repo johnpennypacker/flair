@@ -11,6 +11,13 @@
     "sidebar",
     "aside"
   ],
+  "textdomain": "flair",
+  "attributes": {
+    "element": {
+      "type": "string",
+      "default": "aside"
+    }
+  },
   "supports": {
     "align": true,
     "anchor": true,
@@ -19,6 +26,7 @@
       "link": true,
       "background": true
     },
+    "html": false,
     "shadow": true,
     "spacing": {
       "margin": true,
@@ -27,13 +35,6 @@
     },
     "typography": {
       "textAlign": true
-    }
-  },
-  "textdomain": "flair",
-  "attributes": {
-    "element": {
-      "type": "string",
-      "default": "aside"
     }
   },
   "example": {

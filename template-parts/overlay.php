@@ -12,10 +12,10 @@ if( isset( $attributes['aspect'] ) ) {
 
 $overlay_properties  = 'style="';
 if( ! empty( $attributes['overlayColor'] )) {
-	$overlay_properties .= ' --overlay-color: ' . $attributes['overlayColor'] . '; ';
+	$overlay_properties .= ' --overlay-color: ' . esc_attr( $attributes['overlayColor'] ) . '; ';
 }
 if( ! empty( $attributes['overlayOpacity'] )) {
-	$overlay_properties .= ' --overlay-opacity: ' . $attributes['overlayOpacity'] . '; ';
+	$overlay_properties .= ' --overlay-opacity: ' . esc_attr( $attributes['overlayOpacity'] ) . '; ';
 }
 $overlay_properties .= '"';
 
@@ -31,14 +31,14 @@ $overlay_properties .= '"';
 
 			<?php if( isset( $attributes['title'] ) && isset( $attributes['href'] ) ): ?>
 			<<?php echo $attributes['heading'] ?> class="title">
-				<a href="<?php echo $attributes['href']; ?>" class="link"><?php echo $attributes['title']; ?></a>
+				<a href="<?php echo esc_url( $attributes['href'] ); ?>" class="link"><?php echo esc_html( $attributes['title'] ); ?></a>
 			</<?php echo $attributes['heading'] ?>>
 			<?php else: ?>
 				<div class="flair-warning"><p><strong>Warning:</strong> overlay is missing a title and link.</p></div>
 			<?php endif; ?>
 
 			<?php if( ! empty( $args['content'] ) ): ?>
-			<div class="misc"><?php echo $args['content']; ?></div>
+			<div class="misc"><?php echo esc_html( $args['content'] ); ?></div>
 			<?php endif; ?>
 
 		</div>

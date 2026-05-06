@@ -7,9 +7,6 @@
 	"category": "flair",
 	"description": "Display related content",
 	"keywords": [ "boxout", "sidebar", "aside" ],
-	"supports": {
-		"html": false
-	},
 	"textdomain": "flair",
 	"attributes": {
 		"element": {
@@ -25,6 +22,7 @@
 			"link": true,
 			"background": true
     },
+		"html": false,
     "shadow": true,
     "spacing": {
 			"margin": true,

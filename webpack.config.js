@@ -21,10 +21,6 @@ module.exports = {
 		'flair-core/flair': '/src/flair-core/flair.js',
 		'flair-core/flair-editor': '/src/flair-core/flair-editor.js',
 
-		'flairousel/frontend': '/src/flairousel/frontend.scss',
-		'flairousel/editor': '/src/flairousel/editor.scss',
-		'flairousel/carousel': '/src/flairousel/carousel.js',
-
 		'iconic/iconic': '/src/iconic/iconic.scss',
 
 		'kinetic/kinetic-styles': '/src/kinetic/frontend.scss',
