@@ -21,7 +21,7 @@
 				<a href="#" class="action button"> </a>
 			</div>
 			<div class="options" tab-index="0">
-				<?php echo $args['content']; ?>
+				<?php echo wp_kses_post( $args['content'] ); ?>
 			</div>
 		</div>
 	</div>

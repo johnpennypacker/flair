@@ -12,7 +12,7 @@ if( isset( $attributes['orientation'] ) ) {
 ?>
 <div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 	<div class="flair-stack">
-		<?php echo $args['content']; ?>
+		<?php echo wp_kses_post( $args['content'] ); ?>
 	</div>
 </div>
 <div>&nbsp;</div>

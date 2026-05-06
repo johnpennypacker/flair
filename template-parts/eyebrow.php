@@ -10,17 +10,11 @@ $classes = ['flair-eyebrow'];
 
 // echo '<pre>', print_r($content, TRUE), '</pre>';
 
-$element = 'div';
-if( ! empty ( $attributes['element'] ) ) {
-	$element = $attributes['element'];
-}
-
-$el = in_array( $attributes['element'] ?? 'div', ['aside','div','p','h1','h2','h3','h4','h5','h6'], true ) ? $attributes['element'] : 'div';
-
+$el = in_array( $attributes['element'] ?? 'div', ['div','aside','p','h1','h2','h3','h4','h5','h6'], true ) ? $attributes['element'] ?? 'div' : 'div';
 
 if ( ! empty( $attributes['content'] ) ):
 ?>
-<<?php echo $element ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
-	<?php echo esc_html( $attributes['content'] ); ?>
-</<?php echo $element ?>>
+<<?php echo $el ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+	<?php echo wp_kses_post( $attributes['content'] ); ?>
+</<?php echo $el ?>>
 <?php endif; ?>

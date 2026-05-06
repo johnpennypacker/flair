@@ -40,7 +40,7 @@ $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','
 			<?php endif; ?>
 
 			<?php if( ! empty( $args['content'] ) ): ?>
-			<div class="misc"><?php echo esc_html( $args['content'] ); ?></div>
+			<div class="misc"><?php echo wp_kses_post( $args['content'] ); ?></div>
 			<?php endif; ?>
 
 		</div>
