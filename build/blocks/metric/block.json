@@ -12,12 +12,6 @@
     "metric",
     "data"
   ],
-  "example": {
-    "attributes": {
-      "number": "100%",
-      "qualifier": "awesome"
-    }
-  },
   "textdomain": "flair",
   "attributes": {
     "number": {
@@ -38,6 +32,12 @@
     "alignment": {
       "type": "string",
       "default": "center"
+    }
+  },
+  "example": {
+    "attributes": {
+      "number": "100%",
+      "qualifier": "awesome"
     }
   },
   "supports": {

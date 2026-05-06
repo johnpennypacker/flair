@@ -107,14 +107,10 @@ return array(
 					'type' => 'number'
 				),
 				'url' => array(
-					'type' => 'string',
-					'source' => 'attribute',
-					'attribute' => 'src'
+					'type' => 'string'
 				),
 				'alt' => array(
-					'type' => 'string',
-					'source' => 'attribute',
-					'attribute' => 'alt'
+					'type' => 'string'
 				)
 			),
 			'title' => array(
@@ -338,12 +334,6 @@ return array(
 			'metric',
 			'data'
 		),
-		'example' => array(
-			'attributes' => array(
-				'number' => '100%',
-				'qualifier' => 'awesome'
-			)
-		),
 		'textdomain' => 'flair',
 		'attributes' => array(
 			'number' => array(
@@ -364,6 +354,12 @@ return array(
 			'alignment' => array(
 				'type' => 'string',
 				'default' => 'center'
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				'number' => '100%',
+				'qualifier' => 'awesome'
 			)
 		),
 		'supports' => array(
@@ -585,7 +581,6 @@ return array(
 			),
 			'asset' => array(
 				'type' => 'object',
-				'selector' => '.media img',
 				'default' => array(
 					'url' => null
 				),
@@ -593,14 +588,10 @@ return array(
 					'type' => 'number'
 				),
 				'url' => array(
-					'type' => 'string',
-					'source' => 'attribute',
-					'attribute' => 'src'
+					'type' => 'string'
 				),
 				'alt' => array(
-					'type' => 'string',
-					'source' => 'attribute',
-					'attribute' => 'alt'
+					'type' => 'string'
 				)
 			),
 			'title' => array(

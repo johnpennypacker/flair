@@ -19,6 +19,6 @@ $el = in_array( $attributes['element'] ?? 'aside', ['aside','div','section'], tr
 ?>
 <<?php echo $el; ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 	<div class="flair-boxout">
-		<?php echo $args['content']; ?>
+		<?php echo wp_kses_post( $args['content'] ); ?>
 	</div>
 </<?php echo $el; ?>>

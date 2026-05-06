@@ -8,7 +8,6 @@
  * Author:            John Pennypacker
  * Text Domain:       flair
  *
- * @package CreateBlock
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

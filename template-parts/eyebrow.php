@@ -15,6 +15,9 @@ if( ! empty ( $attributes['element'] ) ) {
 	$element = $attributes['element'];
 }
 
+$el = in_array( $attributes['element'] ?? 'div', ['aside','div','p','h1','h2','h3','h4','h5','h6'], true ) ? $attributes['element'] : 'div';
+
+
 if ( ! empty( $attributes['content'] ) ):
 ?>
 <<?php echo $element ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>

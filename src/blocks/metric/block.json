@@ -7,7 +7,6 @@
 	"category": "flair",
 	"description": "Display stats in style",
 	"keywords": [ "number", "percentage", "metric", "data" ],
-	"example": {},
 	"textdomain": "flair",
 	"attributes": {
 		"number": {

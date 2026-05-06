@@ -47,7 +47,6 @@
 		},
 		"asset": {
 			"type": "object",
-			"selector": ".media img",
 			"default": {
 				"url": null
 			},
@@ -55,14 +54,10 @@
 				"type": "number"
 			},
 			"url": {
-				"type": "string",
-				"source": "attribute",
-				"attribute": "src"
+				"type": "string"
 			},
 			"alt": {
-				"type": "string",
-				"source": "attribute",
-				"attribute": "alt"
+				"type": "string"
 			}
 		},
 		"title": {

@@ -14,6 +14,7 @@ function flair_zoomer_enqueues( $block_content='', $block=[] ) {
 			wp_add_inline_style( 'flair', $css );
 		}
 
+		$asset = include FLAIR_PATH . 'build/zoomer/zoomer.asset.php';
 		wp_enqueue_script( 'flair-zoomer', FLAIR_URL . 'build/zoomer/zoomer.js', $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy' => 'defer') );
 	}
 	return $block_content;
