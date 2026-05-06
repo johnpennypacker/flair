@@ -7,9 +7,10 @@
  * Add the iconic stylesheet.
  */
 function flair_iconic_enqueues() {
-// 	$asset = include FLAIR_PATH . 'build/flair-core/flair.asset.php';
-// 	wp_enqueue_style( 'flair-iconic', FLAIR_URL . 'build/iconic/iconic.css', [], $asset['version'] );
-	wp_add_inline_style( 'flair', file_get_contents( FLAIR_PATH . 'build/iconic/iconic.css' ) );
+	$css = file_get_contents( FLAIR_PATH . 'build/iconic/iconic.css' );
+	if ( $css ) {
+		wp_add_inline_style( 'flair', $css );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'flair_iconic_enqueues' );
 

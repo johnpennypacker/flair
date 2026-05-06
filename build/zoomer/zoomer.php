@@ -8,9 +8,12 @@
  */
 function flair_zoomer_enqueues( $block_content='', $block=[] ) {
 	if ( isset( $block['attrs']['className'] ) && FALSE !== strpos( $block['attrs']['className'], 'ok-zoomer' ) ) {
-		$asset = include FLAIR_PATH . 'build/zoomer/zoomer.asset.php';
-		//wp_enqueue_style( 'flair-zoomer', FLAIR_URL . 'build/zoomer/zoomer-styles.css', [], $asset['version'] );
-		wp_add_inline_style( 'flair', file_get_contents( FLAIR_PATH . 'build/zoomer/zoomer-styles.css' ) );
+
+		$css = file_get_contents( FLAIR_PATH . 'build/zoomer/zoomer-styles.css' );
+		if ( $css ) {
+			wp_add_inline_style( 'flair', $css );
+		}
+
 		wp_enqueue_script( 'flair-zoomer', FLAIR_URL . 'build/zoomer/zoomer.js', $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy' => 'defer') );
 	}
 	return $block_content;

@@ -13,10 +13,12 @@ if( isset( $attributes['element'] ) ) {
 	$el = $attributes['element'];
 }
 
+$el = in_array( $attributes['element'] ?? 'aside', ['aside','div','section'], true ) ? $attributes['element'] : 'aside';
+
 
 ?>
 <<?php echo $el; ?> <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 	<div class="flair-boxout">
-		<?php echo esc_html( $args['content'] ); ?>
+		<?php echo $args['content']; ?>
 	</div>
 </<?php echo $el; ?>>

@@ -10,9 +10,10 @@
 function flair_fixie_enqueues( $block_content='', $block=[] ) {
 	if ( isset( $block['attrs']['className'] ) && FALSE !== strpos( $block['attrs']['className'], 'flair-fixie' ) ) {
 
-// 		$asset = include FLAIR_PATH . 'build/fixie/variation.asset.php';
-// 		wp_enqueue_style( 'flair-fixie', FLAIR_URL . 'build/fixie/frontend.css', [], $asset['version'] );
-	wp_add_inline_style( 'flair', file_get_contents( FLAIR_PATH . 'build/fixie/frontend.css' ) );
+		$css = file_get_contents( FLAIR_PATH . 'build/fixie/frontend.css' );
+		if ( $css ) {
+			wp_add_inline_style( 'flair', $css );
+		}
 
 	}
 	return $block_content;

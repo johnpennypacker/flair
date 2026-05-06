@@ -65,18 +65,6 @@ return array(
 		'title' => 'Card',
 		'category' => 'flair',
 		'description' => 'It\'s like a link with tons of context.',
-		'example' => array(
-			'attributes' => array(
-				'asset' => array(
-					'url' => 'https://pd.w.org/2023/03/8636413c9dfe23357.98014051-768x512.jpg'
-				),
-				'title' => 'Faciamo così',
-				'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.',
-				'button' => 'Explore',
-				'orientation' => 'vertical',
-				'aspect' => '16-9'
-			)
-		),
 		'supports' => array(
 			'align' => array(
 				'left',
@@ -112,7 +100,6 @@ return array(
 			),
 			'asset' => array(
 				'type' => 'object',
-				'selector' => '.media img',
 				'default' => array(
 					'url' => null
 				),
@@ -163,6 +150,18 @@ return array(
 				'type' => 'string',
 				'source' => 'text',
 				'selector' => '.call'
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				'asset' => array(
+					'url' => 'https://pd.w.org/2023/03/8636413c9dfe23357.98014051-768x512.jpg'
+				),
+				'title' => 'Faciamo così',
+				'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.',
+				'button' => 'Explore',
+				'orientation' => 'vertical',
+				'aspect' => '16-9'
 			)
 		),
 		'textdomain' => 'flair',

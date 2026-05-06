@@ -19,6 +19,8 @@ if( ! empty( $attributes['overlayOpacity'] )) {
 }
 $overlay_properties .= '"';
 
+$heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','h6'], true ) ? $attributes['heading'] : 'h3';
+
 ?>
 
 <div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
@@ -26,13 +28,13 @@ $overlay_properties .= '"';
 		<div class="text">
 
 			<?php if( ! empty( $attributes['eyebrow'] ) ): ?>
-			<div class="flair-eyebrow"><?php echo $attributes['eyebrow']; ?></div>
+			<div class="flair-eyebrow"><?php echo esc_html( $attributes['eyebrow'] ); ?></div>
 			<?php endif; ?>
 
 			<?php if( isset( $attributes['title'] ) && isset( $attributes['href'] ) ): ?>
-			<<?php echo $attributes['heading'] ?> class="title">
+			<<?php echo $heading ?> class="title">
 				<a href="<?php echo esc_url( $attributes['href'] ); ?>" class="link"><?php echo esc_html( $attributes['title'] ); ?></a>
-			</<?php echo $attributes['heading'] ?>>
+			</<?php echo $heading ?>>
 			<?php else: ?>
 				<div class="flair-warning"><p><strong>Warning:</strong> overlay is missing a title and link.</p></div>
 			<?php endif; ?>
@@ -45,7 +47,7 @@ $overlay_properties .= '"';
 		<div class="overlay" <?php echo $overlay_properties; ?>></div>
 		<div class="media">
 			<?php if( ! empty( $attributes['asset']['url'] ) ): ?>
-			<img src="<?php echo $attributes['asset']['url']; ?>" alt="<?php echo $attributes['asset']['alt']; ?>">
+			<img src="<?php echo esc_attr( $attributes['asset']['url'] ); ?>" alt="<?php echo esc_attr( $attributes['asset']['alt'] ); ?>">
 			<?php endif; ?>
 		</div>
 	</div>

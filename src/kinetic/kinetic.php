@@ -8,10 +8,13 @@
  */
 function flair_kinetic_enqueues() {
 	$asset = include FLAIR_PATH . 'build/flair-core/flair.asset.php';
-	//wp_enqueue_style( 'flair-kinetic', FLAIR_URL . 'build/kinetic/kinetic-styles.css', [], $asset['version'] );
-	wp_add_inline_style( 'flair', file_get_contents( FLAIR_PATH . 'build/kinetic/kinetic-styles.css' ) );
 
-	wp_enqueue_script( 'flair-kinetic', FLAIR_URL . 'build/kinetic/kinetic.js', $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
+	$css = file_get_contents( FLAIR_PATH . 'build/kinetic/kinetic-styles.css' );
+	if ( $css ) {
+		wp_add_inline_style( 'flair', $css );
+	}
+
+	wp_enqueue_script( 'flair-kinetic', FLAIR_URL . 'build/kinetic/kinetic.js', [], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
 }
 
 add_action( 'wp_enqueue_scripts', 'flair_kinetic_enqueues' );

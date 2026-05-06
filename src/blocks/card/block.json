@@ -6,7 +6,6 @@
 	"title": "Card",
 	"category": "flair",
 	"description": "It's like a link with tons of context.",
-	"example": {},
 	"supports": {
 		"align": [ "left", "right", "center", "wide" ],
 		"anchor": true,
@@ -37,7 +36,6 @@
 		},
 		"asset": {
 			"type": "object",
-			"selector": ".media img",
 			"default": {
 				"url": null
 			},

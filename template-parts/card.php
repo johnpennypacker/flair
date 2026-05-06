@@ -10,6 +10,9 @@ if( isset( $attributes['aspect'] ) ) {
 	$classes[] = 'aspect-' . $attributes['aspect'] ;
 }
 
+$heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','h6'], true ) ? $attributes['heading'] : 'h3';
+
+
 //  echo '<pre>', print_r($attributes, TRUE), '</pre>';
 
 ?>
@@ -17,9 +20,9 @@ if( isset( $attributes['aspect'] ) ) {
 	<div class="flair-card">
 		<div class="text">
 			<?php if( isset( $attributes['title'] ) && isset( $attributes['href'] ) ): ?>
-			<<?php echo $attributes['heading'] ?> class="title">
+			<<?php echo $heading ?> class="title">
 				<a href="<?php echo esc_url( $attributes['href'] ); ?>" class="link"><?php echo esc_html( $attributes['title'] ); ?></a>
-			</<?php echo $attributes['heading'] ?>>
+			</<?php echo $heading ?>>
 			<?php else: ?>
 				<div class="flair-warning"><p><strong>Warning:</strong> this block is missing a title and link.</p></div>
 			<?php endif; ?>
