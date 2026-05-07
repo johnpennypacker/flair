@@ -225,7 +225,7 @@
 				dot.classList.add("dot");
 				dot.dataset.slideIndex = i * xer;
 				dot.addEventListener( "click", function() {
-					el.dataset.slideIndex = i;
+					el.dataset.slideIndex = this.dataset.slideIndex;
 					updatePosition( el );
 				});
 				dots.appendChild(dot);
