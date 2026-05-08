@@ -28,7 +28,8 @@ include_once( 'build/zoomer/zoomer.php' );
  * Makes sure that the handle exists for inlining.
  */
 function flair_initialize_style() {
-	wp_register_style( 'flair', FALSE );
+	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
+	wp_register_style( 'flair', FLAIR_URL . 'build/flair-core/frontend.css', [], $asset['version'] );
 }
 add_action( 'init', 'flair_initialize_style' );
 
@@ -39,7 +40,7 @@ function flair_enqueues() {
 	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
 
 	wp_enqueue_script( 'flair', FLAIR_URL . 'build/flair-core/flair.js', $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
-	wp_enqueue_style( 'flair', FLAIR_URL . 'build/flair-core/frontend.css', array(), $asset['version'] );
+	wp_enqueue_style( 'flair' );
 }
 add_action( 'wp_enqueue_scripts', 'flair_enqueues' );
 
