@@ -2,11 +2,11 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/link.js"
+/***/ "./node_modules/@wordpress/icons/build-module/library/link.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@wordpress/icons/build-module/library/link.js ***!
   \********************************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -23,13 +23,23 @@ var link_default = /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE
 //# sourceMappingURL=link.js.map
 
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/overlay/edit.js"
+/***/ "./src/blocks/overlay/block.json":
+/*!***************************************!*\
+  !*** ./src/blocks/overlay/block.json ***!
+  \***************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/overlay","version":"0.2.0","title":"Overlay","category":"flair","description":"It\'s a cross between a card and a cover.","supports":{"align":["left","right","center","wide"],"anchor":true,"color":{"background":true,"gradients":true,"text":true},"dimensions":{"minHeight":true},"html":false,"shadow":true,"spacing":{"margin":true,"padding":true,"blockGap":false},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true}},"attributes":{"href":{"type":"string","default":"#"},"overlayColor":{"type":"string"},"overlayOpacity":{"type":"string","default":"20"},"target":{"type":"string"},"asset":{"type":"object","default":{"url":null},"id":{"type":"number"},"url":{"type":"string"},"alt":{"type":"string"}},"title":{"type":"string"},"eyebrow":{"type":"string"},"aspect":{"type":"string","default":"3-2"},"heading":{"type":"string","default":"h3"}},"example":{"attributes":{"asset":{"url":"https://pd.w.org/2026/03/36669bbe96800c4c4.81439497-768x960.jpg"},"eyebrow":"Your overlay","title":"Faciamo così","aspect":"3-2"},"innerBlocks":[{"name":"core/paragraph","attributes":{"content":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."}}]},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+
+/***/ }),
+
+/***/ "./src/blocks/overlay/edit.js":
 /*!************************************!*\
   !*** ./src/blocks/overlay/edit.js ***!
   \************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -392,13 +402,25 @@ function Edit(props) {
   });
 }
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/overlay/index.js"
+/***/ "./src/blocks/overlay/editor.scss":
+/*!****************************************!*\
+  !*** ./src/blocks/overlay/editor.scss ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/blocks/overlay/index.js":
 /*!*************************************!*\
   !*** ./src/blocks/overlay/index.js ***!
   \*************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
@@ -478,13 +500,13 @@ const icon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/overlay/save.js"
+/***/ "./src/blocks/overlay/save.js":
 /*!************************************!*\
   !*** ./src/blocks/overlay/save.js ***!
   \************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -502,111 +524,89 @@ function save(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks.Content, {});
 }
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/overlay/editor.scss"
-/*!****************************************!*\
-  !*** ./src/blocks/overlay/editor.scss ***!
-  \****************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ },
-
-/***/ "./src/blocks/overlay/style.scss"
+/***/ "./src/blocks/overlay/style.scss":
 /*!***************************************!*\
   !*** ./src/blocks/overlay/style.scss ***!
   \***************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
-/***/ },
+/***/ }),
 
-/***/ "react"
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-(module) {
-
-module.exports = window["React"];
-
-/***/ },
-
-/***/ "react/jsx-runtime"
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
-(module) {
-
-module.exports = window["ReactJSXRuntime"];
-
-/***/ },
-
-/***/ "@wordpress/block-editor"
+/***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
   \*************************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["blockEditor"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/blocks"
+/***/ "@wordpress/blocks":
 /*!********************************!*\
   !*** external ["wp","blocks"] ***!
   \********************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["blocks"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/components"
+/***/ "@wordpress/components":
 /*!************************************!*\
   !*** external ["wp","components"] ***!
   \************************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["components"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/i18n"
+/***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
   \******************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["i18n"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/primitives"
+/***/ "@wordpress/primitives":
 /*!************************************!*\
   !*** external ["wp","primitives"] ***!
   \************************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["primitives"];
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/overlay/block.json"
-/*!***************************************!*\
-  !*** ./src/blocks/overlay/block.json ***!
-  \***************************************/
-(module) {
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/overlay","version":"0.2.0","title":"Overlay","category":"flair","description":"It\'s a cross between a card and a cover.","supports":{"align":["left","right","center","wide"],"anchor":true,"color":{"background":true,"gradients":true,"text":true},"dimensions":{"minHeight":true},"html":false,"shadow":true,"spacing":{"margin":true,"padding":true,"blockGap":false},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true}},"attributes":{"href":{"type":"string","default":"#"},"overlayColor":{"type":"string"},"overlayOpacity":{"type":"string","default":"20"},"target":{"type":"string"},"asset":{"type":"object","default":{"url":null},"id":{"type":"number"},"url":{"type":"string"},"alt":{"type":"string"}},"title":{"type":"string"},"eyebrow":{"type":"string"},"aspect":{"type":"string","default":"3-2"},"heading":{"type":"string","default":"h3"}},"example":{"attributes":{"asset":{"url":"https://pd.w.org/2026/03/36669bbe96800c4c4.81439497-768x960.jpg"},"eyebrow":"Your overlay","title":"Faciamo così","aspect":"3-2"},"innerBlocks":[{"name":"core/paragraph","attributes":{"content":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."}}]},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = window["React"];
 
-/***/ }
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ })
 
 /******/ 	});
 /************************************************************************/
@@ -619,12 +619,6 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Check if module exists (development only)
-/******/ 		if (__webpack_modules__[moduleId] === undefined) {
-/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
-/******/ 			e.code = 'MODULE_NOT_FOUND';
-/******/ 			throw e;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {

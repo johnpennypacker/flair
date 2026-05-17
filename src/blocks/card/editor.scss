@@ -3,3 +3,8 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+
+// Re-enable pointer events so RichText can receive focus.
+.excerpt, .attribution, .button {
+	pointer-events: auto;
+}

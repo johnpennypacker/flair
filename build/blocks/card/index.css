@@ -6,5 +6,8 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.excerpt, .attribution, .button {
+  pointer-events: auto;
+}
 
 /*# sourceMappingURL=index.css.map*/
