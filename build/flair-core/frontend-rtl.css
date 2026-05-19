@@ -287,6 +287,39 @@ button.flair-toggle-x:hover {
   --frame-transition-delay: 300ms;
 }
 
+/**
+ * @todo: there needs to be finer control of this.
+ */
+
+.wp-block-group.is-vertical[data-was-visible=false] > * {
+  opacity: 0;
+  transform: translateY(4rem) rotateZ(-1deg);
+  will-change: opacity, transform;
+}
+
+.wp-block-group.is-vertical[data-was-visible=true] > * {
+  --frame-transition-duration: 400ms;
+  --frame-transition-delay: 100ms;
+  transition: var(--frame-transition-duration) transform ease, calc(var(--frame-transition-duration) * 0.75) opacity ease-in;
+  transition-delay: var(--frame-transition-delay);
+}
+
+.wp-block-group.is-vertical[data-was-visible] > *:nth-child(1) {
+  --frame-transition-delay: 100ms;
+}
+
+.wp-block-group.is-vertical[data-was-visible] > *:nth-child(2) {
+  --frame-transition-delay: 200ms;
+}
+
+.wp-block-group.is-vertical[data-was-visible] > *:nth-child(3) {
+  --frame-transition-delay: 300ms;
+}
+
+/**
+ * /end there needs to be finer control of this.
+ */
+
 [data-was-visible=true]:not(.flair-fixie) {
   opacity: 1;
   transform: translateY(0rem) rotateZ(0deg);

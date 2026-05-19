@@ -27,13 +27,13 @@
 
 .flair-fadie img {
 	--delay: 0;
-	animation: lightUp 100ms forwards;
+	animation: blurify 100ms forwards;
 	animation-delay: var( --delay );
 	animation-timeline: scroll();
-	animation-range: contain;
+	animation-range: 90vh;
 }
 
-@keyframes lightUp {
+@keyframes blurify {
   0% {
   }
   100% {
