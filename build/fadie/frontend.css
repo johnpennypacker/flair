@@ -1,0 +1,35 @@
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/fadie/frontend.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+:where(.flair-fadie) {
+  --minIntersection: .4;
+}
+:where(.flair-fadie)[data-is-intersecting=true]:not(:has(img)) span.wp-block-cover__background, :where(.flair-fadie)[data-is-intersecting=true] img.wp-block-cover__image-background {
+  position: fixed;
+  z-index: -1;
+}
+:where(.flair-fadie)[data-is-intersecting=true]:has(img) span.wp-block-cover__background {
+  position: fixed;
+  z-index: -1;
+}
+.flair-fadie img {
+  --delay: 0;
+  animation: lightUp 100ms forwards;
+  animation-delay: var(--delay);
+  animation-timeline: scroll();
+  animation-range: contain;
+}
+@keyframes lightUp {
+  100% {
+    filter: blur(2rem) brightness(80%) saturate(160%);
+    scale: 1.07;
+  }
+}
+
+/*# sourceMappingURL=frontend.css.map*/

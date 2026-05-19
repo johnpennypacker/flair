@@ -13,6 +13,10 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 	  ...defaultConfig.entry(),
+		'fadie/variation': '/src/fadie/variation.js',
+		'fadie/frontend': '/src/fadie/frontend.scss',
+		'fadie/editor': '/src/fadie/editor.scss',
+
 		'fixie/variation': '/src/fixie/variation.js',
 		'fixie/frontend': '/src/fixie/frontend.scss',
 		'fixie/editor': '/src/fixie/editor.scss',

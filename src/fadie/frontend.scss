@@ -1,0 +1,46 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+
+
+:where(.flair-fadie) {
+	--minIntersection: .4; // this is the point where opacity starts to transition.  .4 means when fixie is 40% visible.
+
+	//set opacity of the background; could be color block or image
+	&[data-is-intersecting="true"]:not(:has(img)) span.wp-block-cover__background,
+	&[data-is-intersecting="true"] img.wp-block-cover__image-background {
+		position: fixed;
+		z-index: -1;
+	}
+	// honor the overlay settings a designer sets in the editor
+	&[data-is-intersecting="true"]:has(img) span.wp-block-cover__background {
+		position: fixed;
+		z-index: -1;
+	}
+
+}
+
+
+.flair-fadie img {
+	--delay: 0;
+	animation: lightUp 100ms forwards;
+	animation-delay: var( --delay );
+	animation-timeline: scroll();
+	animation-range: contain;
+}
+
+@keyframes lightUp {
+  0% {
+  }
+  100% {
+    filter: blur( 2rem ) brightness( 80% ) saturate( 160% );
+    scale: 1.07;
+//     margin: -2rem;
+//     height: calc( 100% + 4rem );
+//     width: calc( 100% + 4rem );
+  }
+}

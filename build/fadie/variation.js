@@ -90,7 +90,7 @@ var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
 /*!********************************!*\
-  !*** ./src/fixie/variation.js ***!
+  !*** ./src/fadie/variation.js ***!
   \********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
@@ -109,13 +109,13 @@ const {
 registerBlockVariation('core/cover',
 // Original block name
 {
-  name: 'fixie',
-  title: __('Fixie', 'flair'),
-  description: __('A fullscreen fixed segment with scrolling foreground.', 'flair'),
+  name: 'fadie',
+  title: __('Fadie', 'flair'),
+  description: __('A fullscreen segment with blurring background on scroll.', 'flair'),
   isDefault: false,
   category: 'flair',
   attributes: {
-    className: 'flair-fixie',
+    className: 'flair-fadie',
     minHeight: 100,
     minHeightUnit: "vh"
   },
@@ -139,57 +139,12 @@ registerBlockVariation('core/cover',
     src: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: "0 0 24 24",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
         fill: "currentColor",
-        x: "4",
-        y: "4",
-        width: "16",
-        height: "16"
+        d: "M21,2H3c-.55,0-1,.45-1,1v18c0,.55.45,1,1,1h18c.55,0,1-.45,1-1V3c0-.55-.45-1-1-1Z"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-        fill: "#222",
-        d: "M3,22h18c.55,0,1-.45,1-1V3c0-.55-.45-1-1-1H3c-.55,0-1,.45-1,1v18c0,.55.45,1,1,1ZM20,4v16H4V4h16Z"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
         fill: "#fff",
-        x: "4",
-        y: "6.5",
-        width: "16",
-        height: "8"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "#222",
-        x: "6",
-        y: "8",
-        width: "12",
-        height: "1"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "#222",
-        x: "6",
-        y: "10",
-        width: "12",
-        height: "1"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "#222",
-        x: "6",
-        y: "12",
-        width: "12",
-        height: "1"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "#fff",
-        x: "8",
-        y: "15.75",
-        width: "1",
-        height: "1.5"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "#fff",
-        x: "11.5",
-        y: "15.75",
-        width: "1",
-        height: "2.5"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("rect", {
-        fill: "#fff",
-        x: "15",
-        y: "15.75",
-        width: "1",
-        height: "3.75"
+        d: "M3.5,3.5v11l1.5-.35v-5.15c1.45,0,2.75,2.78,3.02,4.44l.18-.04c.29-1.13,1.2-3.47,3.8-3.47,2.08,0,3.07.91,3.56,1.73l.59-.14c.39-2.35,1.52-5.53,2.86-5.53v4.85l1.5-.35V3.5H3.5ZM8.8,8.76c-.96,0-1.74-.78-1.74-1.74s.78-1.74,1.74-1.74,1.74.78,1.74,1.74-.78,1.74-1.74,1.74Z"
       })]
     })
   },
@@ -198,7 +153,7 @@ registerBlockVariation('core/cover',
     if (!blockAttributes || !blockAttributes.className) {
       return;
     }
-    return blockAttributes.className.includes('flair-fixie');
+    return blockAttributes.className.includes('flair-fadie');
   }
 });
 })();

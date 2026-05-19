@@ -18,6 +18,7 @@ define( 'FLAIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'FLAIR_URL', plugin_dir_url( __FILE__ ) );
 
 
+include_once( 'build/fadie/index.php' );
 include_once( 'build/fixie/index.php' );
 include_once( 'build/iconic/iconic.php' );
 include_once( 'build/kinetic/kinetic.php' );
