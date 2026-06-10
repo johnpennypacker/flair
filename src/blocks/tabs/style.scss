@@ -1,0 +1,44 @@
+/*
+ * every selector is wrapped in :where() so these defaults have zero
+ * specificity — any theme selector overrides them
+ */
+
+:where( .flair-tabs-list ) {
+	border-block-end: 1px solid color-mix( in srgb, currentColor, transparent 70% );
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+:where( .flair-tabs-list li ) {
+	margin: 0 0 -1px;
+}
+
+:where( .flair-tabs-list a ) {
+	border-block-end: 3px solid transparent;
+	color: inherit;
+	display: block;
+	padding: .5em 1em;
+	text-decoration: none;
+}
+
+:where( .flair-tabs-list a:hover ),
+:where( .flair-tabs-list a:focus-visible ) {
+	background-color: color-mix( in srgb, currentColor, transparent 92% );
+}
+
+:where( .flair-tabs-list a[aria-selected="true"] ) {
+	border-block-end-color: currentColor;
+}
+
+:where( .flair-tab ) {
+	padding-block: 1em;
+}
+
+/* belt & suspenders — some resets clobber the hidden attribute */
+:where( .flair-tab[hidden] ),
+:where( .flair-tab .flair-tab-label[hidden] ) {
+	display: none;
+}

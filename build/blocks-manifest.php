@@ -702,5 +702,79 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
+	),
+	'tab' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/tab',
+		'version' => '0.1.0',
+		'title' => 'Tab',
+		'category' => 'flair',
+		'description' => 'An individual tab and its panel within a tabs block.',
+		'icon' => 'table-row-after',
+		'parent' => array(
+			'flair/tabs'
+		),
+		'supports' => array(
+			'anchor' => true,
+			'html' => false,
+			'layout' => null,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			)
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'anchor' => array(
+				'type' => 'string'
+			)
+		),
+		'example' => array(
+			
+		),
+		'textdomain' => 'flair',
+		'editorStyle' => 'file:./index.css',
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php'
+	),
+	'tabs' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/tabs',
+		'version' => '0.1.0',
+		'title' => 'Tabs',
+		'category' => 'flair',
+		'description' => 'An accessible tabbed interface.',
+		'icon' => 'table-row-after',
+		'supports' => array(
+			'align' => true,
+			'html' => false,
+			'layout' => null,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'typography' => array(
+				'textAlign' => true
+			)
+		),
+		'attributes' => array(
+			
+		),
+		'example' => array(
+			
+		),
+		'textdomain' => 'flair',
+		'editorStyle' => 'file:./index.css',
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
 	)
 );

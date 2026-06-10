@@ -1,0 +1,12 @@
+.wp-block-flair-tab {
+
+	& > .flair-tab-label {
+		margin-block-start: 0;
+
+		&[data-is-placeholder-visible="true"],
+		&:empty::before {
+			opacity: .62;
+		}
+	}
+
+}

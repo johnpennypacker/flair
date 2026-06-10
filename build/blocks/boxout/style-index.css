@@ -1,12 +1,1 @@
-/*!*****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/boxout/style.scss ***!
-  \*****************************************************************************************************************************************************************************************************************************************************/
-:where(.flair-boxout-wrapper) {
-  background-color: color-mix(in oklab, var(--flair-color-primary), white 85%);
-}
-:where(.flair-boxout-wrapper) .flair-boxout {
-  padding: var(--wp--style--block-gap, 1rem);
-  background-color: inherit;
-}
-
-/*# sourceMappingURL=style-index.css.map*/
+:where(.flair-boxout-wrapper){background-color:color-mix(in oklab,var(--flair-color-primary),#fff 85%)}:where(.flair-boxout-wrapper) .flair-boxout{background-color:inherit;padding:var(--wp--style--block-gap,1rem)}
