@@ -421,6 +421,10 @@ return array(
 			),
 			'marker' => array(
 				'type' => 'string'
+			),
+			'orientation' => array(
+				'type' => 'string',
+				'default' => 'vertical'
 			)
 		),
 		'example' => array(

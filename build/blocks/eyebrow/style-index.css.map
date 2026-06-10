@@ -1,0 +1,1 @@
+{"version":3,"file":"blocks/eyebrow/style-index.css","mappings":";;;AAAA;EACC;EACA;EACA;AACD,C","sources":["webpack://flair/./src/blocks/eyebrow/style.scss"],"sourcesContent":[":where(.flair-eyebrow) {\n\tfont-size: 80%;\n\tfont-weight: bold;\n\ttext-transform: uppercase;\n}\n"],"names":[],"sourceRoot":""}

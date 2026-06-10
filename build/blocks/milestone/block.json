@@ -26,6 +26,10 @@
     },
     "marker": {
       "type": "string"
+    },
+    "orientation": {
+      "type": "string",
+      "default": "vertical"
     }
   },
   "example": {

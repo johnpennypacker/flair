@@ -10,6 +10,9 @@ if( isset( $attributes['marker'] ) ) {
 if( isset( $attributes['layout'] ) ) {
 	$classes[] = 'layout-' . $attributes['layout'] ;
 }
+if( isset( $attributes['orientation'] ) ) {
+	$classes[] = 'orientation-' . $attributes['orientation'] ;
+}
 
 // echo '<pre>', print_r($content, TRUE), '</pre>';
 
