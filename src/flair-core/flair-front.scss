@@ -269,6 +269,8 @@ button.flair-toggle-x:hover {
 
 /** animations **/
 
+.wp-site-blocks { overflow-x: clip; } /* prevents side scrolling on animated transforms with rotate
+
 [data-was-visible]:not(.flair-fixie) {
 	--frame-transition-duration: 400ms;
 	--frame-transition-delay: 100ms;
@@ -322,6 +324,7 @@ button.flair-toggle-x:hover {
 
 [data-was-visible="true"]:not(.flair-fixie) {
 	opacity: 1;
+	overflow-x: clip;
  	transform: translateY(0rem) rotateZ(0deg);
 }
 
