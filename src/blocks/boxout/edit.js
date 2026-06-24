@@ -79,7 +79,9 @@ export default function Edit(props) {
 		</InspectorControls>
 		<div { ...useBlockProps({ className:calculateClassName() }) }>
 			<div class="flair-boxout">
-				<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} directInsert />
+				<InnerBlocks defaultBlock={
+					{ name: 'core/paragraph', attributes: {placeholder: "Lorem ipsum..."}}
+				} directInsert />
 			</div>
 		</div>
 	</>

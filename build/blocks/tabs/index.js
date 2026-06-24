@@ -2,11 +2,21 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/tabs/edit.js"
+/***/ "./src/blocks/tabs/block.json":
+/*!************************************!*\
+  !*** ./src/blocks/tabs/block.json ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/tabs","version":"0.1.0","title":"Tabs","category":"flair","description":"An accessible tabbed interface.","icon":"table-row-after","supports":{"align":true,"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"textAlign":true}},"attributes":{},"example":{},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+
+/***/ }),
+
+/***/ "./src/blocks/tabs/edit.js":
 /*!*********************************!*\
   !*** ./src/blocks/tabs/edit.js ***!
   \*********************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -71,13 +81,25 @@ function Edit(props) {
   });
 }
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/tabs/index.js"
+/***/ "./src/blocks/tabs/editor.scss":
+/*!*************************************!*\
+  !*** ./src/blocks/tabs/editor.scss ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/blocks/tabs/index.js":
 /*!**********************************!*\
   !*** ./src/blocks/tabs/index.js ***!
   \**********************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
@@ -140,81 +162,59 @@ const tabsIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.
   }
 });
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/tabs/editor.scss"
-/*!*************************************!*\
-  !*** ./src/blocks/tabs/editor.scss ***!
-  \*************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ },
-
-/***/ "./src/blocks/tabs/style.scss"
+/***/ "./src/blocks/tabs/style.scss":
 /*!************************************!*\
   !*** ./src/blocks/tabs/style.scss ***!
   \************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
-/***/ },
+/***/ }),
 
-/***/ "react/jsx-runtime"
-/*!**********************************!*\
-  !*** external "ReactJSXRuntime" ***!
-  \**********************************/
-(module) {
-
-module.exports = window["ReactJSXRuntime"];
-
-/***/ },
-
-/***/ "@wordpress/block-editor"
+/***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
   \*************************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["blockEditor"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/blocks"
+/***/ "@wordpress/blocks":
 /*!********************************!*\
   !*** external ["wp","blocks"] ***!
   \********************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["blocks"];
 
-/***/ },
+/***/ }),
 
-/***/ "@wordpress/i18n"
+/***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
   \******************************/
-(module) {
+/***/ ((module) => {
 
 module.exports = window["wp"]["i18n"];
 
-/***/ },
+/***/ }),
 
-/***/ "./src/blocks/tabs/block.json"
-/*!************************************!*\
-  !*** ./src/blocks/tabs/block.json ***!
-  \************************************/
-(module) {
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/tabs","version":"0.1.0","title":"Tabs","category":"flair","description":"An accessible tabbed interface.","icon":"table-row-after","supports":{"align":true,"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"textAlign":true}},"attributes":{},"example":{},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = window["ReactJSXRuntime"];
 
-/***/ }
+/***/ })
 
 /******/ 	});
 /************************************************************************/
@@ -227,12 +227,6 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Check if module exists (development only)
-/******/ 		if (__webpack_modules__[moduleId] === undefined) {
-/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
-/******/ 			e.code = 'MODULE_NOT_FOUND';
-/******/ 			throw e;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
