@@ -29,4 +29,3 @@ function flair_kinetic_editor_enqueues() {
 	flair_kinetic_enqueues();
 }
 add_action( 'enqueue_block_assets', 'flair_kinetic_editor_enqueues' );
-

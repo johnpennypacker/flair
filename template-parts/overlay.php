@@ -10,14 +10,21 @@ if( isset( $attributes['aspect'] ) ) {
 
 //  echo '<pre>', print_r($args, TRUE), '</pre>';
 
-$overlay_properties  = 'style="';
-if( ! empty( $attributes['overlayColor'] )) {
-	$overlay_properties .= ' --overlay-color: ' . esc_attr( $attributes['overlayColor'] ) . '; ';
+$overlay_styles = [];
+
+// Allow only safe CSS color tokens (hex, rg(a)/hsl(a)/named) — no semicolons,
+// braces, parentheses-with-url, etc. — so the value can't break out of the
+// custom property and inject arbitrary CSS.
+if( ! empty( $attributes['overlayColor'] ) && preg_match( '/^(#[0-9a-fA-F]{3,8}|[a-zA-Z]+|(?:rgb|rgba|hsl|hsla)\([0-9.,%\s\/]+\))$/', trim( $attributes['overlayColor'] ) ) ) {
+	$overlay_styles[] = '--overlay-color: ' . trim( $attributes['overlayColor'] );
 }
-if( ! empty( $attributes['overlayOpacity'] )) {
-	$overlay_properties .= ' --overlay-opacity: ' . esc_attr( $attributes['overlayOpacity'] ) . '; ';
+
+// Opacity is a plain number between 0 and 1.
+if( isset( $attributes['overlayOpacity'] ) && is_numeric( $attributes['overlayOpacity'] ) ) {
+	$overlay_styles[] = '--overlay-opacity: ' . (float) $attributes['overlayOpacity'];
 }
-$overlay_properties .= '"';
+
+$overlay_properties = ! empty( $overlay_styles ) ? 'style="' . esc_attr( implode( '; ', $overlay_styles ) ) . '"' : '';
 
 $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','h6'], true ) ? $attributes['heading'] : 'h3';
 

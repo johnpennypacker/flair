@@ -1,59 +1,43 @@
 === Flair ===
-Contributors:      Flair team
-Tags:              block
+Contributors:      johnpennypacker
+Tags:              blocks, gutenberg, block editor, animation
+Requires at least: 6.7
+Requires PHP:      7.4
 Tested up to:      6.9
 Stable tag:        0.2.0
 
-Example block scaffolded with Create Block tool.
+Fanciful add-ons for the block editor: a set of custom blocks plus enhancements for core blocks.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+Flair adds a collection of custom blocks (card, carousel, tabs, metric, milestone,
+boxout, overlay, multibutton, and more) along with several enhancements and
+variations that decorate WordPress core blocks (fadie, fixie, iconic, kinetic, zoomer).
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+The custom blocks are server-rendered and their markup can be overridden by your
+theme (see Theming below).
 
+== Theming ==
 
-== Themeing ==
-
-Copy the template files found in template-parts into your theme. e.g. template/parts/flair/template.php
-Edit to taste.
+Copy the template files found in `template-parts` into your theme, for example
+`template-parts/flair/card.php`, and edit to taste. Flair will use your theme's
+copy when present and fall back to the bundled template otherwise.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload the plugin files to the `/wp-content/plugins/flair` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
-
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Upload the plugin files to the `/wp-content/plugins/flair` directory, or install
+   the plugin through the WordPress plugins screen directly.
+2. Activate the plugin through the 'Plugins' screen in WordPress.
 
 == Changelog ==
 
+= 0.2.0 =
+* Custom blocks: card, carousel, carousel-slide, tabs, tab, metric, milestone, boxout, eyebrow, layer, multibutton, multibutton-button, overlay, sidler, stack.
+* Core-block enhancements/variations: fadie, fixie, iconic, kinetic, zoomer.
+* Theme template override system via flair_use_template().
+* core/columns "List" style.
+* iconic styles now load only on pages that use them.
+* Hardened the overlay block's inline custom-property output.
+
 = 0.1.0 =
-* Release
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+* Initial release.

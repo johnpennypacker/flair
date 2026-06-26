@@ -11,6 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `CLAUDE.md` with build, architecture, and convention notes.
 - This changelog.
 
+### Changed
+- iconic styles now register as a proper stylesheet and are enqueued only when a
+  block uses the `iconic` class, instead of being inlined on every front-end request.
+- Cleaned up `readme.txt` (removed Create-Block boilerplate, synced changelog/versions).
+
+### Fixed
+- Editor-only enqueue callbacks for iconic and kinetic are now gated with `is_admin()`,
+  preventing their CSS from being added twice on the front end.
+- Hardened the overlay block: `overlayColor` is validated against a CSS color
+  allow-list and `overlayOpacity` is cast to a float before being emitted as an
+  inline custom property, preventing CSS-value injection.
+- Removed dead `NaN`-producing code in `flair.js`.
+- Fixed `tab-index` → `tabindex` typo in the multibutton template.
+- Guarded unguarded attribute reads (metric, card, overlay, carousel templates)
+  to avoid PHP warnings on missing attributes.
+
 ## [0.2.0] - 2026-06-25
 
 > Backfilled entry. Versions prior to a maintained changelog are approximate.
