@@ -2,14 +2,14 @@
 
 $attributes = $args['attributes'];
 $classes = ['flair-carousel-wrapper'];
-if( TRUE == $attributes['showArrows'] ) {
+if( ! empty( $attributes['showArrows'] ) ) {
 	$classes[] = 'has-arrows';
 }
-if( TRUE == $attributes['showDots'] ) {
+if( ! empty( $attributes['showDots'] ) ) {
 	$classes[] = 'has-dots';
 }
 
-switch( $attributes['perpage'] ) {
+switch( $attributes['perpage'] ?? 1 ) {
 	case 3:
 		$classes[] = 'triple';
 		break;

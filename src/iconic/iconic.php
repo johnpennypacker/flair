@@ -18,6 +18,9 @@ add_action( 'wp_enqueue_scripts', 'flair_iconic_enqueues' );
  * Enqueue Editor assets.
  */
 function flair_iconic_editor_enqueues() {
+	if ( ! is_admin() ) {
+		return;
+	}
 	flair_iconic_enqueues();
 }
 add_action( 'enqueue_block_assets', 'flair_iconic_editor_enqueues' );

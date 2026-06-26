@@ -47,8 +47,6 @@
 
 
 	function buttonFlair(e) {
-		const x = e.pageX - e.target.offsetX;
-		const y = e.pageY - e.target.offsetY;
 		e.target.style.setProperty( '--mouse-x', e.offsetX );
 		e.target.style.setProperty( '--mouse-y', e.offsetY );
 

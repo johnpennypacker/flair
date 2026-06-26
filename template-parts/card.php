@@ -39,7 +39,7 @@ $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','
 		</div>
 		<div class="media">
 			<?php if( ! empty( $attributes['asset']['url'] ) ): ?>
-			<img src="<?php echo esc_attr( $attributes['asset']['url'] ); ?>" alt="<?php echo esc_attr( $attributes['asset']['alt'] ); ?>">
+			<img src="<?php echo esc_attr( $attributes['asset']['url'] ); ?>" alt="<?php echo esc_attr( $attributes['asset']['alt'] ?? '' ); ?>">
 			<?php endif; ?>
 		</div>
 	</div>

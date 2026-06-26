@@ -20,7 +20,7 @@
 				<button aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"><span>Select an action</span></button>
 				<a href="#" class="action button"> </a>
 			</div>
-			<div class="options" tab-index="0">
+			<div class="options" tabindex="0">
 				<?php echo wp_kses_post( $args['content'] ); ?>
 			</div>
 		</div>
