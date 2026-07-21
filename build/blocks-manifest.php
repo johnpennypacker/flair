@@ -1,6 +1,67 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'alert' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/alert',
+		'version' => '0.1.0',
+		'title' => 'Alert',
+		'category' => 'flair',
+		'description' => 'A notice or banner, optionally dismissible by the visitor.',
+		'keywords' => array(
+			'alert',
+			'notice',
+			'banner',
+			'dismiss'
+		),
+		'textdomain' => 'flair',
+		'attributes' => array(
+			'dismissible' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'alertId' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'align' => true,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'html' => false,
+			'shadow' => true,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => false
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/paragraph',
+					'attributes' => array(
+						'content' => 'An important update would go here.'
+					)
+				)
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'boxout' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

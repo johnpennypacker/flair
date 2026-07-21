@@ -1,0 +1,48 @@
+/**
+ *
+ */
+
+:where( .flair-alert-wrapper ) {
+	background-color: color-mix( in oklab, var( --flair-color-primary ), white 90% );
+}
+
+:where( .flair-alert ) {
+	position: relative;
+
+	.flair-alert-content {
+		padding: var( --wp--style--block-gap, 1rem );
+
+		> :first-child {
+			margin-block-start: 0;
+		}
+		> :last-child {
+			margin-block-end: 0;
+		}
+	}
+
+	&:has( > .flair-alert-close ) .flair-alert-content {
+		padding-inline-end: calc( var( --wp--style--block-gap, 1rem ) + 2.5em );
+	}
+}
+
+.flair-alert-close {
+	align-items: center;
+	background: transparent;
+	border: 0;
+	border-radius: 50%;
+	color: currentColor;
+	cursor: pointer;
+	display: flex;
+	height: 2em;
+	inset-inline-end: .5em;
+	justify-content: center;
+	padding: 0;
+	position: absolute;
+	top: .5em;
+	width: 2em;
+
+	&:hover,
+	&:focus-visible {
+		background-color: color-mix( in srgb, currentColor, transparent 90% );
+	}
+}

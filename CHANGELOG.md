@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `CLAUDE.md` with build, architecture, and convention notes.
 - This changelog.
+- New `alert` block: a color/typography-enabled notice with InnerBlocks content
+  and an optional dismissible close button. Dismissal is remembered via a
+  60-day cookie, checked server-side so a dismissed alert isn't rendered at all
+  on subsequent visits.
 
 ### Changed
 - iconic styles now register as a proper stylesheet and are enqueued only when a

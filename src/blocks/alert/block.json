@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flair/alert",
+	"version": "0.1.0",
+	"title": "Alert",
+	"category": "flair",
+	"description": "A notice or banner, optionally dismissible by the visitor.",
+	"keywords": [ "alert", "notice", "banner", "dismiss" ],
+	"textdomain": "flair",
+	"attributes": {
+		"dismissible": {
+			"type": "boolean",
+			"default": false
+		},
+		"alertId": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": true,
+		"anchor": true,
+		"color": {
+			"text": true,
+			"background": true,
+			"gradients": true,
+			"link": true
+		},
+		"html": false,
+		"shadow": true,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": false
+		}
+	},
+	"example": {
+		"attributes": {},
+		"innerBlocks": [
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "An important update would go here."
+				}
+			}
+		]
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
