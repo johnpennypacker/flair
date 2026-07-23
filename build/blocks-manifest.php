@@ -696,6 +696,7 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./overlay.js',
 		'render' => 'file:./render.php'
 	),
 	'sidler' => array(

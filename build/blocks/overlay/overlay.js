@@ -1,0 +1,1 @@
+!function(){const e=document.querySelectorAll(".flair-overlay");Array.prototype.forEach.call(e,e=>{let o,t,r=e.querySelector(".title a");r&&(e.style.cursor="pointer",e.onmousedown=()=>o=+new Date,e.onmouseup=()=>{t=+new Date,t-o<200&&r.click()})})}();
