@@ -7,19 +7,69 @@
 
 
 
-:where(.flair-fadie) {
-	--minIntersection: .4; // this is the point where opacity starts to transition.  .4 means when fixie is 40% visible.
+// `position: fixed` pins to the *viewport*, with no notion of the section's own
+// start/end — it stays pinned for as long as any sliver of the (tall) section
+// intersects the viewport, which is as soon as it first peeks into view (still
+// covering earlier content, like the header) and until it's fully scrolled past
+// (bleeding over later content, like the footer). `position: sticky` pins to the
+// section's own box instead: it starts scrolling normally, "sticks" once its
+// static position would scroll above the viewport top, and releases the moment
+// the section's bottom edge does the same — exactly the start/end point a normal
+// cover block has. Both the background and the text need to occupy the same box
+// for that to read as "pinned," so this stacks them via grid instead of the
+// default absolute-fill-behind-inner-container that WP core cover markup uses.
+.flair-fadie {
+	display: grid;
 
-	//set opacity of the background; could be color block or image
-	&[data-is-intersecting="true"]:not(:has(img)) span.wp-block-cover__background,
-	&[data-is-intersecting="true"] img.wp-block-cover__image-background {
-		position: fixed;
-		z-index: -1;
+	// WP's root-padding-aware alignment gives full-width blocks their own inline
+	// padding. The old `position: absolute; inset: 0;` background ignored it
+	// (absolute positioning fills to the containing block's border edge, past the
+	// padding), so it was never visible. The text's own readable-width padding
+	// comes from its own nested group further in, so it's unaffected by zeroing
+	// this out.
+	padding-inline: 0;
+
+	// Without an explicit column, the implicit grid column auto-sizes to the
+	// *narrowest* content-driven width among the stacked items (here, whatever
+	// the text group's own intrinsic width resolves to) rather than filling the
+	// container — leaving the background short of the section's actual width.
+	grid-template-columns: minmax(0, 1fr);
+
+	> img.wp-block-cover__image-background,
+	> span.wp-block-cover__background,
+	> .wp-block-cover__inner-container {
+		grid-area: 1 / 1;
 	}
-	// honor the overlay settings a designer sets in the editor
-	&[data-is-intersecting="true"]:has(img) span.wp-block-cover__background {
-		position: fixed;
-		z-index: -1;
+
+	> img.wp-block-cover__image-background,
+	> span.wp-block-cover__background {
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		width: 100%;
+	}
+}
+
+:where(.flair-fadie) {
+
+	// The default fadie template centers its content in a vertical flex group,
+	// which shrink-wraps children to their content width. That's fine for the
+	// heading/paragraph, but a nested "constrained" group (e.g. wrapping a row
+	// of columns/cards below the text) needs the wrapper's full width to center
+	// *its own* children against — otherwise it collapses toward zero width and
+	// takes its column/card content down with it.
+	.wp-block-cover__inner-container .is-layout-flex > .is-layout-constrained {
+		align-self: stretch;
+	}
+
+	// The theme sets `.is-layout-flex { flex-wrap: wrap; }` globally. For most
+	// flex groups that's harmless, but fadie's hero group is flex-direction:column
+	// with only a min-height (no max) — with wrap enabled, the browser can end up
+	// wrapping it into a huge number of near-empty lines once its content (e.g. a
+	// card row) exceeds that min-height, inflating the whole section's height far
+	// beyond its actual content. Fadie's own hero wrapper doesn't need to wrap.
+	.wp-block-cover__inner-container > .is-layout-flex {
+		flex-wrap: nowrap;
 	}
 
 }

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-22
+
 ### Added
 - `CLAUDE.md` with build, architecture, and convention notes.
 - This changelog.
@@ -30,6 +32,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed `tab-index` → `tabindex` typo in the multibutton template.
 - Guarded unguarded attribute reads (metric, card, overlay, carousel templates)
   to avoid PHP warnings on missing attributes.
+- Overlay block: only the title text was clickable even though the whole card
+  showed a pointer cursor. Added `overlay.js` (mirroring the `card.js`
+  inclusive-card click-delegation pattern) so a click anywhere on the card
+  activates the title link, without blocking text selection or nested links
+  the way a CSS stretched-link overlay would.
 
 ## [0.2.0] - 2026-06-25
 

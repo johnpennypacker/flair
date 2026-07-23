@@ -268,9 +268,9 @@ button.flair-toggle-x:hover {
 
 /** animations **/
 
-.wp-site-blocks { overflow-x: clip; } /* prevents side scrolling on animated transforms with rotate
+.wp-site-blocks { overflow-x: clip; } /* prevents side scrolling on animated transforms with rotate */
 
-[data-was-visible]:not(.flair-fixie) {
+[data-was-visible]:not(.flair-fixie):not(.flair-fadie) {
 	--frame-transition-duration: 400ms;
 	--frame-transition-delay: 100ms;
   opacity: 0;
@@ -318,10 +318,10 @@ button.flair-toggle-x:hover {
  */
 
 
-[data-was-visible="false"]:not(.flair-fixie) {
+[data-was-visible="false"]:not(.flair-fixie):not(.flair-fadie) {
 }
 
-[data-was-visible="true"]:not(.flair-fixie) {
+[data-was-visible="true"]:not(.flair-fixie):not(.flair-fadie) {
 	opacity: 1;
 	overflow-x: clip;
  	transform: translateY(0rem) rotateZ(0deg);

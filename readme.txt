@@ -4,7 +4,7 @@ Tags:              blocks, gutenberg, block editor, animation
 Requires at least: 6.7
 Requires PHP:      7.4
 Tested up to:      6.9
-Stable tag:        0.2.0
+Stable tag:        0.3.0
 
 Fanciful add-ons for the block editor: a set of custom blocks plus enhancements for core blocks.
 
@@ -30,6 +30,15 @@ copy when present and fall back to the bundled template otherwise.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 
 == Changelog ==
+
+= 0.3.0 =
+* New `alert` block: color/typography-enabled notice with InnerBlocks content and an optional dismissible close button (60-day cookie, checked server-side).
+* iconic styles now register as a proper stylesheet, enqueued only on pages that use them.
+* Editor-only enqueue callbacks for iconic and kinetic gated with `is_admin()`, fixing duplicate front-end CSS.
+* Hardened the overlay block's inline custom-property output against CSS-value injection.
+* Guarded unguarded attribute reads in metric, card, overlay, and carousel templates.
+* Fixed `tab-index` typo in the multibutton template.
+* Overlay block: clicking anywhere on the card (not just the title) now activates its link, matching the card block's behavior.
 
 = 0.2.0 =
 * Custom blocks: card, carousel, carousel-slide, tabs, tab, metric, milestone, boxout, eyebrow, layer, multibutton, multibutton-button, overlay, sidler, stack.
