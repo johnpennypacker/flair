@@ -18,7 +18,7 @@ $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','
 ?>
 <div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
 	<div class="flair-card">
-		<div class="text">
+		<div class="text is-layout-constrained">
 			<?php if( isset( $attributes['title'] ) && isset( $attributes['href'] ) ): ?>
 			<<?php echo $heading ?> class="title">
 				<a href="<?php echo esc_url( $attributes['href'] ); ?>" class="link"><?php echo esc_html( $attributes['title'] ); ?></a>

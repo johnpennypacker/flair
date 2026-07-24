@@ -139,6 +139,9 @@ return array(
 				'text' => true
 			),
 			'html' => false,
+			'layout' => array(
+				'allowSwitching' => true
+			),
 			'shadow' => true,
 			'spacing' => array(
 				'margin' => true,

@@ -19,6 +19,9 @@
       "text": true
     },
     "html": false,
+    "layout": {
+      "allowSwitching": true
+    },
     "shadow": true,
     "spacing": {
       "margin": true,

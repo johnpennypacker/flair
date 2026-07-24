@@ -41,6 +41,9 @@
 		& > :last-child {
 			margin-block-end: 0;
 		}
+		& > * {
+			width: 100%;
+		}
 	}
 	.media {
 		order: 1;
