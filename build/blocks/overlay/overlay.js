@@ -1,1 +1,26 @@
-!function(){const e=document.querySelectorAll(".flair-overlay");Array.prototype.forEach.call(e,e=>{let o,t,r=e.querySelector(".title a");r&&(e.style.cursor="pointer",e.onmousedown=()=>o=+new Date,e.onmouseup=()=>{t=+new Date,t-o<200&&r.click()})})}();
+/******/ (() => { // webpackBootstrap
+/*!***************************************!*\
+  !*** ./src/blocks/overlay/overlay.js ***!
+  \***************************************/
+/** props: https://inclusive-components.design/cards/ **/
+
+(function () {
+  const overlays = document.querySelectorAll('.flair-overlay');
+  Array.prototype.forEach.call(overlays, overlay => {
+    let down,
+      up,
+      link = overlay.querySelector('.title a');
+    if (!link) return;
+    overlay.style.cursor = 'pointer';
+    overlay.onmousedown = () => down = +new Date();
+    overlay.onmouseup = () => {
+      up = +new Date();
+      if (up - down < 200) {
+        link.click();
+      }
+    };
+  });
+})();
+/******/ })()
+;
+//# sourceMappingURL=overlay.js.map

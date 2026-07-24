@@ -1,1 +1,49 @@
-!function(){function e(e){var s=e.target.closest(".flair-stack"),o=e.target.getBoundingClientRect(),r=e.clientX-o.left,n=e.clientY-o.top;s.style.setProperty("--mouse-pos-x",r),s.style.setProperty("--mouse-pos-y",n);var y=r/o.width,i=n/o.height;s.style.setProperty("--mouse-pct-x",y),s.style.setProperty("--mouse-pct-y",i),s.style.setProperty("--mouse-bias-x",t(y)),s.style.setProperty("--mouse-bias-y",t(i))}function t(e){return.5==e?0:e>.5?2*(e-.5):e<50?-2*(.5-e):e}window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".flair-stack").forEach(function(t){t.style.setProperty("--mouse-pos-x",0),t.style.setProperty("--mouse-pos-y",0),t.addEventListener("mousemove",e,!0)})})}();
+/******/ (() => { // webpackBootstrap
+/*!**********************************!*\
+  !*** ./src/blocks/stack/view.js ***!
+  \**********************************/
+/**
+ * 
+ */
+(function () {
+  window.addEventListener("DOMContentLoaded", OKZoomer);
+  function OKZoomer() {
+    const stacks = document.querySelectorAll(".flair-stack");
+    stacks.forEach(function (el) {
+      el.style.setProperty("--mouse-pos-x", 0);
+      el.style.setProperty("--mouse-pos-y", 0);
+      el.addEventListener("mousemove", watchMouse, true);
+    });
+  }
+  function watchMouse(e) {
+    var el = e.target.closest('.flair-stack');
+    var elRect = e.target.getBoundingClientRect();
+    var x = e.clientX - elRect.left;
+    var y = e.clientY - elRect.top;
+    el.style.setProperty("--mouse-pos-x", x);
+    el.style.setProperty("--mouse-pos-y", y);
+    var px = x / elRect.width;
+    var py = y / elRect.height;
+    // el.style.setProperty( "--mouse-pct-x", (px*100)+"%" );
+    // el.style.setProperty( "--mouse-pct-y", (py*100)+"%" );
+    el.style.setProperty("--mouse-pct-x", px);
+    el.style.setProperty("--mouse-pct-y", py);
+    el.style.setProperty("--mouse-bias-x", calculateBias(px));
+    el.style.setProperty("--mouse-bias-y", calculateBias(py));
+  }
+  function calculateBias(v) {
+    if (.5 == v) {
+      return 0;
+    }
+    if (v > .5) {
+      return (v - .5) * 2;
+    }
+    if (v < 50) {
+      return (.5 - v) * -2;
+    }
+    return v;
+  }
+})();
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flair
  * Description:       Fanciful add-ons.  Take two.
- * Version:           0.3.0
+ * Version:           0.3.1
  * Requires at least: 6.7
  * Requires PHP:      7.4
  * Author:            John Pennypacker

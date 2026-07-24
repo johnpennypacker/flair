@@ -22,7 +22,7 @@
 				threshold: buildThreshold( 100 )
 			}
 			let observer = new IntersectionObserver(observerCallback, options);
-			let els = document.querySelectorAll(".wp-block-cover, figure, header, footer, nav, section, .flair-io, .wp-block-column, .flair-overlay-wrapper");
+			let els = document.querySelectorAll(".wp-block-cover, figure, footer, section, .flair-io, .wp-block-column, .flair-overlay-wrapper");
 
 			els.forEach(function(el) {
 				observer.observe(el);

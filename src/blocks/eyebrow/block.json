@@ -20,7 +20,7 @@
 		"html": false,
 		"splitting": false,
 		"color": {
-			"background": false,
+			"background": true,
 			"text": true
 		},
 		"spacing": {
@@ -28,15 +28,15 @@
 			"padding": true,
 			"blockGap": true
 		},
-		"typography": {
+    "typography": {
 			"fontSize": true,
 			"lineHeight": true,
 			"textAlign": true
-		}
+    }
 	},
 	"example": {
 		"attributes": {
-			"content": "Let’s do this"
+			"content": "Let's do this"
 		}
 	},
 	"textdomain": "flair",

@@ -1,1 +1,216 @@
-!function(){function e(e){var t=e.querySelectorAll(".flair-carousel-slide"),a=[],s=e.getBoundingClientRect().x;t.forEach(function(e){let t=e.getBoundingClientRect().x-s;a.push(t)}),e.dataset.stops=a}function t(e,t){var a,n;e.every(function(e){if(e.target.dataset.intersection=e.intersectionRatio,e.target.dataset.isIntersecting=e.isIntersecting,e.intersectionRatio>.6){var t=e.target.parentNode;return t.parentNode,Array.prototype.indexOf.call(t.children,e.target),!1}return!0}),n=(a=e[0].target.parentNode).querySelectorAll(".flair-carousel-slide"),(n=[...n]).every(function(e){if(e.dataset.intersection>.6&&e.dataset.isIntersecting){var t=a.parentNode,n=Array.prototype.indexOf.call(a.children,e);return t.dataset.slideIndex=n,s(t),!1}return!0})}function a(e){e.dataset.slideIndex<0&&(e.dataset.slideIndex=0);var t=1*e.dataset.slideCount-1;e.dataset.slideIndex>t&&(e.dataset.slideIndex=t);var a=e.querySelector(".flair-carousel"),s=a.dataset.stops.split(",");a.scrollLeft=s[e.dataset.slideIndex]}function s(e){if(e.classList.contains("has-dots")&&e.querySelectorAll(".dot").forEach(function(t){t.dataset.slideIndex==e.dataset.slideIndex?t.dataset.isSelected=1:t.dataset.isSelected=0}),e.classList.contains("has-arrows")){var t=e.querySelector(".previous"),a=e.querySelector(".next");t.classList.remove("disabled"),a.classList.remove("disabled"),0==e.dataset.slideIndex&&t.classList.add("disabled"),e.dataset.slideCount-1==e.dataset.slideIndex&&a.classList.add("disabled")}}document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".flair-carousel").forEach(function(n){!function(e){if(e.getBoundingClientRect(),"IntersectionObserver"in window){var a=new IntersectionObserver(t,{root:e,rootMargin:"0px",threshold:[0,.2,.6,.8,1]});e.querySelectorAll(":scope > .flair-carousel-slide").forEach(function(e){a.observe(e)})}}(n),e(n);var d=function(e){var t=e.closest(".flair-carousel-wrapper"),a=e.querySelectorAll(":scope > div");t.dataset.slideCount=a.length,t.dataset.slideIndex=0,t.dataset.xer=1;var s=t.getBoundingClientRect();return s.width>400&&t.classList.contains("double")&&(t.dataset.xer=2),t.classList.contains("triple")&&(s.width>600?t.dataset.xer=3:(t.classList.remove("triple"),t.classList.add("double"),t.dataset.xer=2)),t}(n);d.classList.contains("has-arrows")&&function(e){e.querySelector(".flair-carousel");var t,s,n=1*e.dataset.xer;(s=document.createElement("BUTTON")).innerHTML="Previous",s.classList.add("previous"),s.addEventListener("click",function(){e.dataset.slideIndex=1*e.dataset.slideIndex-n,a(e)}),e.appendChild(s),(t=document.createElement("BUTTON")).innerHTML="Next",t.classList.add("next"),t.addEventListener("click",function(){e.dataset.slideIndex=1*e.dataset.slideIndex+n,a(e)}),e.appendChild(t)}(d),d.classList.contains("has-dots")&&function(e){var t,s,n,d;for(t=1*e.dataset.xer,e.querySelector(".flair-carousel"),(n=document.createElement("DIV")).classList.add("dots"),e.appendChild(n),e.classList.add("has-dots"),d=0;d<Math.ceil(e.dataset.slideCount/t);d++)(function(d){(s=document.createElement("BUTTON")).classList.add("dot"),s.dataset.slideIndex=d*t,s.addEventListener("click",function(){e.dataset.slideIndex=this.dataset.slideIndex,a(e)}),n.appendChild(s)})(d)}(d),s(d)})}),window.addEventListener("resize",function(){document.querySelectorAll(".flair-carousel").forEach(function(t){e(t)})})}();
+/******/ (() => { // webpackBootstrap
+/*!*************************************!*\
+  !*** ./src/blocks/carousel/view.js ***!
+  \*************************************/
+/**
+ *
+ */
+(function () {
+  var carousels;
+  document.addEventListener("DOMContentLoaded", initCarousel);
+  window.addEventListener("resize", resized);
+  function initWrapper(el) {
+    var wrap = el.closest(".flair-carousel-wrapper");
+    var slides = el.querySelectorAll(":scope > div");
+    wrap.dataset.slideCount = slides.length;
+    wrap.dataset.slideIndex = 0;
+    wrap.dataset.xer = 1;
+    var rect = wrap.getBoundingClientRect();
+
+    // this is a pretty kludgy way to manage breakpoints
+    if (rect.width > 400 && wrap.classList.contains("double")) {
+      wrap.dataset.xer = 2;
+    }
+    if (wrap.classList.contains("triple")) {
+      if (rect.width > 600) {
+        wrap.dataset.xer = 3;
+      } else {
+        wrap.classList.remove("triple");
+        wrap.classList.add("double");
+        wrap.dataset.xer = 2;
+      }
+    }
+    // end breakpoints
+
+    return wrap;
+  }
+  function calculateStops(el) {
+    var slides = el.querySelectorAll(".flair-carousel-slide");
+    var stops = [];
+    var sx = el.getBoundingClientRect().x;
+    slides.forEach(function (sl) {
+      let stop = sl.getBoundingClientRect().x - sx;
+      stops.push(stop);
+    });
+    el.dataset.stops = stops;
+  }
+  function resized() {
+    carousels = document.querySelectorAll(".flair-carousel");
+    carousels.forEach(function (el) {
+      calculateStops(el);
+    });
+  }
+  function initCarousel() {
+    carousels = document.querySelectorAll(".flair-carousel");
+    carousels.forEach(function (el) {
+      observe(el);
+      calculateStops(el);
+      var w = initWrapper(el);
+      if (w.classList.contains("has-arrows")) {
+        addPrevNextButtons(w);
+      }
+      if (w.classList.contains("has-dots")) {
+        addDots(w);
+      }
+      updateButtons(w);
+    });
+  }
+  function observe(el) {
+    var rect = el.getBoundingClientRect();
+
+    //** add intersection data to images and major sections **/
+    if ('IntersectionObserver' in window) {
+      var options = {
+        root: el,
+        rootMargin: '0px',
+        threshold: [0, 0.2, 0.6, 0.8, 1]
+        // 				threshold: buildThreshold( ( rect.width / 60 ) )
+      };
+      var observer = new IntersectionObserver(observerCallback, options);
+      var els = el.querySelectorAll(":scope > .flair-carousel-slide");
+      els.forEach(function (el) {
+        observer.observe(el);
+      });
+    }
+  }
+  function observerCallback(entries, observer) {
+    entries.every(function (entry) {
+      entry.target.dataset.intersection = entry.intersectionRatio;
+      entry.target.dataset.isIntersecting = entry.isIntersecting;
+      if (entry.intersectionRatio > .6) {
+        var c = entry.target.parentNode;
+        var wrap = c.parentNode;
+        var index = Array.prototype.indexOf.call(c.children, entry.target);
+
+        // this is where the dots are getting messed up on doubles and triples...
+        // we need this to "auto-detect" the slide position when the user scrolls
+        // but it misbehaves when a the user clicks a dot/button
+        // the "fix" is the callbackCallBack function that limits execution
+        // to just the last iteration.
+        // it mostly works
+        // wrap.dataset.slideIndex = index;
+        // updateButtons( wrap );
+        return false;
+      }
+      return true;
+    });
+    callbackCallBack(entries[0].target.parentNode);
+  }
+  function callbackCallBack(carousel) {
+    var els = carousel.querySelectorAll(".flair-carousel-slide");
+    els = [...els];
+    els.every(function (el) {
+      if (el.dataset.intersection > .6 && el.dataset.isIntersecting) {
+        var wrap = carousel.parentNode;
+        var index = Array.prototype.indexOf.call(carousel.children, el);
+        wrap.dataset.slideIndex = index;
+        updateButtons(wrap);
+        return false;
+      }
+      return true;
+    });
+  }
+  function buildThreshold(num) {
+    let thresholds = [];
+    for (let i = 1.0; i <= num; i++) {
+      let ratio = i / num;
+      thresholds.push(ratio);
+    }
+    thresholds.push(0);
+    return thresholds;
+  }
+  function updatePosition(el) {
+    // sanity check
+    if (el.dataset.slideIndex < 0) {
+      el.dataset.slideIndex = 0;
+    }
+    var max = el.dataset.slideCount * 1 - 1;
+    if (el.dataset.slideIndex > max) {
+      el.dataset.slideIndex = max;
+    }
+    // end sanity check
+
+    var c = el.querySelector(".flair-carousel");
+    var stops = c.dataset.stops.split(",");
+    c.scrollLeft = stops[el.dataset.slideIndex];
+  }
+  function updateButtons(el) {
+    if (el.classList.contains("has-dots")) {
+      var dots = el.querySelectorAll(".dot");
+      dots.forEach(function (d) {
+        if (d.dataset.slideIndex == el.dataset.slideIndex) {
+          d.dataset.isSelected = 1;
+        } else {
+          d.dataset.isSelected = 0;
+        }
+      });
+    }
+    if (el.classList.contains("has-arrows")) {
+      var p = el.querySelector(".previous");
+      var n = el.querySelector(".next");
+      p.classList.remove('disabled');
+      n.classList.remove('disabled');
+      if (0 == el.dataset.slideIndex) {
+        p.classList.add('disabled');
+      }
+      if (el.dataset.slideCount - 1 == el.dataset.slideIndex) {
+        n.classList.add('disabled');
+      }
+    }
+  }
+  function addDots(el) {
+    var xer, dot, c, dots, slides, i;
+    xer = el.dataset.xer * 1;
+    c = el.querySelector(".flair-carousel");
+    dots = document.createElement("DIV");
+    dots.classList.add("dots");
+    el.appendChild(dots);
+    el.classList.add("has-dots");
+    for (i = 0; i < Math.ceil(el.dataset.slideCount / xer); i++) {
+      (function (i) {
+        dot = document.createElement("BUTTON");
+        dot.classList.add("dot");
+        dot.dataset.slideIndex = i * xer;
+        dot.addEventListener("click", function () {
+          el.dataset.slideIndex = this.dataset.slideIndex;
+          updatePosition(el);
+        });
+        dots.appendChild(dot);
+      })(i);
+    }
+  }
+  function addPrevNextButtons(el) {
+    var f, r;
+    var c = el.querySelector(".flair-carousel");
+    var xer = el.dataset.xer * 1;
+    r = document.createElement("BUTTON");
+    r.innerHTML = "Previous";
+    r.classList.add("previous");
+    r.addEventListener("click", function () {
+      el.dataset.slideIndex = el.dataset.slideIndex * 1 - xer;
+      updatePosition(el);
+    });
+    el.appendChild(r);
+    f = document.createElement("BUTTON");
+    f.innerHTML = "Next";
+    f.classList.add("next");
+    f.addEventListener("click", function () {
+      el.dataset.slideIndex = el.dataset.slideIndex * 1 + xer;
+      updatePosition(el);
+    });
+    el.appendChild(f);
+  }
+})();
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

@@ -333,7 +333,7 @@ return array(
 			'html' => false,
 			'splitting' => false,
 			'color' => array(
-				'background' => false,
+				'background' => true,
 				'text' => true
 			),
 			'spacing' => array(
@@ -349,7 +349,7 @@ return array(
 		),
 		'example' => array(
 			'attributes' => array(
-				'content' => 'Let’s do this'
+				'content' => 'Let\'s do this'
 			)
 		),
 		'textdomain' => 'flair',

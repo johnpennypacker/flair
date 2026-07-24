@@ -1,1 +1,21 @@
-.flair-fixie .color-picker{background-color:rgba(var(--color__base_700),1);position:relative}.flair-fixie .color-picker span{color:rgba(var(--color__base_100),1)!important}.flair-fixie.has-bg-color .color-picker,.flair-fixie.has-media .color-picker{display:none}
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/fixie/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.flair-fixie .color-picker {
+  background-color: rgba(var(--color__base_700), 1);
+  position: relative;
+}
+
+.flair-fixie .color-picker span {
+  color: rgba(var(--color__base_100), 1) !important;
+}
+
+.flair-fixie.has-media .color-picker,
+.flair-fixie.has-bg-color .color-picker {
+  display: none;
+}

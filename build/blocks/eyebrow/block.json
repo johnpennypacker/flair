@@ -25,7 +25,7 @@
     "html": false,
     "splitting": false,
     "color": {
-      "background": false,
+      "background": true,
       "text": true
     },
     "spacing": {
@@ -41,7 +41,7 @@
   },
   "example": {
     "attributes": {
-      "content": "Let’s do this"
+      "content": "Let's do this"
     }
   },
   "textdomain": "flair",
