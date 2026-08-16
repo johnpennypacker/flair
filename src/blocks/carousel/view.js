@@ -1,264 +1,317 @@
 
 /**
+ * Carousel front end.
  *
+ * The author picks a slides-per-page setting in the editor and the template
+ * renders it as a class ( single / double / triple ). That class is treated as
+ * read-only here: what actually fits at the current width is kept separately in
+ * `data-xer`, so a narrow measurement can always be undone when the wrapper
+ * gets wider again.
+ *
+ * Positions are tracked by *page*, not by slide. `data-stops` holds one scroll
+ * offset per page, which is what the dots and the arrows both step through.
  */
 ( function() {
 
-	var carousels;
+	// Minimum wrapper width, in px, needed to show this many slides at once.
+	var BREAKPOINTS = { 2: 400, 3: 600 };
 
-	document.addEventListener( "DOMContentLoaded", initCarousel );
-	window.addEventListener( "resize", resized );
+	var RESIZE_DELAY = 150;
+	var SCROLL_DELAY = 120;
 
-	function initWrapper( el ) {
-		var wrap = el.closest(".flair-carousel-wrapper");
+	document.addEventListener( "DOMContentLoaded", initCarousels );
 
-		var slides = el.querySelectorAll(":scope > div");
-		wrap.dataset.slideCount = slides.length;
-		wrap.dataset.slideIndex = 0;
+	function initCarousels() {
+		document.querySelectorAll( ".flair-carousel-wrapper" ).forEach( initWrapper );
+	}
 
-		wrap.dataset.xer = 1;
-		var rect = wrap.getBoundingClientRect();
-
-		// this is a pretty kludgy way to manage breakpoints
-		if( rect.width > 400 && wrap.classList.contains( "double" ) ) {
-			wrap.dataset.xer = 2;
+	function initWrapper( wrap ) {
+		var carousel = wrap.querySelector( ":scope > .flair-carousel" );
+		if( ! carousel ) {
+			return;
 		}
+
+		wrap.dataset.slideCount = slidesOf( carousel ).length;
+		wrap.dataset.pageIndex = 0;
+		wrap.dataset.xer = effectiveXer( wrap );
+
+		if( wrap.classList.contains( "has-arrows" ) ) {
+			addPrevNextButtons( wrap );
+		}
+
+		calculateStops( wrap );
+		buildDots( wrap );
+		updateButtons( wrap );
+
+		carousel.addEventListener( "scroll", debounce( function() {
+			syncPageFromScroll( wrap );
+		}, SCROLL_DELAY ), { passive: true } );
+
+		watchSize( wrap );
+	}
+
+
+	/* --- measuring ------------------------------------------------------- */
+
+	function slidesOf( carousel ) {
+		return carousel.querySelectorAll( ":scope > .flair-carousel-slide" );
+	}
+
+	/**
+	 * The setting the author asked for, read off the class the template wrote.
+	 */
+	function requestedXer( wrap ) {
 		if( wrap.classList.contains( "triple" ) ) {
-			if ( rect.width > 600 ) {
-				wrap.dataset.xer = 3;
-			} else {
-				wrap.classList.remove( "triple" );
-				wrap.classList.add( "double" );
-				wrap.dataset.xer = 2;
-			}
+			return 3;
 		}
-		// end breakpoints
-
-		return wrap;
+		if( wrap.classList.contains( "double" ) ) {
+			return 2;
+		}
+		return 1;
 	}
 
-	function calculateStops(el) {
-		var slides = el.querySelectorAll( ".flair-carousel-slide" );
+	/**
+	 * The author's setting capped to what fits right now.
+	 *
+	 * offsetWidth, not getBoundingClientRect(): the rect is scaled by any
+	 * transform on this element or an ancestor, so a theme that animates
+	 * sections into view on scroll would otherwise make us measure narrow and
+	 * downgrade a carousel that has plenty of room.
+	 */
+	function effectiveXer( wrap ) {
+		var xer = requestedXer( wrap );
+		var width = wrap.offsetWidth;
+
+		while( xer > 1 && width <= BREAKPOINTS[ xer ] ) {
+			xer -= 1;
+		}
+		return xer;
+	}
+
+	/**
+	 * How far the carousel must scroll to bring this slide to its left edge.
+	 * offsetLeft is used for the same reason as offsetWidth above.
+	 */
+	function slideOffset( carousel, slide ) {
+		if( slide.offsetParent === carousel ) {
+			return slide.offsetLeft;
+		}
+		return slide.offsetLeft - carousel.offsetLeft;
+	}
+
+	/**
+	 * One stop per page, clamped to how far the carousel can actually scroll.
+	 */
+	function calculateStops( wrap ) {
+		var carousel = wrap.querySelector( ":scope > .flair-carousel" );
+		var slides = slidesOf( carousel );
+		var xer = ( wrap.dataset.xer * 1 );
+		var maxScroll = Math.max( 0, carousel.scrollWidth - carousel.clientWidth );
 		var stops = [];
+		var i, stop;
 
-		var sx = el.getBoundingClientRect().x;
+		for( i = 0; i < slides.length; i += xer ) {
+			stop = Math.min( slideOffset( carousel, slides[ i ] ), maxScroll );
 
-		slides.forEach( function( sl ) {
-			let stop = sl.getBoundingClientRect().x - sx;
+			// Once a page clamps onto the one before it there is nothing new
+			// left to scroll to, so it does not get a stop — or a dot.
+			if( stops.length && stop - stops[ stops.length - 1 ] < 1 ) {
+				break;
+			}
 			stops.push( stop );
-		});
-		el.dataset.stops = stops;
+		}
+
+		if( ! stops.length ) {
+			stops.push( 0 );
+		}
+
+		wrap.dataset.stops = stops;
+		return stops;
 	}
 
-	function resized() {
-		carousels = document.querySelectorAll( ".flair-carousel" );
-		carousels.forEach( function( el ) {
-			calculateStops( el );
-		});
+	function stopsOf( wrap ) {
+		return ( wrap.dataset.stops || "0" ).split( "," ).map( Number );
 	}
 
 
-	function initCarousel() {
+	/* --- position -------------------------------------------------------- */
 
-		carousels = document.querySelectorAll( ".flair-carousel" );
+	function goToPage( wrap, index ) {
+		var carousel = wrap.querySelector( ":scope > .flair-carousel" );
+		var stops = stopsOf( wrap );
 
-		carousels.forEach( function( el ) {
-			observe( el );
-			calculateStops( el );
+		index = Math.min( Math.max( index, 0 ), stops.length - 1 );
 
-			var w = initWrapper(el);
-
-			if( w.classList.contains("has-arrows") ) {
-				addPrevNextButtons( w );
-			}
-			if( w.classList.contains("has-dots") ) {
-				addDots( w );
-			}
-			updateButtons( w );
-
-		});
-
+		wrap.dataset.pageIndex = index;
+		carousel.scrollLeft = stops[ index ];
+		updateButtons( wrap );
 	}
 
-	function observe( el ) {
-		var rect = el.getBoundingClientRect();
+	/**
+	 * Keep the dots honest when the user scrolls or swipes by hand.
+	 *
+	 * This replaces the old IntersectionObserver pass, which reported a *slide*
+	 * index that no dot matched once a page held two or three of them, and
+	 * which fought with clicks on the dots it was meant to be updating. Reading
+	 * the settled scroll position answers the same question directly.
+	 */
+	function syncPageFromScroll( wrap ) {
+		var carousel = wrap.querySelector( ":scope > .flair-carousel" );
+		var stops = stopsOf( wrap );
+		var scrollLeft = carousel.scrollLeft;
+		var nearest = 0;
+		var i;
 
-		//** add intersection data to images and major sections **/
-		if ('IntersectionObserver' in window) {
-			var options = {
-				root: el,
-				rootMargin: '0px',
-				threshold: [0, 0.2, 0.6, 0.8, 1]
-// 				threshold: buildThreshold( ( rect.width / 60 ) )
+		for( i = 1; i < stops.length; i++ ) {
+			if( Math.abs( stops[ i ] - scrollLeft ) < Math.abs( stops[ nearest ] - scrollLeft ) ) {
+				nearest = i;
 			}
-			var observer = new IntersectionObserver(observerCallback, options);
-			var els = el.querySelectorAll(":scope > .flair-carousel-slide");
+		}
 
-			els.forEach(function( el ) {
-				observer.observe(el);
-			});
+		if( ( wrap.dataset.pageIndex * 1 ) !== nearest ) {
+			wrap.dataset.pageIndex = nearest;
+			updateButtons( wrap );
 		}
 	}
 
-	function observerCallback(entries, observer) {
-		entries.every(function(entry) {
-			entry.target.dataset.intersection = entry.intersectionRatio;
-			entry.target.dataset.isIntersecting = entry.isIntersecting;
-			if( entry.intersectionRatio > .6 ) {
-				var c = entry.target.parentNode;
-				var wrap = c.parentNode;
-				var index = Array.prototype.indexOf.call( c.children, entry.target );
 
-				// this is where the dots are getting messed up on doubles and triples...
-				// we need this to "auto-detect" the slide position when the user scrolls
-				// but it misbehaves when a the user clicks a dot/button
-				// the "fix" is the callbackCallBack function that limits execution
-				// to just the last iteration.
-				// it mostly works
-				// wrap.dataset.slideIndex = index;
-	 			// updateButtons( wrap );
-				return false;
-			}
-			return true;
-		});
-		callbackCallBack(entries[0].target.parentNode);
-	}
+	/* --- resize ---------------------------------------------------------- */
 
-	function callbackCallBack( carousel ) {
-			var els = carousel.querySelectorAll(".flair-carousel-slide");
-			els = [...els];
-			els.every(function( el ) {
-				if( el.dataset.intersection > .6 && el.dataset.isIntersecting ) {
+	function watchSize( wrap ) {
+		var relayoutSoon = debounce( function() {
+			relayout( wrap );
+		}, RESIZE_DELAY );
 
-					var wrap = carousel.parentNode;
-					var index = Array.prototype.indexOf.call( carousel.children, el );
-					wrap.dataset.slideIndex = index;
-
-					updateButtons( wrap );
-					return false;
-				}
-				return true;
-			});
-	}
-
-	function buildThreshold(num) {
-		let thresholds = [];
-
-		for (let i=1.0; i<=num; i++) {
-			let ratio = i/num;
-			thresholds.push(ratio);
+		if( "ResizeObserver" in window ) {
+			// Observing the wrapper also covers the case that started all this:
+			// the element was hidden, transformed or otherwise unmeasurable at
+			// DOMContentLoaded. The first callback lands once it has a size.
+			new ResizeObserver( relayoutSoon ).observe( wrap );
+			return;
 		}
 
-		thresholds.push(0);
-		return thresholds;
+		window.addEventListener( "resize", relayoutSoon );
+	}
+
+	function relayout( wrap ) {
+		var xer = effectiveXer( wrap );
+		var changed = ( wrap.dataset.xer * 1 ) !== xer;
+
+		if( changed ) {
+			wrap.dataset.xer = xer;
+		}
+
+		// Stops move on any width change, not just one that changes the count.
+		calculateStops( wrap );
+
+		if( changed ) {
+			buildDots( wrap );
+		}
+
+		// Re-pin the page we were on, clamped in case there are now fewer.
+		goToPage( wrap, wrap.dataset.pageIndex * 1 );
 	}
 
 
-	function updatePosition( el ) {
-		// sanity check
-		if ( el.dataset.slideIndex < 0 ) {
-			el.dataset.slideIndex = 0;
-		}
-		var max = ( el.dataset.slideCount * 1 ) - 1;
-		if ( el.dataset.slideIndex > max ) {
-			el.dataset.slideIndex = max;
-		}
-		// end sanity check
+	/* --- controls -------------------------------------------------------- */
 
-		var c = el.querySelector( ".flair-carousel" );
-		var stops = c.dataset.stops.split(",");
+	function updateButtons( wrap ) {
+		var index = ( wrap.dataset.pageIndex * 1 );
+		var lastPage = stopsOf( wrap ).length - 1;
+		var dots, previous, next;
 
-		c.scrollLeft = stops[el.dataset.slideIndex];
-
-
-	}
-
-
-
-	function updateButtons( el ) {
-
-		if( el.classList.contains("has-dots") ) {
-			var dots = el.querySelectorAll( ".dot" );
+		if( wrap.classList.contains( "has-dots" ) ) {
+			dots = wrap.querySelectorAll( ":scope > .dots > .dot" );
 			dots.forEach( function( d ) {
-				if( d.dataset.slideIndex == el.dataset.slideIndex ) {
-					d.dataset.isSelected = 1;
-				} else {
-					d.dataset.isSelected = 0;
-				}
+				d.dataset.isSelected = ( ( d.dataset.pageIndex * 1 ) === index ) ? 1 : 0;
 			});
 		}
 
-		if( el.classList.contains("has-arrows") ) {
-			var p = el.querySelector(".previous");
-			var n = el.querySelector(".next");
-			p.classList.remove('disabled');
-			n.classList.remove('disabled');
+		if( wrap.classList.contains( "has-arrows" ) ) {
+			previous = wrap.querySelector( ":scope > .previous" );
+			next = wrap.querySelector( ":scope > .next" );
 
-			if( 0 == el.dataset.slideIndex ) {
-				p.classList.add('disabled');
+			if( previous ) {
+				previous.classList.toggle( "disabled", index <= 0 );
 			}
-			if( (el.dataset.slideCount - 1) == el.dataset.slideIndex ) {
-				n.classList.add('disabled');
+			if( next ) {
+				next.classList.toggle( "disabled", index >= lastPage );
 			}
 		}
-
 	}
 
+	/**
+	 * Built from the stop count, and rebuilt whenever that changes, so the
+	 * number of dots always matches the number of places you can scroll to.
+	 */
+	function buildDots( wrap ) {
+		var pages = stopsOf( wrap ).length;
+		var dots = wrap.querySelector( ":scope > .dots" );
+		var i;
 
+		if( ! wrap.classList.contains( "has-dots" ) ) {
+			return;
+		}
 
+		if( ! dots ) {
+			dots = document.createElement( "DIV" );
+			dots.classList.add( "dots" );
+			wrap.appendChild( dots );
+		}
 
-	function addDots( el ) {
-		var xer, dot, c, dots, slides, i;
+		if( dots.childElementCount === pages ) {
+			return;
+		}
 
-		xer = (el.dataset.xer * 1);
+		dots.replaceChildren();
 
-		c = el.querySelector( ".flair-carousel" );
-
-		dots = document.createElement("DIV");
-		dots.classList.add("dots");
-		el.appendChild(dots);
-		el.classList.add("has-dots");
-
-		for( i=0; i<Math.ceil(el.dataset.slideCount / xer); i++ ) {
-			(function(i){
-				dot = document.createElement("BUTTON");
-				dot.classList.add("dot");
-				dot.dataset.slideIndex = i * xer;
+		for( i = 0; i < pages; i++ ) {
+			(function( i ) {
+				var dot = document.createElement( "BUTTON" );
+				dot.type = "button";
+				dot.classList.add( "dot" );
+				dot.dataset.pageIndex = i;
 				dot.addEventListener( "click", function() {
-					el.dataset.slideIndex = this.dataset.slideIndex;
-					updatePosition( el );
+					goToPage( wrap, i );
 				});
-				dots.appendChild(dot);
-			})(i)
+				dots.appendChild( dot );
+			})( i );
 		}
+	}
 
+	function addPrevNextButtons( wrap ) {
+		var previous, next;
+
+		previous = document.createElement( "BUTTON" );
+		previous.type = "button";
+		previous.innerHTML = "Previous";
+		previous.classList.add( "previous" );
+		previous.addEventListener( "click", function() {
+			// Read the page index at click time — stepping by a count captured
+			// when the button was built goes stale on the first resize.
+			goToPage( wrap, ( wrap.dataset.pageIndex * 1 ) - 1 );
+		});
+		wrap.appendChild( previous );
+
+		next = document.createElement( "BUTTON" );
+		next.type = "button";
+		next.innerHTML = "Next";
+		next.classList.add( "next" );
+		next.addEventListener( "click", function() {
+			goToPage( wrap, ( wrap.dataset.pageIndex * 1 ) + 1 );
+		});
+		wrap.appendChild( next );
 	}
 
 
-	function addPrevNextButtons( el ) {
-		var f, r;
-		var c = el.querySelector( ".flair-carousel" );
-		var xer = (el.dataset.xer * 1);
-		r = document.createElement("BUTTON");
-		r.innerHTML = "Previous";
-		r.classList.add("previous");
-		r.addEventListener( "click", function() {
-			el.dataset.slideIndex = (el.dataset.slideIndex*1) - xer;
-			updatePosition( el );
-		});
-		el.appendChild(r);
+	/* --- utilities ------------------------------------------------------- */
 
-		f = document.createElement("BUTTON");
-		f.innerHTML = "Next";
-		f.classList.add("next");
-		f.addEventListener( "click", function() {
-			el.dataset.slideIndex = (el.dataset.slideIndex*1) + xer;
-			updatePosition( el );
-		});
-		el.appendChild(f);
-
+	function debounce( fn, wait ) {
+		var timer;
+		return function() {
+			window.clearTimeout( timer );
+			timer = window.setTimeout( fn, wait );
+		};
 	}
-
-
 
 })();

@@ -80,7 +80,10 @@
 		flex-basis: 100%;
 	}
 
-	&.double .flair-carousel-slide {
+	/* The author's setting, used until view.js has measured the real width.
+	   Scoped to :not([data-xer]) so these never compete with the rules below —
+	   view.js always sets data-xer, and only ever lowers it. */
+	&:not([data-xer]).double .flair-carousel-slide {
 		flex-basis: 50% !important;
 		scroll-snap-align: initial;
 		&:nth-child(2n+1) {
@@ -88,7 +91,31 @@
 		}
 	}
 
-	&.triple .flair-carousel-slide {
+	&:not([data-xer]).triple .flair-carousel-slide {
+		flex-basis: calc( 100% / 3 ) !important;
+		scroll-snap-align: initial;
+		&:nth-child(3n+1) {
+			scroll-snap-align: start;
+		}
+	}
+
+	/* How many slides actually fit. The .single/.double/.triple class stays
+	   exactly as the template wrote it, so a downgrade at a narrow width is
+	   just a smaller number here and can be undone on the way back up. */
+	&[data-xer="1"] .flair-carousel-slide {
+		flex-basis: 100% !important;
+		scroll-snap-align: start;
+	}
+
+	&[data-xer="2"] .flair-carousel-slide {
+		flex-basis: 50% !important;
+		scroll-snap-align: initial;
+		&:nth-child(2n+1) {
+			scroll-snap-align: start;
+		}
+	}
+
+	&[data-xer="3"] .flair-carousel-slide {
 		flex-basis: calc( 100% / 3 ) !important;
 		scroll-snap-align: initial;
 		&:nth-child(3n+1) {
