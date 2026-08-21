@@ -129,3 +129,98 @@
 	}
 
 })();
+
+
+/**
+ * Whole-block linking for card and overlay.
+ *
+ * Both blocks stretch their heading anchor over the block in CSS, which is
+ * what gives the status bar URL, cmd/middle-click, the context menu and
+ * keyboard access -- all handled by the browser. That overlay sits *below* the
+ * prose so the prose stays selectable, which leaves one gap: a click landing
+ * on the text itself never reaches the anchor. This closes it.
+ *
+ * Replaces the per-block card.js/overlay.js, which timed mousedown against
+ * mouseup and fired link.click() under 200ms -- that swallowed modifier keys
+ * and made a drag-to-select read as a click.
+ */
+( function () {
+
+	const BLOCKS = '.flair-card, .flair-overlay';
+	// Things that handle their own clicks and must be left alone.
+	const INTERACTIVE = 'a, button, input, select, textarea, label, summary, [role="button"], [role="link"]';
+
+	function linkFor( target ) {
+		const block = target.closest ? target.closest( BLOCKS ) : null;
+		if ( ! block ) {
+			return null;
+		}
+		// The anchor's own clicks are already real clicks -- acting again here
+		// would navigate twice.
+		if ( target.closest( INTERACTIVE ) ) {
+			return null;
+		}
+		// A drag that selected text is not a click on the card.
+		const selection = window.getSelection();
+		if ( selection && selection.toString().trim() ) {
+			return null;
+		}
+		return block.querySelector( '.title a[href]' );
+	}
+
+	// A double-click to select a word begins with an ordinary single click,
+	// and at that moment nothing is selected yet -- so navigating immediately
+	// would take the page away mid-gesture. Clicks that land on the prose wait
+	// out the double-click interval first. Only the prose reaches this code:
+	// everywhere else on the block the stretched anchor is the hit target and
+	// the browser navigates with no delay at all.
+	const DOUBLE_CLICK_GRACE = 250;
+	let pending = null;
+
+	document.addEventListener( 'click', function ( event ) {
+		const link = linkFor( event.target );
+		if ( ! link ) {
+			return;
+		}
+		// The second and subsequent clicks of a multi-click are never a
+		// request to navigate.
+		if ( event.detail > 1 ) {
+			clearTimeout( pending );
+			return;
+		}
+		// Honour the modifiers the browser would have honoured on the anchor.
+		// These are unambiguous, so they go through straight away.
+		if ( event.metaKey || event.ctrlKey || event.shiftKey || event.altKey ) {
+			window.open( link.href, '_blank', 'noopener' );
+			return;
+		}
+		clearTimeout( pending );
+		pending = setTimeout( function () {
+			// Re-check: the grace period is long enough for a word to have
+			// been selected by a second click.
+			const selection = window.getSelection();
+			if ( selection && selection.toString().trim() ) {
+				return;
+			}
+			link.click();
+		}, DOUBLE_CLICK_GRACE );
+	} );
+
+	document.addEventListener( 'dblclick', function ( event ) {
+		if ( linkFor( event.target ) !== null || event.target.closest( BLOCKS ) ) {
+			clearTimeout( pending );
+		}
+	} );
+
+	// Middle-click arrives as auxclick, not click.
+	document.addEventListener( 'auxclick', function ( event ) {
+		if ( event.button !== 1 ) {
+			return;
+		}
+		const link = linkFor( event.target );
+		if ( link ) {
+			window.open( link.href, '_blank', 'noopener' );
+		}
+	} );
+
+} )();

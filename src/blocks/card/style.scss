@@ -82,21 +82,27 @@
 	}
 
 	// Stretched link: the heading is the link semantically, the whole card is
-	// the link visually. This used to be card.js timing the gap between
-	// mousedown and mouseup and firing link.click() under 200ms, which worked
-	// but was not a link -- no URL in the status bar on hover, no middle-click
-	// or cmd-click to a new tab, no context menu, and nothing for a keyboard
-	// user past the heading itself. Extending the anchor's own box over the
-	// card gives all of that back for free, and the browser handles it.
+	// the link visually. Extending the anchor's own box over the card is what
+	// makes both true at once -- the status bar URL, cmd/middle-click, the
+	// context menu and the keyboard all come from the browser rather than from
+	// card.js timing mousedown against mouseup.
 	//
 	// The card is already `position: relative`, so this resolves against it.
-	// .excerpt below already carries the pointer-events handling the pattern
-	// needs so that links *inside* the card stay clickable.
+	//
+	// It sits *below* the text rather than over it. An overlay on top is the
+	// usual way to write this, but it takes the text with it: hit-testing
+	// returns one element per point, so a drag across the excerpt grabs the
+	// link instead of selecting the words. Underneath, the prose stays the
+	// hit target and stays selectable, and the overlay still covers the
+	// padding, the media and the footer -- most of a card's surface.
+	//
+	// Clicks that land on the text itself are the part CSS cannot reach; the
+	// view script picks those up.
 	:where(.title) a::after {
 		content: '';
 		position: absolute;
 		inset: 0;
-		z-index: 3;
+		z-index: 1;
 	}
 	.title {
 // 		font-family: inherit;
@@ -125,17 +131,23 @@
 	}
 	.attribution {
 		font-size: 80%;
+		// Prose, so it sits above the stretched link and stays selectable --
+		// same reasoning as .excerpt. The title is the link itself and the
+		// footer is a call to action, so both stay under it.
+		position: relative;
+		z-index: 2;
 	}
 
 	.excerpt {
 		flex-grow: 1;
 		margin-block-start: 0;
-		pointer-events: none;
+		// Above the stretched link and hit-testable, which is what keeps the
+		// prose selectable. It used to be `pointer-events: none` so clicks
+		// would fall through to card.js; nothing needs that now.
 		z-index: 2;
 		a {
 			position: relative;
 			z-index: 99;
-			pointer-events: auto;
 		}
 	}
 

@@ -14,7 +14,7 @@ Severity is measured in **what it cost to escape**, not in how wrong it is:
 
 Line numbers refer to `src/`, not the committed `build/` output.
 
-**Status.** #1, #2 and #3 are fixed on the `theming-friction` branch; each is
+**Status.** #1, #2, #3 and #6 are fixed on the `theming-friction` branch; each is
 annotated below with what the fix actually turned out to be, including the two
 places this writeup had the mechanism wrong. Every change is measured against
 both sites with `tools/theming-probe` -- see that directory's `probe.mjs`
@@ -269,6 +269,39 @@ real link semantics:
 The card is already `position: relative`, and `.excerpt` already carries the
 `pointer-events` handling this pattern expects — the groundwork is there. It
 would also retire `card.js` entirely.
+
+> **Fixed**, and applied to `overlay` at the same time — the two blocks are the
+> same component in different clothes, and their linking is kept in step.
+> `card.js` and `overlay.js` are both gone.
+>
+> The suggested fix as written costs you selectable text, which is not
+> acceptable. A point on screen hit-tests to exactly one element, so a surface
+> cannot both report a link URL and be selectable prose — an overlay laid over
+> the card takes the words with it, and a drag across the excerpt grabs the link
+> instead of selecting.
+>
+> So the overlay is layered rather than stacked: the stretched anchor covers the
+> block *beneath* the prose, and `.excerpt` / `.attribution` / `.misc` sit above
+> it. That leaves roughly half a card's surface — padding, media, footer,
+> heading — reporting the link URL and behaving natively, with the prose staying
+> selectable. The clicks that land on prose are the part CSS cannot reach, and a
+> single delegated handler in `flair-core/flair.js` picks those up for both
+> blocks.
+>
+> That handler is not the old timing trick. It bails on any real control, bails
+> when text is selected, forwards modifier and middle clicks to a new tab, and
+> waits out the double-click interval before navigating — without that last
+> part, double-clicking to select a word navigates away, because the first click
+> of a double-click arrives before any selection exists.
+>
+> `.excerpt`'s `pointer-events: none` is gone. It was there so clicks would fall
+> through to `card.js`; it was also the reason the prose could not be selected
+> even with no overlay above it.
+>
+> `tools/theming-probe/link-behaviour-test.mjs` checks all of it on both blocks:
+> drag-selects prose, double-click selects a word, click on prose navigates,
+> the anchor covers the block, clicks off the prose navigate natively,
+> cmd-click opens a new tab, and the heading is still a real link.
 
 ---
 

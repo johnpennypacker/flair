@@ -7,28 +7,33 @@
 	"category": "flair",
 	"description": "It's a cross between a card and a cover.",
 	"supports": {
-		"align": [ "left", "right", "center", "wide" ],
+		"align": [
+			"left",
+			"right",
+			"center",
+			"wide"
+		],
 		"anchor": true,
 		"color": {
 			"background": true,
 			"gradients": true,
 			"text": true
-    },
-    "dimensions": {
-    	"minHeight": true
-    },
+		},
+		"dimensions": {
+			"minHeight": true
+		},
 		"html": false,
-    "shadow": true,
-    "spacing": {
+		"shadow": true,
+		"spacing": {
 			"margin": true,
-      "padding": true,
-      "blockGap": false
-    },
-    "typography": {
+			"padding": true,
+			"blockGap": false
+		},
+		"typography": {
 			"fontSize": true,
 			"lineHeight": true,
 			"textAlign": true
-    }
+		}
 	},
 	"attributes": {
 		"href": {
@@ -81,22 +86,21 @@
 				"url": "https://pd.w.org/2026/03/36669bbe96800c4c4.81439497-768x960.jpg"
 			},
 			"eyebrow": "Your overlay",
-			"title": "Faciamo così",
+			"title": "Faciamo cos\u00ec",
 			"aspect": "3-2"
 		},
 		"innerBlocks": [
-		{
-			"name": "core/paragraph",
-			"attributes": {
-				"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis."
+				}
 			}
-		}
 		]
 	},
 	"textdomain": "flair",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./overlay.js",
 	"render": "file:./render.php"
 }

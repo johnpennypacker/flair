@@ -87,6 +87,25 @@
 	.title {
 	}
 
+	// Same stretched link as the card -- see the long note in
+	// blocks/card/style.scss. The two blocks are the same component wearing
+	// different clothes and their linking behaviour is kept in step.
+	//
+	// Below the prose, so .misc stays selectable.
+	:where(.title) a::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+	}
+
+	// Author content, so it sits above the stretched link and stays
+	// selectable. The title is the link itself and stays under it.
+	.misc {
+		position: relative;
+		z-index: 2;
+	}
+
 	&::before {
 		box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 85%);
 		content: '';
