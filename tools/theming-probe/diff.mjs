@@ -16,7 +16,7 @@ const HERE = dirname( fileURLToPath( import.meta.url ) );
 const [ aLabel, bLabel, ...flags ] = process.argv.slice( 2 );
 
 if ( ! aLabel || ! bLabel ) {
-	console.error( 'usage: node diff.mjs <before-label> <after-label> [--prop <name>] [--page <id>] [--quiet]' );
+	console.error( 'usage: node diff.mjs <before-label> <after-label> [--prop <name>] [--page <id>] [--ignore-class <name>] [--size-only] [--quiet]' );
 	process.exit( 1 );
 }
 
@@ -27,6 +27,21 @@ const flag = ( name ) => {
 const onlyProp = flag( 'prop' );
 const onlyPage = flag( 'page' );
 const quiet = flags.includes( '--quiet' );
+const sizeOnly = flags.includes( '--size-only' );
+
+// Element keys carry the class list, so removing a class renames the element
+// and everything under it — the diff fills with paired appeared/disappeared
+// noise. Normalising the class out makes the two runs comparable.
+//   --ignore-class is-layout-constrained
+const ignoredClasses = flags.reduce( ( acc, f, i ) => {
+	return f === '--ignore-class' ? [ ...acc, flags[ i + 1 ] ] : acc;
+}, [] );
+
+const normaliseKey = ( key ) =>
+	ignoredClasses.reduce(
+		( k, cls ) => k.split( '.' + cls ).join( '' ),
+		key
+	);
 
 const load = ( label ) =>
 	JSON.parse( readFileSync( join( HERE, 'runs', label, 'probe.json' ), 'utf8' ) );
@@ -47,6 +62,13 @@ const flatten = ( entry ) => {
 			for ( const [ pk, pv ] of Object.entries( v ) ) {
 				out[ `${ k } ${ pk }` ] = pv;
 			}
+		} else if ( k === '_box' ) {
+			// One spacing change shifts every element below it down the page,
+			// so raw box deltas are dominated by flow. Size is the element's
+			// own geometry and is the signal; position is mostly downstream.
+			const [ x, y, w, h ] = v.split( ' ' );
+			out._size = `${ w }x${ h }`;
+			out._pos = `${ x },${ y }`;
 		} else {
 			out[ k ] = v;
 		}
@@ -73,9 +95,16 @@ for ( const pageId of new Set( [ ...Object.keys( a.results ), ...Object.keys( b.
 	} else if ( ra.error || rb.error ) {
 		lines.push( `  error: ${ ra.error || '' } ${ rb.error || '' }`.trim() );
 	} else {
-		for ( const key of new Set( [ ...Object.keys( ra.data ), ...Object.keys( rb.data ) ] ) ) {
-			const ea = ra.data[ key ];
-			const eb = rb.data[ key ];
+		const remap = ( data ) =>
+			Object.fromEntries(
+				Object.entries( data ).map( ( [ k, v ] ) => [ normaliseKey( k ), v ] )
+			);
+		const da = remap( ra.data );
+		const db = remap( rb.data );
+
+		for ( const key of new Set( [ ...Object.keys( da ), ...Object.keys( db ) ] ) ) {
+			const ea = da[ key ];
+			const eb = db[ key ];
 
 			if ( ! ea ) {
 				appeared++;
@@ -95,6 +124,9 @@ for ( const pageId of new Set( [ ...Object.keys( a.results ), ...Object.keys( b.
 
 			for ( const p of props ) {
 				if ( onlyProp && ! p.includes( onlyProp ) ) {
+					continue;
+				}
+				if ( sizeOnly && ( p === '_pos' || p.endsWith( ' _pos' ) ) ) {
 					continue;
 				}
 				if ( fa[ p ] !== fb[ p ] ) {
