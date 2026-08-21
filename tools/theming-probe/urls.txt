@@ -1,0 +1,33 @@
+# Regression surface for the theming-friction work.
+# label<TAB>url    — labels become filenames, keep them stable.
+#
+# clarebourne (:10030) runs the `cosi` theme: 2 flair declarations in
+# style.css, so it renders Flair's defaults almost unmodified. This is the
+# canary for "did lowering specificity change what an unopinionated theme
+# gets?"
+cb-front	http://localhost:10030/
+cb-about	http://localhost:10030/about/
+cb-academics	http://localhost:10030/academics/
+cb-our-story	http://localhost:10030/about/our-story/
+cb-leadership	http://localhost:10030/about/leadership/
+cb-belonging	http://localhost:10030/about/belonging/
+cb-lower-school	http://localhost:10030/academics/lower-school/
+cb-middle-school	http://localhost:10030/academics/middle-school/
+cb-upper-school	http://localhost:10030/academics/upper-school/
+cb-english	http://localhost:10030/english-department/
+cb-admissions	http://localhost:10030/admissions/
+cb-how-to-apply	http://localhost:10030/admissions/how-to-apply/
+cb-tuition	http://localhost:10030/admissions/tuition-and-financial-aid/
+cb-student-life	http://localhost:10030/student-life/
+cb-arts	http://localhost:10030/student-life/arts/
+cb-clubs	http://localhost:10030/student-life/clubs/
+cb-families	http://localhost:10030/families/
+cb-coggeshall	http://localhost:10030/places/coggeshall-auditorium/
+cb-benson	http://localhost:10030/places/benson-hall/
+cb-tour	http://localhost:10030/tour/
+#
+# styleguide runs `cosi-digital`: 153 flair declarations, most of them
+# written to escape the findings in THEMING-FRICTION.md. Covers the blocks
+# clarebourne has no content for (tabs, multibutton, alert, stack, layer,
+# sidler).
+sg-styleguide	http://styleguide.local/styleguide/
