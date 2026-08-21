@@ -14,6 +14,12 @@ Severity is measured in **what it cost to escape**, not in how wrong it is:
 
 Line numbers refer to `src/`, not the committed `build/` output.
 
+**Status.** #1, #2 and #3 are fixed on the `theming-friction` branch; each is
+annotated below with what the fix actually turned out to be, including the two
+places this writeup had the mechanism wrong. Every change is measured against
+both sites with `tools/theming-probe` -- see that directory's `probe.mjs`
+header for how to capture and diff a run.
+
 **Caveat worth keeping in view:** these come from one theme whose design
 deliberately strips Flair's defaults — square corners instead of radius,
 hairline rules instead of shadows. A theme closer to Flair's own aesthetic
@@ -55,6 +61,27 @@ layout support at all yet stamps the class anyway — that one is simply
 removable. If the intent is just "constrain this inner area", a plugin-owned
 class avoids inheriting core's `!important`.
 
+> **Fixed** — but not quite as described above.
+>
+> Core is *already* emitting for the card: the wrapper carries `is-layout-flow`
+> in the rendered markup. The hand-stamped class was a second, different layout
+> on an inner element core never asked about. And the card has no `InnerBlocks`
+> at all, so it was constraining nothing but Flair's own markup. Deleted.
+>
+> "Simply removable" was wrong for boxout. A boxout *does* hold author blocks,
+> and the class was load-bearing: both blocks were leaning on whatever the
+> active theme does with `.is-layout-constrained` for their internal rhythm. On
+> the `cosi` site that was the theme's block-gap, and removing the class
+> dropped card and boxout children onto UA defaults — headings, paragraphs and
+> separators all shifted, and boxouts grew 34px. Each block now sets its own
+> spacing, in margins rather than a flex gap: a gap *adds* to whatever margins
+> a theme sets on the same parts, a margin is simply replaced by one.
+>
+> Removing the cap also exposed a second half to this finding. `width: 100%`
+> resolves against the padding box, so with the negative side margins restored
+> the footer reached the left card edge and stopped 72px short of the right. It
+> is stretched by the flex container now.
+
 ---
 
 ### 2. `!important` on a plugin default
@@ -79,6 +106,19 @@ plugin overriding itself.
 
 **Suggested fix.** Reserve `!important` for answering core. For the plugin's own
 defaults it removes the theme's only lever.
+
+> **Fixed — and the diagnosis above is wrong.** This was not Flair overriding a
+> theme. It was Flair overriding *itself*: three lines up, `.text > :last-child`
+> sits at (0,2,0), `.button` at (0,1,0), and `.button` is always the last child.
+> The flag was fighting its own reset. Dropping it as suggested would have
+> silently killed the negative margin — the symptom the finding is about.
+>
+> The reset excludes `.button` instead. The `:not()` is wrapped in `:where()`:
+> bare, it reads (0,3,0) and quietly out-specifies a theme styling
+> `.flair-card .title`, which on a title-only card takes that theme's margin
+> back off again. The general lesson is the sharper one — a plugin's
+> `!important` is worth reading twice before removing, because it may be
+> holding off the plugin rather than the theme.
 
 ---
 
@@ -119,6 +159,33 @@ and ends up escalating everything defensively.
 **Suggested fix.** Wrap every purely presentational default in `:where()`. A
 theme then overrides any of them with one class, and the rule becomes
 learnable: *if Flair sets it for looks, one class beats it.*
+
+> **Fixed.** A pseudo-element cannot go inside `:where()`, so the marker rules
+> are wrapped up to `.timeline` with `::before` left outside — (0,0,1). The five
+> marker rules now share a weight and are ordered by source order instead.
+>
+> Three corrections to the table above. Carousel's root was `:is()`, which takes
+> the weight of its argument — (0,1,0), not the zero it resembles. And the two
+> blocks listed at zero coverage, `layer` and `multibutton-button`, are untouched
+> `create-block` scaffolding targeting a `wp-block-create-block-*` class that is
+> never emitted; there is nothing there to wrap and both files want deleting.
+>
+> Not everything should be wrapped.
+> `.flair-milestone-wrapper:has( + .flair-milestone-wrapper)` keeps its weight:
+> consecutive milestones have to butt together or the rail breaks into segments,
+> which is structural rather than decorative. Wrapping it let a theme's block
+> rhythm back in and split the timeline. It did lose its `!important` — at
+> (0,2,0) it clears a theme's generic rhythm unaided, which is what the flag was
+> for.
+>
+> `flair-core/flair-front.scss` is left for its own pass. Most of it styles the
+> site and core blocks rather than Flair's blocks, which is a different question.
+>
+> The rule this finding asks for is now executable rather than aspirational:
+> `tools/theming-probe/override-test.mjs` disables the theme's stylesheets,
+> injects the plainest single-class rule a theme would write against each
+> default, and checks it lands. 14 defaults, all beatable; it fails on the
+> pre-fix build.
 
 ---
 
