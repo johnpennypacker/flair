@@ -25,7 +25,7 @@
 	}
 }
 
-.flair-alert-close {
+:where( .flair-alert-close ) {
 	align-items: center;
 	background: transparent;
 	border: 0;

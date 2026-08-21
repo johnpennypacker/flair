@@ -34,13 +34,19 @@
 
 }
 
+/**
+ * Structural, not decorative: consecutive milestones have to butt together or
+ * the timeline rail breaks into segments. So this one keeps its weight -- at
+ * (0,2,0) it clears a theme's generic block rhythm on its own, which is what
+ * the !important it used to carry was really for.
+ */
 .flair-milestone-wrapper:has( + .flair-milestone-wrapper) {
-	margin-block: 0 !important;
+	margin-block: 0;
 }
 
 
 
-.flair-milestone-wrapper.orientation-horizontal {
+:where(.flair-milestone-wrapper.orientation-horizontal) {
 	.flair-milestone {
 		flex-direction: column;
 		row-gap: var(--space_buffer);
@@ -54,43 +60,48 @@
 
 
 /** timeline line / colors **/
-.flair-milestone .timeline {
+:where(.flair-milestone .timeline) {
 	background-color: currentColor;
 }
 
 
-/** create markers using styled pseudo elements **/
-.flair-milestone-wrapper[class*='marker-'] {
-	.timeline::before {
-		--side: calc( var( --space_buffer ) * .75 );
-		background-color: currentColor;
-		border: var( --timeline_width ) solid currentColor;
-		content: " ";
-		position: absolute;
-		top: 1rem;
-		left: calc( ( var( --side ) + var( --timeline_width ) ) * -.5 );
-		width: var( --side );
-		height: var( --side );
-	}
-	&.orientation-horizontal {
-		.timeline::before {
-			left: 1rem;
-			top: calc( ( var( --side ) + var( --timeline_width ) ) * -.5 );
-		}
-	}
+/**
+ * Markers, drawn as styled pseudo elements.
+ *
+ * An attribute selector weighs the same as a class, so the unwrapped form of
+ * these read (0,3,1) -- a theme's obvious `.flair-milestone .timeline::before`
+ * at (0,2,1) lost to them, and markers landed beside the rail instead of on
+ * it. A pseudo-element is not allowed inside :where(), so the lowest weight
+ * reachable is (0,0,1): everything up to .timeline goes in the wrapper, and
+ * ::before stays outside it.
+ *
+ * That leaves all five at the same weight, so they are ordered by the source
+ * order below -- base first, then the variants that refine it.
+ */
+:where(.flair-milestone-wrapper[class*='marker-'] .timeline)::before {
+	--side: calc( var( --space_buffer ) * .75 );
+	background-color: currentColor;
+	border: var( --timeline_width ) solid currentColor;
+	content: " ";
+	position: absolute;
+	top: 1rem;
+	left: calc( ( var( --side ) + var( --timeline_width ) ) * -.5 );
+	width: var( --side );
+	height: var( --side );
 }
-.flair-milestone-wrapper[class*='marker-'][class*='hollow'] .timeline::before {
+:where(.flair-milestone-wrapper[class*='marker-'].orientation-horizontal .timeline)::before {
+	left: 1rem;
+	top: calc( ( var( --side ) + var( --timeline_width ) ) * -.5 );
+}
+:where(.flair-milestone-wrapper[class*='marker-'][class*='hollow'] .timeline)::before {
 	background-color:  var( --flair-color-secondary );
 }
-
-.flair-milestone-wrapper[class*='dot'] .timeline::before {
+:where(.flair-milestone-wrapper[class*='dot'] .timeline)::before {
 	border-radius: 50%;
 }
-.flair-milestone-wrapper[class*='diamond'] .timeline::before {
+:where(.flair-milestone-wrapper[class*='diamond'] .timeline)::before {
 	--side: calc( var( --space_buffer ) * .65 ); /** rotated square looks big; scale down a bit **/
 	transform: rotate(45deg);
-}
-.flair-milestone-wrapper[class*='square'] .timeline::before {
 }
 
 
