@@ -59,6 +59,14 @@ templates, variables arrive as `$args['attributes']`, `$args['content']`,
 When adding a new server-rendered block, follow the existing pattern: a thin
 `render.php` calling `flair_use_template`, plus a `template-parts/<name>.php`.
 
+**`THEMING.md` is the contract with themes** — the custom properties a theme is
+expected to define, which of Flair's structure is load-bearing (the `::before`
+layers, the stretched link, and the z-index layering that keeps card text
+selectable), and when a template override beats fighting the cascade. Read it
+before changing a block's markup or its z-index/positioning, because several of
+those are holding up behaviour rather than appearance. `THEMING-FRICTION.md`
+records the findings it came from.
+
 ## Conventions
 
 - **Escaping**: text → `esc_html`, URLs → `esc_url`, attributes → `esc_attr`,

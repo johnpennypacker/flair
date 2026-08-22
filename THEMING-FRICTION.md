@@ -14,7 +14,8 @@ Severity is measured in **what it cost to escape**, not in how wrong it is:
 
 Line numbers refer to `src/`, not the committed `build/` output.
 
-**Status.** #1, #2, #3 and #6 are fixed on the `theming-friction` branch; each is
+**Status.** #1, #2, #3, #4, #5, #6 and #7 are fixed on the `theming-friction`
+branch, and #8 is documented; each is
 annotated below with what the fix actually turned out to be, including the two
 places this writeup had the mechanism wrong. Every change is measured against
 both sites with `tools/theming-probe` -- see that directory's `probe.mjs`
@@ -224,8 +225,11 @@ else it was holding up.
 > place for a theme to hang a shadow. Its `transition` is named `box-shadow`
 > rather than `all` (#9) so a theme-supplied shadow still animates.
 >
-> Still open here: the shadow is gone, but nothing yet *documents* the pseudo as
-> load-bearing, which is the other half of what this finding asked for.
+> **Now resolved.** `THEMING.md` §3 documents the pseudo as load-bearing, with
+> the warning that `content: none` removes the layer rather than the decoration,
+> and shows the supported way to put a shadow back. It covers the two structures
+> added since — the stretched link, and the z-index layering that keeps card
+> text selectable — on the same grounds: they read as decorative and are not.
 
 ---
 
@@ -372,6 +376,24 @@ respectively — but they aren't mentioned in `CLAUDE.md` or `readme.txt`.
 **Suggested fix.** Fall back to `currentColor` and a neutral rather than another
 theme's palette, and document the two properties as the first thing a theme
 should set.
+
+> **Documented** (`THEMING.md` §1), which was the half that mattered. The
+> fallbacks are left alone deliberately: changing them recolours every site
+> that is currently, if accidentally, relying on them, and the fix a theme
+> actually needs is to define the properties rather than to inherit a better
+> guess.
+>
+> Two corrections. The writeup calls these "the plugin's whole colour contract —
+> 12 and 4 usages"; that counted commented-out lines. Live, it is **two readers
+> each** — boxout and alert backgrounds for primary, the hollow milestone marker
+> and the multibutton background for secondary. Removing the drop shadow took
+> out six more. So setting these does less than the finding implies, and card
+> and overlay in particular take no colour from them at all — worth saying
+> plainly in the docs rather than letting a theme author discover it.
+>
+> The contract is also wider than two properties: `--type__size`,
+> `--flair-font-size`, `--flair-toggle-glyph`, `--space_buffer` and
+> `--timeline_width` are all read too, and all are now listed.
 
 ---
 
