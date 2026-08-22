@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "flair/modal",
+  "version": "0.1.0",
+  "title": "Modal",
+  "category": "flair",
+  "description": "Content that opens in a dialog when a link or button pointing at it is clicked.",
+  "keywords": [
+    "modal",
+    "dialog",
+    "lightbox",
+    "popup"
+  ],
+  "textdomain": "flair",
+  "attributes": {
+    "modalId": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": false,
+    "anchor": false,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "html": false,
+    "shadow": true,
+    "spacing": {
+      "margin": false,
+      "padding": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "label": "More information"
+    },
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "The content of the dialog would go here."
+        }
+      }
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

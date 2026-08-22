@@ -4,7 +4,7 @@ Tags:              blocks, gutenberg, block editor, animation
 Requires at least: 6.7
 Requires PHP:      7.4
 Tested up to:      6.9
-Stable tag:        0.3.1
+Stable tag:        0.4.0
 
 Fanciful add-ons for the block editor: a set of custom blocks plus enhancements for core blocks.
 
@@ -30,6 +30,11 @@ copy when present and fall back to the bundled template otherwise.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 
 == Changelog ==
+
+= 0.4.0 =
+* New `modal` block: content that opens in a native `<dialog>`. Any link pointing at the modal's ID opens it, so buttons, inline links, and flair's own link-bearing blocks all work as triggers — including for a modal placed in a template part.
+* Modals show up as suggestions in the link popover (badged "Modal"), so pointing a button or an inline link at one works like linking to a page. The button block also gets an "Opens a modal" panel, which is how you reach a modal defined in a template part.
+* Without javascript the modal degrades to a `:target` disclosure rather than disappearing, keeping its content in the page.
 
 = 0.3.1 =
 * Fixed scroll-reveal effect (`[data-was-visible]`) applying its `transform` to `header`/`nav` elements, which created a new CSS containing block and broke `position: fixed` overlays nested inside them — most visibly, WP core Navigation block's mobile hamburger menu would toggle open but render collapsed to the icon's own size instead of filling the screen. Removed `header`/`nav` from the scroll-reveal observer's selector.

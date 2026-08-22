@@ -506,6 +506,71 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'modal' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'flair/modal',
+		'version' => '0.1.0',
+		'title' => 'Modal',
+		'category' => 'flair',
+		'description' => 'Content that opens in a dialog when a link or button pointing at it is clicked.',
+		'keywords' => array(
+			'modal',
+			'dialog',
+			'lightbox',
+			'popup'
+		),
+		'textdomain' => 'flair',
+		'attributes' => array(
+			'modalId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'label' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'align' => false,
+			'anchor' => false,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'html' => false,
+			'shadow' => true,
+			'spacing' => array(
+				'margin' => false,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				'label' => 'More information'
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/paragraph',
+					'attributes' => array(
+						'content' => 'The content of the dialog would go here.'
+					)
+				)
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'multibutton' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

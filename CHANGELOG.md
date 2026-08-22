@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-21
+
+### Added
+- New `modal` block: InnerBlocks content that opens in a native `<dialog>`.
+  A modal is opened by any link whose href is a fragment pointing at its ID
+  (`<a href="#contact">`), which makes `core/button`, inline links, and flair's
+  own link-bearing blocks (overlay, card, metric, multibutton-button) triggers
+  without any extra attribute — including for a modal living in a template part
+  or a synced pattern.
+- Modals are offered as suggestions in the link popover, badged "Modal" and
+  listed above pages, so pointing a button or an inline link at one is the same
+  gesture as linking to a page. Matching accepts the modal's label or its ID,
+  with or without a leading `#`, and is suppressed once what you've typed looks
+  like a URL. The suggestion is drawn with the modal block's own icon and the
+  same row height as a page, since core only draws icons for its own five post
+  types and gives no way to supply one — see `editor.scss`.
+- An "Opens a modal" control on `core/button`, listing the modals in the post
+  being edited plus a free-text field for one defined elsewhere — the way to
+  reach a modal that lives in a template part, which the suggestions can't see.
+  Both only write the fragment href, so a hand-typed one behaves identically.
+
+### Notes
+- The block renders in the flow of the document and `view.js` promotes it into a
+  `<dialog>` on load, so without javascript a trigger's fragment still resolves
+  and `.flair-modal:target` reveals the content in place. Using the native
+  element brings focus trapping, Esc, inertness, focus restoration, and top-layer
+  painting (no z-index conflicts with layer/overlay/sidler/fixie) for free.
+- Scrolling behind an open modal is locked by `html:has( .flair-modal-dialog[open] )`
+  rather than a class toggled from javascript, so every close path unlocks it and
+  a missed event can't strand the page unscrollable.
+- `template-parts/modal.php` echoes its inner content unfiltered, unlike other
+  flair templates — `wp_kses_post()` strips iframes and form controls, which are
+  most of what modals contain. See CLAUDE.md.
+
 ## [0.3.0] - 2026-07-22
 
 ### Added
