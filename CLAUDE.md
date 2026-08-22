@@ -41,7 +41,8 @@ file in `build/` is regenerated — editing `build/` directly will be overwritte
 1. **Custom blocks** — `src/blocks/<name>/` with `block.json`, `edit.js`,
    `render.php` (dynamic, server-rendered), styles. Examples: `card`, `carousel`,
    `carousel-slide`, `tabs`, `tab`, `metric`, `milestone`, `boxout`, `eyebrow`,
-   `layer`, `multibutton`, `multibutton-button`, `overlay`, `sidler`, `stack`.
+   `layer`, `modal`, `multibutton`, `multibutton-button`, `overlay`, `sidler`,
+   `stack`.
 2. **Variations / enhancements of core blocks** — `src/{fadie,fixie,iconic,kinetic,zoomer}/`.
    These attach to core blocks via `render_block_core/*` filters or
    `get_block_type_variations` and are toggled by a CSS class (e.g. `ok-zoomer`,
@@ -63,12 +64,40 @@ When adding a new server-rendered block, follow the existing pattern: a thin
 
 - **Escaping**: text → `esc_html`, URLs → `esc_url`, attributes → `esc_attr`,
   inner block content → `wp_kses_post`. Keep this up in every template.
+  **One deliberate exception**: `template-parts/modal.php` echoes `$args['content']`
+  unfiltered. `wp_kses_post()` strips `<iframe>`, `<form>`, `<input>` and `<select>`,
+  which is every video embed and every form — i.e. most of what a modal is *for*.
+  (Measured: it reduces a YouTube iframe plus a subscribe form to the single
+  character `a`.) The content is inner-block HTML WordPress has already rendered,
+  and post content was kses-filtered *on save* for any user without
+  `unfiltered_html`, so re-filtering at render time adds no protection. Core's own
+  dynamic blocks echo `$content` directly for the same reason. Don't "fix" this.
 - **Dynamic HTML tag names** (headings, wrapper elements) are validated against
   an allow-list before being echoed — preserve that (`in_array($x, ['h1'..'h6'], true)`).
 - Wrapper attributes come from `get_block_wrapper_attributes([...])`.
 - Text domain is `flair`.
 
 ## Gotchas
+
+- **Modal triggers are just fragment links.** A `flair/modal` is opened by any
+  `<a href="#its-id">` — there is no trigger attribute, marker class, or
+  registration to grep for, so nothing links a button to a modal except the URL.
+  `src/blocks/modal/trigger.js` only writes that href for the author — via an
+  `editor.BlockEdit` filter adding a picker to `core/button`, and by wrapping the
+  `__experimentalFetchLinkSuggestions` editor setting so modals are offered in
+  every link popover. Both are convenience; the feature works identically without
+  them. That setting is experimental and core exposes no filter for it, so the
+  wrapper is written to no-op if it ever disappears — check there first if link
+  suggestions stop showing modals after a WordPress upgrade.
+  A consequence worth knowing: `core/button`, inline links, and flair's own
+  link-bearing blocks (overlay, card, metric, multibutton-button) are all
+  triggers for free, including for a modal that lives in a template part.
+- The modal block renders in the flow of the document, hidden, and `view.js`
+  moves it into a `<dialog>` on load. Both states are styled in the one
+  `style.scss` — `.flair-modal:target` is the no-JS fallback, and everything
+  under `.flair-modal-dialog` is the enhanced state. `flair_modal_id()` and
+  `sanitizeModalId()` in `edit.js` must agree, or editor-written triggers won't
+  match rendered IDs.
 
 - `enqueue_block_assets` fires on **both** front end and editor; some modules
   (iconic, kinetic) hook it as their "editor" callback, so their inline CSS can
