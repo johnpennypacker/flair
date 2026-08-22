@@ -15,4 +15,3 @@ if( isset( $attributes['orientation'] ) ) {
 		<?php echo wp_kses_post( $args['content'] ); ?>
 	</div>
 </div>
-<div>&nbsp;</div>
