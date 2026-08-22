@@ -228,7 +228,6 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./card.js',
 		'render' => 'file:./render.php'
 	),
 	'carousel' => array(
@@ -380,7 +379,6 @@ return array(
 		'textdomain' => 'flair',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),

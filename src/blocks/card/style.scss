@@ -80,6 +80,24 @@
 		color: inherit;
 		text-decoration: inherit;
 	}
+
+	// Stretched link: the heading is the link semantically, the whole card is
+	// the link visually. This used to be card.js timing the gap between
+	// mousedown and mouseup and firing link.click() under 200ms, which worked
+	// but was not a link -- no URL in the status bar on hover, no middle-click
+	// or cmd-click to a new tab, no context menu, and nothing for a keyboard
+	// user past the heading itself. Extending the anchor's own box over the
+	// card gives all of that back for free, and the browser handles it.
+	//
+	// The card is already `position: relative`, so this resolves against it.
+	// .excerpt below already carries the pointer-events handling the pattern
+	// needs so that links *inside* the card stay clickable.
+	:where(.title) a::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+	}
 	.title {
 // 		font-family: inherit;
 // 		font-weight: bold;

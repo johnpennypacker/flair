@@ -7,27 +7,32 @@
 	"category": "flair",
 	"description": "It's like a link with tons of context.",
 	"supports": {
-		"align": [ "left", "right", "center", "wide" ],
+		"align": [
+			"left",
+			"right",
+			"center",
+			"wide"
+		],
 		"anchor": true,
 		"color": {
 			"background": true,
 			"text": true
-    },
+		},
 		"html": false,
 		"layout": {
 			"allowSwitching": true
 		},
-    "shadow": true,
-    "spacing": {
+		"shadow": true,
+		"spacing": {
 			"margin": true,
-      "padding": true,
-      "blockGap": false
-    },
-    "typography": {
+			"padding": true,
+			"blockGap": false
+		},
+		"typography": {
 			"fontSize": true,
 			"lineHeight": true,
 			"textAlign": true
-    }
+		}
 	},
 	"attributes": {
 		"href": {
@@ -92,7 +97,7 @@
 			"asset": {
 				"url": "https://pd.w.org/2023/03/8636413c9dfe23357.98014051-768x512.jpg"
 			},
-			"title": "Faciamo così",
+			"title": "Faciamo cos\u00ec",
 			"excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et eros eu felis.",
 			"button": "Explore",
 			"orientation": "vertical",
@@ -103,6 +108,5 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./card.js",
 	"render": "file:./render.php"
 }
