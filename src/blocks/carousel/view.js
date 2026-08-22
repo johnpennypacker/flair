@@ -223,7 +223,15 @@
 		if( wrap.classList.contains( "has-dots" ) ) {
 			dots = wrap.querySelectorAll( ":scope > .dots > .dot" );
 			dots.forEach( function( d ) {
-				d.dataset.isSelected = ( ( d.dataset.pageIndex * 1 ) === index ) ? 1 : 0;
+				var selected = ( ( d.dataset.pageIndex * 1 ) === index );
+				d.dataset.isSelected = selected ? 1 : 0;
+				// The widened dot reads as selected visually; aria-current is
+				// the same state for anyone who cannot see it.
+				if( selected ) {
+					d.setAttribute( "aria-current", "true" );
+				} else {
+					d.removeAttribute( "aria-current" );
+				}
 			});
 		}
 
@@ -269,6 +277,10 @@
 			(function( i ) {
 				var dot = document.createElement( "BUTTON" );
 				dot.type = "button";
+				// The dot is a bare coloured box, so its only name is this
+				// hidden label. Rebuilt with the dots, so the total stays right.
+				dot.innerHTML = '<span class="flair-sr-only">Page ' +
+					( i + 1 ) + ' of ' + pages + '</span>';
 				dot.classList.add( "dot" );
 				dot.dataset.pageIndex = i;
 				dot.addEventListener( "click", function() {
