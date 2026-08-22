@@ -169,22 +169,34 @@
 		z-index: 0;
 	}
 
-	&:focus-within,
-	&:hover {
+}
+
+/**
+ * Hover state, triggered from the wrapper.
+ *
+ * It used to hang off `.flair-card:hover` -- which moves the very element that
+ * owns the hover. Near the card's bottom edge the pointer falls outside as it
+ * rises, hover drops, it falls back, and the card oscillates under the cursor.
+ * The wrapper is right there and never moves.
+ *
+ * Wrapped in :where() so the weight matches what `.flair-card:hover` used to
+ * be, rather than climbing to (0,2,0) and taking the rule out of reach of a
+ * theme's own hover styling.
+ */
+:where(.flair-card-wrapper:hover, .flair-card-wrapper:focus-within) {
+	.flair-card {
 		transform: translateY(-2px);
-		.media img {
-			transform: scale(1.03);
-		}
-		.button {
-			background-color: color-mix(in srgb, currentColor, transparent 80%);
-// 			color: var(--flair-color-primary);
-			transition: all .2s ease;
-			&::before {
-				border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 100%);
-			}
+	}
+	.media img {
+		transform: scale(1.03);
+	}
+	.button {
+		background-color: color-mix(in srgb, currentColor, transparent 80%);
+		transition: all .2s ease;
+		&::before {
+			border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 100%);
 		}
 	}
-
 }
 
 :where(.flair-card-wrapper[class*='aspect']):not([class*='aspect-none']) {

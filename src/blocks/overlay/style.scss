@@ -116,12 +116,15 @@
 		z-index: 0;
 	}
 
-	&:focus-within,
-	&:hover {
-		transform: translateY(-2px);
-		.media img {
-			transform: scale(1.03);
-		}
-	}
+}
 
+// Triggered from the wrapper, not the element that moves -- see the note on
+// the same rule in blocks/card/style.scss.
+:where(.flair-overlay-wrapper:hover, .flair-overlay-wrapper:focus-within) {
+	.flair-overlay {
+		transform: translateY(-2px);
+	}
+	.media img {
+		transform: scale(1.03);
+	}
 }
