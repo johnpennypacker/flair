@@ -233,16 +233,15 @@ button.flair-toggle-x:hover {
 	}
 
 	.cardish-title a {
+		// This ::before is the stretched link for the cardish pattern, so it
+		// is load-bearing twice over. No default shadow -- same reasoning as
+		// blocks/card/style.scss.
 		&::before {
-			box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 85%);
 			content: '';
 			position: absolute;
 			top: 0; left: 0; bottom: 0; right: 0;
-			transition: all .2s ease-in-out;
+			transition: box-shadow .2s ease-in-out;
 			z-index: 0;
-		}
-		&:hover::before {
-			box-shadow: 0 3px 10px color-mix(in oklab, var(--flair-color-primary), white 85%);
 		}
 	}
 

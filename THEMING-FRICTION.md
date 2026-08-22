@@ -208,6 +208,25 @@ pseudo purely structural, or document the pseudo as load-bearing. A theme should
 be able to remove decoration without reading the stylesheet to find out what
 else it was holding up.
 
+> **Partly resolved:** the shadow is gone, so the pseudo is now purely
+> structural and there is nothing decorative left to conflict with.
+>
+> Removing it beat parameterising it. The colour came from
+> `--flair-color-primary` — the plugin's *general* primary, used 11 times for
+> backgrounds, borders and text, so the shadow could not be retuned without
+> moving all of them. And `color-mix(…, white 85%)` capped the result at 15% of
+> whatever that was, so on any light ground it was invisible whatever a theme
+> set. A shadow is a decision for a theme to make, and themes were already
+> making it: cosi-digital cleared it, and clarebourne supplies its own from the
+> site's Global Styles.
+>
+> The `::before` layer stays — it is load-bearing, and unpainted it is a clean
+> place for a theme to hang a shadow. Its `transition` is named `box-shadow`
+> rather than `all` (#9) so a theme-supplied shadow still animates.
+>
+> Still open here: the shadow is gone, but nothing yet *documents* the pseudo as
+> load-bearing, which is the other half of what this finding asked for.
+
 ---
 
 ### 5. Three coupled constraints on one control

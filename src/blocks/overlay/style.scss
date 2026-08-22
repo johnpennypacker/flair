@@ -106,21 +106,19 @@
 		z-index: 2;
 	}
 
+	// Unpainted structural layer -- see the note on the same rule in
+	// blocks/card/style.scss. No default shadow; a theme adds its own here.
 	&::before {
-		box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 85%);
 		content: '';
 		position: absolute;
 		top: 0; left: 0; bottom: 0; right: 0;
-		transition: all .2s ease-in-out;
+		transition: box-shadow .2s ease-in-out;
 		z-index: 0;
 	}
 
 	&:focus-within,
 	&:hover {
 		transform: translateY(-2px);
-		&::before {
-			box-shadow: 0 3px 10px color-mix(in oklab, var(--flair-color-primary), white 85%);
-		}
 		.media img {
 			transform: scale(1.03);
 		}

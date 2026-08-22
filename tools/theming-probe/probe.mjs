@@ -184,7 +184,14 @@ for ( const vp of VIEWPORTS ) {
 	for ( const t of targets ) {
 		const id = `${ t.name }.${ vp.name }`;
 		try {
-			await page.goto( t.url, { waitUntil: 'networkidle', timeout: 30000 } );
+			const response = await page.goto( t.url, { waitUntil: 'networkidle', timeout: 30000 } );
+			// A stopped site answers 502 with an error page, which has no
+			// flair markup in it -- without this check that records as "0
+			// elements" and the diff reports it as everything disappearing,
+			// which reads far too much like a real regression.
+			if ( response && ! response.ok() ) {
+				throw new Error( `HTTP ${ response.status() } -- is the site running?` );
+			}
 			// Scroll the full height once: scroll-triggered reveals (kinetic,
 			// fadie) never fire otherwise, and half the page measures hidden.
 			await page.evaluate( async () => {

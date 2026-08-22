@@ -151,21 +151,27 @@
 		}
 	}
 
+	// A full-card layer, kept deliberately unpainted. It used to carry a drop
+	// shadow derived from --flair-color-primary, which is the plugin's general
+	// primary colour rather than a shadow colour of its own -- and the mix put
+	// 85% white over it, so on any light ground the result was invisible
+	// whatever the theme set. A shadow is a decision for a theme to make.
+	//
+	// The layer itself stays: it is structural, and it gives a theme somewhere
+	// to hang its own shadow without inventing an element.
 	&::before {
-		box-shadow: 0 0 5px color-mix(in oklab, var(--flair-color-primary), white 85%);
 		content: '';
 		position: absolute;
 		top: 0; left: 0; bottom: 0; right: 0;
-		transition: all .2s ease-in-out;
+		// Named rather than `all`, so a theme that does add a shadow gets it
+		// animated without anything else coming along.
+		transition: box-shadow .2s ease-in-out;
 		z-index: 0;
 	}
 
 	&:focus-within,
 	&:hover {
 		transform: translateY(-2px);
-		&::before {
-			box-shadow: 0 3px 10px color-mix(in oklab, var(--flair-color-primary), white 85%);
-		}
 		.media img {
 			transform: scale(1.03);
 		}
