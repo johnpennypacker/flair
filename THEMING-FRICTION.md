@@ -14,8 +14,8 @@ Severity is measured in **what it cost to escape**, not in how wrong it is:
 
 Line numbers refer to `src/`, not the committed `build/` output.
 
-**Status.** #1, #2, #3, #4, #5, #6 and #7 are fixed on the `theming-friction`
-branch, and #8 is documented; each is
+**Status.** Every finding is now addressed on the `theming-friction` branch —
+#1–#7, #9 and #10 fixed, #8 documented in `THEMING.md`; each is
 annotated below with what the fix actually turned out to be, including the two
 places this writeup had the mechanism wrong. Every change is measured against
 both sites with `tools/theming-probe` -- see that directory's `probe.mjs`
@@ -419,6 +419,15 @@ section rules out by name.
 **Suggested fix.** Name the properties. It's usually two: a colour and a
 transform.
 
+> **Fixed** — all 12 named, and it was usually one rather than two: 36 elements
+> animate `transform` alone, 24 the carousel dot's `background-color, width`,
+> and 18 the card footer's `background-color`.
+>
+> One was animating nothing at all. `:where(.cardish)` carried
+> `transition: all` but nothing on `.cardish` itself ever changes state — the
+> shadow it once animated now lives on `.cardish-title a::before`. That one is
+> simply gone.
+
 ---
 
 ### 10. Ad-hoc visually-hidden technique
@@ -438,6 +447,22 @@ made the intent obvious.
 
 **Suggested fix.** A single `.flair-sr-only` in `flair-core`, used everywhere a
 label is hidden.
+
+> **Fixed.** There were two ad-hoc techniques, not one: the multibutton's
+> `clip-path: rect(0 100% 0 0); width: 20ch`, and `text-indent: -999em` on the
+> carousel's previous/next arrows. Both now use `.flair-sr-only`, and the
+> carousel's arrow labels are wrapped in a span to carry it.
+>
+> The multibutton's version was also load-bearing in a way nobody would guess —
+> at `width: 20ch` it was in flow, measuring over 200px, and the toggle's hard
+> `width: 3rem` existed to contain it. Fixing #5 depended on fixing this.
+>
+> The utility is deliberately not wrapped in `:where()`. It is functional
+> rather than presentational: a theme's stray `span` rule should not be able to
+> put a hidden label back into the layout.
+>
+> Still open nearby, and outside this finding: the carousel builds its dot
+> buttons with no accessible name at all.
 
 ---
 

@@ -20,7 +20,7 @@
 :where( .kinetic ) span {
 	display: inline-block;
 	visibility: hidden;
-	transition: all .1s ease;
+	transition: visibility .1s ease;
 	will-change: opacity, transform;
 	&.visible {
 		visibility: visible;

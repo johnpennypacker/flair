@@ -284,7 +284,7 @@
 
 		previous = document.createElement( "BUTTON" );
 		previous.type = "button";
-		previous.innerHTML = "Previous";
+		previous.innerHTML = '<span class="flair-sr-only">Previous</span>';
 		previous.classList.add( "previous" );
 		previous.addEventListener( "click", function() {
 			// Read the page index at click time — stepping by a count captured
@@ -295,7 +295,7 @@
 
 		next = document.createElement( "BUTTON" );
 		next.type = "button";
-		next.innerHTML = "Next";
+		next.innerHTML = '<span class="flair-sr-only">Next</span>';
 		next.classList.add( "next" );
 		next.addEventListener( "click", function() {
 			goToPage( wrap, ( wrap.dataset.pageIndex * 1 ) + 1 );

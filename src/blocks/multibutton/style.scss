@@ -79,18 +79,6 @@
 		min-width: 3rem;
 		z-index: 0;
 
-		span {
-			// Visually hidden, but still in the accessibility tree -- this is
-			// the only content the button has, so `display: none` would leave
-			// it with no accessible name at all. Out of flow so it cannot
-			// dictate the control's width.
-			position: absolute;
-			width: 1px;
-			height: 1px;
-			overflow: hidden;
-			clip-path: inset( 50% );
-			white-space: nowrap;
-		}
 		&::after {
 			background-color: currentColor;
 			content: "";
@@ -162,7 +150,7 @@
 		max-height: 0;
 		opacity: 0;
 		padding-block: 0;
-		transition: all .1s ease;
+		transition: max-height .1s ease, opacity .1s ease, padding-block .1s ease;
 
 	}
 	.options.shown .dropdown-item,

@@ -17,7 +17,7 @@
 
 		<div class="dropdown">
 			<div class="select">
-				<button aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"><span>Select an action</span></button>
+				<button aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"><span class="flair-sr-only"><?php esc_html_e( 'Select an action', 'flair' ); ?></span></button>
 				<a href="#" class="action button"> </a>
 			</div>
 			<div class="options" tabindex="0">

@@ -163,9 +163,21 @@ The glyph is a mask on a pseudo-element pinned to all four edges, centred by
 a definite width resolves against `left`, which pins the arrow to the control's
 left edge and looks like a `justify-content` problem when it isn't.
 
-The button's `<span>` is its only content and is visually hidden. Keep it out of
-flow and in the accessibility tree — `display: none` leaves the button with no
-accessible name at all.
+The button's `<span>` is its only content and is visually hidden, using the
+shared `.flair-sr-only` utility. Keep it out of flow and in the accessibility
+tree — `display: none` leaves the button with no accessible name at all.
+
+### `.flair-sr-only`
+
+Flair's visually-hidden utility, used wherever a control's only label is hidden
+— the multibutton toggle and the carousel's previous/next arrows. It is the one
+piece of Flair's CSS deliberately **not** wrapped in `:where()`: a stray
+`span { position: static }` should not be able to drop a hidden label back into
+the layout.
+
+Use it for your own hidden labels rather than inventing a technique, and don't
+override it to `display: none` or `visibility: hidden` — both strip the
+accessible name.
 
 ---
 

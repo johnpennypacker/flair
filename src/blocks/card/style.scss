@@ -23,7 +23,7 @@
 	.media img {
 		display: block;
 		height: auto;
-		transition: all .2s ease-in-out;
+		transition: transform .2s ease-in-out;
 		width: 100%;
 	}
 
@@ -119,7 +119,7 @@
 		margin-inline: calc( var( --wp--style--block-gap, 1rem ) * -1.5 );
 		margin-block-end: calc( var( --wp--style--block-gap, 1rem ) * -1.5 );
 		padding: calc( var( --wp--style--block-gap, 1rem ) * 1.5 );
-		transition: all .2s ease;
+		transition: background-color .2s ease;
 
 		&::before {
 			content: '';
@@ -192,7 +192,7 @@
 	}
 	.button {
 		background-color: color-mix(in srgb, currentColor, transparent 80%);
-		transition: all .2s ease;
+		transition: background-color .2s ease;
 		&::before {
 			border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 100%);
 		}
