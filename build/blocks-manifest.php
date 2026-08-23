@@ -36,6 +36,11 @@ return array(
 				'link' => true
 			),
 			'html' => false,
+			'layout' => array(
+				'default' => array(
+					'type' => 'constrained'
+				)
+			),
 			'shadow' => true,
 			'spacing' => array(
 				'margin' => true,

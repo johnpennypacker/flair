@@ -8,8 +8,8 @@ import { useEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 
 import {
-	InnerBlocks,
-	InspectorControls
+	InspectorControls,
+	useInnerBlocksProps
 } from '@wordpress/block-editor';
 
 import {
@@ -64,6 +64,17 @@ export default function Edit( props ) {
 		}
 	}, [ alertId, clientId, setAttributes ] );
 
+	// The inner blocks have to be direct children of the block wrapper: the
+	// layout support puts its container class on the outermost element, and the
+	// constrained-width CSS it generates only reaches that element's children.
+	const innerBlocksProps = useInnerBlocksProps(
+		useBlockProps( { className: calculateClassName( attributes ) } ),
+		{
+			defaultBlock: { name: 'core/paragraph', attributes: { placeholder: __( 'Lorem ipsum...', 'flair' ) } },
+			directInsert: true,
+		}
+	);
+
 	return (
 		<>
 		<InspectorControls>
@@ -83,26 +94,19 @@ export default function Edit( props ) {
 				</PanelRow>
 			</PanelBody>
 		</InspectorControls>
-		<div { ...useBlockProps( { className: calculateClassName( attributes ) } ) }>
-			<div class="flair-alert">
-				{ dismissible && (
-					<button
-						class="flair-alert-close"
-						type="button"
-						aria-label={ __( 'Dismiss', 'flair' ) }
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-							<path fill="currentColor" d="M18.3,5.71a1,1,0,0,0-1.41,0L12,10.59,7.11,5.7A1,1,0,0,0,5.7,7.11L10.59,12,5.7,16.89a1,1,0,1,0,1.41,1.41L12,13.41l4.89,4.89a1,1,0,0,0,1.41-1.41L13.41,12l4.89-4.89A1,1,0,0,0,18.3,5.71Z"/>
-						</svg>
-					</button>
-				) }
-				<div class="flair-alert-content">
-					<InnerBlocks
-						defaultBlock={ { name: 'core/paragraph', attributes: { placeholder: __( 'Lorem ipsum...', 'flair' ) } } }
-						directInsert
-					/>
-				</div>
-			</div>
+		<div { ...innerBlocksProps }>
+			{ innerBlocksProps.children }
+			{ dismissible && (
+				<button
+					className="flair-alert-close"
+					type="button"
+					aria-label={ __( 'Dismiss', 'flair' ) }
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+						<path fill="currentColor" d="M18.3,5.71a1,1,0,0,0-1.41,0L12,10.59,7.11,5.7A1,1,0,0,0,5.7,7.11L10.59,12,5.7,16.89a1,1,0,1,0,1.41,1.41L12,13.41l4.89,4.89a1,1,0,0,0,1.41-1.41L13.41,12l4.89-4.89A1,1,0,0,0,18.3,5.71Z"/>
+					</svg>
+				</button>
+			) }
 		</div>
 		</>
 	);

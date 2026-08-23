@@ -33,6 +33,11 @@
       "link": true
     },
     "html": false,
+    "layout": {
+      "default": {
+        "type": "constrained"
+      }
+    },
     "shadow": true,
     "spacing": {
       "margin": true,

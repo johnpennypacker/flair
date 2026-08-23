@@ -6,21 +6,25 @@
  */
 :where(.flair-alert-wrapper) {
   background-color: color-mix(in oklab, var(--flair-color-primary), white 90%);
-}
-:where(.flair-alert) {
+  padding: var(--wp--style--block-gap, 1rem);
   position: relative;
 }
-:where(.flair-alert) .flair-alert-content {
-  padding: var(--wp--style--block-gap, 1rem);
+:root .flair-alert {
+  margin-block: 0;
 }
-:where(.flair-alert) .flair-alert-content > :first-child {
+:root .flair-alert > :first-child {
   margin-block-start: 0;
 }
-:where(.flair-alert) .flair-alert-content > :last-child {
+:root .flair-alert > :last-child {
   margin-block-end: 0;
 }
-:where(.flair-alert):has(> .flair-alert-close) .flair-alert-content {
-  padding-inline-end: calc(var(--wp--style--block-gap, 1rem) + 2.5em);
+/**
+ * Room for the close button. Padded on both sides, not just the end: the
+ * constrained layout centres inner blocks inside this box, so asymmetric
+ * padding would push the content column off the page's content column.
+ */
+:where(.flair-alert-wrapper.is-dismissible) {
+  padding-inline: calc(var(--wp--style--block-gap, 1rem) + 2.5em);
 }
 :where(.flair-alert-close) {
   align-items: center;
