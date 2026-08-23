@@ -133,6 +133,7 @@
   overflow: hidden;
   padding-block: 1rem;
 }
+
 @media all and (min-width: 380px) {
   :where(.flair-multibutton) {
     flex-direction: row;

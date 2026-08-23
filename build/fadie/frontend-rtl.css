@@ -24,12 +24,14 @@
   height: 100vh;
   width: 100%;
 }
+
 :where(.flair-fadie) .wp-block-cover__inner-container .is-layout-flex > .is-layout-constrained {
   align-self: stretch;
 }
 :where(.flair-fadie) .wp-block-cover__inner-container > .is-layout-flex {
   flex-wrap: nowrap;
 }
+
 .flair-fadie img {
   --delay: 0;
   animation: blurify 100ms forwards;
@@ -37,6 +39,7 @@
   animation-timeline: scroll();
   animation-range: 90vh;
 }
+
 @keyframes blurify {
   100% {
     filter: blur(2rem) brightness(80%) saturate(160%);

@@ -15,9 +15,11 @@
   outline: 1px dashed currentColor;
   outline-offset: 0.5rem;
 }
+
 .flair-modal-editor-id {
   font-family: monospace;
 }
+
 /**
  * Modal suggestions in the link popover.
  *

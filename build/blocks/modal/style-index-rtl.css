@@ -17,9 +17,11 @@
 :where(.flair-modal) {
   display: none;
 }
+
 .flair-modal:target {
   display: block;
 }
+
 :where(.flair-modal) {
   background-color: var(--wp--preset--color--base, #fff);
   max-width: 100%;
@@ -37,6 +39,7 @@
 :where(.flair-modal):has(> .flair-modal-close) .flair-modal-content {
   padding-inline-end: calc(var(--wp--style--block-gap, 1rem) + 2.5em);
 }
+
 .flair-modal-close {
   align-items: center;
   background: transparent;
@@ -58,6 +61,7 @@
 .flair-modal-close:hover, .flair-modal-close:focus-visible {
   background-color: color-mix(in srgb, currentColor, transparent 90%);
 }
+
 /* The enhanced state: view.js has moved the modal into this dialog. */
 .flair-modal-dialog {
   background: transparent;
@@ -75,6 +79,7 @@
 .flair-modal-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 /*
  * showModal() makes the page inert but leaves it scrollable behind the dialog.
  *

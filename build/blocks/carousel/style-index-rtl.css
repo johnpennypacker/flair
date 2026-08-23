@@ -116,6 +116,7 @@
 :where(.flair-carousel-wrapper)[data-xer="3"] .flair-carousel-slide:nth-child(3n+1) {
   scroll-snap-align: start;
 }
+
 :where(.flair-carousel::-webkit-scrollbar) {
   display: none; /* works with Chrome, Safari, and Opera */
 }

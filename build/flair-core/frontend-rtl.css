@@ -21,7 +21,6 @@ ul.wp-block-columns {
   margin-inline-start: 0;
   padding-inline-start: 0;
 }
-
 ul.wp-block-columns li.wp-block-column {
   display: block;
   list-style: none;
@@ -44,17 +43,13 @@ ul.wp-block-columns li.wp-block-column {
 	}
 }
  */
-
 /* fades elements in as they enter the view port; fades out as they leave */
-
 /*
 header, img {
 	opacity: var(--intersection-ratio);
 }
  */
-
 /* creates a wobbly effect; needs work */
-
 /*
 a:hover {
 	display: inline-block;
@@ -64,22 +59,18 @@ a:hover {
 	transition: none;
 }
  */
-
 /* creates a spot light effect */
-
 /*
 a:hover {
  	background: radial-gradient(circle at calc(100% * var(--mouse-x-pct)) calc(100% * var(--mouse-y-pct)), var(--color__highlight) 0%,  var(--color__brand) 80%);
  	background-position: calc(100% * var(--mouse-x-pct)) calc(100% * var(--mouse-y-pct));
 }
 */
-
 @keyframes flair-fade-in {
   to {
     opacity: 1;
   }
 }
-
 .flair-fade-in {
   animation: flair-fade-in 1000ms forwards;
 }
@@ -112,7 +103,6 @@ a:hover {
  * and `visibility: hidden` both strip the accessible name, which on a button
  * whose visible content is an icon leaves it with no name at all.
  */
-
 .flair-sr-only {
   position: absolute;
   width: 1px;
@@ -178,14 +168,12 @@ button.flair-toggle-x:hover {
   --weight: 2px;
   position: relative;
 }
-
 .arrow-start:before, .arrow-end:before, .arrow-start:after, .arrow-end:after {
   box-sizing: content-box;
   content: "";
   display: block;
   position: absolute;
 }
-
 .arrow-start:before, .arrow-end:before {
   border-top: var(--weight) solid currentColor;
   height: 0;
@@ -193,7 +181,6 @@ button.flair-toggle-x:hover {
   transition: width 0.15s ease, transform 0.15s ease;
   top: 50%;
 }
-
 .arrow-start:after, .arrow-end:after {
   border: var(--weight) solid currentColor;
   border-width: var(--weight) 0 0 var(--weight);
@@ -203,11 +190,9 @@ button.flair-toggle-x:hover {
   width: 0.5em;
   top: calc(50% - 0.25em);
 }
-
 .arrow-start:hover:before, .arrow-end:hover:before {
   width: 1em;
 }
-
 .arrow-start:hover:after, .arrow-end:hover:after {
   transform: translateX(-1em) rotateZ(-45deg);
 }
@@ -215,11 +200,9 @@ button.flair-toggle-x:hover {
 .arrow-end {
   padding-inline-end: 2em;
 }
-
 .arrow-end:before {
   right: calc(100% - 1em);
 }
-
 .arrow-end:after {
   left: 1em;
 }
@@ -227,20 +210,16 @@ button.flair-toggle-x:hover {
 .arrow-start {
   padding-inline-start: 2em;
 }
-
 .arrow-start:before {
   right: 1em;
 }
-
 .arrow-start:after {
   border-width: 0 var(--weight) var(--weight) 0;
   right: 1em;
 }
-
 .arrow-start:hover:before {
   transform: translateX(calc(-1*(-1em + var(--weight))));
 }
-
 .arrow-start:hover:after {
   transform: translateX(calc(-1*(-1em + var(--weight)))) rotateZ(-45deg);
 }
@@ -248,17 +227,14 @@ button.flair-toggle-x:hover {
 :where(.cardish) {
   position: relative;
 }
-
 :where(.cardish) .text {
   padding-block-end: calc(var(--wp--style--block-gap) * 1);
   padding-inline: calc(var(--wp--style--block-gap) * 1);
 }
-
 :where(.cardish) a:not(.cardish-title a) {
   position: relative;
   z-index: 1;
 }
-
 :where(.cardish) .cardish-title a::before {
   content: "";
   position: absolute;
@@ -269,27 +245,20 @@ button.flair-toggle-x:hover {
   transition: box-shadow 0.2s ease-in-out;
   z-index: 0;
 }
-
 :where(.cardish):has(.cardish-title a) figure {
   overflow: hidden;
 }
-
 :where(.cardish):has(.cardish-title a) img, :where(.cardish):has(.cardish-title a) figure span {
   transition: transform 0.15s ease-in-out;
 }
-
 :where(.cardish):has(.cardish-title a:hover) img, :where(.cardish):has(.cardish-title a:hover) figure span {
   transform: scale(1.03);
 }
 
 /** animations **/
-
 .wp-site-blocks {
   overflow-x: clip;
-}
-
-/* prevents side scrolling on animated transforms with rotate */
-
+} /* prevents side scrolling on animated transforms with rotate */
 [data-was-visible]:not(.flair-fixie):not(.flair-fadie) {
   --frame-transition-duration: 400ms;
   --frame-transition-delay: 100ms;
@@ -314,7 +283,6 @@ button.flair-toggle-x:hover {
 /**
  * @todo: there needs to be finer control of this.
  */
-
 .wp-block-group.is-vertical[data-was-visible=false] > * {
   opacity: 0;
   transform: translateY(4rem) rotateZ(-1deg);
@@ -343,7 +311,6 @@ button.flair-toggle-x:hover {
 /**
  * /end there needs to be finer control of this.
  */
-
 [data-was-visible=true]:not(.flair-fixie):not(.flair-fadie) {
   opacity: 1;
   overflow-x: clip;

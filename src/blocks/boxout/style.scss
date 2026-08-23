@@ -1,15 +1,6 @@
+:root .flair-boxout-wrapper {
+	padding: var( --wp--style--block-gap, 1rem );
+}
 :where( .flair-boxout-wrapper ) {
 	background-color: color-mix(in oklab, var(--flair-color-primary), white 85%);
-	.flair-boxout {
-		padding: var( --wp--style--block-gap, 1rem );
-		background-color: inherit;
-
-		> * {
-			margin-block-start: 0;
-			margin-block-end: var( --wp--style--block-gap, 1rem );
-		}
-		> :last-child {
-			margin-block-end: 0;
-		}
-	}
 }

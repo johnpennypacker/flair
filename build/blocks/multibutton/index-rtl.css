@@ -9,17 +9,21 @@
 .wp-block-flair-multibutton .block-editor-button-block-appender {
   display: none;
 }
+
 .wp-block-flair-multibutton.is-selected .block-editor-button-block-appender {
   display: flex;
 }
+
 .wp-block-flair-multibutton .action {
   display: block;
   padding: 1rem 1.25rem;
 }
+
 .wp-block-flair-multibutton.is-open .dropdown-item {
   display: block;
   padding: 1rem 1.25rem;
 }
+
 .wp-block-flair-multibutton .options .block-editor-inner-blocks .block-editor-block-list__layout {
   align-items: stretch;
   flex-direction: column !important;
