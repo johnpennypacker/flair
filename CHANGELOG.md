@@ -20,15 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   alongside it so Size and Font show in the Typography panel rather than only
   under its ⋮ menu.
 
-### Changed
-- The `alert` block's markup is flat: inner blocks are direct children of the
-  block wrapper, and the intermediate `.flair-alert` and `.flair-alert-content`
-  elements are gone. Layout's container class lands on the outermost element and
-  its CSS only reaches that element's children, so the nesting was what kept
-  content width from working. Padding moved to the wrapper and stays symmetric
-  on dismissible alerts, so the constrained column stays centred. **Themes
-  styling `.flair-alert` or `.flair-alert-content` need updating.**
-
 ## [0.4.0] - 2026-08-21
 
 ### Added
