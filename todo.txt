@@ -4,10 +4,6 @@ Card
 	without drop shadow, there's no delineation... needs a default perimeter style
 	horizontal cards render the image on the right instead of left.
 
-Carousel
-	dots and arrows do not preview in editor
-	no dots puts arrows over the slide
-
 Milestones
 	spacing between milestones in editor shows gaps inconsistently
 	default markers show on back end but not front end
