@@ -4,11 +4,6 @@
 		padding: var( --wp--style--block-gap, 1rem );
 		background-color: inherit;
 
-		// Unlike the card, a boxout holds author blocks, so something has to
-		// space them. That used to be a hand-stamped `is-layout-constrained`
-		// -- a class this block never registered layout support for, which
-		// left the spacing at the mercy of whatever the theme did with it.
-		// Reproduced here at zero specificity so one theme class still wins.
 		> * {
 			margin-block-start: 0;
 			margin-block-end: var( --wp--style--block-gap, 1rem );

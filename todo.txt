@@ -1,8 +1,6 @@
-Alert
-	cosi: how to make content align when set to alignfull or wide?
-
 Boxout
-	cosi: how to make content align when set to alignfull or wide?
+	validate spacing between elements
+	inline padding works on floated/narrow boxouts, not alignwide
 
 Card
 	media buttons not clickable in editor when you add a new card
@@ -13,9 +11,6 @@ Card
 Carousel
 	dots and arrows do not preview in editor
 	no dots puts arrows over the slide
-
-Eyebrow
-	can't change font
 
 Milestones
 	spacing between milestones in editor shows gaps inconsistently
