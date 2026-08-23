@@ -1,1 +1,163 @@
-:where(.flair-card){display:flex;flex-direction:column;justify-content:flex-end;position:relative;transition:transform .2s ease-in-out;width:100%}:where(.flair-card):has(.link){cursor:pointer}:where(.flair-card) .media{overflow:hidden}:where(.flair-card) .media img{display:block;height:auto;transition:transform .2s ease-in-out;width:100%}:where(.flair-card) .text{display:flex;flex-direction:column;flex-grow:2;order:2;padding:1.5em;padding:calc(var(--wp--style--block-gap, 1rem)*1.5);z-index:1}:where(.flair-card) .text>*{margin-block-start:0}:where(.flair-card) .text>:where(:not(.button)){width:100%}:where(.flair-card) .text>:not(.button){margin-block-end:var(--wp--style--block-gap,1rem)}:where(.flair-card) .text>:last-child:where(:not(.button)){margin-block-end:0}:where(.flair-card) .media{order:1}:where(.flair-card) .link{color:inherit;text-decoration:inherit}:where(.flair-card) :where(.title) a:after{content:"";inset:0;position:absolute;z-index:1}:where(.flair-card) .button{margin-block-end:calc(var(--wp--style--block-gap, 1rem)*-1.5);margin-inline:calc(var(--wp--style--block-gap, 1rem)*-1.5);padding:calc(var(--wp--style--block-gap, 1rem)*1.5);transition:background-color .2s ease}:where(.flair-card) .button:before{border-block-start:1px solid color-mix(in srgb,currentColor,transparent 80%);content:"";display:block;margin-block-end:calc(var(--wp--style--block-gap, 1rem)*1.5);margin-block-start:calc(var(--wp--style--block-gap, 1rem)*-1.5)}:where(.flair-card) .attribution{font-size:80%;position:relative;z-index:2}:where(.flair-card) .excerpt{flex-grow:1;margin-block-start:0;z-index:2}:where(.flair-card) .excerpt a{position:relative;z-index:99}:where(.flair-card):before{bottom:0;content:"";left:0;position:absolute;right:0;top:0;transition:box-shadow .2s ease-in-out;z-index:0}:where(.flair-card-wrapper:hover,.flair-card-wrapper:focus-within) .flair-card{transform:translateY(-2px)}:where(.flair-card-wrapper:hover,.flair-card-wrapper:focus-within) .media img{transform:scale(1.03)}:where(.flair-card-wrapper:hover,.flair-card-wrapper:focus-within) .button{background-color:color-mix(in srgb,currentColor,transparent 80%);transition:background-color .2s ease}:where(.flair-card-wrapper:hover,.flair-card-wrapper:focus-within) .button:before{border-block-start:1px solid color-mix(in srgb,currentColor,transparent 100%)}:where(.flair-card-wrapper[class*=aspect]):not([class*=aspect-none]) .media img{height:100%;-o-object-fit:cover;object-fit:cover}.flair-card-wrapper{container-name:flair-card;container-type:inline-size}:where(.flair-card-wrapper.orientation-horizontal) .flair-card{align-items:stretch;flex-direction:row;justify-content:stretch}:where(.flair-card-wrapper.orientation-horizontal) .flair-card .media{margin-block-end:0;max-width:50%}:where(.flair-card-wrapper.orientation-horizontal).aspect-none img,:where(.flair-card-wrapper.orientation-horizontal):not([class*=aspect]) img{height:100%;-o-object-fit:cover;object-fit:cover}@container flair-card (width > 600px){:where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card{align-items:stretch;flex-direction:row;justify-content:stretch}:where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card .media{margin-block-end:0;max-width:50%}.flair-card-wrapper.aspect-none img,.flair-card-wrapper:not([class*=aspect]) img{height:100%;-o-object-fit:cover;object-fit:cover}}
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/card/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/**
+ *
+ */
+:where(.flair-card) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+  width: 100%;
+}
+:where(.flair-card):has(.link) {
+  cursor: pointer;
+}
+:where(.flair-card) .media {
+  overflow: hidden;
+}
+:where(.flair-card) .media img {
+  display: block;
+  height: auto;
+  transition: transform 0.2s ease-in-out;
+  width: 100%;
+}
+:where(.flair-card) .text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  order: 2;
+  padding: 1.5em;
+  padding: calc(var(--wp--style--block-gap, 1rem) * 1.5);
+  z-index: 1;
+}
+:where(.flair-card) .text > * {
+  margin-block-start: 0;
+}
+:where(.flair-card) .text > *:where(:not(.button)) {
+  width: 100%;
+}
+:where(.flair-card) .text > *:not(.button) {
+  margin-block-end: var(--wp--style--block-gap, 1rem);
+}
+:where(.flair-card) .text > :last-child:where(:not(.button)) {
+  margin-block-end: 0;
+}
+:where(.flair-card) .media {
+  order: 1;
+}
+:where(.flair-card) .link {
+  color: inherit;
+  text-decoration: inherit;
+}
+:where(.flair-card) :where(.title) a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+:where(.flair-card) .button {
+  margin-inline: calc(var(--wp--style--block-gap, 1rem) * -1.5);
+  margin-block-end: calc(var(--wp--style--block-gap, 1rem) * -1.5);
+  padding: calc(var(--wp--style--block-gap, 1rem) * 1.5);
+  transition: background-color 0.2s ease;
+}
+:where(.flair-card) .button::before {
+  content: "";
+  display: block;
+  border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 80%);
+  margin-block-start: calc(var(--wp--style--block-gap, 1rem) * -1.5);
+  margin-block-end: calc(var(--wp--style--block-gap, 1rem) * 1.5);
+}
+:where(.flair-card) .attribution {
+  font-size: 80%;
+  position: relative;
+  z-index: 2;
+}
+:where(.flair-card) .excerpt {
+  flex-grow: 1;
+  margin-block-start: 0;
+  z-index: 2;
+}
+:where(.flair-card) .excerpt a {
+  position: relative;
+  z-index: 99;
+}
+:where(.flair-card)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: box-shadow 0.2s ease-in-out;
+  z-index: 0;
+}
+/**
+ * Hover state, triggered from the wrapper.
+ *
+ * It used to hang off `.flair-card:hover` -- which moves the very element that
+ * owns the hover. Near the card's bottom edge the pointer falls outside as it
+ * rises, hover drops, it falls back, and the card oscillates under the cursor.
+ * The wrapper is right there and never moves.
+ *
+ * Wrapped in :where() so the weight matches what `.flair-card:hover` used to
+ * be, rather than climbing to (0,2,0) and taking the rule out of reach of a
+ * theme's own hover styling.
+ */
+:where(.flair-card-wrapper:hover, .flair-card-wrapper:focus-within) .flair-card {
+  transform: translateY(-2px);
+}
+:where(.flair-card-wrapper:hover, .flair-card-wrapper:focus-within) .media img {
+  transform: scale(1.03);
+}
+:where(.flair-card-wrapper:hover, .flair-card-wrapper:focus-within) .button {
+  background-color: color-mix(in srgb, currentColor, transparent 80%);
+  transition: background-color 0.2s ease;
+}
+:where(.flair-card-wrapper:hover, .flair-card-wrapper:focus-within) .button::before {
+  border-block-start: 1px solid color-mix(in srgb, currentColor, transparent 100%);
+}
+:where(.flair-card-wrapper[class*=aspect]):not([class*=aspect-none]) .media img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
+.flair-card-wrapper {
+  container-name: flair-card;
+  container-type: inline-size;
+}
+:where(.flair-card-wrapper.orientation-horizontal) .flair-card {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+}
+:where(.flair-card-wrapper.orientation-horizontal) .flair-card .media {
+  margin-block-end: 0;
+  max-width: 50%;
+}
+:where(.flair-card-wrapper.orientation-horizontal).aspect-none img, :where(.flair-card-wrapper.orientation-horizontal):not([class*=aspect]) img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
+@container flair-card (width > 600px) {
+  :where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  :where(.flair-card-wrapper:not(.orientation-vertical)) .flair-card .media {
+    margin-block-end: 0;
+    max-width: 50%;
+  }
+  .flair-card-wrapper.aspect-none img, .flair-card-wrapper:not([class*=aspect]) img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 100%;
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

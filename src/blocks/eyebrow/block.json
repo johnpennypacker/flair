@@ -30,6 +30,7 @@
 		},
     "typography": {
 			"fontSize": true,
+			"__experimentalFontFamily": true,
 			"lineHeight": true,
 			"textAlign": true
     }

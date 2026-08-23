@@ -345,6 +345,7 @@ return array(
 			),
 			'typography' => array(
 				'fontSize' => true,
+				'__experimentalFontFamily' => true,
 				'lineHeight' => true,
 				'textAlign' => true
 			)
