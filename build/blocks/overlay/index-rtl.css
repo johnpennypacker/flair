@@ -1,1 +1,1 @@
-.flair-full-grid{grid-column-end:-1;grid-column-start:1}
+.flair-full-grid{grid-column-end:-1;grid-column-start:1}.flair-overlay :where(.title) a:after{content:none}.flair-overlay .overlay,.flair-overlay:before{pointer-events:none}

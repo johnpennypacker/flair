@@ -26,6 +26,7 @@ import {
 import {
 	Button,
 	Disabled,
+	FocalPointPicker,
 	PanelBody,
 	PanelRow,
 	Popover,
@@ -55,6 +56,27 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+
+/**
+ * Turn a focal point ({ x, y } in the 0-1 range the picker speaks) into the
+ * `object-position` value the stylesheet reads off `--flair-focal-point`.
+ * Keeps two decimals, which is finer than a drag on the picker can resolve.
+ * `template-parts/overlay.php` does the same arithmetic for the front end.
+ *
+ * @param {?{x: number, y: number}} point Focal point, or nothing for centre.
+ * @return {string} A CSS position pair, e.g. `50% 25%`.
+ */
+const focalPointToPosition = ( point ) => {
+	const percent = ( n ) => {
+		const value = parseFloat( n );
+		if( ! Number.isFinite( value ) ) {
+			return 50;
+		}
+		return Math.round( Math.min( Math.max( value, 0 ), 1 ) * 10000 ) / 100;
+	};
+	const { x, y } = point || {};
+	return `${ percent( x ) }% ${ percent( y ) }%`;
+};
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -214,6 +236,31 @@ export default function Edit(props) {
     );
 	}
 
+	const focalPointPicker = () => {
+		if( ! attributes.asset.url ) {
+			return null;
+		}
+		return (
+		<>
+		<FocalPointPicker
+			__nextHasNoMarginBottom
+			label={__("Focal point")}
+			url={attributes.asset.url}
+			value={attributes.focalPoint}
+			onChange={( value ) => {
+				setAttributes({
+					focalPoint: value
+				});
+			}}
+		/>
+		<p
+		class="block-editor-hooks__layout-constrained-helptext"
+		style={{marginBlockEnd:'1rem'}}
+		>Choose the part of the image to keep in view when it's cropped.</p>
+		</>
+	);
+	}
+
 	const calculateClassName = () => {
 		let c = ['flair-wrapper flair-overlay-wrapper'];
 		c.push( 'aspect-' + attributes.aspect );
@@ -254,7 +301,8 @@ export default function Edit(props) {
 
 	const styles = {
 		'--overlay-color' : attributes.overlayColor,
-		'--overlay-opacity' : attributes.overlayOpacity
+		'--overlay-opacity' : attributes.overlayOpacity,
+		'--flair-focal-point' : focalPointToPosition( attributes.focalPoint )
 	}
 
 	const blockProps = useBlockProps( {
@@ -329,6 +377,7 @@ export default function Edit(props) {
 			<PanelBody>
 				<PanelRow><fieldset>{headingLevelToggles()}</fieldset></PanelRow>
 				<PanelRow><fieldset>{aspectRatioToggles()}</fieldset></PanelRow>
+				{focalPointPicker()}
 			</PanelBody>
 		</InspectorControls>
 		<div { ...blockProps }>

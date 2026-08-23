@@ -51,6 +51,9 @@
 		display: block;
 		height: 100%;
 		object-fit: cover;
+		// The author's focal point, written onto the wrapper by the editor and
+		// by template-parts/overlay.php. Centre when they never picked one.
+		object-position: var( --flair-focal-point, 50% 50% );
 		transition: transform .2s ease-in-out;
 		width: 100%;
 	}

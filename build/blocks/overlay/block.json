@@ -75,6 +75,13 @@
       "type": "string",
       "default": "3-2"
     },
+    "focalPoint": {
+      "type": "object",
+      "default": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
     "heading": {
       "type": "string",
       "default": "h3"

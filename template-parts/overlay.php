@@ -26,11 +26,21 @@ if( isset( $attributes['overlayOpacity'] ) && is_numeric( $attributes['overlayOp
 
 $overlay_properties = ! empty( $overlay_styles ) ? 'style="' . esc_attr( implode( '; ', $overlay_styles ) ) . '"' : '';
 
+// The author's focal point, read by `object-position` in the block's
+// stylesheet. Only written when it isn't the centre the stylesheet falls
+// back to, so an untouched overlay carries no style attribute of its own.
+$wrapper_attributes = [ 'class' => implode( ' ', $classes ) ];
+$focal_point = flair_focal_point_position( $attributes['focalPoint'] ?? null );
+
+if ( '50% 50%' !== $focal_point ) {
+	$wrapper_attributes['style'] = '--flair-focal-point: ' . $focal_point . ';';
+}
+
 $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','h6'], true ) ? $attributes['heading'] : 'h3';
 
 ?>
 
-<div <?php echo get_block_wrapper_attributes(['class' => implode(' ', $classes)]); ?>>
+<div <?php echo get_block_wrapper_attributes( $wrapper_attributes ); ?>>
 	<div class="flair-overlay">
 		<div class="text">
 

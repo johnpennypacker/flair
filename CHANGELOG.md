@@ -25,8 +25,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The `alert` block supports layout, so it carries the "Inner blocks use content
   width" toggle and defaults to constrained. A full-width alert now keeps its
   text on the page's content column instead of running edge to edge.
+- The `overlay` block has a focal point picker, in the settings panel below the
+  aspect ratio it exists to serve. The overlay's image is always cropped —
+  `object-fit: cover` inside an absolutely positioned `.media` — so before this
+  the crop was fixed at the centre and an author whose subject sat off-centre
+  had to re-crop the file. The picker writes `--flair-focal-point` onto the
+  block wrapper and `style.scss` reads it as `object-position`, defaulting to
+  `50% 50%`, so an overlay that never had a focal point picked carries no style
+  attribute of its own and a theme can still override the crop with one class.
+  `flair_focal_point_position()` in `flair.php` does the clamping and formatting
+  so a theme's template override gets it for free.
 
 ### Fixed
+- The `overlay` block's eyebrow and inner blocks can be clicked in the editor.
+  The stretched link (`.title a::after`, `inset: 0`) covered the whole overlay,
+  so every click landed on the title's RichText; both were reachable by keyboard,
+  which made it look like a focus bug rather than a stacking one. The front end
+  rescues the inner blocks with `.misc { z-index: 2 }`, but `edit.js` renders
+  `InnerBlocks` straight into `.text` with no `.misc` wrapper, and nothing ever
+  rescued the eyebrow. `editor.scss` now stands the layer down, the same way
+  `card`'s already did — nothing in the editor navigates, so no overlay-wide
+  link is lost. The `::before` shadow layer and the colour wash are taken out of
+  hit testing there too.
 - Font family is selectable on the `eyebrow` block. It declared
   `typography.fontFamily`, but core still reads the support as
   `typography.__experimentalFontFamily`, so nothing was registered — no

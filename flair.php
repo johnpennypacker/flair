@@ -220,3 +220,26 @@ function flair_change_tag_name( $node, $name ) {
 	return $newnode;
 }
 
+/**
+ * Turn a block's focal-point attribute into a CSS `object-position` pair.
+ *
+ * The picker in the editor stores { x, y } as fractions in the 0-1 range;
+ * templates set the result on `--flair-focal-point`, which the block's
+ * stylesheet reads. Values are clamped and cast, so an attribute hand-edited
+ * in the block markup can't inject anything into the style attribute.
+ * `focalPointToPosition()` in the block's `edit.js` does the same arithmetic.
+ *
+ * @param mixed $point The focalPoint attribute, or anything at all.
+ * @return string A CSS position pair, e.g. `50% 25%`.
+ */
+function flair_focal_point_position( $point ) {
+	$percent = function( $value ) {
+		if ( ! is_numeric( $value ) ) {
+			return 50.0;
+		}
+		return round( min( max( (float) $value, 0 ), 1 ) * 100, 2 );
+	};
+	$x = $percent( is_array( $point ) && isset( $point['x'] ) ? $point['x'] : null );
+	$y = $percent( is_array( $point ) && isset( $point['y'] ) ? $point['y'] : null );
+	return $x . '% ' . $y . '%';
+}

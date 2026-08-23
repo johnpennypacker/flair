@@ -10,12 +10,6 @@ Multibutton
 	set background doesn't work.
 	open menus would do well with a high z-index.
 
-Overlay
-	can't click eyebrow, can arrow into it
-	content spacing is wack
-	background image doesn't cover -- can't replicate
-	needs a focal point picker
-
 Sidler
 	second sidler looks odd when narrow
 

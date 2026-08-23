@@ -746,6 +746,13 @@ return array(
 				'type' => 'string',
 				'default' => '3-2'
 			),
+			'focalPoint' => array(
+				'type' => 'object',
+				'default' => array(
+					'x' => 0.5,
+					'y' => 0.5
+				)
+			),
 			'heading' => array(
 				'type' => 'string',
 				'default' => 'h3'
