@@ -1,1 +1,50 @@
-:root .flair-alert-wrapper{padding:var(--wp--style--block-gap,1rem)}:root .flair-alert-wrapper.is-dismissible .flair-alert{padding-inline-end:calc(var(--wp--style--block-gap, 1rem) + 2.5em)}:where(.flair-alert-wrapper){background-color:color-mix(in oklab,var(--flair-color-primary),#fff 90%);position:relative}:root .flair-alert{margin-block:0}:root .flair-alert>:first-child{margin-block-start:0}:root .flair-alert>:last-child{margin-block-end:0}:where(.flair-alert-close){align-items:center;background:transparent;border:0;border-radius:50%;color:currentColor;cursor:pointer;display:flex;height:2em;inset-inline-end:.5em;justify-content:center;padding:0;position:absolute;top:.5em;transition:background-color .2s ease;width:2em}:where(.flair-alert-close):focus-visible,:where(.flair-alert-close):hover{background-color:color-mix(in srgb,currentColor,transparent 90%)}
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/alert/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+/**
+ *
+ */
+:root .flair-alert-wrapper {
+  padding: var(--wp--style--block-gap, 1rem);
+}
+:root .flair-alert-wrapper.is-dismissible .flair-alert {
+  padding-inline-end: calc(var(--wp--style--block-gap, 1rem) + 2.5em);
+}
+
+:where(.flair-alert-wrapper) {
+  background-color: color-mix(in oklab, var(--flair-color-primary), white 90%);
+  position: relative;
+}
+
+:root .flair-alert {
+  margin-block: 0;
+}
+:root .flair-alert > :first-child {
+  margin-block-start: 0;
+}
+:root .flair-alert > :last-child {
+  margin-block-end: 0;
+}
+
+:where(.flair-alert-close) {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  color: currentColor;
+  cursor: pointer;
+  display: flex;
+  height: 2em;
+  inset-inline-end: 0.5em;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  top: 0.5em;
+  width: 2em;
+  transition: 0.2s background-color ease;
+}
+:where(.flair-alert-close):hover, :where(.flair-alert-close):focus-visible {
+  background-color: color-mix(in srgb, currentColor, transparent 90%);
+}
+
+/*# sourceMappingURL=style-index.css.map*/

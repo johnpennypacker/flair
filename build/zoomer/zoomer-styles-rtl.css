@@ -1,1 +1,26 @@
-:where(.ok-zoomer){position:relative}:where(.ok-zoomer) img{pointer-events:none}:where(.ok-zoomer) .zoomer{--z:2;bottom:0;right:0;opacity:0;position:absolute;left:0;top:0;transition:opacity .3s ease}:where(.ok-zoomer):hover .zoomer{clip-path:circle(calc(30%/var(--z)) at var(--mouse-pct-x) var(--mouse-pct-y));opacity:1;scale:var(--z);transform-origin:var(--mouse-pct-x) var(--mouse-pct-y)}
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/zoomer/zoomer.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+:where(.ok-zoomer) {
+  position: relative;
+}
+:where(.ok-zoomer) img {
+  pointer-events: none;
+}
+:where(.ok-zoomer) .zoomer {
+  /* 			clip-path: stroke-box circle( 1% at var(--mouse-pct-x) var(--mouse-pct-y) );			 */
+  --z: 2;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+:where(.ok-zoomer):hover .zoomer {
+  clip-path: circle(calc(30% * 1 / var(--z)) at var(--mouse-pct-x) var(--mouse-pct-y));
+  opacity: 1;
+  scale: var(--z);
+  transform-origin: var(--mouse-pct-x) var(--mouse-pct-y);
+}

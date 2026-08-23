@@ -1,1 +1,48 @@
-.flair-full-grid{grid-column-end:-1;grid-column-start:1}.flair-overlay :where(.title) a:after{content:none}.flair-overlay .overlay,.flair-overlay:before{pointer-events:none}
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/overlay/editor.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.flair-full-grid {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+/**
+ * The overlay is the card wearing different clothes, and it has the card's
+ * editor problem too -- see the longer note in `blocks/card/editor.scss`.
+ *
+ * On the front end the whole overlay is one hit target: `.title a::after` is
+ * `inset: 0`, riding in `.text`'s stacking context (a flex item with
+ * `z-index: 2`), so it covers the eyebrow, the inner blocks and the media.
+ * The front end rescues the inner blocks with `.misc { z-index: 2 }`, but
+ * `edit.js` renders `InnerBlocks` straight into `.text` with no `.misc`
+ * wrapper, and nothing ever rescues the eyebrow -- so in the editor a click
+ * anywhere on the overlay landed on the title's RichText. Both were reachable
+ * by keyboard, which is why this looked like a focus bug rather than a
+ * stacking one.
+ *
+ * Dropped outright rather than layered around: nothing in the editor
+ * navigates, so there is no overlay-wide link to preserve.
+ */
+.flair-overlay :where(.title) a::after {
+  content: none;
+}
+.flair-overlay {
+  /* The unpainted structural layer, also `inset: 0`. Kept in the render --
+     a theme may hang a real shadow on it and an author should see that --
+     but taken out of hit testing, same as the card's. */
+}
+.flair-overlay::before {
+  pointer-events: none;
+}
+.flair-overlay {
+  /* The colour wash paints, so it stays; it has no business catching a
+     click meant for the image underneath it. */
+}
+.flair-overlay .overlay {
+  pointer-events: none;
+}

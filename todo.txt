@@ -1,9 +1,3 @@
-Milestones
-	spacing between milestones in editor shows gaps inconsistently
-	default markers show on back end but not front end
-
-Modal
-
 Multibutton
 	looks like hell in the editor.
 	needs default background color. -- can't replicate

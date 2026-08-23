@@ -35,13 +35,13 @@
 }
 
 /**
- * Structural, not decorative: consecutive milestones have to butt together or
- * the timeline rail breaks into segments. So this one keeps its weight -- at
- * (0,2,0) it clears a theme's generic block rhythm on its own, which is what
- * the !important it used to carry was really for.
+ * Consecutive milestones should butt together to keep the rail fluid
  */
 :root .flair-milestone-wrapper:has( + .flair-milestone-wrapper) {
 	margin-block: 0;
+}
+:root .flair-milestone-wrapper + .flair-milestone-wrapper {
+	margin-block-start: 0;
 }
 
 
@@ -67,27 +67,10 @@
 
 /**
  * Markers, drawn as styled pseudo elements.
- *
- * An attribute selector weighs the same as a class, so the unwrapped form of
- * these read (0,3,1) -- a theme's obvious `.flair-milestone .timeline::before`
- * at (0,2,1) lost to them, and markers landed beside the rail instead of on
- * it. A pseudo-element is not allowed inside :where(), so the lowest weight
- * reachable is (0,0,1): everything up to .timeline goes in the wrapper, and
- * ::before stays outside it.
- *
- * That leaves all five at the same weight, so they are ordered by the source
- * order below -- base first, then the variants that refine it.
  */
 :where(.flair-milestone-wrapper[class*='marker-'] .timeline)::before {
 	--side: calc( var( --space_buffer ) * .8 );
 
-	/**
-	 * border-box so --side is the marker's actual size. Under content-box the
-	 * border sat outside it, so the drawn marker was --side + two rail widths
-	 * and the centering offset had to smuggle that in as
-	 * `( --side + --timeline_width ) * -.5`. Now --side means what it says and
-	 * centering is just the plain "half the difference" below.
-	 */
 	box-sizing: border-box;
 
 	/** centers the marker across the rail, whichever way the rail runs **/

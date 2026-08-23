@@ -1,1 +1,33 @@
-.flair-card :where(.title) a:after{content:none}.flair-card:before{pointer-events:none}
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/card/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * The card stacks two full-bleed layers over itself on the front end, and both
+ * of them are hit targets even though neither paints anything here. In the
+ * editor they sit over the things an author needs to click, so both are stood
+ * down. Nothing in the editor navigates, so nothing is lost.
+ */
+.flair-card {
+  /* The stretched link: `.title a::after` is `inset: 0` on the card, and it
+     rides in `.text`'s stacking context (a flex item with `z-index: 1`), so
+     it paints over the media and over anything in `.text` that does not
+     out-index it. `.excerpt` and `.attribution` carry `z-index: 2` and stay
+     reachable; the footer `.button` does not, which is why its RichText
+     could not be focused. Dropped outright rather than layered around --
+     there is no card-wide link to preserve in the editor. */
+}
+.flair-card :where(.title) a::after {
+  content: none;
+}
+.flair-card {
+  /* The structural shadow layer, also `inset: 0`. It is positioned with
+     `z-index: 0` while `.media` is a plain flex item, so it paints above the
+     media and swallowed the MediaPlaceholder's buttons. Kept in the render
+     -- a theme may hang a real shadow on it and an author should see that --
+     but taken out of hit testing. */
+}
+.flair-card::before {
+  pointer-events: none;
+}
