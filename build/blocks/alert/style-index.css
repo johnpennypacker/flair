@@ -4,9 +4,15 @@
 /**
  *
  */
+:root .flair-alert-wrapper {
+  padding: var(--wp--style--block-gap, 1rem);
+}
+:root .flair-alert-wrapper.is-dismissible .flair-alert {
+  padding-inline-end: calc(var(--wp--style--block-gap, 1rem) + 2.5em);
+}
+
 :where(.flair-alert-wrapper) {
   background-color: color-mix(in oklab, var(--flair-color-primary), white 90%);
-  padding: var(--wp--style--block-gap, 1rem);
   position: relative;
 }
 
@@ -18,13 +24,6 @@
 }
 :root .flair-alert > :last-child {
   margin-block-end: 0;
-}
-
-/**
- * Make space for the close button.
- */
-:where(.flair-alert-wrapper.is-dismissible) {
-  padding-inline: calc(var(--wp--style--block-gap, 1rem) + 2.5em);
 }
 
 :where(.flair-alert-close) {
@@ -42,6 +41,7 @@
   position: absolute;
   top: 0.5em;
   width: 2em;
+  transition: 0.2s background-color ease;
 }
 :where(.flair-alert-close):hover, :where(.flair-alert-close):focus-visible {
   background-color: color-mix(in srgb, currentColor, transparent 90%);
