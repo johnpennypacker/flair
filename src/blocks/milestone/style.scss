@@ -40,7 +40,7 @@
  * (0,2,0) it clears a theme's generic block rhythm on its own, which is what
  * the !important it used to carry was really for.
  */
-.flair-milestone-wrapper:has( + .flair-milestone-wrapper) {
+:root .flair-milestone-wrapper:has( + .flair-milestone-wrapper) {
 	margin-block: 0;
 }
 
@@ -79,19 +79,32 @@
  * order below -- base first, then the variants that refine it.
  */
 :where(.flair-milestone-wrapper[class*='marker-'] .timeline)::before {
-	--side: calc( var( --space_buffer ) * .75 );
+	--side: calc( var( --space_buffer ) * .8 );
+
+	/**
+	 * border-box so --side is the marker's actual size. Under content-box the
+	 * border sat outside it, so the drawn marker was --side + two rail widths
+	 * and the centering offset had to smuggle that in as
+	 * `( --side + --timeline_width ) * -.5`. Now --side means what it says and
+	 * centering is just the plain "half the difference" below.
+	 */
+	box-sizing: border-box;
+
+	/** centers the marker across the rail, whichever way the rail runs **/
+	--marker_offset: calc( ( var( --timeline_width ) - var( --side ) ) / 2 );
+
 	background-color: currentColor;
 	border: var( --timeline_width ) solid currentColor;
 	content: " ";
 	position: absolute;
 	top: 1rem;
-	left: calc( ( var( --side ) + var( --timeline_width ) ) * -.5 );
+	left: var( --marker_offset );
 	width: var( --side );
 	height: var( --side );
 }
 :where(.flair-milestone-wrapper[class*='marker-'].orientation-horizontal .timeline)::before {
 	left: 1rem;
-	top: calc( ( var( --side ) + var( --timeline_width ) ) * -.5 );
+	top: var( --marker_offset );
 }
 :where(.flair-milestone-wrapper[class*='marker-'][class*='hollow'] .timeline)::before {
 	background-color:  var( --flair-color-secondary );
@@ -100,7 +113,7 @@
 	border-radius: 50%;
 }
 :where(.flair-milestone-wrapper[class*='diamond'] .timeline)::before {
-	--side: calc( var( --space_buffer ) * .65 ); /** rotated square looks big; scale down a bit **/
+	--side: calc( var( --space_buffer ) * .7 ); /** rotated square looks big; scale down a bit **/
 	transform: rotate(45deg);
 }
 
@@ -111,11 +124,11 @@
 		flex-direction: row-reverse;
 	}
 	&.layout-center-right .flair-milestone {
-		margin-inline-start: calc( 50% - var( --space_buffer ) - ( var( --timeline_width ) / 2 ) );
+		margin-inline-start: calc( 50% - var( --space_buffer ) - var( --timeline_width ) / 2 );
 	}
 	&.layout-center-left .flair-milestone {
 		flex-direction: row-reverse;
-		margin-inline-end: calc( 50% - var( --space_buffer ) - ( var( --timeline_width ) / 2 ) );
+		margin-inline-end: calc( 50% - var( --space_buffer ) - var( --timeline_width ) / 2 );
 	}
 }
 
@@ -143,7 +156,7 @@
 		content: '';
 		display: block;
 		margin-inline-start: var(--space_buffer);
-		margin-inline-end: calc( 50% - ( var( --timeline_width ) / 2 ) );
+		margin-inline-end: calc( 50% - var( --timeline_width ) / 2 );
 	}
 
 	/** draw a line from C to R or R to C **/
@@ -155,7 +168,7 @@
 		content: '';
 		display: block;
 		margin-inline-end: var(--space_buffer);
-		margin-inline-start: calc( 50% - ( var( --timeline_width ) / 2 ) );
+		margin-inline-start: calc( 50% - var( --timeline_width ) / 2 );
 	}
 
 }

@@ -12,6 +12,3 @@ Multibutton
 
 Sidler
 	second sidler looks odd when narrow
-
-Tabs
-	In the editor it isn't obvious which tab panel is linked to each tab.  outlines?

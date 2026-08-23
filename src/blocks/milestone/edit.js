@@ -40,7 +40,7 @@ import './editor.scss';
 
 
 const markers = [
-	{ value: 0, label: __( 'Select a Marker...' ) },
+	{ value: '', label: __( 'No Marker' ) },
 	{ value: 'diamond', label: __( 'Diamond (Solid)' ) },
 	{ value: 'diamond-hollow', label: __( 'Diamond (Hollow)' ) },
 	{ value: 'dot', label: __( 'Dot (Solid)' ) },
@@ -51,7 +51,14 @@ const markers = [
 
 const calculateClassName = (attributes) => {
 	let c = ['flair-wrapper flair-milestone-wrapper'];
-	c.push('marker-' + attributes.marker);
+	// No marker class at all when none is picked -- the marker styles hang off
+	// [class*='marker-'], so a placeholder like marker-undefined draws one.
+	// '0' is what the old picker's "Select a Marker..." option saved; it is
+	// truthy here but empty in the template's PHP, so exclude it explicitly or
+	// the editor and the front end disagree on those older posts.
+	if( attributes.marker && '0' !== attributes.marker ) {
+		c.push('marker-' + attributes.marker);
+	}
 	c.push('layout-' + attributes.layout);
 	c.push('orientation-' + attributes.orientation);
 	return c.join(' ');
@@ -89,7 +96,7 @@ export default function Edit(props) {
 						<SelectControl
 							label={__('Marker')}
 							options={markers}
-							value={attributes.marker}
+							value={attributes.marker || ''}
 							onChange={( value ) => {
 								setAttributes({
 									marker: value

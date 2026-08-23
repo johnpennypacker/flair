@@ -4,7 +4,10 @@ $attributes = $args['attributes'];
 
 
 $classes = ['flair-milestone-wrapper'];
-if( isset( $attributes['marker'] ) ) {
+// empty(), not isset(): the marker styles key off [class*='marker-'], so an
+// empty value -- or the "0" older versions of the picker saved -- would still
+// draw a marker.
+if( ! empty( $attributes['marker'] ) ) {
 	$classes[] = 'marker-' . $attributes['marker'] ;
 }
 if( isset( $attributes['layout'] ) ) {
