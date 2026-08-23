@@ -35,39 +35,19 @@
 		padding: 1.5em;
 		padding: calc( var( --wp--style--block-gap, 1rem ) * 1.5 );
 		z-index: 1;
-		// The card owns the rhythm between its own parts. This used to come
-		// from a hand-stamped `is-layout-constrained`, which meant the spacing
-		// was really whatever the active theme did with that class -- and it
-		// dragged in core's `margin-inline: auto !important`, which cancelled
-		// the footer's negative side margins.
-		//
-		// Spacing is margins rather than a gap on purpose. A gap *adds* to
-		// whatever margins a theme sets on these parts; a margin is simply
-		// replaced by one. Themes get to overrule the rhythm, which is the
-		// point.
+
 		& > * {
 			margin-block-start: 0;
 		}
-		// .button is left out: `width: 100%` resolves against the padding
-		// box, so together with the negative side margins below the footer
-		// reaches the left card edge and stops short of the right one. With
-		// no width it is stretched by the flex container instead, and the
-		// negative margins take it edge to edge.
+		// Make text content full width
 		& > *:where(:not(.button)) {
 			width: 100%;
 		}
-		// .button is the exception: it overhangs the padding box on purpose,
-		// so it keeps a block-end margin of its own. Excluding it here rather
-		// than out-specifying it is what lets that margin stand without
-		// !important.
+		// except .button it needs to extend past the padding
 		& > *:not(.button) {
 			margin-block-end: var( --wp--style--block-gap, 1rem );
 		}
-		// The `:not()` is wrapped here so it adds no weight of its own. Bare,
-		// this reads (0,3,0) and out-specifies a theme styling
-		// `.flair-card .title` -- on a title-only card it would take that
-		// theme's margin back off again. Wrapped, it stays level with the
-		// rule above and wins on source order instead.
+
 		& > :last-child:where(:not(.button)) {
 			margin-block-end: 0;
 		}
@@ -81,23 +61,7 @@
 		text-decoration: inherit;
 	}
 
-	// Stretched link: the heading is the link semantically, the whole card is
-	// the link visually. Extending the anchor's own box over the card is what
-	// makes both true at once -- the status bar URL, cmd/middle-click, the
-	// context menu and the keyboard all come from the browser rather than from
-	// card.js timing mousedown against mouseup.
-	//
-	// The card is already `position: relative`, so this resolves against it.
-	//
-	// It sits *below* the text rather than over it. An overlay on top is the
-	// usual way to write this, but it takes the text with it: hit-testing
-	// returns one element per point, so a drag across the excerpt grabs the
-	// link instead of selecting the words. Underneath, the prose stays the
-	// hit target and stays selectable, and the overlay still covers the
-	// padding, the media and the footer -- most of a card's surface.
-	//
-	// Clicks that land on the text itself are the part CSS cannot reach; the
-	// view script picks those up.
+	// This makes whole card behave link a link though only the title is.
 	:where(.title) a::after {
 		content: '';
 		position: absolute;
@@ -105,17 +69,10 @@
 		z-index: 1;
 	}
 	.title {
-// 		font-family: inherit;
-// 		font-weight: bold;
-// 		font-size: calc(var(--flair-font-size) * 1.25);
 	}
 	.excerpt, .button {
-// 		font-size: calc(var(--flair-font-size) * 1);
-// 		margin: 0 0 calc(var(--flair-font-size) * 1);
 	}
 	.button {
-// 		border-block-start: 1px solid color-mix(in srgb, var(--flair-color-secondary), transparent 80%);
-//		color: currentColor;
 		margin-inline: calc( var( --wp--style--block-gap, 1rem ) * -1.5 );
 		margin-block-end: calc( var( --wp--style--block-gap, 1rem ) * -1.5 );
 		padding: calc( var( --wp--style--block-gap, 1rem ) * 1.5 );
@@ -169,6 +126,11 @@
 		z-index: 0;
 	}
 
+}
+
+
+.flair-card-wrapper {
+	border: 1px solid color-mix(in srgb, currentColor, transparent 90%);
 }
 
 /**
