@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- The `carousel` block previews its arrows and dots in the editor, and they
+  follow the "Show Arrow Buttons" and "Show Dots" toggles. On the front end
+  `view.js` builds those controls at runtime, and a `viewScript` never runs in
+  the editor, so until now both toggles changed nothing an author could see.
+  `edit.js` now writes the same wrapper markup and the same classes the template
+  does, which also lets `style.scss` dress the preview — the arrows and dots are
+  drawn by the shipping stylesheet, not an editor-only copy of it.
+  The preview is inert (`aria-hidden`, not focusable, no pointer events) so a
+  click on an arrow still selects the block.
+- The `carousel` block previews "Slides per page" in the editor. `edit.js` never
+  emitted the `single`/`double`/`triple` class the setting maps to, and the
+  `editor.scss` rules meant to size the slides were keyed on
+  `var( --carousel_gap )`, which nothing in the plugin or a theme defines — so
+  every carousel previewed one slide per screen whatever the toggle said.
 - The `alert` block supports layout, so it carries the "Inner blocks use content
   width" toggle and defaults to constrained. A full-width alert now keeps its
   text on the page's content column instead of running edge to edge.

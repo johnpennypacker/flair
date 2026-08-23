@@ -36,6 +36,9 @@
   left: 1em;
   bottom: 0rem;
 }
+:where(.flair-carousel-wrapper).has-arrows:not(.has-dots) {
+  padding-block-end: 2rem;
+}
 :where(.flair-carousel-wrapper) .dots {
   display: flex;
   flex-wrap: nowrap;

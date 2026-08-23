@@ -1,7 +1,3 @@
-Boxout
-	validate spacing between elements
-	inline padding works on floated/narrow boxouts, not alignwide
-
 Card
 	media buttons not clickable in editor when you add a new card
 	button is not selectable either, so you can't set its type

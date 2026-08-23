@@ -37,6 +37,10 @@
 		bottom: 0rem;
 	}
 
+	&.has-arrows:not(.has-dots) {
+		padding-block-end: 2rem;
+	}
+
 	.dots {
 		display: flex;
 		flex-wrap: nowrap;
