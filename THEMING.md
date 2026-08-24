@@ -45,7 +45,7 @@ Site-wide, set on `:root`:
 | Property | Default | What actually reads it |
 |---|---|---|
 | `--flair-color-primary` | `var(--wp--preset--color--contrast, #000)` | Boxout background, alert background |
-| `--flair-color-secondary` | `var(--wp--preset--color--accent-1, #9a7500)` | Hollow milestone marker, multibutton background |
+| `--flair-color-secondary` | `var(--wp--preset--color--accent-1, #9a7500)` | Hollow milestone marker, multibutton background (through `--flair-multibutton-background`) |
 | `--type__size` | `1.1rem` | Metric — the number's size, and the block's bottom margin |
 | `--flair-font-size` | `1.1rem` | Milestone spacing, via `--space_buffer` |
 
@@ -53,6 +53,7 @@ Per-block, set on the block:
 
 | Property | Block | Default | What it does |
 |---|---|---|---|
+| `--flair-multibutton-background` | multibutton | `color-mix(in oklab, var(--flair-color-secondary), white 30%)` | The whole control's surface. `.dropdown` and `.options` inherit it |
 | `--flair-toggle-glyph` | multibutton | `1.25rem` | Size of the dropdown arrow. Set on `.dropdown-toggle` |
 | `--space_buffer` | milestone | `var(--flair-font-size, 1em)` | Gap between rail and entry, and the marker's size |
 | `--timeline_width` | milestone | `.125em` | Thickness of the timeline rail |
@@ -62,6 +63,12 @@ live readers, not the dozen the raw source suggests — much of what looks like
 usage is commented out. So setting them fixes boxout, alert, milestone markers
 and the multibutton, and does nothing at all for card or overlay, which take
 their colour from block supports and from your own CSS. Style those directly.
+
+Note the direction of the multibutton's: `--flair-multibutton-background` is the
+*default*, and an author's Background choice in the editor beats it, because
+block supports emit an inline style or a preset class carrying `!important`.
+Setting it from a theme changes what a multibutton looks like when nobody has
+picked a colour; it does not overrule anyone who has.
 
 There is no property for the card's drop shadow, because there is no default
 shadow — Flair used to ship one and it was removed. Add your own on

@@ -1,7 +1,11 @@
 /**
- * The following styles get applied inside the editor only.
+ * Editor-only adjustments.
  *
- * Replace them with your own styles or remove the file completely.
+ * edit.js renders the same markup and the same classes as
+ * template-parts/multibutton.php, so style.scss does nearly all of the work
+ * here too. What is left is the editor's own chrome: the block appender, and
+ * the two wrapper elements the block list inserts between `.options` and the
+ * options themselves.
  */
 
 .wp-block-flair-multibutton .block-editor-button-block-appender {
@@ -10,15 +14,6 @@
 
 .wp-block-flair-multibutton.is-selected .block-editor-button-block-appender {
 	display: flex;
-}
-
-.wp-block-flair-multibutton .action {
-	display: block;
-	padding: 1rem 1.25rem;
-}
-.wp-block-flair-multibutton.is-open .dropdown-item {
-	display: block;
-	padding: 1rem 1.25rem;
 }
 
 .wp-block-flair-multibutton .options .block-editor-inner-blocks .block-editor-block-list__layout {

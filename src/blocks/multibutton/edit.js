@@ -10,7 +10,8 @@ import { __ } from '@wordpress/i18n';
 import {
 	ButtonBlockAppender,
 	InnerBlocks,
-	InspectorControls
+	InspectorControls,
+	store as blockEditorStore
 } from '@wordpress/block-editor';
 
 import {
@@ -111,18 +112,34 @@ export default function Edit(props) {
     );
 	}
 
+	// The two things the editor needs to know about this block's own subtree.
+	// Read at the top level -- they used to be `useSelect` calls buried inside
+	// the helpers below, which only worked because the helpers happened to be
+	// called unconditionally and in a stable order on every render.
+	const innerBlockSelected = useSelect(
+		( select ) => select( blockEditorStore ).hasSelectedInnerBlock( props.clientId ),
+		[ props.clientId ]
+	);
+
+	const innerBlocks = useSelect(
+		( select ) => select( blockEditorStore ).getBlock( props.clientId )?.innerBlocks ?? [],
+		[ props.clientId ]
+	);
+
+	// Selecting the block -- or any of its options -- opens the dropdown, the
+	// way clicking the toggle does on the front end.
+	const isOpen = isSelected || innerBlockSelected;
+
+	// Mirrors template-parts/multibutton.php. `has-js` is unconditional here
+	// because the editor is, by definition, the scripted case: it makes the
+	// options overlay rather than sit in the flow, so a closed block is the
+	// same height in the editor as it is on the front end.
 	const calculateClassName = () => {
-		let c = ['flair-wrapper flair-multibutton is-layout-flex'];
+		let c = ['flair-multibutton has-js'];
 
-
-		const innerBlockSelected = useSelect(
-			(select) => select( 'core/block-editor' ).hasSelectedInnerBlock( props.clientId )
-		);
-
-		if( isSelected || innerBlockSelected ) {
+		if( isOpen ) {
 			c.push('is-open');
 		}
-		let w = attributes.width || 100;
 		if( attributes.width ) {
 			c.push( 'flair-width-' + attributes.width.replace("%", "") );
 		}
@@ -130,15 +147,13 @@ export default function Edit(props) {
 		return c.join(' ');
 	}
 
+	// The action shows whichever option is currently selected; with nothing
+	// selected yet that is the first one, which is what view.js does on load.
 	const getFirstButton = () => {
-		const { store: blockEditorStore } = wp.blockEditor;
-		const innerBlocks = useSelect(
-			(select) => select(blockEditorStore).getBlock(props.clientId).innerBlocks,
-		);
-		if(innerBlocks.length > 0) {
+		if( innerBlocks.length > 0 ) {
 			return innerBlocks[0].attributes;
 		}
-		return { "href": "#", "text": "Add a button"};
+		return { "href": "#", "text": __( 'Add a button', 'flair' ) };
 	}
 
 
@@ -158,12 +173,31 @@ export default function Edit(props) {
   		</InspectorControls>
 
 			<div { ...useBlockProps({ className:calculateClassName() }) }>
-				<div class="dropdown">
-					<div class="select">
-						<button aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"><span>Other options</span></button>
-						<span href="" class="action button">{ firstButton.text }</span>
+				<div className="dropdown">
+					<div className="select">
+						<button
+							aria-expanded={ isOpen }
+							aria-haspopup="true"
+							className="dropdown-toggle"
+						>
+							<span className="flair-sr-only">{ __( 'Select an action', 'flair' ) }</span>
+						</button>
+						{ /*
+						  * An anchor rather than a button, and href="#" rather
+						  * than a real target, because that is what
+						  * template-parts/multibutton.php renders -- a theme
+						  * styling `a` inside the block has to reach this in
+						  * the editor too. It navigates nowhere here, which is
+						  * what the rule below objects to.
+						  */ }
+						{ /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+						<a
+							href="#"
+							className="action button"
+							onClick={ ( event ) => event.preventDefault() }
+						>{ firstButton.text }</a>
 					</div>
-					<div class="options">
+					<div className={ isOpen ? 'options shown' : 'options' }>
 						<InnerBlocks
 							orientation="vertical"
 							template={ MULTIBUTTON_TEMPLATE }

@@ -2,7 +2,8 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/multibutton/style.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************/
 :where(.flair-multibutton) {
-  --bg: color-mix(in oklab, var(--flair-color-secondary), white 30%);
+  --flair-multibutton-background: color-mix( in oklab, var( --flair-color-secondary ), white 30% );
+  background-color: var(--flair-multibutton-background);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -34,8 +35,8 @@
   position: relative;
   width: 100%;
 }
-:where(.flair-multibutton) .dropdown a, :where(.flair-multibutton) .dropdown .action .dropdown-toggle {
-  display: inline-block;
+:where(.flair-multibutton) .action, :where(.flair-multibutton) .dropdown-item {
+  display: block;
   padding: 1rem 1.25rem;
 }
 :where(.flair-multibutton) .select {
@@ -106,13 +107,13 @@
   display: block;
   padding-inline-end: 3rem;
   text-wrap: nowrap;
-  transition: background-color 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 :where(.flair-multibutton) .options .dropdown-item + .dropdown-item {
   border-block-start: 1px solid currentColor;
 }
 :where(.flair-multibutton) .options .dropdown-item:hover {
-  backdrop-filter: brightness(115%) saturate(150%);
+  box-shadow: inset 0 0 0 100vmax rgba(255, 255, 255, 0.18);
 }
 :where(.flair-multibutton).is-open .options {
   opacity: 1;

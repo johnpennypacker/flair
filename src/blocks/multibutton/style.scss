@@ -1,5 +1,12 @@
 :where( .flair-multibutton ) {
-	--bg: color-mix(in oklab, var(--flair-color-secondary), white 30%);
+	// The block's surface. Every part of the block paints from this one value:
+	// `.dropdown` and `.options` inherit it, and the toggle's `backdrop-filter`
+	// brightens whatever is behind it, which is this. Set it from a theme to
+	// recolour the whole control; an author's Background choice in the editor
+	// beats it, because block supports emit an inline style or a preset class.
+	--flair-multibutton-background: color-mix( in oklab, var( --flair-color-secondary ), white 30% );
+
+	background-color: var( --flair-multibutton-background );
 	display: flex;
 	flex-direction: column;
 	gap: 0;
@@ -38,8 +45,8 @@
 		position: relative;
 		width: 100%;
 	}
-	.dropdown a, .dropdown .action .dropdown-toggle {
-		display: inline-block;
+	.action, .dropdown-item {
+		display: block;
 		padding: 1rem 1.25rem;
 	}
 
@@ -125,14 +132,18 @@
 			display: block;
 			padding-inline-end: 3rem;
 			text-wrap: nowrap;
-			transition: background-color .2s ease;
+			transition: box-shadow .2s ease;
 		}
 		.dropdown-item + .dropdown-item {
 			border-block-start: 1px solid currentColor;
 		}
 		.dropdown-item:hover {
-			backdrop-filter: brightness(115%) saturate(150%);
-// 			background-color: color-mix(in oklab, var(--flair-color-primary), white 85%);
+			// An inset shadow rather than `backdrop-filter`, because an option
+			// may now carry its own background colour and a backdrop filter only
+			// reaches what is painted *behind* the element. This paints above
+			// the option's own background and below its text, and unlike a
+			// gradient it transitions.
+			box-shadow: inset 0 0 0 100vmax rgb( 255 255 255 / .18 );
 		}
 	}
 	&.is-open .options {

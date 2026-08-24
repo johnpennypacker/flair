@@ -120,29 +120,42 @@ function Edit(props) {
       })
     });
   };
+
+  // The two things the editor needs to know about this block's own subtree.
+  // Read at the top level -- they used to be `useSelect` calls buried inside
+  // the helpers below, which only worked because the helpers happened to be
+  // called unconditionally and in a stable order on every render.
+  const innerBlockSelected = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.store).hasSelectedInnerBlock(props.clientId), [props.clientId]);
+  const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.store).getBlock(props.clientId)?.innerBlocks ?? [], [props.clientId]);
+
+  // Selecting the block -- or any of its options -- opens the dropdown, the
+  // way clicking the toggle does on the front end.
+  const isOpen = isSelected || innerBlockSelected;
+
+  // Mirrors template-parts/multibutton.php. `has-js` is unconditional here
+  // because the editor is, by definition, the scripted case: it makes the
+  // options overlay rather than sit in the flow, so a closed block is the
+  // same height in the editor as it is on the front end.
   const calculateClassName = () => {
-    let c = ['flair-wrapper flair-multibutton is-layout-flex'];
-    const innerBlockSelected = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/block-editor').hasSelectedInnerBlock(props.clientId));
-    if (isSelected || innerBlockSelected) {
+    let c = ['flair-multibutton has-js'];
+    if (isOpen) {
       c.push('is-open');
     }
-    let w = attributes.width || 100;
     if (attributes.width) {
       c.push('flair-width-' + attributes.width.replace("%", ""));
     }
     return c.join(' ');
   };
+
+  // The action shows whichever option is currently selected; with nothing
+  // selected yet that is the first one, which is what view.js does on load.
   const getFirstButton = () => {
-    const {
-      store: blockEditorStore
-    } = wp.blockEditor;
-    const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select(blockEditorStore).getBlock(props.clientId).innerBlocks);
     if (innerBlocks.length > 0) {
       return innerBlocks[0].attributes;
     }
     return {
       "href": "#",
-      "text": "Add a button"
+      "text": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add a button', 'flair')
     };
   };
   const MULTIBUTTON_TEMPLATE = [['flair/multibutton-button', {}], ['flair/multibutton-button', {}], ['flair/multibutton-button', {}]];
@@ -155,23 +168,25 @@ function Edit(props) {
         className: calculateClassName()
       }),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        class: "dropdown",
+        className: "dropdown",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          class: "select",
+          className: "select",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-            "aria-expanded": "false",
+            "aria-expanded": isOpen,
             "aria-haspopup": "true",
-            class: "dropdown-toggle",
+            className: "dropdown-toggle",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-              children: "Other options"
+              className: "flair-sr-only",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select an action', 'flair')
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-            href: "",
-            class: "action button",
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+            href: "#",
+            className: "action button",
+            onClick: event => event.preventDefault(),
             children: firstButton.text
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          class: "options",
+          className: isOpen ? 'options shown' : 'options',
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
             orientation: "vertical",
             template: MULTIBUTTON_TEMPLATE,

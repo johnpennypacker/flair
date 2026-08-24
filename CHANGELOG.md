@@ -25,6 +25,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The `alert` block supports layout, so it carries the "Inner blocks use content
   width" toggle and defaults to constrained. A full-width alert now keeps its
   text on the page's content column instead of running edge to edge.
+- The `multibutton` block paints a background. It always declared
+  `color.background` and `color.text`, and `THEMING.md` already promised
+  `--flair-color-secondary` as "multibutton background", but the value was
+  assigned to a `--bg` custom property that nothing read — so the block rendered
+  as bare text over the page, and an open dropdown was unreadable because the
+  options overlay whatever is beneath them. The default now lives in
+  `--flair-multibutton-background` and is painted; `.dropdown` and `.options`
+  inherit it, so setting that one property recolours the whole control, and an
+  author's Background choice still wins over it.
+- The `multibutton-button` block has Background and Text colour controls, so an
+  individual option can be styled — a destructive choice in red, say. Both
+  default to nothing: a transparent option over the multibutton's own surface,
+  with the multibutton's text colour inherited. Related: the option's hover tint
+  is now an inset shadow rather than a `backdrop-filter`, which only ever
+  reached what was painted *behind* the option and so would have been hidden by
+  any background colour set on it.
+
 - The `overlay` block has a focal point picker, in the settings panel below the
   aspect ratio it exists to serve. The overlay's image is always cropped —
   `object-fit: cover` inside an absolutely positioned `.media` — so before this
@@ -47,6 +64,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `card`'s already did — nothing in the editor navigates, so no overlay-wide
   link is lost. The `::before` shadow layer and the colour wash are taken out of
   hit testing there too.
+- The `multibutton` looks the same in the editor as it does on the front end.
+  `edit.js` rendered a different tree from `template-parts/multibutton.php`: a
+  visible "Other options" label where the template has a screen-reader-only one,
+  which stretched the toggle across the block instead of leaving it square; a
+  `<span>` where the template has the action `<a>`, which missed the padding
+  keyed on `.dropdown a`; and no `has-js`, so the options sat in the flow and
+  the closed block was several times its rendered height. The editor now emits
+  the template's markup and classes, selecting the block opens the dropdown the
+  way clicking the toggle does, and `editor.scss` is down to the block
+  appender and the wrappers the block list inserts.
+- `multibutton-button` supports reach the front end. Its template wrote its own
+  `class` attribute and never called `get_block_wrapper_attributes()`, so the
+  block's text alignment — and now its colours — were serialized into the post
+  and then dropped at render time.
 - Font family is selectable on the `eyebrow` block. It declared
   `typography.fontFamily`, but core still reads the support as
   `typography.__experimentalFontFamily`, so nothing was registered — no

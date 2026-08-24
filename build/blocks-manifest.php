@@ -647,6 +647,10 @@ return array(
 			'flair/multibutton'
 		),
 		'supports' => array(
+			'color' => array(
+				'background' => true,
+				'text' => true
+			),
 			'html' => false,
 			'layout' => null,
 			'typography' => array(

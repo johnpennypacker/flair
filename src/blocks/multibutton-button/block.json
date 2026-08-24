@@ -8,8 +8,12 @@
 	"description": "The individual buttons that go inside a multibutton.",
 	"parent": [ "flair/multibutton" ],
 	"supports": {
+		"color": {
+			"background": true,
+			"text": true
+		},
 		"html": false,
-    "layout": null,
+		"layout": null,
 		"typography": {
 			"textAlign": true
 		}
