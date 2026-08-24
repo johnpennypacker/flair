@@ -1,8 +1,2 @@
-Multibutton
-	looks like hell in the editor.
-	needs default background color. -- can't replicate
-	set background doesn't work.
-	open menus would do well with a high z-index.
-
 Sidler
 	second sidler looks odd when narrow
