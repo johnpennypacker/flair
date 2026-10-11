@@ -50,5 +50,3 @@ in `build/`, so for a one-off rebuild that matches what's committed use:
 ```bash
 NODE_ENV=development npx wp-scripts build --blocks-manifest --webpack-copy-php --mode=development
 ```
-
-Pushing `main` deploys to Kinsta through `.github/workflows/deploy.yml`.
