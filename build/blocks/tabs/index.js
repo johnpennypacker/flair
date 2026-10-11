@@ -212,7 +212,7 @@ module.exports = window["wp"]["i18n"];
   \************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/tabs","version":"0.1.0","title":"Tabs","category":"flair","description":"An accessible tabbed interface.","icon":"table-row-after","supports":{"align":true,"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"textAlign":true}},"attributes":{},"example":{},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/tabs","version":"2.0.0","title":"Tabs","category":"flair","description":"An accessible tabbed interface.","icon":"table-row-after","supports":{"align":true,"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"textAlign":true}},"attributes":{},"example":{},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ }
 

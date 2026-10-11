@@ -5,7 +5,7 @@ All notable changes to the **Flair** plugin are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0]
 
 ### Added
 - The `carousel` block previews its arrows and dots in the editor, and they
@@ -118,6 +118,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `template-parts/modal.php` echoes its inner content unfiltered, unlike other
   flair templates — `wp_kses_post()` strips iframes and form controls, which are
   most of what modals contain. See CLAUDE.md.
+
+## [0.3.1]
+
+### Fixed
+- Fixed scroll-reveal effect (`[data-was-visible]`) applying its `transform` to `header`/`nav` elements, which created a new CSS containing block and broke `position: fixed` overlays nested inside them — most visibly, WP core Navigation block's mobile hamburger menu would toggle open but render collapsed to the icon's own size instead of filling the screen. Removed `header`/`nav` from the scroll-reveal observer's selector.
 
 ## [0.3.0] - 2026-07-22
 

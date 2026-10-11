@@ -328,7 +328,7 @@ module.exports = window["wp"]["i18n"];
   \***************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/eyebrow","version":"0.1.0","title":"Eyebrow","category":"flair","description":"Creates a pre-header, kicker, or overline","keywords":["overline","kicker","header","eyebrow"],"attributes":{"content":{"type":"string"},"element":{"type":"string"}},"supports":{"align":true,"html":false,"splitting":false,"color":{"background":true,"text":true},"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"fontSize":true,"__experimentalFontFamily":true,"lineHeight":true,"textAlign":true}},"example":{"attributes":{"content":"Let\'s do this"}},"textdomain":"flair","editorScript":"file:./index.js","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/eyebrow","version":"2.0.0","title":"Eyebrow","category":"flair","description":"Creates a pre-header, kicker, or overline","keywords":["overline","kicker","header","eyebrow"],"attributes":{"content":{"type":"string"},"element":{"type":"string"}},"supports":{"align":true,"html":false,"splitting":false,"color":{"background":true,"text":true},"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"fontSize":true,"__experimentalFontFamily":true,"lineHeight":true,"textAlign":true}},"example":{"attributes":{"content":"Let\'s do this"}},"textdomain":"flair","editorScript":"file:./index.js","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }
 

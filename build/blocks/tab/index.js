@@ -144,7 +144,7 @@ module.exports = window["wp"]["i18n"];
   \***********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/tab","version":"0.1.0","title":"Tab","category":"flair","description":"An individual tab and its panel within a tabs block.","icon":"table-row-after","parent":["flair/tabs"],"supports":{"anchor":true,"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true}},"attributes":{"label":{"type":"string","default":""},"anchor":{"type":"string"}},"example":{},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/tab","version":"2.0.0","title":"Tab","category":"flair","description":"An individual tab and its panel within a tabs block.","icon":"table-row-after","parent":["flair/tabs"],"supports":{"anchor":true,"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true}},"attributes":{"label":{"type":"string","default":""},"anchor":{"type":"string"}},"example":{},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ }
 

@@ -1,0 +1,61 @@
+name: Deploy to Kinsta
+
+on:
+  push:
+    branches:
+      - main # Trigger the workflow only when changes are pushed to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Setup Node.js (used to verify the build)
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24.x'
+
+      # Checkout the latest code from the GitHub repository
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      # Fail the deploy if the committed build/ is out of date with src/. The
+      # committed build is a development build, so rebuild the same way.
+      - name: Verify build is up to date
+        run: |
+          npm ci
+          NODE_ENV=development npx wp-scripts build --blocks-manifest --webpack-copy-php --mode=development
+          if [ -n "$(git status --porcelain -- build)" ]; then
+            git status --short -- build
+            echo "::error::build/ is out of date. Rebuild with the development build (see README.md) and commit the result."
+            exit 1
+          fi
+
+      # Deploy to Kinsta via SSH
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.KINSTA_SERVER_IP }}
+          username: ${{ secrets.KINSTA_USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }} # Optional, default is 22
+          script: |
+            # Pull the latest changes into the deploy directory (outside the web root)
+            cd /www/cosidigital_794/private/deploy/flair
+            if git fetch origin main && git reset --hard origin/main; then
+              echo "Git fetch/reset succeeded"
+            else
+              echo "Git fetch/reset failed"
+              exit 1
+            fi
+
+            # Sync into the live plugin directory, excluding the dev-only files
+            # listed in .distignore
+            mkdir -p /www/cosidigital_794/public/wp-content/plugins/flair
+            if rsync -a --delete --exclude-from=.distignore /www/cosidigital_794/private/deploy/flair/ /www/cosidigital_794/public/wp-content/plugins/flair/; then
+              echo "Rsync succeeded"
+            else
+              echo "Rsync failed"
+              exit 1
+            fi

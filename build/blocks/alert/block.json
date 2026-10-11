@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "flair/alert",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "title": "Alert",
   "category": "flair",
   "description": "A notice or banner, optionally dismissible by the visitor.",

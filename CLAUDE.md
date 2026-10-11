@@ -7,7 +7,7 @@ Guidance for Claude Code (and humans) working in this repository.
 **Flair** is a WordPress plugin ("Fanciful add-ons. Take two.") that ships a
 collection of custom Gutenberg blocks plus several block *variations* and
 *enhancements* that decorate WordPress core blocks. Author: John Pennypacker.
-Current version: `0.2.0`. Requires WP 6.7+, PHP 7.4+.
+Current version: `2.0.0`. Requires WP 6.7+, PHP 7.4+.
 
 ## Build & tooling
 
@@ -18,7 +18,7 @@ loads at runtime (`flair.php` includes from `build/`).
 ```bash
 npm install
 npm run start    # watch/dev build (--blocks-manifest --webpack-copy-php)
-npm run build    # production build
+npm run build    # production build — don't commit it (see below)
 npm run lint:js  # eslint via wp-scripts
 npm run lint:css # stylelint via wp-scripts
 npm run format   # prettier via wp-scripts
@@ -26,6 +26,24 @@ npm run format   # prettier via wp-scripts
 
 After editing anything under `src/`, you **must** run a build so the matching
 file in `build/` is regenerated — editing `build/` directly will be overwritten.
+
+The committed `build/` is a **development** build (unminified, with `.map`
+files). `npm run build` rewrites all of it as a production build, so for a
+one-off rebuild that matches what's committed use:
+
+```bash
+NODE_ENV=development npx wp-scripts build --blocks-manifest --webpack-copy-php --mode=development
+```
+
+## Deploy
+
+Pushing `main` runs `.github/workflows/deploy.yml`: CI runs `npm ci` and the
+development build above and fails if the committed `build/` differs (so always
+commit a fresh build), then SSHes to Kinsta, resets
+`/www/cosidigital_794/private/deploy/flair` to `origin/main`, and rsyncs it into
+`wp-content/plugins/flair`, excluding everything in `.distignore`. Anything the
+live plugin needs (`flair.php`, `build/`, `template-parts/`) must not be listed
+there.
 
 ## Architecture
 
@@ -113,5 +131,8 @@ records the findings it came from.
 - Several templates read block attributes without `isset`/`??` guards and rely
   on `block.json` defaults being present. Prefer null-coalescing when adding new
   attribute reads.
-- Keep `flair.php` version, `package.json` version, and `readme.txt` "Stable tag"
-  in sync, and add a `CHANGELOG.md` entry.
+- Flair is GitHub-only (never submitted to WordPress.org), so it has a
+  `README.md` and no `readme.txt`. On a version change, keep the `flair.php`
+  header, `package.json` (and `package-lock.json`'s root version), every
+  `src/**/block.json` `version`, and the version in `README.md` in sync, and add
+  a `CHANGELOG.md` entry.

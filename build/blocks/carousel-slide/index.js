@@ -251,7 +251,7 @@ module.exports = window["wp"]["i18n"];
   \**********************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/carousel-slide","version":"0.1.0","title":"Carousel slide","category":"flair","description":"The individual slides within a carousel.","icon":"carrot","parent":["flair/carousel"],"supports":{"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true}},"attributes":{},"example":{"text":"Save"},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/carousel-slide","version":"2.0.0","title":"Carousel slide","category":"flair","description":"The individual slides within a carousel.","icon":"carrot","parent":["flair/carousel"],"supports":{"html":false,"layout":null,"spacing":{"margin":true,"padding":true,"blockGap":true}},"attributes":{},"example":{"text":"Save"},"textdomain":"flair","editorStyle":"file:./index.css","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ }
 

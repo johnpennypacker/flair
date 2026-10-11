@@ -215,7 +215,7 @@ module.exports = window["wp"]["i18n"];
   \**************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/sidler","version":"0.1.0","title":"Sidler","category":"flair","icon":"smiley","description":"It\'s like a marquee for Gen alpha.","attributes":{"content":{"type":"string"}},"supports":{"color":{"background":"true","gradients":"true","text":"true"},"html":false,"splitting":false,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true}},"example":{"attributes":{"content":"Lorem ipsum dolor sit amet."}},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/sidler","version":"2.0.0","title":"Sidler","category":"flair","icon":"smiley","description":"It\'s like a marquee for Gen alpha.","attributes":{"content":{"type":"string"}},"supports":{"color":{"background":"true","gradients":"true","text":"true"},"html":false,"splitting":false,"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true}},"example":{"attributes":{"content":"Lorem ipsum dolor sit amet."}},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
 

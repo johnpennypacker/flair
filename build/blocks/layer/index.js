@@ -132,7 +132,7 @@ module.exports = window["wp"]["i18n"];
   \*************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/layer","version":"0.1.0","title":"Layer","category":"flair","description":"A layer of content within a stack.","example":{},"parent":["flair/stack"],"supports":{"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/layer","version":"2.0.0","title":"Layer","category":"flair","description":"A layer of content within a stack.","example":{},"parent":["flair/stack"],"supports":{"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
 

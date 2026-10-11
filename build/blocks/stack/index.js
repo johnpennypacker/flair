@@ -234,7 +234,7 @@ module.exports = window["wp"]["i18n"];
   \*************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/stack","version":"0.1.0","title":"Stack","category":"flair","allowedBlocks":["flair/layer"],"description":"A stack of content.","example":{},"supports":{"align":true,"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flair/stack","version":"2.0.0","title":"Stack","category":"flair","allowedBlocks":["flair/layer"],"description":"A stack of content.","example":{},"supports":{"align":true,"html":false},"textdomain":"flair","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
 
