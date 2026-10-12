@@ -38,9 +38,23 @@ $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','
 			<?php endif; ?>
 		</div>
 		<div class="media">
-			<?php if( ! empty( $attributes['asset']['url'] ) ): ?>
-			<img src="<?php echo esc_attr( $attributes['asset']['url'] ); ?>" alt="<?php echo esc_attr( $attributes['asset']['alt'] ?? '' ); ?>">
-			<?php endif; ?>
+			<?php
+			// Attachments get a srcset; a lazy-loaded one also gets sizes="auto",
+			// so the browser picks a file from the card's laid-out width.
+			$image = '';
+			if( ! empty( $attributes['asset']['id'] ) ) {
+				$image = wp_get_attachment_image( (int) $attributes['asset']['id'], 'large', false, [
+					'alt' => $attributes['asset']['alt'] ?? '',
+				] );
+			}
+			if( $image ) {
+				echo $image;
+			} elseif( ! empty( $attributes['asset']['url'] ) ) {
+				?>
+				<img src="<?php echo esc_attr( $attributes['asset']['url'] ); ?>" alt="<?php echo esc_attr( $attributes['asset']['alt'] ?? '' ); ?>">
+				<?php
+			}
+			?>
 		</div>
 	</div>
 </div>

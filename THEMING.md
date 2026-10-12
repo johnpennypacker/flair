@@ -186,6 +186,27 @@ Use it for your own hidden labels rather than inventing a technique, and don't
 override it to `display: none` or `visibility: hidden` — both strip the
 accessible name.
 
+### The card image's `aspect-ratio`
+
+A card whose image is an attachment renders it with `wp_get_attachment_image()`,
+so it carries `width`/`height` attributes and a `srcset`. When WordPress lazy-loads
+it, it also gets `sizes="auto"`, and the browser puts any `sizes="auto"` image
+under size containment — its own pixels no longer give it a shape. The only thing
+holding its proportions is the ratio the browser derives from the `width`/`height`
+attributes.
+
+Any author `aspect-ratio` on `.flair-card .media img` replaces that ratio. A real
+ratio (`16 / 9`) is fine. `aspect-ratio: auto` is not: the image falls back to
+WordPress's `contain-intrinsic-size` of `3000px 1500px` and renders 1500px tall,
+but only once it's far enough down the page to be lazy-loaded, so it's easy to
+miss. To give uncropped (`aspect-none`) cards their natural shape, leave
+`aspect-ratio` unset on them rather than resetting it:
+
+```css
+.flair-card-wrapper:not(.aspect-none) .media img { aspect-ratio: 3 / 2; } /* yes */
+.flair-card-wrapper.aspect-none .media img { aspect-ratio: auto; }       /* no */
+```
+
 ---
 
 ## 4. When to override the template instead
