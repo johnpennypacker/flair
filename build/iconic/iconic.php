@@ -7,8 +7,7 @@
  * Register the iconic stylesheet so it can be enqueued on demand.
  */
 function flair_iconic_register() {
-	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
-	wp_register_style( 'flair-iconic', FLAIR_URL . 'build/iconic/iconic.css', [], $asset['version'] );
+	wp_register_style( 'flair-iconic', FLAIR_URL . 'build/iconic/iconic.css', [], filemtime( FLAIR_PATH . 'build/iconic/iconic.css' ) );
 }
 add_action( 'init', 'flair_iconic_register' );
 

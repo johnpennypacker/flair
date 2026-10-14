@@ -226,6 +226,122 @@ copy `card.php`, you own the stretched link and the layering with it.
 
 ---
 
+## 5. Entrance animations
+
+Elements fade or rise in as they scroll into view. An element animates when it
+carries `data-flair-animate="<preset>"`, and only then.
+
+**Per block.** Every block has an *Entrance animation* panel: *Site default*,
+*None*, or a preset. The built-in presets are:
+
+| Preset | What it does | Best on |
+|---|---|---|
+| `fade` | Opacity only | Anything |
+| `rise` | Fades in while climbing 4rem with a 1° tilt (Flair's original reveal) | Sections, columns, cards |
+| `zoom` | Fades in while scaling up from 0.95 | Cards, image tiles |
+| `wipe` | Clips open from the inline-start edge, with no fade, and **follows the scroll** (see below) | Images, covers. Avoid on text |
+| `blur` | Fades in from an 8px blur | Images, headings. Expensive to draw on full-width covers |
+
+The choice is written onto the block's outer element at
+render time. Saved markup doesn't change, so it never invalidates a block.
+*None* also switches off the site default for everything inside the block. A
+block inside it that picked a preset of its own still gets it.
+
+**Per site: what animates.** Anything matching the default selectors gets the
+default preset unless it, or something around it, says otherwise. The defaults
+cover covers, figures, columns, `section`, `footer`, overlays, and anything
+with `.flair-io`. Change them in the theme:
+
+```php
+add_filter( 'flair_animation_defaults', function ( $defaults ) {
+	$defaults['selectors'] = [ '.wp-block-cover', '.wp-block-column' ];
+	$defaults['preset']    = 'fade';
+	return $defaults;
+} );
+```
+
+Return `[]` for `selectors` to make entrance animation entirely opt-in. The
+selectors are matched in the browser, so they reach theme markup too, not only
+blocks.
+
+**Per site: how it feels.** Set these in `theme.json`, and WordPress turns them
+into the `--wp--custom--flair--animation--*` properties Flair reads:
+
+```json
+{ "settings": { "custom": { "flair": { "animation": {
+	"duration": "600ms",
+	"delay": "0ms",
+	"stagger": "80ms",
+	"easing": "cubic-bezier(.2,.7,.2,1)",
+	"distance": "2rem",
+	"rotate": "0deg",
+	"scale": "0.9",
+	"blur": "12px"
+} } } } }
+```
+
+`distance` and `rotate` shape `rise`, `scale` shapes `zoom`, and `blur` shapes `blur`.
+
+Each one can also be set as `--flair-animation-<name>` on any element, which
+beats `theme.json` for that element and everything inside it. Siblings that
+come into view together are staggered by `stagger`, counting from the first
+one, so an item scrolled to on its own never waits out the items before it. The
+count starts over at each visual row, so a grid ripples across each row rather
+than down the whole grid, and a row that scrolls in later starts fresh. A block
+that's the only animated thing in its wrapper counts by the wrapper's position,
+so an image alone in each column still staggers across the row of columns. For wide
+rows, shorten `stagger`. Something like 50ms keeps a six-across row under a
+third of a second.
+
+**Wipe follows the scroll.** Instead of playing once, a wipe is tied to the
+element's position on screen. It starts as the element's top edge comes into
+view and is fully open once 40% of the element's pass across the screen is
+behind it. Scrolling back up closes it again. Items side by side in a row start
+a little later each, 5% further into their pass across the screen per item. This uses CSS scroll-driven
+animations (`animation-timeline: view()`). Where the browser lacks them, or the
+visitor prefers reduced motion, wipe plays once like the other presets. To have
+it finish sooner or later, set `scroll-end` in `theme.json` (any
+`animation-range` end, e.g. `"cover 25%"` or `"entry 100%"`).
+
+A preset of your own can follow the scroll the same way. Set this on its
+elements:
+
+```css
+[data-flair-animate="drop"] { --flair-entrance-scroll: 1; }
+```
+
+**Your own preset.** Add the name, then define `@keyframes flair-entrance-<name>`:
+
+```php
+add_filter( 'flair_animation_presets', function ( $presets ) {
+	$presets['drop'] = __( 'Drop', 'my-theme' );
+	return $presets;
+} );
+```
+
+```css
+@keyframes flair-entrance-drop { from { opacity: 0; translate: 0 -2rem; } }
+```
+
+Give only a `from` if you can. The animation then ends on the element's own
+styles, and nothing is held once it has played. (`rise` adds mid-way opacity
+steps to match Flair's original fade curve. That holds opacity at 1 briefly
+before it settles, which shows only on an element a theme has made
+semi-transparent.) Animate `translate`, `rotate` and `scale`
+rather than `transform`, because those add to a transform the element already
+has, where `transform` replaces it.
+
+**What's built in.** Whatever is already on screen when the page loads doesn't
+animate. It's never hidden, so the first screen paints straight away and
+nothing blinks out and back in. Anything overlapping the viewport at that moment
+counts. Nothing is hidden until `flair.js` is running (it adds
+`html.flair-js`). Under `prefers-reduced-motion: reduce`, every preset plays as
+a plain fade. A preset that changes `clip-path`, `scale` or `filter` owns that
+property while it plays, so an element's own value comes back only once the
+animation ends.
+
+---
+
 ## Reporting friction
 
 If styling a Flair block needs `!important`, or an override behaves differently

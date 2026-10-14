@@ -115,7 +115,8 @@ registerBlockVariation('core/cover',
   isDefault: false,
   category: 'flair',
   attributes: {
-    className: 'flair-fixie',
+    // flair-io opts it in to the scroll data its fade runs on.
+    className: 'flair-fixie flair-io',
     minHeight: 100,
     minHeightUnit: "vh"
   },

@@ -15,6 +15,29 @@ function flair_fixie_enqueues( $block_content='', $block=[] ) {
 			wp_add_inline_style( 'flair', $css );
 		}
 
+		$block_content = flair_fixie_add_io( $block_content );
+
+	}
+	return $block_content;
+}
+
+/**
+ * Opt an older fixie in to flair.js's scroll data.
+ *
+ * Fixies inserted now carry `flair-io` in their saved class list (see
+ * variation.js). Ones saved before that don't, and their fade needs it.
+ *
+ * @todo Remove once existing fixies have been re-saved with `flair-io`, along
+ *       with the call above.
+ *
+ * @param string $block_content Rendered cover.
+ * @return string
+ */
+function flair_fixie_add_io( $block_content ) {
+	$tags = new WP_HTML_Tag_Processor( $block_content );
+	if ( $tags->next_tag() ) {
+		$tags->add_class( 'flair-io' );
+		$block_content = $tags->get_updated_html();
 	}
 	return $block_content;
 }

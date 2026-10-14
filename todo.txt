@@ -1,2 +1,5 @@
 Sidler
 	second sidler looks odd when narrow
+
+Fixie
+	once existing fixies are re-saved (they pick up flair-io from the variation), remove flair_fixie_add_io() in src/fixie/index.php

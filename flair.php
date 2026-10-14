@@ -18,6 +18,7 @@ define( 'FLAIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'FLAIR_URL', plugin_dir_url( __FILE__ ) );
 
 
+include_once( 'build/entrance/entrance.php' );
 include_once( 'build/fadie/index.php' );
 include_once( 'build/fixie/index.php' );
 include_once( 'build/iconic/iconic.php' );
@@ -27,10 +28,11 @@ include_once( 'build/zoomer/zoomer.php' );
 
 /**
  * Makes sure that the handle exists for inlining.
+ *
+ * Stylesheets have no asset file, so the file's modification time versions it.
  */
 function flair_initialize_style() {
-	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
-	wp_register_style( 'flair', FLAIR_URL . 'build/flair-core/frontend.css', [], $asset['version'] );
+	wp_register_style( 'flair', FLAIR_URL . 'build/flair-core/frontend.css', [], filemtime( FLAIR_PATH . 'build/flair-core/frontend.css' ) );
 }
 add_action( 'init', 'flair_initialize_style' );
 
@@ -38,7 +40,7 @@ add_action( 'init', 'flair_initialize_style' );
  * Add the main flair script and stylesheet
  */
 function flair_enqueues() {
-	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
+	$asset = include FLAIR_PATH . 'build/flair-core/flair.asset.php';
 
 	wp_enqueue_script( 'flair', FLAIR_URL . 'build/flair-core/flair.js', $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
 	wp_enqueue_style( 'flair' );
@@ -46,14 +48,25 @@ function flair_enqueues() {
 add_action( 'wp_enqueue_scripts', 'flair_enqueues' );
 
 /**
- * Enqueue Editor assets.
+ * Put the front-end stylesheet in the editor canvas.
+ *
+ * `enqueue_block_assets` reaches the canvas iframe, but it fires on the front
+ * end too -- where flair_enqueues() has already done this -- so only styles
+ * belong here.
+ */
+function flair_enqueue_block_assets() {
+	wp_enqueue_style( 'flair' );
+}
+add_action( 'enqueue_block_assets', 'flair_enqueue_block_assets' );
+
+/**
+ * Editor-only script: block filters and the like.
  */
 function flair_enqueue_editor_assets() {
-	$asset = include FLAIR_PATH . 'build/flair-core/flair.asset.php';
-	wp_enqueue_script( 'flair-editor', FLAIR_URL . 'build/flair-core/flair-editor.js', $asset['dependencies'], $asset['version'], array( 'in_footer' => true, 'strategy'  => 'defer') );
-	wp_enqueue_style( 'flair', FLAIR_URL . 'build/flair-core/frontend.css', array(), $asset['version'] );
+	$asset = include FLAIR_PATH . 'build/flair-core/flair-editor.asset.php';
+	wp_enqueue_script( 'flair-editor', FLAIR_URL . 'build/flair-core/flair-editor.js', $asset['dependencies'], $asset['version'], true );
 }
-add_action( 'enqueue_block_assets', 'flair_enqueue_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'flair_enqueue_editor_assets' );
 
 
 /**

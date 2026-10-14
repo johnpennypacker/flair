@@ -296,61 +296,135 @@ button.flair-toggle-x:hover {
 
 .wp-site-blocks { overflow-x: clip; } /* prevents side scrolling on animated transforms with rotate */
 
-[data-was-visible]:not(.flair-fixie):not(.flair-fadie) {
-	--frame-transition-duration: 400ms;
-	--frame-transition-delay: 100ms;
-  opacity: 0;
-	transform: translateY(4rem) rotateZ(1deg);
-	//will-change: opacity, transform;
-	transition: var(--frame-transition-duration) transform ease, calc( var(--frame-transition-duration) * .75 ) opacity ease-in;
-	transition-delay: var( --frame-transition-delay );
-}
-.wp-block-columns [data-was-visible]:nth-child(1) {
-	--frame-transition-delay: 100ms;
-}
-.wp-block-columns [data-was-visible]:nth-child(2) {
-	--frame-transition-delay: 200ms;
-}
-.wp-block-columns [data-was-visible]:nth-child(3) {
-	--frame-transition-delay: 300ms;
-}
-
-
 /**
- * @todo: there needs to be finer control of this.
+ * Entrance animations. See src/entrance/entrance.php for how elements opt in.
+ *
+ * Timing comes from theme.json (settings.custom.flair.animation.*), or from
+ * the --flair-animation-* properties on any element, which win. The preset is
+ * --flair-entrance, which flair.js sets from data-flair-animate.
+ *
+ * Keyframes end on whatever the element's own styles say, and the fill is
+ * `backwards`, so nothing is pinned once one has played. They move with `translate` and `rotate`, which compose with a
+ * `transform` the element already has instead of replacing it.
  */
-.wp-block-group.is-vertical[data-was-visible="false"] > * {
-  opacity: 0;
-	transform: translateY(4rem) rotateZ(1deg);
-	will-change: opacity, transform;
-}
-.wp-block-group.is-vertical[data-was-visible="true"] > * {
-	--frame-transition-duration: 400ms;
-	--frame-transition-delay: 100ms;
-	transition: var(--frame-transition-duration) transform ease, calc( var(--frame-transition-duration) * .75 ) opacity ease-in;
-	transition-delay: var( --frame-transition-delay );
-}
-.wp-block-group.is-vertical[data-was-visible] > *:nth-child(1) {
-	--frame-transition-delay: 100ms;
-}
-.wp-block-group.is-vertical[data-was-visible] > *:nth-child(2) {
-	--frame-transition-delay: 200ms;
-}
-.wp-block-group.is-vertical[data-was-visible] > *:nth-child(3) {
-	--frame-transition-delay: 300ms;
-}
-/**
- * /end there needs to be finer control of this.
- */
-
-
-[data-was-visible="false"]:not(.flair-fixie):not(.flair-fadie) {
+@keyframes flair-entrance-fade {
+	from {
+		opacity: 0;
+	}
 }
 
-[data-was-visible="true"]:not(.flair-fixie):not(.flair-fadie) {
-	opacity: 1;
-	overflow-x: clip;
- 	transform: translateY(0rem) rotateZ(0deg);
+@keyframes flair-entrance-rise {
+	from {
+		opacity: 0;
+		translate: 0 var( --flair-animation-distance, var( --wp--custom--flair--animation--distance, 4rem ) );
+		rotate: var( --flair-animation-rotate, var( --wp--custom--flair--animation--rotate, 1deg ) );
+	}
+	// The original reveal faded over the first three quarters with ease-in,
+	// staying faint for most of the climb. One animation can't time opacity
+	// apart from movement, so these points trace that curve. The cost: opacity
+	// sits at 1 for the last quarter before settling on the element's own.
+	// Linear between the points, or `ease` overshoots the curve in each stretch;
+	// it only touches opacity, since these keyframes set nothing else.
+	25% {
+		opacity: 0.16;
+		animation-timing-function: linear;
+	}
+	50% {
+		opacity: 0.5;
+		animation-timing-function: linear;
+	}
+	75% {
+		opacity: 1;
+	}
+}
+
+@keyframes flair-entrance-zoom {
+	from {
+		opacity: 0;
+		scale: var( --flair-animation-scale, var( --wp--custom--flair--animation--scale, 0.95 ) );
+	}
+}
+
+// Opens from the inline-start edge; no fade, nothing moves. Best on images and
+// covers -- a wipe across a column of text reads as a glitch.
+// It needs a `to`: a shape won't interpolate to `clip-path: none`, so without
+// one it would snap open halfway. The fill is still `backwards`, so the
+// element's own clip-path is back once it's done.
+@keyframes flair-entrance-wipe {
+	from {
+		clip-path: var( --flair-wipe-from );
+	}
+	to {
+		clip-path: inset( 0 );
+	}
+}
+
+// Not inherited, or a block nested in a wipe would follow the scroll too.
+@property --flair-entrance-scroll {
+	syntax: "<integer>";
+	inherits: false;
+	initial-value: 0;
+}
+
+// Wipe follows the scroll where the browser can (see flair.js): it opens as
+// the element comes up the screen, and closes again if you scroll back.
+[data-flair-animate="wipe"] {
+	--flair-entrance-scroll: 1;
+	--flair-wipe-from: inset( 0 100% 0 0 );
+
+	&:dir( rtl ) {
+		--flair-wipe-from: inset( 0 0 0 100% );
+	}
+}
+
+// Blur is costly to paint over a large area, so it suits images and headings
+// better than full-width covers.
+@keyframes flair-entrance-blur {
+	from {
+		opacity: 0;
+		filter: blur( var( --flair-animation-blur, var( --wp--custom--flair--animation--blur, 8px ) ) );
+	}
+}
+
+// .flair-js arrives only once flair.js is running and observing, so without
+// the script nothing is ever held back.
+.flair-js [data-flair-animate]:not([data-flair-animate="none"]) {
+	&:not([data-flair-revealed]) {
+		opacity: 0;
+	}
+
+	&[data-flair-revealed] {
+		animation-name: var( --flair-entrance, flair-entrance-fade );
+		animation-duration: var( --flair-animation-duration, var( --wp--custom--flair--animation--duration, 400ms ) );
+		animation-timing-function: var( --flair-animation-easing, var( --wp--custom--flair--animation--easing, ease ) );
+		animation-delay: calc(
+			var( --flair-animation-delay, var( --wp--custom--flair--animation--delay, 100ms ) ) +
+			var( --flair-stagger-index, 0 ) * var( --flair-animation-stagger, var( --wp--custom--flair--animation--stagger, 100ms ) )
+		);
+		animation-fill-mode: backwards;
+	}
+}
+
+// Scroll-synced presets. Progress tracks the element's way up the screen:
+// it starts as the element peeks in (5% of its pass across the screen later
+// for each item along a row), and is
+// done once 40% of the element's pass across the screen is behind it. Linear,
+// because easing on a scroll feels like lag.
+.flair-js [data-flair-animate][data-flair-revealed][data-flair-scroll]:not([data-flair-animate="none"]) {
+	animation-duration: auto;
+	animation-delay: 0s;
+	animation-timing-function: linear;
+	animation-timeline: view();
+	animation-range:
+		cover calc( var( --flair-stagger-index, 0 ) * 5% )
+		var( --flair-animation-scroll-end, var( --wp--custom--flair--animation--scroll-end, cover 40% ) );
+}
+
+// Keep the fade, lose the movement. Wipe and zoom are motion too.
+@media ( prefers-reduced-motion: reduce ) {
+	.flair-js [data-flair-animate][data-flair-revealed]:not([data-flair-animate="none"]) {
+		animation-name: flair-entrance-fade;
+	}
 }
 
 @keyframes fade-in {

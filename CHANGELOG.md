@@ -5,6 +5,73 @@ All notable changes to the **Flair** plugin are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Entrance animations are configurable. Every block has an "Entrance animation"
+  panel (Site default / None / a preset), written onto the block's outer element
+  as `data-flair-animate` at render time, so saved markup doesn't change. *None*
+  turns the animation off for the block and everything inside it. Themes choose
+  what animates by default with the `flair_animation_defaults` filter, set timing
+  in `theme.json` under `settings.custom.flair.animation`, and add presets with
+  `flair_animation_presets` plus a `@keyframes flair-entrance-<name>`. See
+  THEMING.md §5. The defaults pick out the same elements the old code did.
+- Three more entrance presets: `zoom` (fades in while scaling up from 0.95),
+  `wipe` (clips open from the inline-start edge, reverses in RTL, and follows
+  the scroll rather than playing once, with a play-once fallback) and `blur`
+  (fades in from an 8px blur). `theme.json` can tune them with `scale` and
+  `blur`.
+- `prefers-reduced-motion: reduce` turns every entrance into a plain fade.
+- Content already on screen when the page loads no longer animates in. It used
+  to be hidden as soon as `flair.js` ran and then revealed, which delayed the
+  first screen. Some visitors also saw it appear, vanish and come back. If the
+  browser restores a scroll position after `flair.js` has measured (back
+  button, reload), content at that position still animates in.
+
+### Changed
+- The entrance animation no longer sets `transform` or `transition` on the
+  element. It plays a keyframes animation that moves with `translate` and
+  `rotate` and pins nothing once it has played. `rise` reproduces the old reveal:
+  the same 4rem/1° climb over 400ms, with opacity stepped through the old
+  ease-in curve (fully opaque at 300ms). An element's own transform
+  (`.slant`, say) and transitions survive, and revealed elements are no longer
+  left with an identity transform. That transform made each of them a stacking
+  context and a containing block for `position: fixed` descendants. The
+  `overflow-x: clip` the old reveal added to every element is gone too.
+- Stagger is no longer capped at three. Siblings that come into view together
+  are delayed one after another, and the count starts over at each visual row,
+  so a grid ripples row by row and a row that scrolls in later starts fresh.
+- The scroll-position observer in `flair.js` now watches only elements that opt
+  in with `.flair-io`, which are fixie, metric and sidler. It used to watch every
+  cover, figure, section, footer and column on the page, writing nine values on
+  each of 101 steps, and it forced a layout for each element it updated. It now
+  writes three, and the data attributes only when they change. A theme that wants
+  the data on an element of its own adds `.flair-io`.
+- Fixie opts in with `.flair-io` like the others. New fixies save it in their
+  class list. Older ones get it added as the page renders, until they're
+  re-saved (see `todo.txt`).
+
+### Removed
+- `data-was-visible`, `--was-visible`, `--from-top`, `--pct-from-top`,
+  `--height`, `--vh` and `--intersecting`. Nothing in Flair or its themes read
+  them. `data-intersection`, `data-is-intersecting` and `--intersection-ratio`
+  remain, on `.flair-io` elements only.
+
+### Fixed
+- `flair-editor.js` no longer loads on public pages. It was enqueued on
+  `enqueue_block_assets`, which fires on the front end as well as in the editor,
+  and it now uses `enqueue_block_editor_assets`. The front-end stylesheet still
+  reaches the editor canvas through `enqueue_block_assets`.
+- Each script is versioned by its own asset file. `flair.js` was using
+  `flair-editor.js`'s, so its `?ver=` didn't change when it did, which let
+  browsers keep a stale copy. It also pulled `wp-hooks` and `wp-i18n` onto every
+  public page. `flair-editor.js` and `kinetic.js` had the same mix-up. The
+  `flair` and `iconic` stylesheets have no asset file and are versioned by
+  modification time.
+- Group blocks offer every alignment again. The filter that enables them waited
+  for window `load`, by which time core/group was already registered, so it
+  never applied.
+
 ## [2.0.0]
 
 ### Added

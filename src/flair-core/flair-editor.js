@@ -1,21 +1,17 @@
-// this adds wp as a dependency so the code below doesn't run too early.
-import { __ } from '@wordpress/i18n';
+import { addFilter } from '@wordpress/hooks';
 
-( function() {
-
-	// enables all of the align supports on group blocks
-	function addGroupAlignments( settings, name ) {
-		if ( 'core/group' === name ) {
-			if ( 'undefined' !== typeof settings.supports ) {
-				settings.supports.align = true;
-			}
-		}
-		return settings;
+/**
+ * Enables all of the align supports on group blocks.
+ *
+ * This has to be in place before core registers its blocks, so it's added as
+ * soon as the script runs. It used to wait for window `load`, by which point
+ * core/group was already registered and the filter never applied.
+ */
+function addGroupAlignments( settings, name ) {
+	if ( 'core/group' === name && 'undefined' !== typeof settings.supports ) {
+		settings.supports.align = true;
 	}
+	return settings;
+}
 
-	window.addEventListener("load", (event) => {
-		// addFilter( 'hookName', 'namespace', callback, priority )
-		wp.hooks.addFilter( 'blocks.registerBlockType', 'flair/groupAlign', addGroupAlignments );
-	})
-
-})();
+addFilter( 'blocks.registerBlockType', 'flair/groupAlign', addGroupAlignments );

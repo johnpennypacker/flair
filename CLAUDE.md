@@ -49,7 +49,7 @@ there.
 
 `flair.php` is the entry point. It:
 - defines `FLAIR_PATH` / `FLAIR_URL`,
-- `include`s the standalone modules under `build/{fadie,fixie,iconic,kinetic,zoomer}`,
+- `include`s the standalone modules under `build/{entrance,fadie,fixie,iconic,kinetic,zoomer}`,
 - registers all blocks from `build/blocks-manifest.php` (WP 6.7/6.8 metadata-collection API),
 - enqueues the shared `flair-core` script + stylesheet,
 - adds a "Flair" block category,
@@ -104,6 +104,16 @@ records the findings it came from.
 - Text domain is `flair`.
 
 ## Gotchas
+
+- **Entrance animations** are opt-in by `data-flair-animate`. `src/entrance/entrance.php`
+  writes it from a block's `flairAnimation` attribute, and `flair.js` fills in the
+  site defaults (`flair_animation_defaults`). The other `IntersectionObserver` in
+  `flair.js`, which sets `data-intersection` / `data-is-intersecting` /
+  `--intersection-ratio`, is a separate thing. It watches only `.flair-io` elements, which
+  are its readers: fixie, metric and sidler. Opt an element in with `.flair-io` instead of
+  widening its selector, and don't hang animation off it again. Fixie's class comes from
+  its variation, and from `flair_fixie_add_io()` for older fixies (slated for removal,
+  see `todo.txt`). THEMING.md §5 is the theme-facing contract.
 
 - **Modal triggers are just fragment links.** A `flair/modal` is opened by any
   `<a href="#its-id">` — there is no trigger attribute, marker class, or

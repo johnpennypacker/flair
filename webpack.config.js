@@ -17,6 +17,8 @@ module.exports = {
 		'fadie/frontend': '/src/fadie/frontend.scss',
 		'fadie/editor': '/src/fadie/editor.scss',
 
+		'entrance/editor': '/src/entrance/editor.js',
+
 		'fixie/variation': '/src/fixie/variation.js',
 		'fixie/frontend': '/src/fixie/frontend.scss',
 		'fixie/editor': '/src/fixie/editor.scss',

@@ -2,13 +2,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "@wordpress/i18n"
-/*!******************************!*\
-  !*** external ["wp","i18n"] ***!
-  \******************************/
+/***/ "@wordpress/hooks"
+/*!*******************************!*\
+  !*** external ["wp","hooks"] ***!
+  \*******************************/
 (module) {
 
-module.exports = window["wp"]["i18n"];
+module.exports = window["wp"]["hooks"];
 
 /***/ }
 
@@ -93,25 +93,24 @@ var __webpack_exports__ = {};
   !*** ./src/flair-core/flair-editor.js ***!
   \****************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-// this adds wp as a dependency so the code below doesn't run too early.
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__);
 
-(function () {
-  // enables all of the align supports on group blocks
-  function addGroupAlignments(settings, name) {
-    if ('core/group' === name) {
-      if ('undefined' !== typeof settings.supports) {
-        settings.supports.align = true;
-      }
-    }
-    return settings;
+
+/**
+ * Enables all of the align supports on group blocks.
+ *
+ * This has to be in place before core registers its blocks, so it's added as
+ * soon as the script runs. It used to wait for window `load`, by which point
+ * core/group was already registered and the filter never applied.
+ */
+function addGroupAlignments(settings, name) {
+  if ('core/group' === name && 'undefined' !== typeof settings.supports) {
+    settings.supports.align = true;
   }
-  window.addEventListener("load", event => {
-    // addFilter( 'hookName', 'namespace', callback, priority )
-    wp.hooks.addFilter('blocks.registerBlockType', 'flair/groupAlign', addGroupAlignments);
-  });
-})();
+  return settings;
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.addFilter)('blocks.registerBlockType', 'flair/groupAlign', addGroupAlignments);
 })();
 
 /******/ })()
