@@ -5,7 +5,7 @@ All notable changes to the **Flair** plugin are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.1.0]
 
 ### Added
 - Entrance animations are configurable. Every block has an "Entrance animation"
@@ -50,6 +50,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixie opts in with `.flair-io` like the others. New fixies save it in their
   class list. Older ones get it added as the page renders, until they're
   re-saved (see `todo.txt`).
+
+- The committed `build/` is now a production build: minified, with no source
+  maps, about 800 KB instead of 1.8 MB. The deploy check rebuilds with
+  `npm run build` to match.
 
 ### Removed
 - `data-was-visible`, `--was-visible`, `--from-top`, `--pct-from-top`,

@@ -21,14 +21,14 @@ jobs:
         uses: actions/checkout@v5
 
       # Fail the deploy if the committed build/ is out of date with src/. The
-      # committed build is a development build, so rebuild the same way.
+      # committed build is a production build, so rebuild the same way.
       - name: Verify build is up to date
         run: |
           npm ci
-          NODE_ENV=development npx wp-scripts build --blocks-manifest --webpack-copy-php --mode=development
+          npm run build
           if [ -n "$(git status --porcelain -- build)" ]; then
             git status --short -- build
-            echo "::error::build/ is out of date. Rebuild with the development build (see README.md) and commit the result."
+            echo "::error::build/ is out of date. Run npm run build and commit the result."
             exit 1
           fi
 

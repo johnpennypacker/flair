@@ -3,7 +3,7 @@
 Fanciful add-ons for the block editor: a set of custom blocks plus enhancements
 for core blocks.
 
-- **Version:** 2.0.0
+- **Version:** 2.1.0
 - **Requires:** WordPress 6.7+, PHP 7.4+
 - **Changelog:** [CHANGELOG.md](CHANGELOG.md)
 
@@ -43,10 +43,8 @@ npm install
 npm run start     # watch build
 ```
 
-The committed `build/` is a **development** build (unminified, with source
-maps). `npm run build` makes a production build instead and rewrites every file
-in `build/`, so for a one-off rebuild that matches what's committed use:
-
-```bash
-NODE_ENV=development npx wp-scripts build --blocks-manifest --webpack-copy-php --mode=development
-```
+The committed `build/` is a **production** build (minified, no source maps).
+After changing anything in `src/`, run `npm run build` and commit the result;
+the deploy fails if `build/` doesn't match a fresh build. `npm run start` writes
+a development build into the same folder, so finish with `npm run build` before
+committing.
