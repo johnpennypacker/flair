@@ -121,6 +121,16 @@
 
 }
 
+/* The shared `.aspect-* .media` rules in flair-front.scss are for media in the
+   flow, like a card's. Here the ratio is already on `.flair-overlay`, and the
+   media is pinned to all four sides of it, so a ratio on the media only shows
+   once the overlay is stretched past its own ratio -- and then the image stops
+   partway down. Two classes of weight because the shared rules load after
+   this file. */
+.flair-overlay > .media {
+	aspect-ratio: auto;
+}
+
 // Triggered from the wrapper, not the element that moves -- see the note on
 // the same rule in blocks/card/style.scss.
 :where(.flair-overlay-wrapper:hover, .flair-overlay-wrapper:focus-within) {

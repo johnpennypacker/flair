@@ -5,6 +5,24 @@ All notable changes to the **Flair** plugin are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0]
+
+### Added
+- A block alone in a column set to "stretch" fills the column's height. Core
+  stretches the column but leaves its contents at their natural height, so a
+  cover, boxout, card, overlay or group with a background stopped short of the
+  column beside it. Only columns with the explicit "stretch" setting change,
+  and only when the block has no siblings; a column holding a heading and a
+  card keeps both at their natural height.
+
+### Fixed
+- A card stretched taller than its content (a stretched column, a grid cell, a
+  stretched row) fills its wrapper. The wrapper's border used to grow while the
+  card inside, with its hover lift and any theme background, stopped short.
+- An overlay stretched past its aspect ratio keeps its image filling the whole
+  overlay. The shared `.aspect-*` rules were also sizing the overlay's
+  absolutely positioned media, so the image stopped partway down.
+
 ## [2.1.1]
 
 ### Fixed

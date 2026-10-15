@@ -26,7 +26,24 @@ ul.wp-block-columns {
 		list-style: none;
 		margin-inline-start: 0;
 		padding-inline-start: 0;
+		&.is-vertically-aligned-stretch {
+			display: flex;
+		}
 	}
+}
+
+/* A column set to "stretch" grows to the height of its row, but core leaves
+   what is inside it at its natural height. When one block is alone in such a
+   column, let it fill. That is what an author asking for stretch means for a
+   cover, a boxout, a card or a group with a background; a block that paints
+   no box just gets taller with nothing to show for it. Keyed to the explicit
+   setting so columns already in use keep the layout they have. */
+:where(.wp-block-column.is-vertically-aligned-stretch) {
+	display: flex;
+	flex-direction: column;
+}
+:where(.wp-block-column.is-vertically-aligned-stretch > :only-child) {
+	flex-grow: 1;
 }
 
 

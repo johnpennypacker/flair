@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "flair/tab",
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"title": "Tab",
 	"category": "flair",
 	"description": "An individual tab and its panel within a tabs block.",

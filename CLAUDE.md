@@ -7,7 +7,7 @@ Guidance for Claude Code (and humans) working in this repository.
 **Flair** is a WordPress plugin ("Fanciful add-ons. Take two.") that ships a
 collection of custom Gutenberg blocks plus several block *variations* and
 *enhancements* that decorate WordPress core blocks. Author: John Pennypacker.
-Current version: `2.1.1`. Requires WP 6.7+, PHP 7.4+.
+Current version: `2.2.0`. Requires WP 6.7+, PHP 7.4+.
 
 ## Build & tooling
 

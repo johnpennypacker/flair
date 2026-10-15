@@ -3,7 +3,7 @@
 Fanciful add-ons for the block editor: a set of custom blocks plus enhancements
 for core blocks.
 
-- **Version:** 2.1.1
+- **Version:** 2.2.0
 - **Requires:** WordPress 6.7+, PHP 7.4+
 - **Changelog:** [CHANGELOG.md](CHANGELOG.md)
 

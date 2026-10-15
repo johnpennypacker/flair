@@ -186,6 +186,17 @@
 	container-type: inline-size;
 }
 
+/* The wrapper owns the border; the card inside owns everything else. When the
+   wrapper is stretched taller than its content (a stretched column, a grid
+   cell, a stretched row), the card fills it rather than stopping short. */
+:where(.flair-card-wrapper) {
+	display: flex;
+	flex-direction: column;
+	> .flair-card {
+		flex-grow: 1;
+	}
+}
+
 :where(.flair-card-wrapper.orientation-horizontal) {
 	.flair-card {
 		flex-direction: row;
