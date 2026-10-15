@@ -8,21 +8,27 @@
 
 		kinetics = document.querySelectorAll( ".kinetic" );
 
-		var mutationObserver = new MutationObserver(function(mutations) {
-			mutations.forEach(function(mutation) {
-				if( mutation.type == "attributes" ) {
-					if( mutation.attributeName == "data-is-intersecting" && mutation.target.dataset.isIntersecting == "true" ) {
-						animateWords( mutation.target );
-					}
+		kinetics.forEach(function(el) {
+			parseWords(el);
+		});
+
+		if( ! ( 'IntersectionObserver' in window ) ) {
+			kinetics.forEach( animateWords );
+			return;
+		}
+
+		// Animate each sentence once, the first time any of it scrolls into view.
+		var observer = new IntersectionObserver(function(entries) {
+			entries.forEach(function(entry) {
+				if( entry.isIntersecting ) {
+					observer.unobserve( entry.target );
+					animateWords( entry.target );
 				}
 			});
 		});
 
-		var mutationConfig = { attributes: true, childList: true, characterData: true }
-
 		kinetics.forEach(function(el) {
-			mutationObserver.observe(el, mutationConfig);
-			parseWords(el);
+			observer.observe(el);
 		});
 
 	}
@@ -93,57 +99,5 @@
 		el.classList.add("visible");
 	}
 
-
-})();
-
-
-
-( function() {
-
-	document.addEventListener( "DOMContentLoaded", initIO );
-
-	function initIO() {
-		els = document.querySelectorAll( ".entry-content > .wp-block-group, .entry-content > .wp-block-columns, .kinetic" );
-
-		//** add intersection data to images and major sections **/
-		if('IntersectionObserver' in window){
-			let options = {
-				root: null,
-				rootMargin: '0px',
-				threshold: buildThreshold( 50 )
-			}
-			let observer = new IntersectionObserver(observerCallback, options);
-
-			els.forEach(function(el) {
-				observer.observe(el);
-			});
-		}
-	}
-
-	function observerCallback(entries, observer) {
-
-		entries.forEach(function(entry) {
-			var top = entry.boundingClientRect.top;
-			var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-
-			entry.target.dataset.isIntersecting = entry.isIntersecting;
-			entry.target.style.setProperty( '--intersecting', entry.isIntersecting );
-			entry.target.dataset.offTop = ( top < 0 );
-
-			entry.target.style.setProperty( '--intersection-ratio', entry.intersectionRatio );
-		});
-	}
-
-	function buildThreshold(num) {
-		let thresholds = [];
-
-		for (let i=1; i<=num; i++) {
-			let ratio = i/num;
-			thresholds.push(ratio);
-		}
-
-		thresholds.push(0);
-		return thresholds;
-	}
 
 })();

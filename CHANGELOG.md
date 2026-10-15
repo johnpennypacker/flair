@@ -5,6 +5,20 @@ All notable changes to the **Flair** plugin are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1]
+
+### Fixed
+- Kinetic text no longer forces the browser to recalculate layout while the
+  page scrolls, which Lighthouse reported as a forced reflow. Its scroll
+  watcher read the viewport height after writing styles, and it also watched
+  every top-level group and columns block, updating custom properties on them
+  that nothing read. It now watches only `.kinetic` elements, starts the
+  animation directly, and stops watching once a sentence has played. The
+  animation looks the same.
+- Overlay images from the media library get a `srcset`, like card images, so
+  browsers can load a smaller file. Overlays that only have an image URL
+  render as before.
+
 ## [2.2.0]
 
 ### Added
