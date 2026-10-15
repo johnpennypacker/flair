@@ -12,9 +12,7 @@ if( isset( $attributes['aspect'] ) ) {
 
 $overlay_styles = [];
 
-// Allow only safe CSS color tokens (hex, rg(a)/hsl(a)/named) — no semicolons,
-// braces, parentheses-with-url, etc. — so the value can't break out of the
-// custom property and inject arbitrary CSS.
+// Allow only safe CSS color tokens (hex, rg(a)/hsl(a)/named)
 if( ! empty( $attributes['overlayColor'] ) && preg_match( '/^(#[0-9a-fA-F]{3,8}|[a-zA-Z]+|(?:rgb|rgba|hsl|hsla)\([0-9.,%\s\/]+\))$/', trim( $attributes['overlayColor'] ) ) ) {
 	$overlay_styles[] = '--overlay-color: ' . trim( $attributes['overlayColor'] );
 }
@@ -26,9 +24,7 @@ if( isset( $attributes['overlayOpacity'] ) && is_numeric( $attributes['overlayOp
 
 $overlay_properties = ! empty( $overlay_styles ) ? 'style="' . esc_attr( implode( '; ', $overlay_styles ) ) . '"' : '';
 
-// The author's focal point, read by `object-position` in the block's
-// stylesheet. Only written when it isn't the centre the stylesheet falls
-// back to, so an untouched overlay carries no style attribute of its own.
+// The focal point is only written when it isn't the center
 $wrapper_attributes = [ 'class' => implode( ' ', $classes ) ];
 $focal_point = flair_focal_point_position( $attributes['focalPoint'] ?? null );
 
@@ -63,9 +59,22 @@ $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','
 		</div>
 		<div class="overlay" <?php echo $overlay_properties; ?>></div>
 		<div class="media">
-			<?php if( ! empty( $attributes['asset']['url'] ) ): ?>
-			<img src="<?php echo esc_attr( $attributes['asset']['url'] ); ?>" alt="<?php echo esc_attr( $attributes['asset']['alt'] ?? '' ); ?>">
-			<?php endif; ?>
+			<?php
+			// Attachments get a srcset, same as the card; a lazy-loaded one also gets sizes="auto".
+			$image = '';
+			if( ! empty( $attributes['asset']['id'] ) ) {
+				$image = wp_get_attachment_image( (int) $attributes['asset']['id'], 'large', false, [
+					'alt' => $attributes['asset']['alt'] ?? '',
+				] );
+			}
+			if( $image ) {
+				echo $image;
+			} elseif( ! empty( $attributes['asset']['url'] ) ) {
+				?>
+				<img src="<?php echo esc_attr( $attributes['asset']['url'] ); ?>" alt="<?php echo esc_attr( $attributes['asset']['alt'] ?? '' ); ?>">
+				<?php
+			}
+			?>
 		</div>
 	</div>
 </div>
