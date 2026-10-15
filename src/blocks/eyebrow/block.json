@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "flair/eyebrow",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"title": "Eyebrow",
 	"category": "flair",
 	"description": "Creates a pre-header, kicker, or overline",

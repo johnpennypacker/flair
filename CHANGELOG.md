@@ -5,6 +5,16 @@ All notable changes to the **Flair** plugin are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1]
+
+### Fixed
+- Carousel arrows follow the text color. Their chevrons were images with no
+  fill, so they always drew black and vanished on a dark background, while the
+  dots and the arrow circles already used `currentColor`. The chevron is now a
+  mask on the button's `::after`, filled with `currentColor`, so the circle and
+  the focus ring stay unclipped. A theme that replaces the glyph should
+  override that `::after`, not the button's `background-image`.
+
 ## [2.1.0]
 
 ### Added
