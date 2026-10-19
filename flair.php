@@ -33,6 +33,7 @@ include_once( 'build/zoomer/zoomer.php' );
  */
 function flair_initialize_style() {
 	wp_register_style( 'flair', FLAIR_URL . 'build/flair-core/frontend.css', [], filemtime( FLAIR_PATH . 'build/flair-core/frontend.css' ) );
+	wp_style_add_data( 'flair', 'path', FLAIR_PATH . 'build/flair-core/frontend.css' );
 }
 add_action( 'init', 'flair_initialize_style' );
 
