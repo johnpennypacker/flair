@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flair
  * Description:       Fanciful add-ons.  Take two.
- * Version:           2.2.1
+ * Version:           2.3.0
  * Requires at least: 6.7
  * Requires PHP:      7.4
  * Author:            John Pennypacker
@@ -164,6 +164,55 @@ function flair_use_template( $template_name, $attributes, $block, $content ) {
 	}
 
 	return load_template( $template, FALSE, ['attributes' => $attributes, 'block' => $block, 'content' => $content ] );
+
+}
+
+
+/**
+ * Fill a block's attributes from the post it's showing, for blocks set to
+ * use the current post (`source: post`) -- a card or overlay in a Query Loop.
+ *
+ * The post comes from block context, so this is whatever post the Query Loop
+ * is on, or the page itself outside one, the same as core's Post Title block.
+ * Post values only replace the typed ones when the post has them, so a block's
+ * own image is the fallback for a post without a featured image. Templates get
+ * the result as ordinary attributes and need no changes. Everything else about
+ * the post -- its excerpt, date, terms -- is for blocks inside the card or
+ * overlay, which get the same post from context.
+ *
+ * @param arr $attributes the block attributes
+ * @param obj $block the block instance
+ * @return arr the attributes, filled in where the post has the data
+ */
+function flair_post_source_attributes( $attributes, $block ) {
+
+	if ( 'post' !== ( $attributes['source'] ?? 'manual' ) ) {
+		return $attributes;
+	}
+
+	$post = get_post( $block->context['postId'] ?? 0 );
+	if ( ! $post ) {
+		return $attributes;
+	}
+
+	// Templates escape the title, so markup in it would show as text.
+	$title = wp_strip_all_tags( get_the_title( $post ) );
+	if ( '' !== trim( $title ) ) {
+		$attributes['title'] = $title;
+	}
+
+	$attributes['href'] = get_permalink( $post );
+
+	$image_id = get_post_thumbnail_id( $post );
+	if ( $image_id ) {
+		$attributes['asset'] = [
+			'id'  => $image_id,
+			'url' => wp_get_attachment_image_url( $image_id, 'large' ),
+			'alt' => get_post_meta( $image_id, '_wp_attachment_image_alt', true ),
+		];
+	}
+
+	return $attributes;
 
 }
 

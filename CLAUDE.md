@@ -7,7 +7,7 @@ Guidance for Claude Code (and humans) working in this repository.
 **Flair** is a WordPress plugin ("Fanciful add-ons. Take two.") that ships a
 collection of custom Gutenberg blocks plus several block *variations* and
 *enhancements* that decorate WordPress core blocks. Author: John Pennypacker.
-Current version: `2.2.1`. Requires WP 6.7+, PHP 7.4+.
+Current version: `2.3.0`. Requires WP 6.7+, PHP 7.4+.
 
 ## Build & tooling
 
@@ -131,6 +131,24 @@ records the findings it came from.
   `sanitizeModalId()` in `edit.js` must agree, or editor-written triggers won't
   match rendered IDs.
 
+- **Cards and overlays can use the current post** (`source: "post"`), for
+  Query Loops. Both read `postId` from block context. On the front end
+  `flair_post_source_attributes()` in `flair.php` fills the attributes before
+  `flair_use_template()` runs, so templates and theme overrides don't change.
+  In the editor `src/shared/post-source.js` does the same for the preview.
+  The two must agree on which fields come from the post (title, link, image)
+  and that typed values fill the gaps (a block's own image is the fallback for
+  a post without a featured image). Anything else about the post is for inner
+  blocks like Post Excerpt, which get the same context -- keep it that way
+  rather than adding per-field options.
+- **The card's body is inner blocks** since 2.3.0. Its `excerpt`, `attribution`
+  and `button` attributes remain only for older cards: `template-parts/card.php`
+  renders them when there's no inner content, and the deprecation in
+  `src/blocks/card/index.js` (`isEligible`, since those cards are still valid)
+  moves them into class-named paragraphs when the card is opened. `TEMPLATE` in
+  `edit.js` starts new cards with the same paragraphs, and `render.php` drops
+  the empty ones. The `.excerpt`/`.attribution`/`.button` classes are what
+  style them, so they must keep matching.
 - `enqueue_block_assets` fires on **both** front end and editor; some modules
   (iconic, kinetic) hook it as their "editor" callback, so their inline CSS can
   be added on the front end as well. Be deliberate about which hook you use.

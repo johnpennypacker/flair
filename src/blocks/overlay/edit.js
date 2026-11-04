@@ -57,6 +57,8 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 import './editor.scss';
 
+import { PostSourceToggle, usePostSource } from '../../shared/post-source';
+
 /**
  * Turn a focal point ({ x, y } in the 0-1 range the picker speaks) into the
  * `object-position` value the stylesheet reads off `--flair-focal-point`.
@@ -88,7 +90,10 @@ const focalPointToPosition = ( point ) => {
  */
 export default function Edit(props) {
 
-	const { attributes, setAttributes, isSelected } = props;
+	const { attributes, setAttributes, isSelected, context } = props;
+
+	// What to show: the typed content, or the current post's.
+	const post = usePostSource( attributes, context );
 
 	//console.log('atts', attributes);
 	//console.log( 'props', useBlockProps() );
@@ -126,6 +131,11 @@ export default function Edit(props) {
 
 		const [ popoverAnchor, setPopoverAnchor ] = useState( null );
 		const [ isEditingURL, setIsEditingURL ] = useState( false );
+
+		// The post supplies the link. Hooks above still run, to keep their order.
+		if( post.isPostSource ) {
+			return null;
+		}
 
 		return(
 			<>
@@ -237,7 +247,7 @@ export default function Edit(props) {
 	}
 
 	const focalPointPicker = () => {
-		if( ! attributes.asset.url ) {
+		if( ! post.asset.url ) {
 			return null;
 		}
 		return (
@@ -245,7 +255,7 @@ export default function Edit(props) {
 		<FocalPointPicker
 			__nextHasNoMarginBottom
 			label={__("Focal point")}
-			url={attributes.asset.url}
+			url={post.asset.url}
 			value={attributes.focalPoint}
 			onChange={( value ) => {
 				setAttributes({
@@ -269,12 +279,12 @@ export default function Edit(props) {
 
 	const mediaElement = () => {
 		let s = blockIsSelected();
-		if( attributes.asset.url ) {
+		if( post.asset.url ) {
 			return (
 				<figure class="media">
 					<img
-					src={attributes.asset.url}
-					alt={attributes.asset.alt} />
+					src={post.asset.url}
+					alt={post.asset.alt} />
 				</figure>
 			);
 		} else {
@@ -375,6 +385,13 @@ export default function Edit(props) {
 
 		<InspectorControls>
 			<PanelBody>
+				<PanelRow><fieldset>
+					<PostSourceToggle
+						attributes={attributes}
+						setAttributes={setAttributes}
+						help={__( "Use the current post for overlays in Query Loops, it'll show the title, link and featured image of each post.", 'flair' )}
+					/>
+				</fieldset></PanelRow>
 				<PanelRow><fieldset>{headingLevelToggles()}</fieldset></PanelRow>
 				<PanelRow><fieldset>{aspectRatioToggles()}</fieldset></PanelRow>
 				{focalPointPicker()}
@@ -399,6 +416,9 @@ export default function Edit(props) {
 					)
 					}
 					<Heading class="title">
+						{ post.isPostSource ? (
+						<a className='link'>{ post.title || __( 'Post title', 'flair' ) }</a>
+						) : (
 						<RichText
 							tagName='a'
 							className='link'
@@ -411,6 +431,7 @@ export default function Edit(props) {
 								});
 							}}
 						/>
+						) }
 					</Heading>
 					{ (InnerBlocks.Content || isSelected) && (
 						<InnerBlocks defaultBlock={['core/paragraph', {placeholder: "Lorem ipsum..."}]} directInsert />

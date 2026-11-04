@@ -2,9 +2,10 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "flair/card",
-	"version": "2.2.1",
+	"version": "2.3.0",
 	"title": "Card",
 	"category": "flair",
+	"usesContext": [ "postId", "postType" ],
 	"description": "It's like a link with tons of context.",
 	"supports": {
 		"align": [
@@ -35,6 +36,11 @@
 		}
 	},
 	"attributes": {
+		"source": {
+			"type": "string",
+			"enum": [ "manual", "post" ],
+			"default": "manual"
+		},
 		"href": {
 			"type": "string",
 			"default": "#"

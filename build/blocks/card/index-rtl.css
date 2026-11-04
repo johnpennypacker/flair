@@ -1,1 +1,1 @@
-.flair-card :where(.title) a:after{content:none}.flair-card:before{pointer-events:none}
+.flair-card :where(.title) a:after{content:none}.flair-card:before{pointer-events:none}.flair-card-wrapper:not(.is-editing-body) .flair-card .text>[data-type="core/paragraph"][data-empty=true]{display:none}

@@ -3,7 +3,7 @@
 Fanciful add-ons for the block editor: a set of custom blocks plus enhancements
 for core blocks.
 
-- **Version:** 2.2.1
+- **Version:** 2.3.0
 - **Requires:** WordPress 6.7+, PHP 7.4+
 - **Changelog:** [CHANGELOG.md](CHANGELOG.md)
 
@@ -21,6 +21,15 @@ zoomer, which decorate WordPress's own blocks.
 
 The custom blocks are server-rendered, and your theme can override their markup
 (see [Theming](#theming)).
+
+**Cards and overlays in a Query Loop:** turn on **Use the current post** in the
+block settings and the block shows the title, link and featured image of the
+post it's in, so one card in a Query Loop's post template becomes a card per
+post. The block's own image is used for posts without a featured image. The
+body of a card or overlay is ordinary blocks, so what else each one shows is up
+to you: add Post Excerpt, Post Date or Post Terms and they show the same post,
+or leave them out. Everything else, such as the layout or the eyebrow, is
+shared by every post.
 
 ## Installation
 

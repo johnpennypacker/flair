@@ -5,7 +5,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/alert',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Alert',
 		'category' => 'flair',
 		'description' => 'A notice or banner, optionally dismissible by the visitor.',
@@ -71,7 +71,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/boxout',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Boxout',
 		'category' => 'flair',
 		'description' => 'Display related content',
@@ -132,9 +132,13 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/card',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Card',
 		'category' => 'flair',
+		'usesContext' => array(
+			'postId',
+			'postType'
+		),
 		'description' => 'It\'s like a link with tons of context.',
 		'supports' => array(
 			'align' => array(
@@ -165,6 +169,14 @@ return array(
 			)
 		),
 		'attributes' => array(
+			'source' => array(
+				'type' => 'string',
+				'enum' => array(
+					'manual',
+					'post'
+				),
+				'default' => 'manual'
+			),
 			'href' => array(
 				'type' => 'string',
 				'default' => '#'
@@ -244,7 +256,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/carousel',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Carousel',
 		'category' => 'flair',
 		'description' => 'A slider.',
@@ -290,7 +302,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/carousel-slide',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Carousel slide',
 		'category' => 'flair',
 		'description' => 'The individual slides within a carousel.',
@@ -322,7 +334,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/eyebrow',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Eyebrow',
 		'category' => 'flair',
 		'description' => 'Creates a pre-header, kicker, or overline',
@@ -374,7 +386,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/layer',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Layer',
 		'category' => 'flair',
 		'description' => 'A layer of content within a stack.',
@@ -397,7 +409,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/metric',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Metric',
 		'category' => 'flair',
 		'description' => 'Display stats in style',
@@ -470,7 +482,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/milestone',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Milestone',
 		'category' => 'flair',
 		'description' => 'Creates an entry on a timeline',
@@ -521,7 +533,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/modal',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Modal',
 		'category' => 'flair',
 		'description' => 'Content that opens in a dialog when a link or button pointing at it is clicked.',
@@ -586,7 +598,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/multibutton',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Multibutton',
 		'category' => 'flair',
 		'description' => 'A hybrid button/dropdown.',
@@ -639,7 +651,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/multibutton-button',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Multibutton Button',
 		'category' => 'flair',
 		'description' => 'The individual buttons that go inside a multibutton.',
@@ -677,9 +689,13 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/overlay',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Overlay',
 		'category' => 'flair',
+		'usesContext' => array(
+			'postId',
+			'postType'
+		),
 		'description' => 'It\'s a cross between a card and a cover.',
 		'supports' => array(
 			'align' => array(
@@ -711,6 +727,14 @@ return array(
 			)
 		),
 		'attributes' => array(
+			'source' => array(
+				'type' => 'string',
+				'enum' => array(
+					'manual',
+					'post'
+				),
+				'default' => 'manual'
+			),
 			'href' => array(
 				'type' => 'string',
 				'default' => '#'
@@ -790,7 +814,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/sidler',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Sidler',
 		'category' => 'flair',
 		'icon' => 'smiley',
@@ -835,7 +859,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/stack',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Stack',
 		'category' => 'flair',
 		'allowedBlocks' => array(
@@ -860,7 +884,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/tab',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Tab',
 		'category' => 'flair',
 		'description' => 'An individual tab and its panel within a tabs block.',
@@ -899,7 +923,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'flair/tabs',
-		'version' => '2.2.1',
+		'version' => '2.3.0',
 		'title' => 'Tabs',
 		'category' => 'flair',
 		'description' => 'An accessible tabbed interface.',

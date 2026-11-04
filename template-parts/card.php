@@ -27,6 +27,15 @@ $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','
 				<div class="flair-warning"><p><strong>Warning:</strong> this block is missing a title and link.</p></div>
 			<?php endif; ?>
 
+			<?php if( '' !== trim( $args['content'] ?? '' ) ): ?>
+			<?php
+			// The card's body, as inner blocks, laid straight into .text --
+			// the card's styles space its children. Cards from before 2.3.0
+			// have none until they're next edited, and show their fields below.
+			echo wp_kses_post( $args['content'] );
+			?>
+			<?php else: ?>
+
 			<?php if( ! empty( $attributes['excerpt'] ) ): ?>
 			<p class="excerpt"><?php echo esc_html( $attributes['excerpt'] ); ?></p>
 			<?php endif; ?>
@@ -35,6 +44,8 @@ $heading = in_array( $attributes['heading'] ?? 'h3', ['h1','h2','h3','h4','h5','
 			<?php endif; ?>
 			<?php if( isset( $attributes['button'] ) && ! empty( trim( $attributes['button'] ) ) ): ?>
 			<p class="button"><?php echo esc_html( $attributes['button'] ); ?></p>
+			<?php endif; ?>
+
 			<?php endif; ?>
 		</div>
 		<div class="media">

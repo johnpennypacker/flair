@@ -14,8 +14,11 @@ import {
 	LinkControl,
 	MediaPlaceholder,
 	MediaReplaceFlow,
-	RichText
+	RichText,
+	store as blockEditorStore,
+	useInnerBlocksProps
 } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
 import {
 	Button,
 	Disabled,
@@ -48,6 +51,22 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 import './editor.scss';
 
+import { PostSourceToggle, usePostSource } from '../../shared/post-source';
+
+/**
+ * What a new card starts with: the excerpt, attribution and button it used to
+ * have as fields, now as paragraphs carrying the same classes, so they're
+ * styled as before. Empty ones aren't shown on the front end, as empty fields
+ * weren't, so an author only fills in what they want. Each is named for its
+ * job, so the List View tells them apart. `index.js` turns an older card's
+ * fields into these same paragraphs.
+ */
+const TEMPLATE = [
+	[ 'core/paragraph', { className: 'excerpt', placeholder: __( 'The body of my great card', 'flair' ), metadata: { name: __( 'Paragraph - excerpt', 'flair' ) } } ],
+	[ 'core/paragraph', { className: 'attribution', placeholder: __( 'Anonymous', 'flair' ), metadata: { name: __( 'Paragraph - attribution', 'flair' ) } } ],
+	[ 'core/paragraph', { className: 'button', placeholder: __( 'Explore', 'flair' ), metadata: { name: __( 'Paragraph - button', 'flair' ) } } ],
+];
+
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -58,7 +77,18 @@ import './editor.scss';
  */
 export default function Edit(props) {
 
-	const { attributes, setAttributes, isSelected } = props;
+	const { attributes, setAttributes, isSelected, context } = props;
+
+	// What to show: the typed content, or the current post's.
+	const post = usePostSource( attributes, context );
+
+	// Empty paragraphs aren't shown on the front end, so they're hidden here
+	// too until the card, or something in it, is selected -- then their
+	// placeholders show what can be filled in. See editor.scss.
+	const isEditingBody = useSelect(
+		( select ) => isSelected || select( blockEditorStore ).hasSelectedInnerBlock( props.clientId, true ),
+		[ isSelected, props.clientId ]
+	);
 
 	//console.log('atts', attributes);
 	//console.log( 'props', useBlockProps() );
@@ -96,6 +126,11 @@ export default function Edit(props) {
 
 		const [ popoverAnchor, setPopoverAnchor ] = useState( null );
 		const [ isEditingURL, setIsEditingURL ] = useState( false );
+
+		// The post supplies the link. Hooks above still run, to keep their order.
+		if( post.isPostSource ) {
+			return null;
+		}
 
 		return(
 			<>
@@ -245,17 +280,20 @@ export default function Edit(props) {
 		let c = ['flair-wrapper flair-card-wrapper'];
 		c.push( 'aspect-' + attributes.aspect );
 		c.push( 'orientation-' + attributes.orientation );
+		if( isEditingBody ) {
+			c.push( 'is-editing-body' );
+		}
 		return c.join(' ');
 	}
 
 	const mediaElement = () => {
 		let s = blockIsSelected();
-		if( attributes.asset.url ) {
+		if( post.asset.url ) {
 			return (
 				<figure class="media">
 					<img
-					src={attributes.asset.url}
-					alt={attributes.asset.alt} />
+					src={post.asset.url}
+					alt={post.asset.alt} />
 				</figure>
 			);
 		} else {
@@ -274,6 +312,13 @@ export default function Edit(props) {
 	}
 
 	const Heading = `${attributes.heading}`;
+
+	// The body is inner blocks, laid straight into `.text` after the title --
+	// no wrapper, since the card's styles size and space `.text`'s children.
+	const { children: innerBlocks, ...textProps } = useInnerBlocksProps(
+		{ className: 'text' },
+		{ template: TEMPLATE }
+	);
 
 	return (
 		<>
@@ -309,6 +354,13 @@ export default function Edit(props) {
 			<PanelBody
 				title={ __( 'Card properties', 'flair' ) }
 			>
+				<PanelRow><fieldset>
+					<PostSourceToggle
+						attributes={attributes}
+						setAttributes={setAttributes}
+						help={__( "Use the current post for cards in Query Loops, it'll show the title, link and featured image of each post.", 'flair' )}
+					/>
+				</fieldset></PanelRow>
 				<PanelRow><fieldset>{orientationToggles()}</fieldset></PanelRow>
 				<PanelRow><fieldset>{headingLevelToggles()}</fieldset></PanelRow>
 				<PanelRow><fieldset>{aspectRatioToggles()}</fieldset></PanelRow>
@@ -316,9 +368,12 @@ export default function Edit(props) {
 		</InspectorControls>
 		<div { ...useBlockProps({ className:calculateClassName() }) }>
 			<div class="flair-card">
-				<div class="text">
+				<div { ...textProps }>
 
 					<Heading class="title">
+						{ post.isPostSource ? (
+						<a className='link'>{ post.title || __( 'Post title', 'flair' ) }</a>
+						) : (
 						<RichText
 							tagName='a'
 							className='link'
@@ -331,49 +386,9 @@ export default function Edit(props) {
 								});
 							}}
 						/>
+						) }
 					</Heading>
-					<RichText
-						tagName='p'
-						className='excerpt'
-						placeholder={__('The body of my great card')}
-						value={attributes.excerpt}
-						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-						onChange={( value ) => {
-							setAttributes({
-								excerpt: value
-							});
-						}}
-					/>
-					{ (attributes.attribution || isSelected) && (
-					<RichText
-						tagName='small'
-						className='attribution'
-						placeholder={__('Anonymous')}
-						value={attributes.attribution}
-						allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-						onChange={( value ) => {
-							setAttributes({
-								attribution: value
-							});
-						}}
-					/>
-					)
-					}
-					{ (attributes.button || isSelected) && (
-						<RichText
-							tagName='p'
-							className='button'
-							placeholder={__('Explore')}
-							value={attributes.button}
-							allowedFormats={[ 'core/bold', 'core/italic', 'core/subscript', 'core/superscript', 'core/strikethrough' ]}
-							onChange={( value ) => {
-								setAttributes({
-									button: value
-								});
-							}}
-						/>
-					)
-					}
+					{ innerBlocks }
 
 				</div>
 				{ mediaElement() }

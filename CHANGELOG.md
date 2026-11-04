@@ -5,6 +5,35 @@ All notable changes to the **Flair** plugin are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0]
+
+### Added
+- Cards and overlays can show the post they're in. Turn on **Use the current
+  post** and the block takes its title, link and featured image from the post,
+  so a card in a Query Loop's post template shows each post in turn. The
+  block's own image is used for posts without a featured image, and its other
+  settings, such as the layout and the overlay's eyebrow, are shared by every
+  post. Blocks inside, like Post Excerpt, Post Date or Post Terms, show the
+  same post. Theme template overrides keep working, because the post's values
+  arrive as ordinary attributes.
+
+### Changed
+- A card's body is now inner blocks, like an overlay's. New cards start with
+  excerpt, attribution and button paragraphs, styled as the old fields were,
+  and any of them can be left empty, removed or swapped for other blocks, such
+  as Post Excerpt in a Query Loop. Empty paragraphs aren't shown. Existing
+  cards look the same: their excerpt, attribution and button move into these
+  paragraphs the next time they're opened in the editor, and render from the
+  old fields until then.
+- Everything in a card's body sits above the card's link, as the excerpt
+  always did, so it stays selectable, and links inside it can be clicked. The
+  button stays part of the card's link.
+
+### Theme authors
+- A theme that overrides `flair/card.php` needs to print `$args['content']`
+  inside `.text` after the title, or cards saved with 2.3.0 lose their body.
+  See THEMING.md §4.
+
 ## [2.2.1]
 
 ### Fixed

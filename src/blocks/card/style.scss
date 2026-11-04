@@ -51,6 +51,20 @@
 		& > :last-child:where(:not(.button)) {
 			margin-block-end: 0;
 		}
+
+		// The card's body is inner blocks: prose, so above the stretched link
+		// and selectable, as .excerpt always was. A click on it still follows
+		// the card's link (flair-core/flair.js), and links inside -- a Post
+		// Terms block, say -- are lifted clear so they get their own clicks.
+		// The title is the link itself and the button is the call to action,
+		// so both stay under it.
+		& > :where(:not(.title, .button)) {
+			z-index: 2;
+		}
+		& > :where(:not(.title, .button)) a {
+			position: relative;
+			z-index: 99;
+		}
 	}
 	.media {
 		order: 1;
@@ -95,6 +109,12 @@
 		z-index: 2;
 	}
 
+	// Takes up the slack, which pushes the button to the bottom of a card
+	// stretched taller than its content. A Post Excerpt stands in for it in a
+	// Query Loop.
+	.wp-block-post-excerpt {
+		flex-grow: 1;
+	}
 	.excerpt {
 		flex-grow: 1;
 		margin-block-start: 0;

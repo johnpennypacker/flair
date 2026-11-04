@@ -3,7 +3,9 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-import { registerBlockType } from '@wordpress/blocks';
+import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -32,6 +34,37 @@ const cardIcon = (
 );
 
 /**
+ * Cards from before 2.3.0 kept their excerpt, attribution and button as
+ * attributes. Opening one moves them into the paragraphs a new card starts
+ * with (see TEMPLATE in edit.js), and saving keeps them that way. Until it's
+ * opened, `template-parts/card.php` renders the old attributes, so the front
+ * end doesn't change either way.
+ *
+ * Those cards saved no markup, which the current save reproduces exactly, so
+ * they're valid -- the migration runs because isEligible asks for it.
+ */
+const fieldsToParagraphs = {
+	attributes: metadata.attributes,
+	supports: metadata.supports,
+	save: () => null,
+	isEligible: ( attributes, innerBlocks ) => (
+		! innerBlocks.length
+		&& [ 'excerpt', 'attribution', 'button' ].some( ( name ) => attributes[ name ]?.trim() )
+	),
+	migrate: ( attributes ) => {
+		const { excerpt, attribution, button, ...rest } = attributes;
+		const paragraphs = [
+			[ 'excerpt', excerpt, __( 'Paragraph - excerpt', 'flair' ) ],
+			[ 'attribution', attribution, __( 'Paragraph - attribution', 'flair' ) ],
+			[ 'button', button, __( 'Paragraph - button', 'flair' ) ],
+		]
+			.filter( ( [ , content ] ) => content?.trim() )
+			.map( ( [ className, content, name ] ) => createBlock( 'core/paragraph', { className, content, metadata: { name } } ) );
+		return [ rest, paragraphs ];
+	},
+};
+
+/**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
@@ -41,6 +74,9 @@ registerBlockType( metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
+	// The body is inner blocks; everything else is attributes, rendered in PHP.
+	save: () => <InnerBlocks.Content />,
+	deprecated: [ fieldsToParagraphs ],
 	icon: cardIcon,
 } );
 

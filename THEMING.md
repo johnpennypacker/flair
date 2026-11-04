@@ -137,7 +137,7 @@ The stretched link sits at `z-index: 1`, **below** the prose:
 
 | Layer | z-index | Why |
 |---|---:|---|
-| `.excerpt`, `.attribution`, `.misc` | `2` | Above the link, so the text is the hit target and stays selectable |
+| `.excerpt`, `.attribution`, `.misc`, and everything in a card's `.text` but `.title` and `.button` | `2` | Above the link, so the text is the hit target and stays selectable; links inside are lifted further and take their own clicks |
 | `.title a::after` | `1` | The stretched link |
 | `.flair-card::before` | `0` | The decoration layer |
 
@@ -223,6 +223,20 @@ the CSS route looks cheaper right up until it isn't.
 
 Note that a replaced template opts out of the structure documented above. If you
 copy `card.php`, you own the stretched link and the layering with it.
+
+A card's body is inner blocks, which arrive as `$args['content']`, as an
+overlay's always have. An override of `card.php` must print it inside `.text`,
+straight after the title and without a wrapper, since the card's spacing rules
+target `.text`'s children. Cards from before 2.3.0 have no inner blocks until
+they're next edited, so keep the plugin template's fallback to the `excerpt`,
+`attribution` and `button` attributes too. Empty paragraphs have already been
+removed from `$args['content']`.
+
+A card or overlay set to **Use the current post** needs nothing from its
+template. The post's title, permalink, featured image and (for the card) excerpt
+are written into `$args['attributes']` before the template loads, so an
+override reads them exactly as it reads typed content. `$args['block']->context['postId']`
+is there if a template wants more of the post than that.
 
 ---
 

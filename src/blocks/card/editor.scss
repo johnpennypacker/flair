@@ -29,3 +29,11 @@
 		pointer-events: none;
 	}
 }
+
+/* Empty paragraphs render nothing on the front end (render.php drops them),
+   so an unselected card hides them too and looks as it will. Selecting the
+   card or anything in it brings them back with their placeholders. The class
+   comes from edit.js; `data-empty` is the editor's own marker on a RichText. */
+.flair-card-wrapper:not(.is-editing-body) .flair-card .text > [data-type="core/paragraph"][data-empty="true"] {
+	display: none;
+}

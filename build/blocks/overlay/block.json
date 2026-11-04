@@ -2,9 +2,13 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "flair/overlay",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "title": "Overlay",
   "category": "flair",
+  "usesContext": [
+    "postId",
+    "postType"
+  ],
   "description": "It's a cross between a card and a cover.",
   "supports": {
     "align": [
@@ -36,6 +40,14 @@
     }
   },
   "attributes": {
+    "source": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "post"
+      ],
+      "default": "manual"
+    },
     "href": {
       "type": "string",
       "default": "#"
